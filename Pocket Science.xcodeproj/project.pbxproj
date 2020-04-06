@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		590A362B243ADAD60053CAF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A362A243ADAD60053CAF9 /* SettingsViewController.swift */; };
+		590A362D243ADADF0053CAF9 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A362C243ADADF0053CAF9 /* FavouritesViewController.swift */; };
+		590A362F243ADAEB0053CAF9 /* AwardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A362E243ADAEB0053CAF9 /* AwardsViewController.swift */; };
 		5917C13524337F9500107213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5917C13424337F9500107213 /* AppDelegate.swift */; };
 		5917C13724337F9500107213 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5917C13624337F9500107213 /* SceneDelegate.swift */; };
 		5917C13924337F9500107213 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5917C13824337F9500107213 /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		590A362A243ADAD60053CAF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		590A362C243ADADF0053CAF9 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		590A362E243ADAEB0053CAF9 /* AwardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsViewController.swift; sourceTree = "<group>"; };
 		5917C13124337F9500107213 /* Pocket Science.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Science.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5917C13424337F9500107213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5917C13624337F9500107213 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +69,9 @@
 				5917C13D24337F9A00107213 /* Assets.xcassets */,
 				5917C13F24337F9A00107213 /* LaunchScreen.storyboard */,
 				5917C14224337F9A00107213 /* Info.plist */,
+				590A362C243ADADF0053CAF9 /* FavouritesViewController.swift */,
+				590A362A243ADAD60053CAF9 /* SettingsViewController.swift */,
+				590A362E243ADAEB0053CAF9 /* AwardsViewController.swift */,
 			);
 			path = "Pocket Science";
 			sourceTree = "<group>";
@@ -140,7 +149,10 @@
 			files = (
 				5917C13924337F9500107213 /* ViewController.swift in Sources */,
 				5917C13524337F9500107213 /* AppDelegate.swift in Sources */,
+				590A362F243ADAEB0053CAF9 /* AwardsViewController.swift in Sources */,
 				5917C13724337F9500107213 /* SceneDelegate.swift in Sources */,
+				590A362D243ADADF0053CAF9 /* FavouritesViewController.swift in Sources */,
+				590A362B243ADAD60053CAF9 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
