@@ -16,6 +16,10 @@
 		5917C13C24337F9500107213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13A24337F9500107213 /* Main.storyboard */; };
 		5917C13E24337F9A00107213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13D24337F9A00107213 /* Assets.xcassets */; };
 		5917C14124337F9A00107213 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13F24337F9A00107213 /* LaunchScreen.storyboard */; };
+		59576DB5243D8373005B3269 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB4243D8373005B3269 /* data.swift */; };
+		59576DB7243D83AD005B3269 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB6243D83AD005B3269 /* LessonViewController.swift */; };
+		59EE919A24449B84001EEFEE /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EE919924449B84001EEFEE /* QuizViewController.swift */; };
+		59EE919C24449BC4001EEFEE /* QuizResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		5917C13D24337F9A00107213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5917C14024337F9A00107213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5917C14224337F9A00107213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59576DB4243D8373005B3269 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
+		59576DB6243D83AD005B3269 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
+		59EE919924449B84001EEFEE /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,10 @@
 				590A362C243ADADF0053CAF9 /* FavouritesViewController.swift */,
 				590A362A243ADAD60053CAF9 /* SettingsViewController.swift */,
 				590A362E243ADAEB0053CAF9 /* AwardsViewController.swift */,
+				59576DB4243D8373005B3269 /* data.swift */,
+				59576DB6243D83AD005B3269 /* LessonViewController.swift */,
+				59EE919924449B84001EEFEE /* QuizViewController.swift */,
+				59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */,
 			);
 			path = "Pocket Science";
 			sourceTree = "<group>";
@@ -152,6 +164,10 @@
 				590A362F243ADAEB0053CAF9 /* AwardsViewController.swift in Sources */,
 				5917C13724337F9500107213 /* SceneDelegate.swift in Sources */,
 				590A362D243ADADF0053CAF9 /* FavouritesViewController.swift in Sources */,
+				59576DB5243D8373005B3269 /* data.swift in Sources */,
+				59EE919C24449BC4001EEFEE /* QuizResultsViewController.swift in Sources */,
+				59EE919A24449B84001EEFEE /* QuizViewController.swift in Sources */,
+				59576DB7243D83AD005B3269 /* LessonViewController.swift in Sources */,
 				590A362B243ADAD60053CAF9 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xWs-lo-4Vf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0IZ-u6-x9k">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -8,88 +8,181 @@
     </dependencies>
     <scenes>
         <!--Awards-->
-        <scene sceneID="lz5-jn-tyo">
+        <scene sceneID="Eex-ec-Yhi">
             <objects>
-                <viewController id="Nt3-yR-Dsj" customClass="AwardsViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1Kg-3N-awU">
+                <viewController id="RdT-XZ-vFE" customClass="AwardsViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vio-Xy-fvy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Zfa-Jf-3KD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="fgd-Pd-jnJ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Awards" id="Zkk-NX-hIl"/>
+                    <tabBarItem key="tabBarItem" title="Awards" id="Mc7-AN-pDA"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qWO-qY-780" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tDL-Zb-HxP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="462" y="404"/>
+            <point key="canvasLocation" x="-2370" y="322"/>
         </scene>
-        <!--Home-->
-        <scene sceneID="HG1-rc-Y0E">
+        <!--Favourites-->
+        <scene sceneID="DIY-Kd-3px">
             <objects>
-                <viewController id="Jvj-Wd-kwu" customClass="ViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8nc-Za-nX5">
+                <viewController id="VTE-la-l3h" customClass="FavouritesViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oCc-gv-Eg8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.99998790029999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <viewLayoutGuide key="safeArea" id="GcT-Ci-nOe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="DvO-pd-oTL"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="nCG-Oo-p7F"/>
+                    <tabBarItem key="tabBarItem" title="Favourites" id="DEY-Zw-rx7"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BRu-pE-m2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="259-d5-YXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="463" y="-333"/>
+            <point key="canvasLocation" x="-3204" y="321"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="SSF-hV-gXf">
+            <objects>
+                <viewController id="NkZ-oF-f8M" customClass="ViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zHU-0x-Drm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pocket Science" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZm-K6-TaG">
+                                <rect key="frame" x="20" y="105" width="293" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzt-oV-RiM">
+                                <rect key="frame" x="17" y="174" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ijW-1U-6aQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7qn-Zo-t0G"/>
+                    <connections>
+                        <segue destination="iv0-Qv-gIJ" kind="show" id="foA-vK-ap1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKm-Tt-diN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-455.07246376811599" y="-450"/>
+        </scene>
+        <!--Lessons-->
+        <scene sceneID="Zdx-L6-wyM">
+            <objects>
+                <viewController id="iv0-Qv-gIJ" customClass="LessonViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wfo-VN-8oS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="o6c-Zb-XB8"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Lessons" id="iJg-a5-orK"/>
+                    <connections>
+                        <segue destination="RB2-20-OZx" kind="show" id="H2h-jj-RPD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UVD-x7-JLT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="451" y="-450"/>
+        </scene>
+        <!--Quiz-->
+        <scene sceneID="zOd-dD-t5M">
+            <objects>
+                <viewController id="RB2-20-OZx" customClass="QuizViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ILs-tB-7Lh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="urb-8x-5YX"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Quiz" id="hb4-Kr-Yov"/>
+                    <connections>
+                        <segue destination="zhf-80-zvz" kind="show" id="tef-tD-CsI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SDH-3T-BKi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="-450"/>
+        </scene>
+        <!--Quiz Results-->
+        <scene sceneID="2Pi-uO-Ywv">
+            <objects>
+                <viewController id="zhf-80-zvz" customClass="QuizResultsViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wzm-bj-6lw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Tip-mP-sH7"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Quiz Results" id="suc-sr-rGg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lD1-81-8hz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="321"/>
         </scene>
         <!--Settings-->
-        <scene sceneID="0V2-su-TCU">
+        <scene sceneID="pHH-xA-hw8">
             <objects>
-                <viewController id="6NE-OG-0UC" customClass="SettingsViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="P0J-zW-zkf">
+                <viewController id="KCe-lT-wyd" customClass="SettingsViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DB0-yE-ZDT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="50k-XD-yzh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="lnJ-80-aHk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="Ktg-wn-4oX"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="Whm-8n-d7m"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IlP-Mb-TSu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YC6-Q8-aOs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1316" y="-333"/>
-        </scene>
-        <!--Favourites View Controller-->
-        <scene sceneID="zEd-HB-hta">
-            <objects>
-                <viewController id="Atr-nT-yz1" customClass="FavouritesViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4Bl-23-aER">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="oE1-a1-U8s"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" systemItem="favorites" id="TIm-r8-5Hv"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lZc-DT-pxT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1316" y="404"/>
+            <point key="canvasLocation" x="-3204" y="-450"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="oef-lC-4C3">
+        <scene sceneID="byA-xp-DrH">
             <objects>
-                <tabBarController id="xWs-lo-4Vf" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Cm-XB-xBa">
+                <tabBarController id="0IZ-u6-x9k" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tK9-KZ-7UH"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dPJ-pk-A7X">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Jvj-Wd-kwu" kind="relationship" relationship="viewControllers" id="d2a-bl-RVc"/>
-                        <segue destination="Nt3-yR-Dsj" kind="relationship" relationship="viewControllers" id="8Gj-MZ-EIF"/>
-                        <segue destination="Atr-nT-yz1" kind="relationship" relationship="viewControllers" id="wfk-sk-X5Z"/>
-                        <segue destination="6NE-OG-0UC" kind="relationship" relationship="viewControllers" id="RVI-ou-RRU"/>
+                        <segue destination="H5e-hB-gXl" kind="relationship" relationship="viewControllers" id="YJn-Ib-6J9"/>
+                        <segue destination="RdT-XZ-vFE" kind="relationship" relationship="viewControllers" id="fcI-gW-O2Y"/>
+                        <segue destination="VTE-la-l3h" kind="relationship" relationship="viewControllers" id="typ-KE-mdg"/>
+                        <segue destination="KCe-lT-wyd" kind="relationship" relationship="viewControllers" id="rRc-uO-IyV"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C1O-S8-xGU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mfp-i0-ZEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="-9"/>
+            <point key="canvasLocation" x="-2369" y="-450"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="TYV-tI-Ya8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H5e-hB-gXl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" id="TEg-np-5Sm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kkW-HH-Kbz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NkZ-oF-f8M" kind="relationship" relationship="rootViewController" id="SyF-vS-2Ns"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5os-kZ-uXb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1365.217391304348" y="-450"/>
         </scene>
     </scenes>
 </document>
