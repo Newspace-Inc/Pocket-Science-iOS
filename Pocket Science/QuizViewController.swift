@@ -9,6 +9,15 @@
 import UIKit
 
 class QuizViewController: UIViewController {
+    
+    // Variales
+    var recentlyOpenedLevel:String = ""
+    var userPoints:Int = 0
+    var dataPassCheck:Bool = false
+    var primaryLevel:String = ""
+    var amtOfCorrectAns:Int = 0
+    var amtOfPointsEarned:Int = 0
+    var totalAmtOfQns:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,14 +26,13 @@ class QuizViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let destinationVC = segue.destination as! QuizResultsViewController
+        destinationVC.userPoints = userPoints
+        destinationVC.primaryLevel = primaryLevel
+        destinationVC.amtOfCorrectAns = amtOfCorrectAns
+        destinationVC.amtOfPointsEarned = amtOfPointsEarned
+        destinationVC.totalAmtOfQns = totalAmtOfQns
     }
-    */
 
 }

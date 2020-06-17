@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		590A362B243ADAD60053CAF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A362A243ADAD60053CAF9 /* SettingsViewController.swift */; };
+		590293392470408600615098 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590293382470408600615098 /* SettingsViewController.swift */; };
+		590A362B243ADAD60053CAF9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A362A243ADAD60053CAF9 /* ProfileViewController.swift */; };
 		590A362D243ADADF0053CAF9 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A362C243ADADF0053CAF9 /* FavouritesViewController.swift */; };
 		590A362F243ADAEB0053CAF9 /* AwardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A362E243ADAEB0053CAF9 /* AwardsViewController.swift */; };
 		5917C13524337F9500107213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5917C13424337F9500107213 /* AppDelegate.swift */; };
@@ -17,13 +18,22 @@
 		5917C13E24337F9A00107213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13D24337F9A00107213 /* Assets.xcassets */; };
 		5917C14124337F9A00107213 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13F24337F9A00107213 /* LaunchScreen.storyboard */; };
 		59576DB5243D8373005B3269 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB4243D8373005B3269 /* data.swift */; };
-		59576DB7243D83AD005B3269 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB6243D83AD005B3269 /* LessonViewController.swift */; };
+		59576DB7243D83AD005B3269 /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB6243D83AD005B3269 /* LessonsViewController.swift */; };
+		598075822474206F00DFE8AB /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598075812474206F00DFE8AB /* ChooseTopicViewController.swift */; };
+		5995AA4E2477D054003800A6 /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */; };
+		59C3A4D12466BBAA0083DF6F /* dataCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C3A4D02466BBAA0083DF6F /* dataCollection.swift */; };
+		59E0D46C245EA38000A55E81 /* TiersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E0D46B245EA38000A55E81 /* TiersViewController.swift */; };
 		59EE919A24449B84001EEFEE /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EE919924449B84001EEFEE /* QuizViewController.swift */; };
 		59EE919C24449BC4001EEFEE /* QuizResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */; };
+		BC9F6947F54C116608FDC07C /* Pods_Pocket_Science.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266B9D0439333E190FA508 /* Pods_Pocket_Science.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		590A362A243ADAD60053CAF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		340E62B78DDF9F68C2ABFD4C /* Pods-Pocket Science.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pocket Science.debug.xcconfig"; path = "Target Support Files/Pods-Pocket Science/Pods-Pocket Science.debug.xcconfig"; sourceTree = "<group>"; };
+		459B87B22F4B4E15CA344B73 /* Pods-Pocket Science.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pocket Science.release.xcconfig"; path = "Target Support Files/Pods-Pocket Science/Pods-Pocket Science.release.xcconfig"; sourceTree = "<group>"; };
+		54266B9D0439333E190FA508 /* Pods_Pocket_Science.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pocket_Science.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		590293382470408600615098 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		590A362A243ADAD60053CAF9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		590A362C243ADADF0053CAF9 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		590A362E243ADAEB0053CAF9 /* AwardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsViewController.swift; sourceTree = "<group>"; };
 		5917C13124337F9500107213 /* Pocket Science.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Science.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,7 +45,12 @@
 		5917C14024337F9A00107213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5917C14224337F9A00107213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59576DB4243D8373005B3269 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
-		59576DB6243D83AD005B3269 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
+		59576DB6243D83AD005B3269 /* LessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
+		598075812474206F00DFE8AB /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
+		5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashcardsViewController.swift; path = Assets.xcassets/FlashcardsViewController.swift; sourceTree = "<group>"; };
+		59C3A4D02466BBAA0083DF6F /* dataCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataCollection.swift; sourceTree = "<group>"; };
+		59E08049247655DB00E72914 /* Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Data.xlsx; sourceTree = "<group>"; };
+		59E0D46B245EA38000A55E81 /* TiersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiersViewController.swift; sourceTree = "<group>"; };
 		59EE919924449B84001EEFEE /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC9F6947F54C116608FDC07C /* Pods_Pocket_Science.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +72,8 @@
 			children = (
 				5917C13324337F9500107213 /* Pocket Science */,
 				5917C13224337F9500107213 /* Products */,
+				A8E6874E56146C7B3AC49890 /* Pods */,
+				9530B26F3CCEF8DC3F12ACE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,22 +88,45 @@
 		5917C13324337F9500107213 /* Pocket Science */ = {
 			isa = PBXGroup;
 			children = (
+				5917C13D24337F9A00107213 /* Assets.xcassets */,
+				59E08049247655DB00E72914 /* Data.xlsx */,
+				5917C13F24337F9A00107213 /* LaunchScreen.storyboard */,
+				5917C13A24337F9500107213 /* Main.storyboard */,
+				5917C14224337F9A00107213 /* Info.plist */,
 				5917C13424337F9500107213 /* AppDelegate.swift */,
 				5917C13624337F9500107213 /* SceneDelegate.swift */,
 				5917C13824337F9500107213 /* ViewController.swift */,
-				5917C13A24337F9500107213 /* Main.storyboard */,
-				5917C13D24337F9A00107213 /* Assets.xcassets */,
-				5917C13F24337F9A00107213 /* LaunchScreen.storyboard */,
-				5917C14224337F9A00107213 /* Info.plist */,
 				590A362C243ADADF0053CAF9 /* FavouritesViewController.swift */,
-				590A362A243ADAD60053CAF9 /* SettingsViewController.swift */,
+				598075812474206F00DFE8AB /* ChooseTopicViewController.swift */,
+				59576DB6243D83AD005B3269 /* LessonsViewController.swift */,
+				590A362A243ADAD60053CAF9 /* ProfileViewController.swift */,
 				590A362E243ADAEB0053CAF9 /* AwardsViewController.swift */,
-				59576DB4243D8373005B3269 /* data.swift */,
-				59576DB6243D83AD005B3269 /* LessonViewController.swift */,
+				59E0D46B245EA38000A55E81 /* TiersViewController.swift */,
 				59EE919924449B84001EEFEE /* QuizViewController.swift */,
 				59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */,
+				590293382470408600615098 /* SettingsViewController.swift */,
+				5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */,
+				59576DB4243D8373005B3269 /* data.swift */,
+				59C3A4D02466BBAA0083DF6F /* dataCollection.swift */,
 			);
 			path = "Pocket Science";
+			sourceTree = "<group>";
+		};
+		9530B26F3CCEF8DC3F12ACE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54266B9D0439333E190FA508 /* Pods_Pocket_Science.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A8E6874E56146C7B3AC49890 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				340E62B78DDF9F68C2ABFD4C /* Pods-Pocket Science.debug.xcconfig */,
+				459B87B22F4B4E15CA344B73 /* Pods-Pocket Science.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,9 +136,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5917C14524337F9A00107213 /* Build configuration list for PBXNativeTarget "Pocket Science" */;
 			buildPhases = (
+				5F2580F78B25F146053FD978 /* [CP] Check Pods Manifest.lock */,
 				5917C12D24337F9500107213 /* Sources */,
 				5917C12E24337F9500107213 /* Frameworks */,
 				5917C12F24337F9500107213 /* Resources */,
+				250902D489AA4D3F727AB8C0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,6 +197,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		250902D489AA4D3F727AB8C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pocket Science/Pods-Pocket Science-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pocket Science/Pods-Pocket Science-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pocket Science/Pods-Pocket Science-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F2580F78B25F146053FD978 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pocket Science-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5917C12D24337F9500107213 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -162,13 +247,18 @@
 				5917C13924337F9500107213 /* ViewController.swift in Sources */,
 				5917C13524337F9500107213 /* AppDelegate.swift in Sources */,
 				590A362F243ADAEB0053CAF9 /* AwardsViewController.swift in Sources */,
+				598075822474206F00DFE8AB /* ChooseTopicViewController.swift in Sources */,
 				5917C13724337F9500107213 /* SceneDelegate.swift in Sources */,
+				59E0D46C245EA38000A55E81 /* TiersViewController.swift in Sources */,
 				590A362D243ADADF0053CAF9 /* FavouritesViewController.swift in Sources */,
 				59576DB5243D8373005B3269 /* data.swift in Sources */,
 				59EE919C24449BC4001EEFEE /* QuizResultsViewController.swift in Sources */,
+				590293392470408600615098 /* SettingsViewController.swift in Sources */,
 				59EE919A24449B84001EEFEE /* QuizViewController.swift in Sources */,
-				59576DB7243D83AD005B3269 /* LessonViewController.swift in Sources */,
-				590A362B243ADAD60053CAF9 /* SettingsViewController.swift in Sources */,
+				59C3A4D12466BBAA0083DF6F /* dataCollection.swift in Sources */,
+				59576DB7243D83AD005B3269 /* LessonsViewController.swift in Sources */,
+				5995AA4E2477D054003800A6 /* FlashcardsViewController.swift in Sources */,
+				590A362B243ADAD60053CAF9 /* ProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,11 +400,13 @@
 		};
 		5917C14624337F9A00107213 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 340E62B78DDF9F68C2ABFD4C /* Pods-Pocket Science.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46YLK6L3QN;
 				INFOPLIST_FILE = "Pocket Science/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,11 +420,13 @@
 		};
 		5917C14724337F9A00107213 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 459B87B22F4B4E15CA344B73 /* Pods-Pocket Science.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46YLK6L3QN;
 				INFOPLIST_FILE = "Pocket Science/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,26 +1,29 @@
 //
-//  QuizResultsViewController.swift
+//  FlashcardsViewController.swift
 //  Pocket Science
 //
-//  Created by Ethan Chew on 13/4/20.
+//  Created by Ethan Chew on 22/5/20.
 //  Copyright © 2020 Ethan Chew. All rights reserved.
 //
 
 import UIKit
 
-class QuizResultsViewController: UIViewController {
-
-    var amtOfCorrectAns:Int = 0
-    var amtOfPointsEarned:Int = 0
-    var totalAmtOfQns:Int = 0
-    var userPoints:Int = 0
-    var primaryLevel:String = ""
-    var userName:String = ""
+class FlashcardsViewController: UIViewController {
+    
+    // UI Elements
+    @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var conceptNameLabel: UILabel!
+    @IBOutlet weak var textField: UITextView!
+    @IBOutlet weak var bgPadding: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+            
+        // Curved Corners
+        imageView.layer.cornerRadius = 20
+        bgPadding.layer.cornerRadius = 20
+        
     }
     
 

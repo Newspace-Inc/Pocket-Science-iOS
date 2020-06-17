@@ -1,19 +1,29 @@
 //
-//  TopicsViewController.swift
+//  RedeemItemsViewController.swift
 //  Pocket Science
 //
-//  Created by Ethan Chew on 8/4/20.
+//  Created by Ethan Chew on 3/5/20.
 //  Copyright © 2020 Ethan Chew. All rights reserved.
 //
 
 import UIKit
 
-class LessonViewController: UIViewController {
+class TiersViewController: UIViewController {
 
+    // Call data file
+    let dataFile = data()
+    
+    // Variables/Arrays
+    var tierLevel = [""]
+    var tierPoints = [0]
+    var tierRewards = [""]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tierLevel = dataFile.tierLevel
+        tierPoints = dataFile.tierPoints
+        tierRewards = dataFile.tierRewards
     }
     
 

@@ -10,10 +10,21 @@ import UIKit
 
 class AwardsViewController: UIViewController {
 
+    // Get Data File
+    let dataFile = data()
+    
+    // Variables/Arrays
+    var tierLevel = [""]
+    var tierPoints = [0]
+    var tierRewards = [""]
+    var amountOfBadges = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tierLevel = dataFile.tierLevel
+        tierPoints = dataFile.tierPoints
+        tierRewards = dataFile.tierRewards
     }
     
 
