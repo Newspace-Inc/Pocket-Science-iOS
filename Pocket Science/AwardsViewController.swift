@@ -13,6 +13,8 @@ class AwardsViewController: UIViewController {
     // Get Data File
     let dataFile = data()
     
+    let userDefaults = UserDefaults.standard
+    
     // Variables/Arrays
     var tierLevel = [""]
     var tierPoints = [0]
@@ -25,17 +27,10 @@ class AwardsViewController: UIViewController {
         tierLevel = dataFile.tierLevel
         tierPoints = dataFile.tierPoints
         tierRewards = dataFile.tierRewards
+        
+        if (amountOfBadges != 0) {
+            userDefaults.set(amountOfBadges, forKey: "Amount of Badges")
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

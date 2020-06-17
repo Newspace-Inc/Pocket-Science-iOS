@@ -40,6 +40,28 @@ class ViewController: UIViewController, dataFromSettings {
         storedUserAge = settingsUserAge
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if let userName = userDefaults.string(forKey: "Username") {
+            userNameLabel.text = "\(userName)"
+            storedUserName = "\(userName)"
+        } else {
+            userNameLabel.text = "Hello, User"
+            storedUserName = "User"
+        }
+        
+        if let userAge = userDefaults.string(forKey: "Userage") {
+            storedUserAge = "\(userAge)"
+        } else {
+            storedUserAge = "NIL"
+        }
+        
+        if let primaryLevel = userDefaults.string(forKey: "Recently Opened") {
+            recentlyOpenedTopic = primaryLevel
+            
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,21 +75,27 @@ class ViewController: UIViewController, dataFromSettings {
                 
         // Change Label Text to Data
         pointLabel.text = "\(userPoints) Points"
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if let userName = userDefaults.string(forKey: "Username") {
-            userNameLabel.text = "\(userName)"
-            storedUserName = "\(userName)"
-        } else {
-            userNameLabel.text = "Hello, User"
-            storedUserName = "User"
-        }
-        if let userAge = userDefaults.string(forKey: "Userage") {
-            storedUserAge = "\(userAge)"
-        } else {
-            storedUserAge = "NIL"
-        }
+        
+        // Code for Recently Opened Button
+        if (recentlyOpenedTopic == "") {
+                    recentlyOpenedBtn.setTitle("No Recently Opened Topics", for: .normal)
+        //            recentlyOpenedBtn.backgroundColor =
+                    lvlLabel.alpha = 0
+                    topicLabel.alpha = 0
+                } else if (recentlyOpenedTopic == "Lower Primary") {
+                    lvlLabel.textColor = UIColor(displayP3Red: 255.0, green: 255.0, blue: 255.0, alpha: 1.0)
+                    topicLabel.textColor = UIColor(displayP3Red: 255.0, green: 255.0, blue: 255.0, alpha: 1.0)
+                    lvlLabel.alpha = 1
+                    topicLabel.alpha = 1
+                    recentlyOpenedBtn.backgroundColor = UIColor(displayP3Red: 100.0, green: 170.0, blue: 149.0, alpha: 1.0)
+                    recentlyOpenedBtn.setTitle("", for: .normal)
+                } else if (recentlyOpenedTopic == "Upper Primary") {
+        //            lvlLabel.textColor =
+        //            topicLabel.textColor =
+                    lvlLabel.alpha = 1
+                    topicLabel.alpha = 1
+                    recentlyOpenedBtn.setTitle("", for: .normal)
+                }
     }
     
     // Button Config
@@ -86,7 +114,7 @@ class ViewController: UIViewController, dataFromSettings {
             recentlyOpenedBtn.setTitle("", for: .normal)
         } else if (recentlyOpenedTopic == "Upper Primary") {
 //            lvlLabel.textColor =
-//            topicLabel.textColor =
+//            topicLabel.textColor = 
             lvlLabel.alpha = 1
             topicLabel.alpha = 1
             recentlyOpenedBtn.setTitle("", for: .normal)

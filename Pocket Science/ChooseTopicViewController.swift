@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreXLSX
 
 class ChooseTopicViewController: UIViewController {
     
@@ -16,6 +17,8 @@ class ChooseTopicViewController: UIViewController {
     var selectedSubtopic:String = ""
     var primaryLevel:String = ""
     var userName = ""
+    
+    let userDefaults = UserDefaults.standard
     
     // UI Elements
     @IBOutlet weak var mainUPLabel: UILabel!
@@ -27,6 +30,17 @@ class ChooseTopicViewController: UIViewController {
 
         mainUPLabel.text = "\(primaryLevel)"
         secUPLabel.text = "The \(primaryLevel) Syllabus"
+        
+        if primaryLevel != "" {
+            userDefaults.set(primaryLevel, forKey: "Recently Opened")
+        }
+        
+        // Get Data from Data File (Data.xlsx)
+//        let filepath = "./Data.xlsx"
+//        guard let file = XLSXFile(filepath: filepath) else {
+//          fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+//        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
