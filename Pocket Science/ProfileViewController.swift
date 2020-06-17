@@ -16,10 +16,15 @@ class ProfileViewController: UIViewController, dataFromSettings {
     var amtOfPoints:Int = 0
     var primaryLevel:Int = 0
     var numberOfBadges:Int = 0
+    
+    var storedUserName = ""
+    var storedUserAge = ""
+    
     let userDefaults = UserDefaults.standard
     
-    func passDataBack(settingsUserName: String) {
-        userName = settingsUserName
+    func passDataBack(settingsUserName: String, settingsUserAge:String) {
+        storedUserName = settingsUserName
+        storedUserAge = settingsUserAge
     }
     
     // Buttons and Label
@@ -33,10 +38,17 @@ class ProfileViewController: UIViewController, dataFromSettings {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let userName = userDefaults.string(forKey: "User") {
+        if let userName = userDefaults.string(forKey: "Username") {
             userNameLabel.text = "\(userName)"
+            storedUserName = "\(userName)"
         } else {
             userNameLabel.text = "Hello, User"
+            storedUserName = "User"
+        }
+        if let userAge = userDefaults.string(forKey: "Userage") {
+            storedUserAge = "\(userAge)"
+        } else {
+            storedUserAge = "NIL"
         }
     }
     

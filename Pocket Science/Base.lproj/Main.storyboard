@@ -380,7 +380,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bzh-kH-xHx">
-                                <rect key="frame" x="0.0" y="294" width="414" height="526"/>
+                                <rect key="frame" x="0.0" y="250" width="414" height="563"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40H-N0-zZv">
@@ -871,7 +871,6 @@
                     <navigationItem key="navigationItem" id="VoS-IA-Wfz"/>
                     <connections>
                         <outlet property="settingsBtn" destination="cUH-gD-Ivi" id="f55-Cj-iuN"/>
-                        <outlet property="userAgeLabel" destination="yXw-xz-hP6" id="DRg-58-a0X"/>
                         <outlet property="userNameLabel" destination="Q1z-pL-YN5" id="4tY-2b-MBF"/>
                         <segue destination="sbs-pB-JJY" kind="show" identifier="settings" id="Pgj-Q1-Deo"/>
                     </connections>
@@ -957,10 +956,23 @@
                                 <color key="backgroundColor" red="0.49104719749999998" green="0.78977633250000001" blue="0.63888760850000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Save current edit">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="saveEditBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="N2e-E8-hp2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5D-Nu-JHM">
+                                <rect key="frame" x="128" y="627" width="165" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Erase Data">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="eraseDataBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="EU1-lc-E3o"/>
+                                    <action selector="saveEditBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="VbW-Fr-OI9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -970,6 +982,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="GPa-il-yJY"/>
                     <connections>
                         <outlet property="ageTF" destination="ef2-ny-qeW" id="Knj-gb-CnR"/>
+                        <outlet property="eraseData" destination="p5D-Nu-JHM" id="KTp-ee-XO0"/>
                         <outlet property="nameTF" destination="wHQ-qY-HjD" id="ZR7-UF-kYW"/>
                         <outlet property="saveEditBtn" destination="mBT-K4-WqQ" id="jfM-EK-Ec2"/>
                         <outlet property="statusLabel" destination="OzH-oz-W9J" id="bRc-HY-ckY"/>

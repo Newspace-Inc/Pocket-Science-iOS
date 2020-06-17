@@ -18,8 +18,8 @@ class ViewController: UIViewController, dataFromSettings {
     var recentlyOpenedTopic:String = LessonsViewController().recentlyOpenedLevel
     var userPoints:Int = 0
     var primaryLevel:String = LessonsViewController().primaryLevel
-    var userName:String = ""
-    var userAge:Int = 0
+    var storedUserName:String = ""
+    var storedUserAge = ""
     var userSchool:String = ""
     let userDefaults = UserDefaults.standard
     
@@ -35,8 +35,9 @@ class ViewController: UIViewController, dataFromSettings {
     // Background Padding
     @IBOutlet weak var bgPad: UILabel!
     
-    func passDataBack(settingsUserName: String) {
-        userName = settingsUserName
+    func passDataBack(settingsUserName: String, settingsUserAge: String) {
+        storedUserName = settingsUserName
+        storedUserAge = settingsUserAge
     }
     
     override func viewDidLoad() {
@@ -55,10 +56,17 @@ class ViewController: UIViewController, dataFromSettings {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let userName = userDefaults.string(forKey: "User") {
+        if let userName = userDefaults.string(forKey: "Username") {
             userNameLabel.text = "\(userName)"
+            storedUserName = "\(userName)"
         } else {
-            userNameLabel.text = "User"
+            userNameLabel.text = "Hello, User"
+            storedUserName = "User"
+        }
+        if let userAge = userDefaults.string(forKey: "Userage") {
+            storedUserAge = "\(userAge)"
+        } else {
+            storedUserAge = "NIL"
         }
     }
     
@@ -109,7 +117,7 @@ class ViewController: UIViewController, dataFromSettings {
         
         selectLessonVC.primaryLevel = primaryLevel
         selectLessonVC.userPoints = userPoints
-        selectLessonVC.userName = userName
+        selectLessonVC.userName = storedUserName
     }
 }
 
