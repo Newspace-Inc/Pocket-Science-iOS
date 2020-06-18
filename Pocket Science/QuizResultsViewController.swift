@@ -17,6 +17,8 @@ class QuizResultsViewController: UIViewController {
     var primaryLevel:String = ""
     var userName:String = ""
     
+    let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

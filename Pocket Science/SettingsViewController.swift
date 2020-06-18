@@ -46,15 +46,17 @@ class SettingsViewController: UIViewController {
         let userAge = (ageTF.text ?? "").isEmpty ? "" : ageTF.text
         let userName = (nameTF.text ?? "").isEmpty ? "" : nameTF.text
         
+//        let intUserAge:Int = Int(userAge) ?? 0
+        
+        settingsUserAge = userAge ?? ""
+        settingsUserName = userName ?? ""
+        
         if userName != "" {
             userDefaults.set(userName, forKey: "Username")
         }
         if userAge != "" {
             userDefaults.set(userName, forKey: "Userage")
         }
-        
-        settingsUserAge = userAge ?? ""
-        settingsUserName = userName ?? ""
         
         statusLabel.text = "Saved Successfully."
         statusLabel.alpha = 1
@@ -69,6 +71,9 @@ class SettingsViewController: UIViewController {
         sender.resignFirstResponder()
     }
     @IBAction func eraseDataBtn(_ sender: Any) {
+        
+        statusLabel.alpha = 0
+        
         // Create Alert
         var dialogMessage = UIAlertController(title: "Delete Data", message: "Are you sure you want to erase your data? This action is NOT REVERSABLE.", preferredStyle: .alert)
 

@@ -17,7 +17,6 @@
 		5917C13C24337F9500107213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13A24337F9500107213 /* Main.storyboard */; };
 		5917C13E24337F9A00107213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13D24337F9A00107213 /* Assets.xcassets */; };
 		5917C14124337F9A00107213 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13F24337F9A00107213 /* LaunchScreen.storyboard */; };
-		59576DB5243D8373005B3269 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB4243D8373005B3269 /* data.swift */; };
 		59576DB7243D83AD005B3269 /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB6243D83AD005B3269 /* LessonsViewController.swift */; };
 		598075822474206F00DFE8AB /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598075812474206F00DFE8AB /* ChooseTopicViewController.swift */; };
 		5995AA4E2477D054003800A6 /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */; };
@@ -44,12 +43,11 @@
 		5917C13D24337F9A00107213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5917C14024337F9A00107213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5917C14224337F9A00107213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		59576DB4243D8373005B3269 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		59576DB6243D83AD005B3269 /* LessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
 		598075812474206F00DFE8AB /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
 		5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashcardsViewController.swift; path = Assets.xcassets/FlashcardsViewController.swift; sourceTree = "<group>"; };
 		59C3A4D02466BBAA0083DF6F /* dataCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataCollection.swift; sourceTree = "<group>"; };
-		59E08049247655DB00E72914 /* Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Data.xlsx; sourceTree = "<group>"; };
+		59E08049247655DB00E72914 /* data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.xlsx; sourceTree = "<group>"; };
 		59E0D46B245EA38000A55E81 /* TiersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiersViewController.swift; sourceTree = "<group>"; };
 		59EE919924449B84001EEFEE /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				5917C13D24337F9A00107213 /* Assets.xcassets */,
-				59E08049247655DB00E72914 /* Data.xlsx */,
+				59E08049247655DB00E72914 /* data.xlsx */,
 				5917C13F24337F9A00107213 /* LaunchScreen.storyboard */,
 				5917C13A24337F9500107213 /* Main.storyboard */,
 				5917C14224337F9A00107213 /* Info.plist */,
@@ -106,7 +104,6 @@
 				59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */,
 				590293382470408600615098 /* SettingsViewController.swift */,
 				5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */,
-				59576DB4243D8373005B3269 /* data.swift */,
 				59C3A4D02466BBAA0083DF6F /* dataCollection.swift */,
 			);
 			path = "Pocket Science";
@@ -251,7 +248,6 @@
 				5917C13724337F9500107213 /* SceneDelegate.swift in Sources */,
 				59E0D46C245EA38000A55E81 /* TiersViewController.swift in Sources */,
 				590A362D243ADADF0053CAF9 /* FavouritesViewController.swift in Sources */,
-				59576DB5243D8373005B3269 /* data.swift in Sources */,
 				59EE919C24449BC4001EEFEE /* QuizResultsViewController.swift in Sources */,
 				590293392470408600615098 /* SettingsViewController.swift in Sources */,
 				59EE919A24449B84001EEFEE /* QuizViewController.swift in Sources */,

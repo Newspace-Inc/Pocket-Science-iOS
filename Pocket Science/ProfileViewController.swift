@@ -30,11 +30,12 @@ class ProfileViewController: UIViewController, dataFromSettings {
     // Buttons and Label
     @IBOutlet weak var settingsBtn: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var primaryLevelLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(userName)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,6 +51,7 @@ class ProfileViewController: UIViewController, dataFromSettings {
         } else {
             storedUserAge = "NIL"
         }
+        
     }
     
     @IBAction func settingsBtn(_ sender: Any) {

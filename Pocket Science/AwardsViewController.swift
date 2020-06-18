@@ -10,8 +10,6 @@ import UIKit
 
 class AwardsViewController: UIViewController {
 
-    // Get Data File
-    let dataFile = data()
     
     let userDefaults = UserDefaults.standard
     
@@ -23,11 +21,7 @@ class AwardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tierLevel = dataFile.tierLevel
-        tierPoints = dataFile.tierPoints
-        tierRewards = dataFile.tierRewards
-        
+  
         if (amountOfBadges != 0) {
             userDefaults.set(amountOfBadges, forKey: "Amount of Badges")
         }

@@ -22,9 +22,7 @@ class LessonsViewController: UIViewController {
     // Segmented Control
     @IBOutlet weak var segmentedCtrl: UISegmentedControl!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewDidAppear(_ animated: Bool) {
         // Data collection
         do {
             guard let file = XLSXFile(filepath: "./Data.xlsx") else {
@@ -34,13 +32,19 @@ class LessonsViewController: UIViewController {
             for path in try file.parseWorksheetPaths() {
                 let worksheet = try file.parseWorksheet(at: path)
                 let sharedStrings = try file.parseSharedStrings()
-                let sort = worksheet.cells(atColumns: [ColumnReference("A")!])
+                let columnCStrings = worksheet.cells(atColumns: [ColumnReference("C")!])
                 .compactMap { $0.stringValue(sharedStrings) }
                 
+                print(columnCStrings)
             }
         } catch {
             fatalError("An error occured. \(error.localizedDescription)")
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         
     }
     
@@ -48,7 +52,6 @@ class LessonsViewController: UIViewController {
         let destinationVC1 = segue.destination as! QuizViewController
         
         // Send data to Quiz Controller
-        destinationVC1.userPoints = userPoints
         destinationVC1.recentlyOpenedLevel = recentlyOpenedLevel
         destinationVC1.primaryLevel = primaryLevel
     }

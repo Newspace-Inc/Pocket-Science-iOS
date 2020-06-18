@@ -9,21 +9,27 @@
 import UIKit
 
 class TiersViewController: UIViewController {
-
-    // Call data file
-    let dataFile = data()
     
     // Variables/Arrays
-    var tierLevel = [""]
-    var tierPoints = [0]
+    var tierRequirment = [""]
+    var awardRequirment = [100, 500, 1000, 5000]
+    var awardName = [""]
+    var userPoints = ""
     var tierRewards = [""]
+    
+    let userDefaults = UserDefaults.standard
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let storedUserPoints = userDefaults.string(forKey: "Userpoints") {
+            userPoints = storedUserPoints
+        } else {
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tierLevel = dataFile.tierLevel
-        tierPoints = dataFile.tierPoints
-        tierRewards = dataFile.tierRewards
     }
     
 
