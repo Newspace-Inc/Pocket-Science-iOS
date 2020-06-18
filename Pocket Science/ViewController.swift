@@ -59,6 +59,26 @@ class ViewController: UIViewController, dataFromSettings {
             recentlyOpenedTopic = primaryLevel
             
         }
+        
+        if (recentlyOpenedTopic == "Lower Primary") {
+            lvlLabel.textColor = UIColor.white
+            topicLabel.textColor = UIColor.white
+            lvlLabel.text = "\(recentlyOpenedTopic)"
+            topicLabel.text = "5 Chapters"
+            lvlLabel.alpha = 1
+            topicLabel.alpha = 1
+            recentlyOpenedBtn.backgroundColor = UIColor(red: 50.0/255.0, green: 170.0/255.0, blue: 149.0/255.0, alpha: 1.0)
+            recentlyOpenedBtn.setTitle("", for: .normal)
+        } else if (recentlyOpenedTopic == "Upper Primary") {
+            lvlLabel.text = "\(recentlyOpenedTopic)"
+            topicLabel.text = "4 Chapters"
+            lvlLabel.textColor = UIColor.darkGray
+            topicLabel.textColor = UIColor.darkGray
+            lvlLabel.alpha = 1
+            topicLabel.alpha = 1
+            recentlyOpenedBtn.backgroundColor = UIColor(red: 243.0/255.0, green: 223.0/255.0, blue: 162.0/255.0, alpha: 1.0)
+            recentlyOpenedBtn.setTitle("", for: .normal)
+        }
     }
     
     
@@ -75,50 +95,16 @@ class ViewController: UIViewController, dataFromSettings {
                 
         // Change Label Text to Data
         pointLabel.text = "\(userPoints) Points"
-        
-        // Code for Recently Opened Button
-        if (recentlyOpenedTopic == "") {
-                    recentlyOpenedBtn.setTitle("No Recently Opened Topics", for: .normal)
-        //            recentlyOpenedBtn.backgroundColor =
-                    lvlLabel.alpha = 0
-                    topicLabel.alpha = 0
-                } else if (recentlyOpenedTopic == "Lower Primary") {
-                    lvlLabel.textColor = UIColor(displayP3Red: 255.0, green: 255.0, blue: 255.0, alpha: 1.0)
-                    topicLabel.textColor = UIColor(displayP3Red: 255.0, green: 255.0, blue: 255.0, alpha: 1.0)
-                    lvlLabel.alpha = 1
-                    topicLabel.alpha = 1
-                    recentlyOpenedBtn.backgroundColor = UIColor(displayP3Red: 100.0, green: 170.0, blue: 149.0, alpha: 1.0)
-                    recentlyOpenedBtn.setTitle("", for: .normal)
-                } else if (recentlyOpenedTopic == "Upper Primary") {
-        //            lvlLabel.textColor =
-        //            topicLabel.textColor =
-                    lvlLabel.alpha = 1
-                    topicLabel.alpha = 1
-                    recentlyOpenedBtn.setTitle("", for: .normal)
-                }
+        print("\(recentlyOpenedTopic)")
     }
     
     // Button Config
     @IBAction func goToRecentlyOpened(_ sender: Any) {
-        if (recentlyOpenedTopic == "") {
-            recentlyOpenedBtn.setTitle("No Recently Opened Topics", for: .normal)
-//            recentlyOpenedBtn.backgroundColor =
-            lvlLabel.alpha = 0
-            topicLabel.alpha = 0
-        } else if (recentlyOpenedTopic == "Lower Primary") {
-            lvlLabel.textColor = UIColor(displayP3Red: 255.0, green: 255.0, blue: 255.0, alpha: 1.0)
-            topicLabel.textColor = UIColor(displayP3Red: 255.0, green: 255.0, blue: 255.0, alpha: 1.0)
-            lvlLabel.alpha = 1
-            topicLabel.alpha = 1
-            recentlyOpenedBtn.backgroundColor = UIColor(displayP3Red: 100.0, green: 170.0, blue: 149.0, alpha: 1.0)
-            recentlyOpenedBtn.setTitle("", for: .normal)
-        } else if (recentlyOpenedTopic == "Upper Primary") {
-//            lvlLabel.textColor =
-//            topicLabel.textColor = 
-            lvlLabel.alpha = 1
-            topicLabel.alpha = 1
-            recentlyOpenedBtn.setTitle("", for: .normal)
-        }
+        let selectLessonVC = ChooseTopicViewController()
+        
+        recentlyOpenedTopic = primaryLevel
+        selectLessonVC.primaryLevel = primaryLevel
+        performSegue(withIdentifier: "lessons", sender: nil)
     }
     
     @IBAction func goToLowerPrimary(_ sender: Any) {
@@ -128,6 +114,11 @@ class ViewController: UIViewController, dataFromSettings {
         recentlyOpenedTopic = primaryLevel
         selectLessonVC.primaryLevel = primaryLevel
         performSegue(withIdentifier: "lessons", sender: nil)
+        
+        if primaryLevel != "" {
+            userDefaults.set(primaryLevel, forKey: "Recently Opened")
+        }
+
     }
     
     @IBAction func goToUpperPrimary(_ sender: Any) {
@@ -137,6 +128,18 @@ class ViewController: UIViewController, dataFromSettings {
         recentlyOpenedTopic = primaryLevel
         selectLessonVC.primaryLevel = primaryLevel
         performSegue(withIdentifier: "lessons", sender: nil)
+        
+        if primaryLevel != "" {
+            userDefaults.set(primaryLevel, forKey: "Recently Opened")
+        }
+        
+        lvlLabel.text = "\(recentlyOpenedTopic)"
+        lvlLabel.textColor = UIColor(displayP3Red: 96.0, green: 96.0, blue: 96.0, alpha: 1.0)
+        topicLabel.textColor = UIColor(displayP3Red: 96.0, green: 96.0, blue: 96.0, alpha: 1.0)
+        lvlLabel.alpha = 1
+        topicLabel.alpha = 1
+        recentlyOpenedBtn.backgroundColor = UIColor(red: 243.0/255.0, green: 223.0/255.0, blue: 162.0/255.0, alpha: 1.0)
+        recentlyOpenedBtn.setTitle("", for: .normal)
     }
     
     // Segue Config
