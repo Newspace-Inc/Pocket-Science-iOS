@@ -71,7 +71,7 @@ class SettingsViewController: UIViewController {
         let mainVC = ViewController()
         let settingsVC = SettingsViewController()
         
-        let userAge = (ageTF.text ?? "").isEmpty ? "" : ageTF.text
+        var userAge = (ageTF.text ?? "").isEmpty ? "" : ageTF.text
         let userName = (nameTF.text ?? "").isEmpty ? "" : nameTF.text
         
 //        let intUserAge:Int = Int(userAge) ?? 0
@@ -79,11 +79,23 @@ class SettingsViewController: UIViewController {
         settingsUserAge = userAge ?? ""
         settingsUserName = userName ?? ""
         
+        let conversionAge = Int(userAge ?? "") ?? 0
+        
+        if (conversionAge < 7) {
+            userAge = "Pre-Primary"
+        } else if (conversionAge >= 7 && conversionAge <= 9) {
+            userAge = "Lower Primary"
+        } else if (conversionAge >= 10 && conversionAge <= 12) {
+            userAge = "Upper Primary"
+        } else {
+            userAge = "Post-Primary"
+        }
+        
         if userName != "" {
             userDefaults.set(userName, forKey: "Username")
         }
         if userAge != "" {
-            userDefaults.set(userName, forKey: "Userage")
+            userDefaults.set(userAge, forKey: "Userage")
         }
         
         statusLabel.text = "Saved Successfully."

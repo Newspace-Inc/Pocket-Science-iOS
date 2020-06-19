@@ -48,12 +48,6 @@ class AwardsViewController: UIViewController {
             userDefaults.set(userPoints, forKey: "User Points")
         }
         
-        if let rank = userDefaults.string(forKey: "User Tier") {
-            userTier = rank
-        } else {
-            userTier = "NIL"
-        }
-        
         // Rank Label
         userRankLabel.text = "Current Rank: \(userTier)"
         
@@ -62,5 +56,12 @@ class AwardsViewController: UIViewController {
         rankLabel.layer.cornerRadius = 30
         userRankLabel.layer.cornerRadius = 20
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+      if let rank = userDefaults.string(forKey: "User Tier") {
+            userTier = rank
+        } else {
+            userTier = "NIL"
+        }
+    }
 }

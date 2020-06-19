@@ -16,6 +16,7 @@ class TiersViewController: UIViewController {
     var awardName = [""]
     var userPoints = ""
     var tierRewards = [""]
+    var userTier = ""
     
     let userDefaults = UserDefaults.standard
     
@@ -24,6 +25,12 @@ class TiersViewController: UIViewController {
             userPoints = storedUserPoints
         } else {
             
+        }
+        
+        if let tierLevel = userDefaults.string(forKey: "User Tier") {
+            userTier = tierLevel
+        } else {
+            userTier = "NIL"
         }
     }
     

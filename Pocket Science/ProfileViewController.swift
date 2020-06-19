@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController, dataFromSettings {
     
     // Variables
     var userName:String = ""
-    var rankLevel:String = ""
+    var tierLevel:String = ""
     var amtOfPoints:Int = 0
     var primaryLevel:Int = 0
     var numberOfBadges:Int = 0
@@ -47,9 +47,17 @@ class ProfileViewController: UIViewController, dataFromSettings {
             storedUserName = "User"
         }
         if let userAge = userDefaults.string(forKey: "Userage") {
-            storedUserAge = "\(userAge)"
+            storedUserAge = userAge
+            primaryLevelLabel.text = "\(storedUserAge) Student"
         } else {
             storedUserAge = "NIL"
+            primaryLevelLabel.text = "Student"
+        }
+        
+        if let userTier = userDefaults.string(forKey: "User Tier") {
+            tierLevel = userTier
+        } else {
+            tierLevel = "NIL"
         }
         
     }
