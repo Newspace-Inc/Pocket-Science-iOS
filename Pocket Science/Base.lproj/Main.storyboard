@@ -810,6 +810,15 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYH-Dc-ID2">
+                                <rect key="frame" x="357" y="718" width="28" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="heart" catalog="system"/>
+                                <connections>
+                                    <action selector="favouriteBtn:" destination="Ov3-dn-d1u" eventType="touchUpInside" id="grt-ET-wcX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
@@ -822,6 +831,7 @@
                     <connections>
                         <outlet property="bgPadding" destination="yyG-cW-GCh" id="5Za-tj-oeh"/>
                         <outlet property="conceptNameLabel" destination="agn-EQ-smH" id="axu-uG-PB9"/>
+                        <outlet property="favouriteButton" destination="PYH-Dc-ID2" id="eXC-v0-M9F"/>
                         <outlet property="imageView" destination="SLc-Df-j3T" id="EEN-3I-v8O"/>
                         <outlet property="swipeGesture" destination="m4L-ZN-aat" id="pHQ-jg-isC"/>
                         <outlet property="textField" destination="1rA-VB-iAc" id="AsU-eH-cIx"/>
@@ -1172,10 +1182,12 @@
                     <navigationItem key="navigationItem" title="Settings" id="GPa-il-yJY"/>
                     <connections>
                         <outlet property="ageTF" destination="ef2-ny-qeW" id="Knj-gb-CnR"/>
+                        <outlet property="creditsBtn" destination="kYL-20-7KD" id="NWR-8r-T4h"/>
                         <outlet property="eraseData" destination="p5D-Nu-JHM" id="KTp-ee-XO0"/>
                         <outlet property="nameTF" destination="wHQ-qY-HjD" id="ZR7-UF-kYW"/>
                         <outlet property="saveEditBtn" destination="mBT-K4-WqQ" id="jfM-EK-Ec2"/>
                         <outlet property="statusLabel" destination="OzH-oz-W9J" id="bRc-HY-ckY"/>
+                        <outlet property="tutorialBtn" destination="rKk-9w-GMn" id="pCR-i0-W1w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAX-h3-pZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1288,6 +1300,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="H5e-hB-gXl" kind="relationship" relationship="viewControllers" id="YJn-Ib-6J9"/>
@@ -1429,6 +1442,7 @@
         <image name="Lower Primary Icon" width="360" height="362"/>
         <image name="Upper Primary Icon" width="360" height="362"/>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="rosette" catalog="system" width="100" height="128"/>

@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController {
     var settingsUserAge = ""
     var delegate:dataFromSettings!
     let userDefaults = UserDefaults.standard
+    var check:Bool = false
     
     // Text Fields
     @IBOutlet weak var nameTF: UITextField!
@@ -30,13 +31,38 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var saveEditBtn: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var eraseData: UIButton!
+    @IBOutlet weak var tutorialBtn: UIButton!
+    @IBOutlet weak var creditsBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Corner Radius
         saveEditBtn.layer.cornerRadius = 20
         eraseData.layer.cornerRadius = 20
+        tutorialBtn.layer.cornerRadius = 10
+        creditsBtn.layer.cornerRadius = 10
+    }
+    
+    func deleteDataAlert(check:Bool) {
+        // Create Alert
+        var dialogMessage = UIAlertController(title: "Delete Data", message: "Are you sure you want to erase your data? This action is NOT REVERSABLE.", preferredStyle: .alert)
+
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            // Erase Data code
+        })
+
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            // Cancelation code
+        }
+
+        //Add OK and Cancel button to an Alert object
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     @IBAction func saveEditBtn(_ sender: Any) {
@@ -74,24 +100,6 @@ class SettingsViewController: UIViewController {
         
         statusLabel.alpha = 0
         
-        // Create Alert
-        var dialogMessage = UIAlertController(title: "Delete Data", message: "Are you sure you want to erase your data? This action is NOT REVERSABLE.", preferredStyle: .alert)
-
-        // Create OK button with action handler
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            // Erase Data code
-        })
-
-        // Create Cancel button with action handlder
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            // Cancelation code
-        }
-
-        //Add OK and Cancel button to an Alert object
-        dialogMessage.addAction(ok)
-        dialogMessage.addAction(cancel)
-
-        // Present alert message to user
-        self.present(dialogMessage, animated: true, completion: nil)
+        deleteDataAlert(check: true)
     }
 }

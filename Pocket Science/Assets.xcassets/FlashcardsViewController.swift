@@ -15,7 +15,12 @@ class FlashcardsViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var conceptNameLabel: UILabel!
     @IBOutlet weak var textField: UITextView!
+    @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var bgPadding: UILabel!
+    
+    // Variables
+    let userDefaults = UserDefaults.standard
+    var favouriteFlashcard = [""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +30,7 @@ class FlashcardsViewController: UIViewController {
         bgPadding.layer.cornerRadius = 20
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func favouriteBtn(_ sender: Any) {
+        favouriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
     }
-    */
-
 }
