@@ -72,8 +72,8 @@ class ViewController: UIViewController, dataFromSettings {
         } else if (recentlyOpenedTopic == "Upper Primary") {
             lvlLabel.text = "\(recentlyOpenedTopic)"
             topicLabel.text = "4 Chapters"
-            lvlLabel.textColor = UIColor.darkGray
-            topicLabel.textColor = UIColor.darkGray
+            lvlLabel.textColor = UIColor.gray
+            topicLabel.textColor = UIColor.gray
             lvlLabel.alpha = 1
             topicLabel.alpha = 1
             recentlyOpenedBtn.backgroundColor = UIColor(red: 243.0/255.0, green: 223.0/255.0, blue: 162.0/255.0, alpha: 1.0)
@@ -151,4 +151,3 @@ class ViewController: UIViewController, dataFromSettings {
         selectLessonVC.userName = storedUserName
     }
 }
-
