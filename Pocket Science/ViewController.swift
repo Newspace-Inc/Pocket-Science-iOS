@@ -57,10 +57,9 @@ class ViewController: UIViewController, dataFromSettings {
         
         if let primaryLevel = userDefaults.string(forKey: "Recently Opened") {
             recentlyOpenedTopic = primaryLevel
-            
         }
         
-        if (recentlyOpenedTopic == "Lower Primary") {
+        if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
             lvlLabel.textColor = UIColor.white
             topicLabel.textColor = UIColor.white
             lvlLabel.text = "\(recentlyOpenedTopic)"
@@ -69,7 +68,7 @@ class ViewController: UIViewController, dataFromSettings {
             topicLabel.alpha = 1
             recentlyOpenedBtn.backgroundColor = UIColor(red: 50.0/255.0, green: 170.0/255.0, blue: 149.0/255.0, alpha: 1.0)
             recentlyOpenedBtn.setTitle("", for: .normal)
-        } else if (recentlyOpenedTopic == "Upper Primary") {
+        } else if (recentlyOpenedTopic == "Upper Primary" || primaryLevel == "Upper Primary") {
             lvlLabel.text = "\(recentlyOpenedTopic)"
             topicLabel.text = "4 Chapters"
             lvlLabel.textColor = UIColor.gray
@@ -105,6 +104,11 @@ class ViewController: UIViewController, dataFromSettings {
         recentlyOpenedTopic = primaryLevel
         selectLessonVC.primaryLevel = primaryLevel
         performSegue(withIdentifier: "lessons", sender: nil)
+        
+        if primaryLevel != "" {
+            userDefaults.set(primaryLevel, forKey: "Recently Opened")
+        }
+        
     }
     
     @IBAction func goToLowerPrimary(_ sender: Any) {

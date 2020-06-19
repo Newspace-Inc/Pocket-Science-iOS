@@ -14,11 +14,13 @@ class AwardsViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     
     // Variables/Arrays
-    var tierLevel = [""]
-    var tierPoints = [0]
+    var tierRequirment = [100, 500, 1000, 5000]
+    var awardRequirment = [""]
+    var awardName = [""]
+    var userPoints = ""
     var tierRewards = [""]
-    var amountOfBadges = 0
-    var userRank = ""
+    var userTier = ""
+    var userAwards = [""]
     
     // UI Elements
     @IBOutlet weak var badgesLabel: UILabel!
@@ -27,23 +29,33 @@ class AwardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
-        if (amountOfBadges != 0) {
-            userDefaults.set(amountOfBadges, forKey: "Amount of Badges")
+        
+        if (Int(userPoints) == tierRequirment[0]) {
+            userTier = "Bronze"
+        } else if (Int(userPoints) == tierRequirment[1]) {
+            userTier = "Silver"
+        } else if (Int(userPoints) == tierRequirment[2]) {
+            userTier = "Gold"
+        } else if (Int(userPoints) == tierRequirment[3]) {
+            userTier = "Diamond"
         }
         
-        if (userRank != "") {
-            userDefaults.set(userRank, forKey: "User Rank")
+        if (userTier != "") {
+            userDefaults.set(userTier, forKey: "User Tier")
         }
         
-        if let rank = userDefaults.string(forKey: "User Rank") {
-            userRank = rank
+        if (userPoints != "") {
+            userDefaults.set(userPoints, forKey: "User Points")
+        }
+        
+        if let rank = userDefaults.string(forKey: "User Tier") {
+            userTier = rank
         } else {
-            userRank = "NIL"
+            userTier = "NIL"
         }
         
         // Rank Label
-        userRankLabel.text = "Current Rank: \(userRank)"
+        userRankLabel.text = "Current Rank: \(userTier)"
         
         // Set Corner Radius
         badgesLabel.layer.cornerRadius = 30

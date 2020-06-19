@@ -25,11 +25,19 @@ class ChooseTopicViewController: UIViewController {
     @IBOutlet weak var secUPLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
+            primaryLevel = recentlyOpened
+        }
+        
         mainUPLabel.text = "\(primaryLevel)"
-        secUPLabel.text = "The \(primaryLevel) Syllabus"
+        secUPLabel.text =  "The \(primaryLevel) Syllabus"
         
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
