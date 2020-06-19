@@ -368,7 +368,7 @@
                                     <action selector="goToRecentlyOpened:" destination="NkZ-oF-f8M" eventType="touchUpInside" id="FPV-0W-Adp"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2dK-rj-MJI">
+                            <stackView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2dK-rj-MJI">
                                 <rect key="frame" x="139" y="701" width="136" height="54.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lower Primary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="07y-rA-wze">
@@ -466,6 +466,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ijW-1U-6aQ" firstAttribute="trailing" secondItem="Bvh-D9-cY5" secondAttribute="trailing" constant="17.5" id="0Ul-SW-Q3h"/>
+                            <constraint firstItem="2dK-rj-MJI" firstAttribute="top" secondItem="j1z-Np-Jgg" secondAttribute="bottom" constant="18.5" id="1W7-GA-oAc"/>
                             <constraint firstItem="ijW-1U-6aQ" firstAttribute="bottom" secondItem="Bvh-D9-cY5" secondAttribute="bottom" constant="15.5" id="1is-dd-F2b"/>
                             <constraint firstItem="ijW-1U-6aQ" firstAttribute="trailing" secondItem="G5m-2Z-Rd1" secondAttribute="trailing" constant="10" id="37r-im-dJ1"/>
                             <constraint firstItem="XMx-Vv-qoF" firstAttribute="leading" secondItem="ijW-1U-6aQ" secondAttribute="leading" constant="39" id="3Nf-EZ-KoG"/>
@@ -491,13 +492,16 @@
                             <constraint firstItem="6Lt-wq-s2i" firstAttribute="leading" secondItem="ijW-1U-6aQ" secondAttribute="leading" constant="17.5" id="RBK-6l-a8T"/>
                             <constraint firstItem="pWQ-cQ-hkE" firstAttribute="top" secondItem="r8P-dj-i6T" secondAttribute="bottom" constant="38.5" id="Toe-hL-QBF"/>
                             <constraint firstItem="6Lt-wq-s2i" firstAttribute="top" secondItem="ijW-1U-6aQ" secondAttribute="top" constant="21" id="VpF-yT-hbr"/>
+                            <constraint firstItem="ijW-1U-6aQ" firstAttribute="bottom" secondItem="2dK-rj-MJI" secondAttribute="bottom" constant="57.5" id="bEg-iu-JXm"/>
                             <constraint firstItem="ijW-1U-6aQ" firstAttribute="bottom" secondItem="j1z-Np-Jgg" secondAttribute="bottom" constant="130.5" id="eY8-Nq-FxE"/>
                             <constraint firstItem="j1z-Np-Jgg" firstAttribute="top" secondItem="G4c-Av-ts4" secondAttribute="bottom" constant="56" id="es4-dt-aIx"/>
+                            <constraint firstItem="2dK-rj-MJI" firstAttribute="leading" secondItem="ijW-1U-6aQ" secondAttribute="leading" constant="139" id="gb0-2z-9Uj"/>
                             <constraint firstItem="Bvh-D9-cY5" firstAttribute="leading" secondItem="ijW-1U-6aQ" secondAttribute="leading" constant="17.5" id="hHo-Q4-1Ly"/>
                             <constraint firstItem="mFb-4U-Hkj" firstAttribute="top" secondItem="G5m-2Z-Rd1" secondAttribute="bottom" constant="148" id="kyj-NJ-PoP"/>
                             <constraint firstItem="ijW-1U-6aQ" firstAttribute="trailing" secondItem="j1z-Np-Jgg" secondAttribute="trailing" constant="15" id="lMk-21-i06"/>
                             <constraint firstItem="mFb-4U-Hkj" firstAttribute="centerY" secondItem="zHU-0x-Drm" secondAttribute="centerY" constant="-150" id="ly3-nD-sp4"/>
                             <constraint firstItem="FlO-yn-0QP" firstAttribute="top" secondItem="XMx-Vv-qoF" secondAttribute="bottom" constant="13" id="lyk-Ns-3t0"/>
+                            <constraint firstItem="ijW-1U-6aQ" firstAttribute="trailing" secondItem="2dK-rj-MJI" secondAttribute="trailing" constant="139" id="maH-5f-dv6"/>
                             <constraint firstItem="G4c-Av-ts4" firstAttribute="centerY" secondItem="zHU-0x-Drm" secondAttribute="centerY" constant="30" id="n1v-A3-lcX"/>
                             <constraint firstItem="hk2-oo-ilT" firstAttribute="centerY" secondItem="zHU-0x-Drm" secondAttribute="centerY" constant="-30" id="oYC-Tl-UYf"/>
                             <constraint firstItem="BKf-Jo-elq" firstAttribute="centerY" secondItem="zHU-0x-Drm" secondAttribute="centerY" constant="30" id="olq-rB-XYp"/>
@@ -512,11 +516,11 @@
                     <connections>
                         <outlet property="bgPad" destination="hk2-oo-ilT" id="aIE-eJ-Pcm"/>
                         <outlet property="lowerPrimaryBtn" destination="G4c-Av-ts4" id="5dc-bU-iev"/>
-                        <outlet property="lvlLabel" destination="07y-rA-wze" id="cTa-ca-ECA"/>
+                        <outlet property="lvlLabel" destination="07y-rA-wze" id="NRM-kb-o5a"/>
                         <outlet property="pointLabel" destination="G5m-2Z-Rd1" id="8ZY-Zd-7we"/>
                         <outlet property="recentlyOpenedBtn" destination="Bvh-D9-cY5" id="agH-xm-qny"/>
-                        <outlet property="topicLabel" destination="zzl-0U-EDx" id="1ir-6I-cdi"/>
-                        <outlet property="upperPrimaryBtn" destination="BKf-Jo-elq" id="2ad-FQ-WuS"/>
+                        <outlet property="topicLabel" destination="zzl-0U-EDx" id="BMz-Nd-pgJ"/>
+                        <outlet property="upperPrimaryBtn" destination="BKf-Jo-elq" id="kiL-0T-8dk"/>
                         <outlet property="userNameLabel" destination="cIf-NE-m9H" id="qnc-QB-tEd"/>
                         <segue destination="CL7-7w-S5f" kind="show" identifier="lessons" id="sqf-xw-14g"/>
                     </connections>
