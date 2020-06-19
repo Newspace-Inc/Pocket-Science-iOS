@@ -62,7 +62,9 @@ class SettingsViewController: UIViewController {
         dialogMessage.addAction(ok)
         dialogMessage.addAction(cancel)
         
-        self.present(dialogMessage, animated: true, completion: nil)
+        if (check) {
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
     }
     
     @IBAction func saveEditBtn(_ sender: Any) {
@@ -96,10 +98,17 @@ class SettingsViewController: UIViewController {
     @IBAction func DismissKeyboard(_ sender: UITextField) {
         sender.resignFirstResponder()
     }
+    
     @IBAction func eraseDataBtn(_ sender: Any) {
         
         statusLabel.alpha = 0
         
         deleteDataAlert(check: true)
+    }
+    @IBAction func tutorialBtn(_ sender: Any) {
+        performSegue(withIdentifier: "tutorial", sender: nil)
+    }
+    @IBAction func creditsBtn(_ sender: Any) {
+        performSegue(withIdentifier: "credits", sender: nil)
     }
 }

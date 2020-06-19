@@ -1094,6 +1094,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="creditsBtn:" destination="sbs-pB-JJY" eventType="touchDown" id="XwO-0Q-sbp"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqd-Yp-rk7">
                                 <rect key="frame" x="107" y="417" width="43" height="30"/>
@@ -1119,7 +1122,6 @@
                                 </state>
                                 <connections>
                                     <action selector="eraseDataBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="EU1-lc-E3o"/>
-                                    <action selector="saveEditBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="VbW-Fr-OI9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYL-20-7KD">
@@ -1131,9 +1133,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="eraseDataBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="tBH-XB-RZ0"/>
-                                    <action selector="saveEditBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="atd-1r-3dY"/>
-                                    <segue destination="qx1-Mu-6DV" kind="show" id="PwJ-3j-GkM"/>
+                                    <action selector="creditsBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="bfN-NO-SP2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBT-K4-WqQ">
@@ -1153,6 +1153,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="DismissKeyboard:" destination="sbs-pB-JJY" eventType="touchDown" id="0vo-SH-wNh"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNa-hx-r8O">
                                 <rect key="frame" x="91" y="341" width="60" height="30"/>
@@ -1170,9 +1173,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="eraseDataBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="3Mw-2f-99A"/>
-                                    <action selector="saveEditBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="V6v-3G-5Ps"/>
-                                    <segue destination="KdJ-nM-F45" kind="show" id="JMm-4c-8qQ"/>
+                                    <action selector="tutorialBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="OOy-cU-OiJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1188,6 +1189,8 @@
                         <outlet property="saveEditBtn" destination="mBT-K4-WqQ" id="jfM-EK-Ec2"/>
                         <outlet property="statusLabel" destination="OzH-oz-W9J" id="bRc-HY-ckY"/>
                         <outlet property="tutorialBtn" destination="rKk-9w-GMn" id="pCR-i0-W1w"/>
+                        <segue destination="qx1-Mu-6DV" kind="show" identifier="credits" id="Ehx-4Z-FTC"/>
+                        <segue destination="KdJ-nM-F45" kind="show" identifier="tutorial" id="KAE-US-fgj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAX-h3-pZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1389,7 +1392,7 @@
             </objects>
             <point key="canvasLocation" x="-2881" y="321"/>
         </scene>
-        <!--Credits-->
+        <!--Tutorial-->
         <scene sceneID="u0F-71-OtR">
             <objects>
                 <viewController id="KdJ-nM-F45" sceneMemberID="viewController">
@@ -1431,7 +1434,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Q2b-Tx-GLh"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Credits" id="mn2-Rp-jrX"/>
+                    <navigationItem key="navigationItem" title="Tutorial" id="mn2-Rp-jrX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fde-cL-Dna" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
