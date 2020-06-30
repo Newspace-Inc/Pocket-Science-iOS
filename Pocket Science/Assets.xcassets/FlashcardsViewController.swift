@@ -30,7 +30,26 @@ class FlashcardsViewController: UIViewController {
         bgPadding.layer.cornerRadius = 20
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let favouriteFlashcardArray = userDefaults.string(forKey: "") {
+            
+        }
+    }
+    
     @IBAction func favouriteBtn(_ sender: Any) {
         favouriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
+        favouriteFlashcard.append("Test")
+        
+        if (true) {
+            userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
+        }
+    }
+    @IBAction func swipeGesture(_ sender: UISwipeGestureRecognizer) {
+        if swipeGesture.direction == .left {
+            
+        } else if (swipeGesture.direction == .right) {
+            
+        }
     }
 }

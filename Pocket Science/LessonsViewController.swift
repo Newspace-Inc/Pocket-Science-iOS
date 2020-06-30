@@ -57,12 +57,16 @@ class LessonsViewController: UIViewController {
     }
     
     @IBAction func segmentedCtrl(_ sender: UISegmentedControl) {
-        if (sender.selectedSegmentIndex == 0) { // User selected topic explaination
+        
+        switch sender.selectedSegmentIndex {
+        case 0: break
             
-        } else if (sender.selectedSegmentIndex == 1) { // User selected subtopics
+        case 1: break
             
-        } else { // User Selected Quiz
+        case 2: break
             
+        default:
+            break
         }
     }
     
