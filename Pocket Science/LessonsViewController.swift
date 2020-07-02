@@ -14,45 +14,54 @@ class LessonsViewController: UIViewController {
     // Variables
     var recentlyOpenedLevel:String = ""
     var userPoints:Int = 0
-    var selectedLessons:String = ""
+    var selectedLesson:String = ""
     var primaryLevel:String = ""
     var amountOfFinishedLessons = ""
     
     let userDefaults = UserDefaults.standard
             
     // Labels and Buttons
+    @IBOutlet weak var primaryLabel1: UILabel!
+    @IBOutlet weak var primaryLabel2: UILabel!
     
     // Segmented Control
     @IBOutlet weak var segmentedCtrl: UISegmentedControl!
     
     override func viewDidAppear(_ animated: Bool) {
-        // Data collection
-        do {
-            guard let file = XLSXFile(filepath: "./Data.xlsx") else {
-              fatalError("XLSX file corrupted or does not exist")
-            }
-
-            for path in try file.parseWorksheetPaths() {
-                let worksheet = try file.parseWorksheet(at: path)
-                let sharedStrings = try file.parseSharedStrings()
-                let columnCStrings = worksheet.cells(atColumns: [ColumnReference("C")!])
-                .compactMap { $0.stringValue(sharedStrings) }
-                
-                print(columnCStrings)
-            }
-        } catch {
-            fatalError("An error occured. \(error.localizedDescription)")
-        }
         
-        if (selectedLessons != "") {
-            userDefaults.set(selectedLessons, forKey: "Last Selected Lesson")
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
+            primaryLevel = recentlyOpened
+        }
         
+        // Set labels
+        primaryLabel1.text = "\(primaryLevel)"
+        primaryLabel2.text =  "The \(primaryLevel) Syllabus"
+        
+        // Collect Data
+        do {
+            let filepath = Bundle.main.path(forResource: "data", ofType: "xlsx")!
+            guard let file = XLSXFile(filepath: filepath) else {
+                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+            }
+            
+            for wbk in try file.parseWorkbooks() {
+                for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
+                    if let worksheetName = name {
+                        print("This worksheet has a name: \(worksheetName)")
+                    }
+                    let sharedStrings = try file.parseSharedStrings()
+                    let worksheet = try file.parseWorksheet(at: path)
+                    
+                }
+            }
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
         
     }
     

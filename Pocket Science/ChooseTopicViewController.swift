@@ -10,22 +10,17 @@ import UIKit
 import CoreXLSX
 
 class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
-    
+
     // Variables
     var recentlyOpenedLevel:String = ""
     var userPoints:Int = 0
     var selectedSubtopic:String = ""
     var primaryLevel:String = ""
     var userName = ""
+    let lowerPriTopics = ["Cycles", "Systems", "Diversity", "Interactions", "Energy"]
+    let upperPriTopics = ["Cycles", "Systems", "Interactions", "Energy"]
     
     let userDefaults = UserDefaults.standard
-    
-    // Data Collection Variables
-    var lowerUpperPrimary = [""]
-    var overallTopics = [""]
-    var test = [""]
     
     // UI Elements
     @IBOutlet weak var mainUPLabel: UILabel!
@@ -56,51 +51,40 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
         }
-        
-        // Collect Data
-        do {
-            let filepath = Bundle.main.path(forResource: "data", ofType: "xlsx")!
-            guard let file = XLSXFile(filepath: filepath) else {
-                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
-            }
-            
-            for wbk in try file.parseWorkbooks() {
-                for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
-                    if let worksheetName = name {
-                        print("This worksheet has a name: \(worksheetName)")
-                    }
-                    let sharedStrings = try file.parseSharedStrings()
-                    let worksheet = try file.parseWorksheet(at: path)
-                    
-                    
-                    
-                    lowerUpperPrimary = worksheet.cells(atColumns: [ColumnReference("A")!])
-                        .compactMap { $0.stringValue(sharedStrings) }
-                    overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                        .compactMap { $0.stringValue(sharedStrings) }
-                                        
-                    test = worksheet.cells(atRows: [2])
-                    .compactMap { $0.stringValue(sharedStrings)}
-                }
-            }
-        } catch {
-            fatalError("\(error.localizedDescription)")
-        }
     }
     
     // Set data into Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return overallTopics.count
+        if (primaryLevel == "Lower Primary") {
+            return lowerPriTopics.count
+        } else {
+            return upperPriTopics.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         
-        // Configure the cell’s contents with the row and section number.
-        // The Basic cell style guarantees a label view is present in textLabel.
-        cell.textLabel!.text = "\(overallTopics[indexPath.row])"
+        if (primaryLevel == "Lower Primary") {
+            cell.textLabel!.text = "\(lowerPriTopics[indexPath.row])"
+        } else {
+            cell.textLabel!.text = "\(upperPriTopics[indexPath.row])"
+        }
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let destinationVC = LessonsViewController()
+        if (primaryLevel == "Lower Primary") {
+            destinationVC.selectedLesson = lowerPriTopics[indexPath.row]
+        } else {
+            destinationVC.selectedLesson = upperPriTopics[indexPath.row]
+        }
+        
+        performSegue(withIdentifier: "lessons", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
