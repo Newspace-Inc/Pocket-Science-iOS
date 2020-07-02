@@ -20,6 +20,13 @@ class TiersViewController: UIViewController {
     
     let userDefaults = UserDefaults.standard
     
+    // Labels and Buttons
+    @IBOutlet weak var pointLabel: UILabel!
+    @IBOutlet weak var bronzeBG: UILabel!
+    @IBOutlet weak var silverBG: UILabel!
+    @IBOutlet weak var goldBG: UILabel!
+    @IBOutlet weak var diamondBG: UILabel!
+    
     override func viewDidAppear(_ animated: Bool) {
         if let storedUserPoints = userDefaults.string(forKey: "Userpoints") {
             userPoints = storedUserPoints
@@ -36,7 +43,14 @@ class TiersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Set Corner Radius
+        pointLabel.layer.cornerRadius = 10
+        bronzeBG.layer.cornerRadius = 20
+        silverBG.layer.cornerRadius = 20
+        goldBG.layer.cornerRadius = 20
+        diamondBG.layer.cornerRadius = 20
+        
     }
     
 

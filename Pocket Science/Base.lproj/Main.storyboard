@@ -364,6 +364,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="15T-kL-qk7"/>
+                    <connections>
+                        <outlet property="bronzeBG" destination="LT5-Ez-3nv" id="ReI-Gq-n60"/>
+                        <outlet property="diamondBG" destination="GGD-GL-hpo" id="vYg-HC-waB"/>
+                        <outlet property="goldBG" destination="d2R-sH-7Go" id="WPm-cQ-T14"/>
+                        <outlet property="pointLabel" destination="X7h-8X-Wz3" id="WKK-gv-tED"/>
+                        <outlet property="silverBG" destination="LEG-p6-oiI" id="fxC-fJ-n6H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldb-mw-EjQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
