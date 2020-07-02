@@ -28,7 +28,9 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
+            primaryLevel = recentlyOpened
+        }
     }
     
     override func viewDidLoad() {
