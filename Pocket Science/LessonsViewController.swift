@@ -14,8 +14,11 @@ class LessonsViewController: UIViewController {
     // Variables
     var recentlyOpenedLevel:String = ""
     var userPoints:Int = 0
-    var selectedTopic:String = ""
+    var selectedLessons:String = ""
     var primaryLevel:String = ""
+    var amountOfFinishedLessons = ""
+    
+    let userDefaults = UserDefaults.standard
             
     // Labels and Buttons
     
@@ -40,10 +43,15 @@ class LessonsViewController: UIViewController {
         } catch {
             fatalError("An error occured. \(error.localizedDescription)")
         }
+        
+        if (selectedLessons != "") {
+            userDefaults.set(selectedLessons, forKey: "Last Selected Lesson")
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
     }

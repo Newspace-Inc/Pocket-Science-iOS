@@ -11,7 +11,6 @@ import CoreXLSX
 
 class ViewController: UIViewController, dataFromSettings {
     // Call Data Collection file
-    let data = dataCollection()
     let lessonVC = LessonsViewController()
     
     // Variables

@@ -21,7 +21,6 @@ class SettingsViewController: UIViewController {
     var settingsUserAge = ""
     var delegate:dataFromSettings!
     let userDefaults = UserDefaults.standard
-    var check:Bool = false
     
     // Text Fields
     @IBOutlet weak var nameTF: UITextField!
@@ -33,6 +32,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var eraseData: UIButton!
     @IBOutlet weak var tutorialBtn: UIButton!
     @IBOutlet weak var creditsBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +115,6 @@ class SettingsViewController: UIViewController {
         
         statusLabel.alpha = 0
         
-        deleteDataAlert(check: true)
     }
     @IBAction func tutorialBtn(_ sender: Any) {
         performSegue(withIdentifier: "tutorial", sender: nil)

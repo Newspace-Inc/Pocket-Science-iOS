@@ -16,15 +16,31 @@ class QuizResultsViewController: UIViewController {
     var userPoints:Int = 0
     var primaryLevel:String = ""
     var userName:String = ""
+    var correctAmountOfQuiz = ""
     
     let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let settingsUserName = userDefaults.string(forKey: "Username") {
+            userName = settingsUserName
+        } else {
+            userName = "User"
+        }
+        
+        if let correctQuizes = userDefaults.string(forKey: "Correct Quizes") {
+            correctAmountOfQuiz = correctQuizes
+        } else {
+            correctAmountOfQuiz = "0"
+        }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if (correctAmountOfQuiz != "") {
+            userDefaults.set(correctAmountOfQuiz, forKey: "Correct Quizes")
+        }
+    }
 
     /*
     // MARK: - Navigation
