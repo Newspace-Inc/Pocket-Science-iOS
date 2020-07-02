@@ -1,4 +1,5 @@
 # XMLCoder
+
 Encoder &amp; Decoder for XML using Swift's `Codable` protocols.
 
 [![Build Status](https://dev.azure.com/max0484/max/_apis/build/status/MaxDesiatov.XMLCoder?branchName=master)](https://dev.azure.com/max0484/max/_build/latest?definitionId=4&branchName=master)
@@ -175,7 +176,7 @@ Suppose that you need to decode an XML that looks similar to this:
 By default you'd be able to decode `foo` as an element, but then it's not
 possible to decode the `id` attribute. `XMLCoder` handles certain `CodingKey`
 values in a special way to allow proper coding for this XML. Just add a coding
-key with `stringValue` that equals `"value"` or `""` (empty string). What
+key with `stringValue` that equals `""` (empty string). What
 follows is an example type declaration that encodes the XML above, but special
 handling of coding keys with those values works for both encoding and decoding.
 
@@ -186,8 +187,7 @@ struct Foo: Codable, DynamicNodeEncoding {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case value
-        // case value = "" would also work
+        case value = ""
     }
 
     static func nodeEncoding(forKey key: CodingKey)
@@ -291,17 +291,74 @@ func fetchBook(from url: URL) -> AnyPublisher<Book, Error> {
 This was implemented in PR [\#132](https://github.com/MaxDesiatov/XMLCoder/pull/132)
 by [@sharplet](https://github.com/sharplet).
 
+Additionally, starting with [XMLCoder
+0.11](https://github.com/MaxDesiatov/XMLCoder/releases/tag/0.11.0) `XMLEncoder`
+conforms to the `TopLevelEncoder` protocol:
+
+```swift
+import Combine
+import XMLCoder
+
+func encode(book: Book) -> AnyPublisher<Data, Error> {
+    return Just(book)
+        .encode(encoder: XMLEncoder())
+        .eraseToAnyPublisher()
+}
+```
+
+The resulting XML in the example above will start with `<book`, to customize
+capitalization of the root element (e.g. `<Book`) you'll need to set an
+appropriate `keyEncoding` strategy on the encoder. To change the element name
+altogether you'll have to change the name of the type, which is an unfortunate
+limitation of the `TopLevelEncoder` API.
+
+### Root element attributes
+
+Sometimes you need to set attributes on the root element, which aren't
+directly related to your model type. Starting with [XMLCoder
+0.11](https://github.com/MaxDesiatov/XMLCoder/releases/tag/0.11.0) the `encode`
+function on `XMLEncoder` accepts a new `rootAttributes` argument to help with
+this:
+
+```swift
+struct Policy: Encodable {
+    var name: String
+}
+
+let encoder = XMLEncoder()
+let data = try encoder.encode(Policy(name: "test"), rootAttributes: [
+    "xmlns": "http://www.nrf-arts.org/IXRetail/namespace",
+    "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+    "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+])
+```
+
+The resulting XML will look like this:
+
+```xml
+<policy xmlns="http://www.nrf-arts.org/IXRetail/namespace"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>test</name>
+</policy>
+```
+
+This was implemented in PR [\#160](https://github.com/MaxDesiatov/XMLCoder/pull/160)
+by [@portellaa](https://github.com/portellaa).
+
 ## Installation
 
 ### Requirements
 
 **Apple Platforms**
+
 - Xcode 10.0 or later
-  * **IMPORTANT**: compiling XMLCoder with Xcode 11.2.0 (11B52) and 11.2.1 (11B500) is not recommended due to crashes with `EXC_BAD_ACCESS` caused by [a compiler bug](https://bugs.swift.org/browse/SR-11564), please use Xcode 11.3 or later instead. Please refer to [\#150](https://github.com/MaxDesiatov/XMLCoder/issues/150) for more details.
+  - **IMPORTANT**: compiling XMLCoder with Xcode 11.2.0 (11B52) and 11.2.1 (11B500) is not recommended due to crashes with `EXC_BAD_ACCESS` caused by [a compiler bug](https://bugs.swift.org/browse/SR-11564), please use Xcode 11.3 or later instead. Please refer to [\#150](https://github.com/MaxDesiatov/XMLCoder/issues/150) for more details.
 - Swift 4.2 or later
 - iOS 9.0 / watchOS 2.0 / tvOS 9.0 / macOS 10.10 or later deployment targets
 
 **Linux**
+
 - Ubuntu 14.04 or later
 - Swift 5.0.1 or later
 
@@ -317,9 +374,13 @@ easy as adding it to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/MaxDesiatov/XMLCoder.git", from: "0.10.0")
+    .package(url: "https://github.com/MaxDesiatov/XMLCoder.git", from: "0.11.1")
 ]
 ```
+
+If you're using XMLCoder in an app built with Xcode, you can also add it as a direct
+dependency [using Xcode's
+GUI](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
 
 ### CocoaPods
 
@@ -348,7 +409,7 @@ target 'YourApp' do
   use_frameworks!
 
   # Pods for YourApp
-  pod 'XMLCoder', '~> 0.10.0'
+  pod 'XMLCoder', '~> 0.11.1'
 end
 ```
 
@@ -377,7 +438,7 @@ $ brew install carthage
 Inside of your `Cartfile`, add GitHub path to `XMLCoder`:
 
 ```ogdl
-github "MaxDesiatov/XMLCoder" ~> 0.10.0
+github "MaxDesiatov/XMLCoder" ~> 0.11.1
 ```
 
 Then, run the following command to build the framework:
@@ -398,23 +459,24 @@ unacceptable behavior to xmlcoder@desiatov.com.
 ### Sponsorship
 
 If this library saved you any amount of time or money, please consider [sponsoring
-the work of its maintainers](https://github.com/sponsors/MaxDesiatov). While some of the
+the work of its maintainer](https://github.com/sponsors/MaxDesiatov). While some of the
 sponsorship tiers give you priority support or even consulting time, any amount is
 appreciated and helps in maintaining the project.
 
 ### Coding Style
 
-This project uses [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) to
-enforce formatting style. We encourage you to run SwiftFormat within a local
-clone of the repository in whatever way works best for you either manually or
-automatically via an [Xcode
+This project uses [SwiftFormat](https://github.com/nicklockwood/SwiftFormat)
+and [SwiftLint](https://github.com/realm/SwiftLint) to
+enforce formatting and coding style. We encourage you to run SwiftFormat within
+a local clone of the repository in whatever way works best for you either
+manually or automatically via an [Xcode
 extension](https://github.com/nicklockwood/SwiftFormat#xcode-source-editor-extension),
 [build phase](https://github.com/nicklockwood/SwiftFormat#xcode-build-phase) or
 [git pre-commit
 hook](https://github.com/nicklockwood/SwiftFormat#git-pre-commit-hook) etc.
 
 To guarantee that these tools run before you commit your changes on macOS, you're encouraged
-to run this once to set up the pre-commit hook:
+to run this once to set up the [pre-commit](https://pre-commit.com/) hook:
 
 ```
 brew bundle # installs SwiftLint, SwiftFormat and pre-commit
@@ -424,9 +486,9 @@ pre-commit install # installs pre-commit hook to run checks before you commit
 Refer to [the pre-commit documentation page](https://pre-commit.com/) for more details
 and installation instructions for other platforms.
 
-SwiftFormat also runs on CI for every PR and thus a CI build can fail
-with incosistent formatting. We require CI builds to pass for any PR before
-merging.
+SwiftFormat and SwiftLint also run on CI for every PR and thus a CI build can
+fail with incosistent formatting or style. We require CI builds to pass for all
+PRs before merging.
 
 ### Test Coverage
 

@@ -23,7 +23,7 @@ class ChooseTopicViewController: UIViewController {
     // UI Elements
     @IBOutlet weak var mainUPLabel: UILabel!
     @IBOutlet weak var secUPLabel: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -44,33 +44,31 @@ class ChooseTopicViewController: UIViewController {
         }
         
         // Collect Data
-//        do {
-//            guard let filepath = Bundle.main.path(forResource: "data", ofType: "xlsx") else {
-//                return
-//            }
-//            guard let file = XLSXFile(filepath: filepath) else {
-//              fatalError("XLSX file at \(filepath) is corrupted or does not exist")
-//            }
-//
-//            for wbk in try file.parseWorkbooks() {
-//              for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
-//                if let worksheetName = name {
-//                  print("This worksheet has a name: \(worksheetName)")
-//                    
-//                }
-//
-//                let worksheet = try file.parseWorksheet(at: path)
-//                for row in worksheet.data?.rows ?? [] {
-//                  for c in row.cells {
-//                    print(c)
-//                  }
-//                }
-//              }
-//            }
-//        } catch {
-//            fatalError("An error occured. \(error.localizedDescription)")
-//        }
-        
+        do {
+            let filepath = Bundle.main.path(forResource: "data", ofType: "xlsx")!
+            guard let file = XLSXFile(filepath: filepath) else {
+              fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+            }
+
+            for wbk in try file.parseWorkbooks() {
+              for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
+                if let worksheetName = name {
+                  print("This worksheet has a name: \(worksheetName)")
+                }
+                let sharedStrings = try file.parseSharedStrings()
+                let worksheet = try file.parseWorksheet(at: path)
+                
+                let lowerUpperPrimary = worksheet.cells(atColumns: [ColumnReference("A")!])
+                .compactMap { $0.stringValue(sharedStrings) }
+                
+                let test = worksheet.cells(atRows: [])
+                print(lowerUpperPrimary)
+              }
+            }
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
+                
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -1,6 +1,16 @@
+// Copyright 2019-2020 CoreOffice contributors
 //
-//  CellQueries.swift
-//  CoreXLSXmacOS
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 //  Created by Max Desiatov on 24/11/2018.
 //
@@ -51,7 +61,7 @@ private let referenceDate = DateComponents(
   second: 0,
   nanosecond: 0
 ).date
-private let secondsInADay: Double = 86_400_000
+private let secondsInADay: Double = 86400
 
 public extension Cell {
   /// Returns a string value for this cell, potentially loading a shared string value from a
@@ -60,6 +70,13 @@ public extension Cell {
     guard type == .sharedString, let index = value.flatMap(Int.init) else { return value }
 
     return sharedStrings.items[index].text
+  }
+
+  /// Returns the value of the cell as a RichText, from a given `sharedStrings` argument.
+  func richStringValue(_ sharedStrings: SharedStrings) -> [RichText] {
+    guard type == .sharedString, let index = value.flatMap(Int.init) else { return [] }
+
+    return sharedStrings.items[index].richText
   }
 
   // swiftlint:disable line_length
@@ -77,7 +94,7 @@ public extension Cell {
 
     let days = Int(floor(intervalSinceReference))
     let seconds = Int(
-      floor(intervalSinceReference.truncatingRemainder(dividingBy: 1) * secondsInADay)
+      round(intervalSinceReference.truncatingRemainder(dividingBy: 1) * secondsInADay)
     )
 
     guard let addedDays = referenceCalendar.date(byAdding: .day, value: days, to: referenceDate)

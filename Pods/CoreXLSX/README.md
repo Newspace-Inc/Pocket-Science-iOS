@@ -2,11 +2,11 @@
 
 ## Excel spreadsheet (XLSX) format parser written in pure Swift
 
-[![Build Status](https://dev.azure.com/max0484/max/_apis/build/status/MaxDesiatov.CoreXLSX?branchName=master)](https://dev.azure.com/max0484/max/_build/latest?definitionId=2&branchName=master)
+[![Build Status](https://dev.azure.com/CoreOffice/CoreOffice/_apis/build/status/CoreOffice.CoreXLSX?branchName=main)](https://dev.azure.com/CoreOffice/CoreOffice/_build/latest?definitionId=1&branchName=main)
 [![Version](https://img.shields.io/cocoapods/v/CoreXLSX.svg?style=flat)](https://cocoapods.org/pods/CoreXLSX)
 [![License](https://img.shields.io/cocoapods/l/CoreXLSX.svg?style=flat)](https://cocoapods.org/pods/CoreXLSX)
 ![Platform](https://img.shields.io/badge/platform-watchos%20%7C%20ios%20%7C%20tvos%20%7C%20macos%20%7C%20linux-lightgrey.svg?style=flat)
-[![Coverage](https://img.shields.io/codecov/c/github/MaxDesiatov/CoreXLSX/master.svg?style=flat)](https://codecov.io/gh/maxdesiatov/CoreXLSX)
+[![Coverage](https://img.shields.io/codecov/c/github/CoreOffice/CoreXLSX/main.svg?style=flat)](https://codecov.io/gh/CoreOffice/CoreXLSX)
 
 CoreXLSX is a library focused on representing the low-level structure
 of [the XML-based XLSX spreadsheet
@@ -14,13 +14,17 @@ format](https://en.wikipedia.org/wiki/Office_Open_XML). It allows you to open a
 spreadsheet archive with `.xlsx` extension and map its internal structure into
 model types expressed directly in Swift.
 
-Important to note that this library only supports [the `.xlsx`
+Important to note that this library provides read-only support only for [the `.xlsx`
 format](https://en.wikipedia.org/wiki/Office_Open_XML). As the older
 [legacy `.xls` spreadsheet
 format](https://en.wikipedia.org/wiki/Microsoft_Excel#File_formats)
 has completely different internals, please refer to [other
 libraries](https://github.com/libxls/libxls) if you need to work with files of
 that type.
+
+If your `.xlsx` files use [ECMA-376 agile
+encryption](https://docs.microsoft.com/en-us/openspecs/office_file_formats/ms-offcrypto/cab78f5c-9c17-495e-bea9-032c63f02ad8) (which seems to be the most popular variety), have a look at the
+[CryptoOffice](https://github.com/CoreOffice/CryptoOffice) library.
 
 ## Example
 
@@ -33,15 +37,22 @@ more sensible naming applied to a few attributes. The API is pretty simple:
 ```swift
 import CoreXLSX
 
-guard let file = XLSXFile(filepath: "./categories.xlsx") else {
-  fatalError("XLSX file corrupted or does not exist")
+let filepath = "./categories.xlsx"
+guard let file = XLSXFile(filepath: filepath) else {
+  fatalError("XLSX file at \(filepath) is corrupted or does not exist")
 }
 
-for path in try file.parseWorksheetPaths() {
-  let worksheet = try file.parseWorksheet(at: path)
-  for row in worksheet.data?.rows ?? [] {
-    for c in row.cells {
-      print(c)
+for wbk in try file.parseWorkbooks() {
+  for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
+    if let worksheetName = name {
+      print("This worksheet has a name: \(worksheetName)")
+    }
+
+    let worksheet = try file.parseWorksheet(at: path)
+    for row in worksheet.data?.rows ?? [] {
+      for c in row.cells {
+        print(c)
+      }
     }
   }
 }
@@ -49,7 +60,7 @@ for path in try file.parseWorksheetPaths() {
 
 This prints raw cell data from every worksheet in the given XLSX file. Please refer
 to the [`Worksheet`
-model](https://github.com/MaxDesiatov/CoreXLSX/blob/master/Sources/CoreXLSX/Worksheet/Worksheet.swift)
+model](https://github.com/CoreOffice/CoreXLSX/blob/main/Sources/CoreXLSX/Worksheet/Worksheet.swift)
 for more atttributes you might need to read from a parsed file.
 
 Strings in spreadsheet internals are frequently represented as strings
@@ -72,15 +83,22 @@ let columnCDates = worksheet.cells(atColumns: [ColumnReference("C")!])
   .compactMap { $0.dateValue }
 ```
 
+Similarly, to parse rich strings, use the `richStringValue` function:
+
+```swift
+let richStrings = try file.parseSharedStrings()
+let columnCRichStrings = worksheet.cells(atColumns: [ColumnReference("C")!])
+  .compactMap { $0.richStringValue(sharedStrings) }
+```
+
 ### Styles
 
 Since version 0.5.0 you can parse style information from the archive with the
 new `parseStyles()` function. Please refer to the [`Styles`
-model](https://github.com/MaxDesiatov/CoreXLSX/blob/master/Sources/CoreXLSX/Styles.swift)
+model](https://github.com/CoreOffice/CoreXLSX/blob/main/Sources/CoreXLSX/Styles.swift)
 for more details. You should also note that not all XLSX files contain style
 information, so you should be prepared to handle the errors thrown from
 `parseStyles()` function in that case.
-
 
 Here's a short example that fetches a list of fonts used:
 
@@ -92,7 +110,7 @@ let fonts = styles.fonts?.items.compactMap { $0.name?.value }
 ## Reporting compatibility issues
 
 If you stumble upon a file that can't be parsed, please [file an
-issue](https://github.com/MaxDesiatov/CoreXLSX/issues) posting the exact error
+issue](https://github.com/CoreOffice/CoreXLSX/issues) posting the exact error
 message. Thanks to use of standard Swift `Codable` protocol, detailed errors are
 generated listing a missing attribute, so it can be easily added to the model
 enabling broader format support. Attaching a file that can't be parsed would
@@ -118,13 +136,15 @@ here](https://desiatov.com/swift-codable-xlsx/).
 ## Requirements
 
 **Apple Platforms**
+
 - Xcode 10.0 or later
 - Swift 4.2 or later
 - iOS 9.0 / watchOS 2.0 / tvOS 9.0 / macOS 10.11 or later deployment targets
 
 **Linux**
-- Ubuntu 14.04 or later
-- Swift 5.0.1 or later
+
+- Ubuntu 16.04 or later
+- Swift 5.1 or later
 
 ## Installation
 
@@ -140,15 +160,19 @@ easy as adding it to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-  .package(url: "https://github.com/MaxDesiatov/CoreXLSX.git",
-           .upToNextMajor(from: "0.10.0"))
+  .package(url: "https://github.com/CoreOffice/CoreXLSX.git",
+           .upToNextMinor(from: "0.12.0"))
 ]
 ```
+
+If you're using CoreXLSX in an app built with Xcode, you can also add it as a direct
+dependency [using Xcode's
+GUI](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
 
 ### CocoaPods
 
 CoreXLSX is available through [CocoaPods](https://cocoapods.org) on Apple's
-platforms. To install it, simply add `pod 'CoreXLSX', '~> 0.10.0'` to your
+platforms. To install it, simply add `pod 'CoreXLSX', '~> 0.12.0'` to your
 `Podfile` like shown here:
 
 ```ruby
@@ -157,7 +181,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 # platform :ios, '9.0'
 use_frameworks!
 target '<Your Target Name>' do
-  pod 'CoreXLSX', '~> 0.10.0'
+  pod 'CoreXLSX', '~> 0.12.0'
 end
 ```
 
@@ -178,7 +202,7 @@ $ brew install carthage
 Inside of your `Cartfile`, add GitHub path to `CoreXLSX` and its latest version:
 
 ```ogdl
-github "MaxDesiatov/CoreXLSX" ~> 0.10.0
+github "CoreOffice/CoreXLSX" ~> 0.12.0
 ```
 
 Then, run the following command to build the framework:
@@ -218,7 +242,7 @@ sure it builds on other platforms.
 
 If you prefer not to work with Xcode, the project fully supports SwiftPM and the
 usual workflow with `swift build` and `swift test` should work, otherwise please
-[report this as a bug](https://github.com/MaxDesiatov/CoreXLSX/issues/new).
+[report this as a bug](https://github.com/CoreOffice/CoreXLSX/issues/new).
 
 ### Coding Style
 
@@ -244,23 +268,22 @@ Refer to [the pre-commit documentation page](https://pre-commit.com/) for more d
 and installation instructions for other platforms.
 
 SwiftFormat and SwiftLint also run on CI for every PR and thus a CI build can
-fail with incosistent formatting or style. We require CI builds to pass for all
+fail with inconsistent formatting or style. We require CI builds to pass for all
 PRs before merging.
 
 ### Code of Conduct
 
 This project adheres to the [Contributor Covenant Code of
-Conduct](https://github.com/MaxDesiatov/CoreXLSX/blob/master/CODE_OF_CONDUCT.md).
+Conduct](https://github.com/CoreOffice/CoreXLSX/blob/main/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report
-unacceptable behavior to corexlsx@desiatov.com.
+unacceptable behavior to conduct@coreoffice.org.
 
 ## Maintainers
 
-[Max Desiatov](https://desiatov.com), [Matvii
-Hodovaniuk](https://matvii.hodovani.uk)
+[Max Desiatov](https://desiatov.com), [Matvii Hodovaniuk](https://matvii.hodovani.uk).
 
 ## License
 
 CoreXLSX is available under the Apache 2.0 license. See the
-[LICENSE](https://github.com/MaxDesiatov/CoreXLSX/blob/master/LICENSE.md) file
+[LICENSE](https://github.com/CoreOffice/CoreXLSX/blob/main/LICENSE.md) file
 for more info.

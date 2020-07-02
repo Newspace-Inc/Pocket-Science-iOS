@@ -71,7 +71,7 @@ open class XMLEncoder {
         /// Defer to `String` for choosing an encoding. This is the default strategy.
         case deferredToString
 
-        /// Encoded the `String` as a CData-encoded string.
+        /// Encode the `String` as a CData-encoded string.
         case cdata
     }
 
@@ -317,29 +317,51 @@ open class XMLEncoder {
     /// Encodes the given top-level value and returns its XML representation.
     ///
     /// - parameter value: The value to encode.
-    /// - parameter withRootKey: the key used to wrap the encoded values.
+    /// - parameter withRootKey: the key used to wrap the encoded values. The
+    ///   default value is inferred from the name of the root type.
+    /// - parameter rootAttributes: the list of attributes to be added to the root node
     /// - returns: A new `Data` value containing the encoded XML data.
     /// - throws: `EncodingError.invalidValue` if a non-conforming
     /// floating-point value is encountered during encoding, and the encoding
     /// strategy is `.throw`.
     /// - throws: An error if any value throws an error during encoding.
-    open func encode<T: Encodable>(_ value: T, withRootKey rootKey: String, header: XMLHeader? = nil) throws -> Data {
-        let encoder = XMLEncoderImplementation(
-            options: options,
-            nodeEncodings: []
-        )
+    open func encode<T: Encodable>(_ value: T,
+                                   withRootKey rootKey: String? = nil,
+                                   rootAttributes: [String: String]? = nil,
+                                   header: XMLHeader? = nil) throws -> Data {
+        let encoder = XMLEncoderImplementation(options: options, nodeEncodings: [])
         encoder.nodeEncodings.append(options.nodeEncodingStrategy.nodeEncodings(forType: T.self, with: encoder))
 
         let topLevel = try encoder.box(value)
+        let attributes = rootAttributes?.map(Attribute.init) ?? []
 
         let elementOrNone: XMLCoderElement?
 
+        let rootKey = rootKey ?? "\(T.self)".convert(for: keyEncodingStrategy)
+
+        let isStringBoxCDATA = stringEncodingStrategy == .cdata
+
         if let keyedBox = topLevel as? KeyedBox {
-            elementOrNone = XMLCoderElement(key: rootKey, box: keyedBox)
+            elementOrNone = XMLCoderElement(
+                key: rootKey,
+                isStringBoxCDATA: isStringBoxCDATA,
+                box: keyedBox,
+                attributes: attributes
+            )
         } else if let unkeyedBox = topLevel as? UnkeyedBox {
-            elementOrNone = XMLCoderElement(key: rootKey, box: unkeyedBox)
+            elementOrNone = XMLCoderElement(
+                key: rootKey,
+                isStringBoxCDATA: isStringBoxCDATA,
+                box: unkeyedBox,
+                attributes: attributes
+            )
         } else if let choiceBox = topLevel as? ChoiceBox {
-            elementOrNone = XMLCoderElement(key: rootKey, box: choiceBox)
+            elementOrNone = XMLCoderElement(
+                key: rootKey,
+                isStringBoxCDATA: isStringBoxCDATA,
+                box: choiceBox,
+                attributes: attributes
+            )
         } else {
             fatalError("Unrecognized top-level element of type: \(type(of: topLevel))")
         }
@@ -351,10 +373,28 @@ open class XMLEncoder {
             ))
         }
 
-        let withCDATA = stringEncodingStrategy != .deferredToString
-        return element.toXMLString(with: header,
-                                   withCDATA: withCDATA,
-                                   formatting: outputFormatting)
+        return element.toXMLString(with: header, formatting: outputFormatting)
             .data(using: .utf8, allowLossyConversion: true)!
+    }
+}
+
+private extension String {
+    func convert(for encodingStrategy: XMLEncoder.KeyEncodingStrategy) -> String {
+        switch encodingStrategy {
+        case .useDefaultKeys:
+            return self
+        case .convertToSnakeCase:
+            return XMLEncoder.KeyEncodingStrategy._convertToSnakeCase(self)
+        case .convertToKebabCase:
+            return XMLEncoder.KeyEncodingStrategy._convertToKebabCase(self)
+        case .custom:
+            return self
+        case .capitalized:
+            return XMLEncoder.KeyEncodingStrategy._convertToCapitalized(self)
+        case .uppercased:
+            return XMLEncoder.KeyEncodingStrategy._convertToUppercased(self)
+        case .lowercased:
+            return XMLEncoder.KeyEncodingStrategy._convertToLowercased(self)
+        }
     }
 }
