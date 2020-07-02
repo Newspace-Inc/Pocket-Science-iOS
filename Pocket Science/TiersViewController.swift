@@ -30,8 +30,10 @@ class TiersViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if let storedUserPoints = userDefaults.string(forKey: "Userpoints") {
             userPoints = storedUserPoints
+            pointLabel.text = "\(storedUserPoints) Points"
         } else {
-            
+            userPoints = "0"
+            pointLabel.text = "0 Points"
         }
         
         if let tierLevel = userDefaults.string(forKey: "User Tier") {
