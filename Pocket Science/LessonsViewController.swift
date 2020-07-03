@@ -9,8 +9,8 @@
 import UIKit
 import CoreXLSX
 
-class LessonsViewController: UIViewController {
-
+class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     // Variables
     var recentlyOpenedLevel:String = ""
     var userPoints:Int = 0
@@ -44,9 +44,6 @@ class LessonsViewController: UIViewController {
             
             for wbk in try file.parseWorkbooks() {
                 for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
-                    if let worksheetName = name {
-                        print("This worksheet has a name: \(worksheetName)")
-                    }
                     let sharedStrings = try file.parseSharedStrings()
                     let worksheet = try file.parseWorksheet(at: path)
                     
@@ -92,6 +89,19 @@ class LessonsViewController: UIViewController {
         // Send data to Quiz Controller
         destinationVC1.recentlyOpenedLevel = recentlyOpenedLevel
         destinationVC1.primaryLevel = primaryLevel
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
     }
     
     @IBAction func segmentedCtrl(_ sender: UISegmentedControl) {

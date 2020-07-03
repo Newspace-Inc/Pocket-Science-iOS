@@ -31,10 +31,16 @@ class ProfileViewController: UIViewController, dataFromSettings {
     @IBOutlet weak var settingsBtn: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var primaryLevelLabel: UILabel!
+    @IBOutlet weak var perfomanceBG: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set Clip to Bounds
+        perfomanceBG.clipsToBounds = true
+        
+        // Set Corner Radius
+        perfomanceBG.layer.cornerRadius = 15
     }
     
     override func viewDidAppear(_ animated: Bool) {

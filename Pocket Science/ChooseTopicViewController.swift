@@ -19,6 +19,8 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     var userName = ""
     let lowerPriTopics = ["Cycles", "Systems", "Diversity", "Interactions", "Energy"]
     let upperPriTopics = ["Cycles", "Systems", "Interactions", "Energy"]
+    let lowerPriTopicsAmt = ["", "", "", "", ""]
+    let upperPriTopicsAmt = ["", "", "", ""]
     
     let userDefaults = UserDefaults.standard
     
@@ -72,8 +74,10 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         
         if (primaryLevel == "Lower Primary") {
             cell.textLabel!.text = "\(lowerPriTopics[indexPath.row])"
+            cell.detailTextLabel!.text = "\(lowerPriTopicsAmt[indexPath.row])"
         } else {
             cell.textLabel!.text = "\(upperPriTopics[indexPath.row])"
+            cell.detailTextLabel!.text = "\(upperPriTopicsAmt[indexPath.row])"
         }
         
         return cell
