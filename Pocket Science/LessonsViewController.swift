@@ -23,25 +23,18 @@ class LessonsViewController: UIViewController {
     // Labels and Buttons
     @IBOutlet weak var primaryLabel1: UILabel!
     @IBOutlet weak var primaryLabel2: UILabel!
+    @IBOutlet weak var MCQBtn: UIButton! // Quiz View
+    @IBOutlet weak var spellingBtn: UIButton! // Quiz View
+    
+    // View Types
+    @IBOutlet weak var topicSelectionView: UIView!
+    @IBOutlet weak var subtopicTableView: UITableView!
+    @IBOutlet weak var quizSelectionView: UIView!
     
     // Segmented Control
     @IBOutlet weak var segmentedCtrl: UISegmentedControl!
     
     override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
-            primaryLevel = recentlyOpened
-        }
-        
-        // Set labels
-        primaryLabel1.text = "\(primaryLevel)"
-        primaryLabel2.text =  "The \(primaryLevel) Syllabus"
-        
         // Collect Data
         do {
             let filepath = Bundle.main.path(forResource: "data", ofType: "xlsx")!
@@ -62,6 +55,34 @@ class LessonsViewController: UIViewController {
         } catch {
             fatalError("\(error.localizedDescription)")
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set Clip to Bounds
+        MCQBtn.clipsToBounds = true
+        spellingBtn.clipsToBounds = true
+        
+        // Set Corner Radius
+        MCQBtn.layer.cornerRadius = 20
+        spellingBtn.layer.cornerRadius = 20
+        
+        if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
+            primaryLevel = recentlyOpened
+        }
+        
+        if let openedLesson = userDefaults.string(forKey: "Opened Lesson") {
+            selectedLesson = openedLesson
+        }
+        
+        // Set labels
+        primaryLabel1.text = "\(primaryLevel)"
+        primaryLabel2.text =  "Primary School \(selectedLesson)"
+        
+        topicSelectionView.isHidden = false
+        subtopicTableView.isHidden = true
+        quizSelectionView.isHidden = true
         
     }
     
@@ -76,20 +97,50 @@ class LessonsViewController: UIViewController {
     @IBAction func segmentedCtrl(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
-        case 0: break
+        case 0:
+            print("User selected Topic Explaination")
+            topicSelectionView.isHidden = false
+            subtopicTableView.isHidden = true
+            quizSelectionView.isHidden = true
             
-        case 1: break
+            break
+        case 1:
+            print("User selected Subtopic")
+            topicSelectionView.isHidden = true
+            subtopicTableView.isHidden = false
+            quizSelectionView.isHidden = true
             
-        case 2: break
+            break
+        case 2:
+            print("User selected Quiz")
+            topicSelectionView.isHidden = true
+            subtopicTableView.isHidden = true
+            quizSelectionView.isHidden = false
             
+            break
         default:
             break
         }
     }
-    
-    // Create Topic Explaination UI
-    
-    // Create Subtopic UI
-    
-    // Create Quiz UI
+    @IBAction func MCQBtn(_ sender: Any) {
+        performSegue(withIdentifier: "Quiz", sender: nil)
+    }
+    @IBAction func spellingBtn(_ sender: Any) {
+        // Create Alert
+        var dialogMessage = UIAlertController(title: "Work In Progress", message: "The spelling test is currently a work in progress. Please check back soon.", preferredStyle: .alert)
+
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            // Erase Data code
+        })
+
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            // Cancelation code
+        }
+
+        //Add OK and Cancel button to an Alert object
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+    }
 }

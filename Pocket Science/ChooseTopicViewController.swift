@@ -84,8 +84,16 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         let destinationVC = LessonsViewController()
         if (primaryLevel == "Lower Primary") {
             destinationVC.selectedLesson = lowerPriTopics[indexPath.row]
+            
+            if (lowerPriTopics[indexPath.row] != "") {
+                userDefaults.set(lowerPriTopics[indexPath.row], forKey: "Opened Lesson")
+            }
         } else {
             destinationVC.selectedLesson = upperPriTopics[indexPath.row]
+            
+            if (upperPriTopics[indexPath.row] != "") {
+                userDefaults.set(upperPriTopics[indexPath.row], forKey: "Opened Lesson")
+            }
         }
         
         performSegue(withIdentifier: "lessons", sender: self)
