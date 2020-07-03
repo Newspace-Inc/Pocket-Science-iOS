@@ -46,12 +46,19 @@ class TiersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set Clips to Bounds
+        pointLabel.clipsToBounds = true
+        bronzeBG.clipsToBounds = true
+        silverBG.clipsToBounds = true
+        goldBG.clipsToBounds = true
+        diamondBG.clipsToBounds = true
+        
         // Set Corner Radius
-        pointLabel.layer.cornerRadius = 10
-        bronzeBG.layer.cornerRadius = 20
-        silverBG.layer.cornerRadius = 20
-        goldBG.layer.cornerRadius = 20
-        diamondBG.layer.cornerRadius = 20
+        pointLabel?.layer.cornerRadius = 10
+        bronzeBG?.layer.cornerRadius = 20
+        silverBG?.layer.cornerRadius = 20
+        goldBG?.layer.cornerRadius = 20
+        diamondBG?.layer.cornerRadius = 20
         
     }
     

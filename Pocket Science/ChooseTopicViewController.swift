@@ -67,6 +67,8 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
+        cell.layer.cornerRadius = 5
+
         
         if (primaryLevel == "Lower Primary") {
             cell.textLabel!.text = "\(lowerPriTopics[indexPath.row])"
