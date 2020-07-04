@@ -21,17 +21,37 @@ class QuizViewController: UIViewController {
     
     let userDefaults = UserDefaults.standard
 
+    // Labels and Buttons
+    @IBOutlet weak var uiBG: UILabel!
+    @IBOutlet weak var optionOneBtn: UIButton!
+    @IBOutlet weak var optionTwoBtn: UIButton!
+    @IBOutlet weak var optionThreeBtn: UIButton!
+    @IBOutlet weak var optionFourBtn: UIButton!
+    
     override func viewDidAppear(_ animated: Bool) {
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         if (storedUserPoints != 0) {
             userDefaults.set(storedUserPoints, forKey: "Userpoints")
         }
+        
+        // Set Clip to Bounds
+        uiBG.clipsToBounds = true
+        optionOneBtn.clipsToBounds = true
+        optionTwoBtn.clipsToBounds = true
+        optionThreeBtn.clipsToBounds = true
+        optionFourBtn.clipsToBounds = true
+        
+        // Set Corner Radius
+        uiBG?.layer.cornerRadius = 20
+        optionOneBtn.layer.cornerRadius = 20
+        optionTwoBtn.layer.cornerRadius = 20
+        optionThreeBtn.layer.cornerRadius = 20
+        optionFourBtn.layer.cornerRadius = 20
     }
     
 

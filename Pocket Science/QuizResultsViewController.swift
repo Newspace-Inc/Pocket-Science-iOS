@@ -10,6 +10,7 @@ import UIKit
 
 class QuizResultsViewController: UIViewController {
 
+    // Variables
     var amtOfCorrectAns:Int = 0
     var amtOfPointsEarned:Int = 0
     var totalAmtOfQns:Int = 0
@@ -19,6 +20,11 @@ class QuizResultsViewController: UIViewController {
     var correctAmountOfQuiz = ""
     
     let userDefaults = UserDefaults.standard
+    
+    // Buttons and Labels
+    @IBOutlet weak var uiBG: UILabel!
+    @IBOutlet weak var noRetryBtn: UIButton!
+    @IBOutlet weak var retryBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +40,16 @@ class QuizResultsViewController: UIViewController {
         } else {
             correctAmountOfQuiz = "0"
         }
+        
+        // Set Buttons and Padding Corner
+        uiBG.clipsToBounds = true
+        uiBG.layer.cornerRadius = 20
+        
+        noRetryBtn.clipsToBounds = true
+        noRetryBtn.layer.cornerRadius = 20
+        
+        retryBtn.clipsToBounds = true
+        retryBtn.layer.cornerRadius = 20
     }
     
     override func viewDidAppear(_ animated: Bool) {

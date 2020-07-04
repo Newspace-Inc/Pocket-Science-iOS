@@ -17,6 +17,7 @@ class FlashcardsViewController: UIViewController {
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var bgPadding: UILabel!
+    @IBOutlet weak var uiBG: UILabel!
     
     // Variables
     let userDefaults = UserDefaults.standard
@@ -25,9 +26,15 @@ class FlashcardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
             
+        // Set Clip to Bounds
+        imageView.clipsToBounds = true
+        bgPadding.clipsToBounds = true
+        uiBG.clipsToBounds = true
+        
         // Curved Corners
         imageView.layer.cornerRadius = 20
         bgPadding.layer.cornerRadius = 20
+        uiBG.layer.cornerRadius = 20
         
     }
     

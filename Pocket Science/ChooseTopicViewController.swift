@@ -28,6 +28,7 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var mainUPLabel: UILabel!
     @IBOutlet weak var secUPLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var uiBG: UILabel!
     
     override func viewDidAppear(_ animated: Bool) {
         if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
@@ -55,6 +56,10 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
         }
+        
+        // Config UI Background
+        uiBG.clipsToBounds = true
+        uiBG.layer.cornerRadius = 20
     }
     
     // Set data into Table View

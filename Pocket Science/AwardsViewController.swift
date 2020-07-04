@@ -26,6 +26,7 @@ class AwardsViewController: UIViewController {
     @IBOutlet weak var badgesLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var userRankLabel: UILabel!
+    @IBOutlet weak var uiBG: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +52,16 @@ class AwardsViewController: UIViewController {
         // Rank Label
         userRankLabel.text = "Current Rank: \(userTier)"
         
+        // Set Clip to Bounds
+        badgesLabel.clipsToBounds = true
+        rankLabel.clipsToBounds = true
+        uiBG.clipsToBounds = true
+        
         // Set Corner Radius
         badgesLabel.layer.cornerRadius = 30
         rankLabel.layer.cornerRadius = 30
         userRankLabel.layer.cornerRadius = 20
+        uiBG.layer.cornerRadius = 20
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -9,11 +9,20 @@
 import UIKit
 
 class FavouritesViewController: UIViewController {
-
+    
+    // Variables
+    
+    // Labels and Buttons
+    @IBOutlet weak var uiBG: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Set Clip to Bounds
+        uiBG.clipsToBounds = true
+        
+        // Set Corner Radius
+        uiBG.layer.cornerRadius = 20
     }
     
 

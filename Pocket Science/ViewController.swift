@@ -83,6 +83,9 @@ class ViewController: UIViewController, dataFromSettings {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set Clip to Bounds
+        bgPad.clipsToBounds = true
+        
         // Curved Edges
         recentlyOpenedBtn.layer.cornerRadius = 20
         upperPrimaryBtn.layer.cornerRadius = 20
@@ -154,3 +157,4 @@ class ViewController: UIViewController, dataFromSettings {
         selectLessonVC.userName = storedUserName
     }
 }
+

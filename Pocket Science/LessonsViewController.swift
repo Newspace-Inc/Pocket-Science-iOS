@@ -9,7 +9,7 @@
 import UIKit
 import CoreXLSX
 
-class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LessonsViewController: UIViewController {
     
     // Variables
     var recentlyOpenedLevel:String = ""
@@ -25,6 +25,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var primaryLabel2: UILabel!
     @IBOutlet weak var MCQBtn: UIButton! // Quiz View
     @IBOutlet weak var spellingBtn: UIButton! // Quiz View
+    @IBOutlet weak var uiBG: UILabel!
     
     // View Types
     @IBOutlet weak var topicSelectionView: UIView!
@@ -47,6 +48,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     let sharedStrings = try file.parseSharedStrings()
                     let worksheet = try file.parseWorksheet(at: path)
                     
+                    
                 }
             }
         } catch {
@@ -60,10 +62,12 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Set Clip to Bounds
         MCQBtn.clipsToBounds = true
         spellingBtn.clipsToBounds = true
+        uiBG.clipsToBounds = true
         
         // Set Corner Radius
         MCQBtn.layer.cornerRadius = 20
         spellingBtn.layer.cornerRadius = 20
+        uiBG?.layer.cornerRadius = 20
         
         if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
             primaryLevel = recentlyOpened
@@ -89,19 +93,6 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Send data to Quiz Controller
         destinationVC1.recentlyOpenedLevel = recentlyOpenedLevel
         destinationVC1.primaryLevel = primaryLevel
-    }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
     }
     
     @IBAction func segmentedCtrl(_ sender: UISegmentedControl) {

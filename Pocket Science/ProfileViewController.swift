@@ -32,15 +32,18 @@ class ProfileViewController: UIViewController, dataFromSettings {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var primaryLevelLabel: UILabel!
     @IBOutlet weak var perfomanceBG: UILabel!
+    @IBOutlet weak var uiBG: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set Clip to Bounds
         perfomanceBG.clipsToBounds = true
+        uiBG.clipsToBounds = true
         
         // Set Corner Radius
         perfomanceBG.layer.cornerRadius = 15
+        uiBG.layer.cornerRadius = 20
     }
     
     override func viewDidAppear(_ animated: Bool) {
