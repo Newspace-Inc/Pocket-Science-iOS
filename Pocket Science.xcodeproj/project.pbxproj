@@ -17,7 +17,6 @@
 		5917C13C24337F9500107213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13A24337F9500107213 /* Main.storyboard */; };
 		5917C13E24337F9A00107213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13D24337F9A00107213 /* Assets.xcassets */; };
 		59576DB7243D83AD005B3269 /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB6243D83AD005B3269 /* LessonsViewController.swift */; };
-		597FCA9624AE128A00862757 /* data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 597FCA9524AE10FE00862757 /* data.xlsx */; };
 		598075822474206F00DFE8AB /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598075812474206F00DFE8AB /* ChooseTopicViewController.swift */; };
 		5995AA4E2477D054003800A6 /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */; };
 		59E0D46C245EA38000A55E81 /* TiersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E0D46B245EA38000A55E81 /* TiersViewController.swift */; };
@@ -41,8 +40,8 @@
 		5917C13B24337F9500107213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5917C13D24337F9A00107213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5917C14224337F9A00107213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		592232B524B53B020033EB7C /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Main Data.xlsx"; sourceTree = "<group>"; };
 		59576DB6243D83AD005B3269 /* LessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
-		597FCA9524AE10FE00862757 /* data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.xlsx; sourceTree = "<group>"; };
 		598075812474206F00DFE8AB /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
 		5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashcardsViewController.swift; path = Assets.xcassets/FlashcardsViewController.swift; sourceTree = "<group>"; };
 		59E0D46B245EA38000A55E81 /* TiersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiersViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				5917C13D24337F9A00107213 /* Assets.xcassets */,
-				597FCA9524AE10FE00862757 /* data.xlsx */,
+				592232B524B53B020033EB7C /* Main Data.xlsx */,
 				5917C13A24337F9500107213 /* Main.storyboard */,
 				5917C14224337F9A00107213 /* Info.plist */,
 				5917C13424337F9500107213 /* AppDelegate.swift */,
@@ -182,7 +181,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5917C13E24337F9A00107213 /* Assets.xcassets in Resources */,
-				597FCA9624AE128A00862757 /* data.xlsx in Resources */,
 				5917C13C24337F9500107213 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,7 +386,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46YLK6L3QN;
 				INFOPLIST_FILE = "Pocket Science/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -408,7 +406,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46YLK6L3QN;
 				INFOPLIST_FILE = "Pocket Science/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

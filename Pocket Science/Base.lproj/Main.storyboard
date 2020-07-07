@@ -847,10 +847,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2ls-kf-q17">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="QDR-sJ-MBF">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ls-kf-q17" id="myd-mx-z32">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QDR-sJ-MBF" id="g8B-fr-k5Y">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -882,6 +882,7 @@
                         <outlet property="segmentedCtrl" destination="jZT-2u-VoB" id="GQf-Vv-Tgs"/>
                         <outlet property="spellingBtn" destination="67X-Qv-IZA" id="83H-4s-yyz"/>
                         <outlet property="subtopicTableView" destination="TuK-vw-GSr" id="2Iv-KE-zgM"/>
+                        <outlet property="tableView" destination="TuK-vw-GSr" id="ZoE-uf-yux"/>
                         <outlet property="topicSelectionView" destination="SAa-Fe-DNj" id="g2N-Gx-kiV"/>
                         <outlet property="uiBG" destination="OCn-od-IEv" id="GxC-iv-ugx"/>
                         <segue destination="RB2-20-OZx" kind="show" identifier="Quiz" id="aa2-ey-VVN"/>

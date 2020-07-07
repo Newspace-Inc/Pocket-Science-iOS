@@ -32,13 +32,19 @@ class LessonsViewController: UIViewController {
     @IBOutlet weak var subtopicTableView: UITableView!
     @IBOutlet weak var quizSelectionView: UIView!
     
+    // Table View
+    @IBOutlet weak var tableView: UITableView!
+    
     // Segmented Control
     @IBOutlet weak var segmentedCtrl: UISegmentedControl!
+    
+    // Data Collection Arrays
+    var overallTopics = [""]
     
     override func viewDidAppear(_ animated: Bool) {
         // Collect Data
         do {
-            let filepath = Bundle.main.path(forResource: "data", ofType: "xlsx")!
+            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
             guard let file = XLSXFile(filepath: filepath) else {
                 fatalError("XLSX file at \(filepath) is corrupted or does not exist")
             }
@@ -48,7 +54,35 @@ class LessonsViewController: UIViewController {
                     let sharedStrings = try file.parseSharedStrings()
                     let worksheet = try file.parseWorksheet(at: path)
                     
-                    
+                    if (primaryLevel == "Lower Primary") {
+                        if (selectedLesson == "Energy") {
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                              .compactMap { $0.stringValue(sharedStrings) }
+                            
+                            for i in 1...325 {
+                                
+                            }
+                        } else if (selectedLesson == "Diversity") {
+                            
+                        } else if (selectedLesson == "Cycles") {
+                            
+                        } else if (selectedLesson == "Interactions") {
+                            
+                        } else if (selectedLesson == "Systems") {
+                            
+                        }
+                    } else if (primaryLevel == "Upper Primary") {
+                        
+                        if (selectedLesson == "Energy") {
+                            
+                        } else if (selectedLesson == "Cycles") {
+                            
+                        } else if (selectedLesson == "Interactions") {
+                            
+                        } else if (selectedLesson == "Systems") {
+                            
+                        }
+                    }
                 }
             }
         } catch {
@@ -85,7 +119,19 @@ class LessonsViewController: UIViewController {
         subtopicTableView.isHidden = true
         quizSelectionView.isHidden = true
         
+        // Set Table View
+//        tableView.delegate = self
+//        tableView.dataSource = self
     }
+    
+    // Set UITableView
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC1 = segue.destination as! QuizViewController

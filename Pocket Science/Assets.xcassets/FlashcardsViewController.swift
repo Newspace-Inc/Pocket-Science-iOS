@@ -48,7 +48,7 @@ class FlashcardsViewController: UIViewController {
         favouriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
         favouriteFlashcard.append("Test")
         
-        if (true) {
+        if (favouriteFlashcard != [""]) {
             userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
         }
     }
