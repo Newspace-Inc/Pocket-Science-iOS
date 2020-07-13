@@ -804,7 +804,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="QDR-sJ-MBF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="QDR-sJ-MBF">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QDR-sJ-MBF" id="g8B-fr-k5Y">
@@ -1060,6 +1060,8 @@
                         <outlet property="optionOneBtn" destination="jbX-yH-HfR" id="a8A-jC-x8q"/>
                         <outlet property="optionThreeBtn" destination="jRY-sf-gL6" id="WEa-fy-QGG"/>
                         <outlet property="optionTwoBtn" destination="QLn-zF-IRq" id="QMW-NB-cHg"/>
+                        <outlet property="primarySchoolLvel" destination="WEF-I7-3mc" id="ZPh-FI-fpR"/>
+                        <outlet property="quizTypeLabel" destination="GbV-Ov-1qc" id="Cl6-h8-aqT"/>
                         <outlet property="uiBG" destination="oKX-Xj-WNq" id="FAc-zy-kiv"/>
                         <segue destination="zhf-80-zvz" kind="show" id="tef-tD-CsI"/>
                     </connections>

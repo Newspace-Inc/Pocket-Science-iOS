@@ -9,7 +9,7 @@
 import UIKit
 import CoreXLSX
 
-class LessonsViewController: UIViewController {
+class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Variables
     var recentlyOpenedLevel:String = ""
@@ -17,6 +17,7 @@ class LessonsViewController: UIViewController {
     var selectedLesson:String = ""
     var primaryLevel:String = ""
     var amountOfFinishedLessons = ""
+    var quizType = ""
     
     let userDefaults = UserDefaults.standard
             
@@ -58,29 +59,32 @@ class LessonsViewController: UIViewController {
                         if (selectedLesson == "Energy") {
                             overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
                               .compactMap { $0.stringValue(sharedStrings) }
-                            
-                            for i in 1...325 {
-                                
-                            }
                         } else if (selectedLesson == "Diversity") {
-                            
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                                .compactMap{$0.stringValue(sharedStrings)}
                         } else if (selectedLesson == "Cycles") {
-                            
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                                .compactMap{$0.stringValue(sharedStrings)}
                         } else if (selectedLesson == "Interactions") {
-                            
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                                .compactMap{$0.stringValue(sharedStrings)}
                         } else if (selectedLesson == "Systems") {
-                            
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                                .compactMap{$0.stringValue(sharedStrings)}
                         }
                     } else if (primaryLevel == "Upper Primary") {
-                        
                         if (selectedLesson == "Energy") {
-                            
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                                .compactMap{$0.stringValue(sharedStrings)}
                         } else if (selectedLesson == "Cycles") {
-                            
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                                .compactMap{$0.stringValue(sharedStrings)}
                         } else if (selectedLesson == "Interactions") {
-                            
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                                .compactMap{$0.stringValue(sharedStrings)}
                         } else if (selectedLesson == "Systems") {
-                            
+                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
+                                .compactMap{$0.stringValue(sharedStrings)}
                         }
                     }
                 }
@@ -119,19 +123,31 @@ class LessonsViewController: UIViewController {
         subtopicTableView.isHidden = true
         quizSelectionView.isHidden = true
         
-        // Set Table View
-//        tableView.delegate = self
-//        tableView.dataSource = self
+        // Set Delegate and Data Source
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
-    // Set UITableView
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return overallTopics.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
+        cell.layer.cornerRadius = 5
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destinationVC = FlashcardsViewController()
+        
+        destinationVC.selectedOverallTopic = overallTopics[indexPath.row]
+        
+        if overallTopics[indexPath.row] != "" {
+            userDefaults.set(overallTopics[indexPath.row], forKey: "Overall Selected Topic")
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC1 = segue.destination as! QuizViewController
@@ -139,6 +155,7 @@ class LessonsViewController: UIViewController {
         // Send data to Quiz Controller
         destinationVC1.recentlyOpenedLevel = recentlyOpenedLevel
         destinationVC1.primaryLevel = primaryLevel
+        destinationVC1.quizType = quizType
     }
     
     @IBAction func segmentedCtrl(_ sender: UISegmentedControl) {
@@ -171,6 +188,7 @@ class LessonsViewController: UIViewController {
     }
     @IBAction func MCQBtn(_ sender: Any) {
         performSegue(withIdentifier: "Quiz", sender: nil)
+        quizType = "Multiple Choice Questions"
     }
     @IBAction func spellingBtn(_ sender: Any) {
         // Create Alert

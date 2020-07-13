@@ -95,11 +95,11 @@
 				59576DB6243D83AD005B3269 /* LessonsViewController.swift */,
 				590A362A243ADAD60053CAF9 /* ProfileViewController.swift */,
 				590A362E243ADAEB0053CAF9 /* AwardsViewController.swift */,
+				5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */,
 				59E0D46B245EA38000A55E81 /* TiersViewController.swift */,
 				59EE919924449B84001EEFEE /* QuizViewController.swift */,
 				59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */,
 				590293382470408600615098 /* SettingsViewController.swift */,
-				5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */,
 			);
 			path = "Pocket Science";
 			sourceTree = "<group>";

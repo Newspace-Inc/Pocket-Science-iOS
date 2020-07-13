@@ -20,12 +20,15 @@ class FlashcardsViewController: UIViewController {
     @IBOutlet weak var uiBG: UILabel!
     
     // Variables
-    let userDefaults = UserDefaults.standard
     var favouriteFlashcard = [""]
+    var selectedOverallTopic = ""
+    var selectedConcept = ""
+    
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
         // Set Clip to Bounds
         imageView.clipsToBounds = true
         bgPadding.clipsToBounds = true
@@ -42,11 +45,22 @@ class FlashcardsViewController: UIViewController {
         if let favouriteFlashcardArray = userDefaults.string(forKey: "") {
             
         }
+        if let selectedOverall = userDefaults.string(forKey: "Selected Overall Topics") {
+            selectedOverallTopic = selectedOverall
+            
+        }
     }
     
     @IBAction func favouriteBtn(_ sender: Any) {
-        favouriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
-        favouriteFlashcard.append("Test")
+        
+        for i in 0...favouriteFlashcard.count {
+            if (favouriteFlashcard[i] == selectedConcept) {
+                favouriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
+                favouriteFlashcard.append(selectedConcept)
+            } else {
+                favouriteButton.setImage(UIImage(named: "heart"), for: .normal)
+            }
+        }
         
         if (favouriteFlashcard != [""]) {
             userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")

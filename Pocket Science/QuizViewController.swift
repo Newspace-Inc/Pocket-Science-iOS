@@ -18,6 +18,7 @@ class QuizViewController: UIViewController {
     var amtOfCorrectAns:Int = 0
     var amtOfPointsEarned:Int = 0
     var totalAmtOfQns:Int = 0
+    var quizType = ""
     
     let userDefaults = UserDefaults.standard
 
@@ -27,6 +28,8 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var optionTwoBtn: UIButton!
     @IBOutlet weak var optionThreeBtn: UIButton!
     @IBOutlet weak var optionFourBtn: UIButton!
+    @IBOutlet weak var quizTypeLabel: UILabel!
+    @IBOutlet weak var primarySchoolLvel: UILabel!
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -37,6 +40,10 @@ class QuizViewController: UIViewController {
         
         if (storedUserPoints != 0) {
             userDefaults.set(storedUserPoints, forKey: "Userpoints")
+        }
+        
+        if let priSchLvl = userDefaults.string(forKey: "Recently Opened") {
+            primaryLevel = priSchLvl
         }
         
         // Set Clip to Bounds
@@ -52,6 +59,10 @@ class QuizViewController: UIViewController {
         optionTwoBtn.layer.cornerRadius = 20
         optionThreeBtn.layer.cornerRadius = 20
         optionFourBtn.layer.cornerRadius = 20
+        
+        // Set Label Names
+        quizTypeLabel.text = quizType
+        primarySchoolLvel.text = primaryLevel
     }
     
 
