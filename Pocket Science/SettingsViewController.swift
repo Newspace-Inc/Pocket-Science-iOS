@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol dataFromSettings {
     func passDataBack(settingsUserName: String, settingsUserAge: String)
 }
@@ -112,9 +111,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func eraseDataBtn(_ sender: Any) {
-        
         statusLabel.alpha = 0
-        
     }
     @IBAction func tutorialBtn(_ sender: Any) {
         performSegue(withIdentifier: "tutorial", sender: nil)

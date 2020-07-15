@@ -43,55 +43,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var overallTopics = [""]
     
     override func viewDidAppear(_ animated: Bool) {
-        // Collect Data
-        do {
-            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
-            guard let file = XLSXFile(filepath: filepath) else {
-                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
-            }
-            
-            for wbk in try file.parseWorkbooks() {
-                for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
-                    let sharedStrings = try file.parseSharedStrings()
-                    let worksheet = try file.parseWorksheet(at: path)
-                    
-                    if (primaryLevel == "Lower Primary") {
-                        if (selectedLesson == "Energy") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                              .compactMap { $0.stringValue(sharedStrings) }
-                        } else if (selectedLesson == "Diversity") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                                .compactMap{$0.stringValue(sharedStrings)}
-                        } else if (selectedLesson == "Cycles") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                                .compactMap{$0.stringValue(sharedStrings)}
-                        } else if (selectedLesson == "Interactions") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                                .compactMap{$0.stringValue(sharedStrings)}
-                        } else if (selectedLesson == "Systems") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                                .compactMap{$0.stringValue(sharedStrings)}
-                        }
-                    } else if (primaryLevel == "Upper Primary") {
-                        if (selectedLesson == "Energy") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                                .compactMap{$0.stringValue(sharedStrings)}
-                        } else if (selectedLesson == "Cycles") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                                .compactMap{$0.stringValue(sharedStrings)}
-                        } else if (selectedLesson == "Interactions") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                                .compactMap{$0.stringValue(sharedStrings)}
-                        } else if (selectedLesson == "Systems") {
-                            overallTopics = worksheet.cells(atColumns: [ColumnReference("B")!])
-                                .compactMap{$0.stringValue(sharedStrings)}
-                        }
-                    }
-                }
-            }
-        } catch {
-            fatalError("\(error.localizedDescription)")
-        }
+        
     }
     
     override func viewDidLoad() {
@@ -126,6 +78,26 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Set Delegate and Data Source
         tableView.delegate = self
         tableView.dataSource = self
+                
+        // Collect Data
+        do {
+            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
+            guard let file = XLSXFile(filepath: filepath) else {
+                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+            }
+            
+            for wbk in try file.parseWorkbooks() {
+                for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
+                    let sharedStrings = try file.parseSharedStrings()
+                    let worksheet = try file.parseWorksheet(at: path)
+                    
+                    overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
+                      .compactMap { $0.stringValue(sharedStrings) }
+                }
+            }
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,6 +107,8 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         cell.layer.cornerRadius = 5
+
+        cell.textLabel!.text = "\(overallTopics[indexPath.row])"
         
         return cell
     }
@@ -162,21 +136,18 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         switch sender.selectedSegmentIndex {
         case 0:
-            print("User selected Topic Explaination")
             topicSelectionView.isHidden = false
             subtopicTableView.isHidden = true
             quizSelectionView.isHidden = true
             
             break
         case 1:
-            print("User selected Subtopic")
             topicSelectionView.isHidden = true
             subtopicTableView.isHidden = false
             quizSelectionView.isHidden = true
             
             break
         case 2:
-            print("User selected Quiz")
             topicSelectionView.isHidden = true
             subtopicTableView.isHidden = true
             quizSelectionView.isHidden = false

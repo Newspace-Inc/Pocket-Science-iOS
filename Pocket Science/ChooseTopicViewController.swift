@@ -9,6 +9,32 @@
 import UIKit
 import CoreXLSX
 
+var vSpinner : UIView?
+
+extension UIViewController {
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: UIActivityIndicatorView.Style.large)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            vSpinner?.removeFromSuperview()
+            vSpinner = nil
+        }
+    }
+}
+
 class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // Variables
@@ -75,7 +101,6 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         cell.layer.cornerRadius = 5
-
         
         if (primaryLevel == "Lower Primary") {
             cell.textLabel!.text = "\(lowerPriTopics[indexPath.row])"
@@ -83,8 +108,8 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         } else {
             cell.textLabel!.text = "\(upperPriTopics[indexPath.row])"
             cell.detailTextLabel!.text = "\(upperPriTopicsAmt[indexPath.row])"
+
         }
-        
         return cell
     }
     
@@ -106,6 +131,7 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         performSegue(withIdentifier: "lessons", sender: self)
+        self.showSpinner(onView: self.view)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

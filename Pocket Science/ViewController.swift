@@ -157,4 +157,3 @@ class ViewController: UIViewController, dataFromSettings {
         selectLessonVC.userName = storedUserName
     }
 }
-
