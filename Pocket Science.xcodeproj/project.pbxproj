@@ -16,7 +16,7 @@
 		5917C13924337F9500107213 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5917C13824337F9500107213 /* ViewController.swift */; };
 		5917C13C24337F9500107213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13A24337F9500107213 /* Main.storyboard */; };
 		5917C13E24337F9A00107213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13D24337F9A00107213 /* Assets.xcassets */; };
-		595197A824C07CE700F102A9 /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 595197A724C07CDC00F102A9 /* Main Data.xlsx */; };
+		595197AC24C08BD000F102A9 /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 595197AB24C08BC800F102A9 /* Main Data.xlsx */; };
 		59576DB7243D83AD005B3269 /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59576DB6243D83AD005B3269 /* LessonsViewController.swift */; };
 		598075822474206F00DFE8AB /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598075812474206F00DFE8AB /* ChooseTopicViewController.swift */; };
 		5995AA4E2477D054003800A6 /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */; };
@@ -41,7 +41,7 @@
 		5917C13B24337F9500107213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5917C13D24337F9A00107213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5917C14224337F9A00107213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		595197A724C07CDC00F102A9 /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../../../Downloads/Main Data.xlsx"; sourceTree = "<group>"; };
+		595197AB24C08BC800F102A9 /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../../../Downloads/Main Data.xlsx"; sourceTree = "<group>"; };
 		59576DB6243D83AD005B3269 /* LessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
 		598075812474206F00DFE8AB /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
 		5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashcardsViewController.swift; path = Assets.xcassets/FlashcardsViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 				5917C13D24337F9A00107213 /* Assets.xcassets */,
 				5917C13A24337F9500107213 /* Main.storyboard */,
 				5917C14224337F9A00107213 /* Info.plist */,
-				595197A724C07CDC00F102A9 /* Main Data.xlsx */,
+				595197AB24C08BC800F102A9 /* Main Data.xlsx */,
 				5917C13424337F9500107213 /* AppDelegate.swift */,
 				5917C13624337F9500107213 /* SceneDelegate.swift */,
 				5917C13824337F9500107213 /* ViewController.swift */,
@@ -181,7 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				595197A824C07CE700F102A9 /* Main Data.xlsx in Resources */,
+				595197AC24C08BD000F102A9 /* Main Data.xlsx in Resources */,
 				5917C13E24337F9A00107213 /* Assets.xcassets in Resources */,
 				5917C13C24337F9500107213 /* Main.storyboard in Resources */,
 			);

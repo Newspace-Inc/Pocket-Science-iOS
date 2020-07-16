@@ -41,6 +41,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Data Collection Arrays
     var overallTopics = [""]
+    var userSelectedTopic = [""]
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -82,6 +83,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Collect Data
         do {
             let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
+            
             guard let file = XLSXFile(filepath: filepath) else {
                 fatalError("XLSX file at \(filepath) is corrupted or does not exist")
             }
@@ -91,9 +93,49 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     let sharedStrings = try file.parseSharedStrings()
                     let worksheet = try file.parseWorksheet(at: path)
                     
+                     
+                    var endTopicSel = 0
+                    var startTopicSel = 0
+                    
+                    var endLevelSel = 0
+                    var startLevelSel = 0
+                     
+                    // Get Cell Data
+                    var topic = worksheet.cells(atColumns: [ColumnReference("B")!])
+                        .compactMap{ $0.stringValue(sharedStrings) }
+                    
+                    var level = worksheet.cells(atColumns: [ColumnReference("A")!])
+                        .compactMap{ $0.stringValue(sharedStrings) }
+                    
                     overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
                       .compactMap { $0.stringValue(sharedStrings) }
-                    overallTopics = Array(Set(overallTopics))
+                     
+                    // Find Rows of Selected Level
+                    let findLevelSelectedStart = level.firstIndex(of: recentlyOpenedLevel)
+                    if findLevelSelectedStart != nil {
+                        startLevelSel = Int(findLevelSelectedStart ?? 0) + 1
+                    }
+                    
+                    let findLevelSelectedEnd = level.firstIndex(of: recentlyOpenedLevel)
+                    if findLevelSelectedEnd != nil {
+                        endLevelSel = Int(findLevelSelectedEnd ?? 0) + 1
+                    }
+                    
+                    // Find Rows of Selected Topic
+                    let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
+                    if findTopicSelectedStart != nil {
+                        startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
+                    }
+                    
+                    let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
+                    if findTopicSelectedEnd != nil {
+                        endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
+                    }
+                    
+                    for i in startTopicSel...endTopicSel {
+                        userSelectedTopic.append(overallTopics[i])
+                    }
+                    userSelectedTopic = Array(Set(userSelectedTopic))
                 }
             }
         } catch {
@@ -102,14 +144,14 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return overallTopics.count
+        return userSelectedTopic.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         cell.layer.cornerRadius = 5
 
-        cell.textLabel!.text = "\(overallTopics[indexPath.row])"
+        cell.textLabel!.text = "\(userSelectedTopic[indexPath.row])"
         
         return cell
     }
@@ -117,10 +159,10 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destinationVC = FlashcardsViewController()
         
-        destinationVC.selectedOverallTopic = overallTopics[indexPath.row]
+        destinationVC.selectedOverallTopic = userSelectedTopic[indexPath.row]
         
         if overallTopics[indexPath.row] != "" {
-            userDefaults.set(overallTopics[indexPath.row], forKey: "Overall Selected Topic")
+            userDefaults.set(userSelectedTopic[indexPath.row], forKey: "Overall Selected Topic")
         }
     }
     
