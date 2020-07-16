@@ -9,13 +9,6 @@
 import UIKit
 import CoreXLSX
 
-extension Sequence where Element: Hashable {
-  func uniqueElements() -> [Element] {
-    var arrSet = Set<Element>()
-    return self.filter { arrSet.insert($0).inserted }
-  }
-}
-
 class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Variables
@@ -100,8 +93,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
                       .compactMap { $0.stringValue(sharedStrings) }
-                    overallTopics.uniqueElements()
-                    print(overallTopics)
+                    overallTopics = Array(Set(overallTopics))
                 }
             }
         } catch {
