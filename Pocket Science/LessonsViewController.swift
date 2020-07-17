@@ -18,6 +18,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var primaryLevel:String = ""
     var amountOfFinishedLessons = ""
     var quizType = ""
+    var worksheetName = ""
     
     let userDefaults = UserDefaults.standard
             
@@ -81,6 +82,9 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
                 
         // Collect Data
+        
+        worksheetName = recentlyOpenedLevel
+        
         do {
             let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
             
