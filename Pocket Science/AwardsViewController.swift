@@ -17,7 +17,7 @@ class AwardsViewController: UIViewController {
     var tierRequirment = [100, 500, 1000, 5000]
     var awardRequirment = [""]
     var awardName = [""]
-    var userPoints = ""
+    var userPoints = 0
     var tierRewards = [""]
     var userTier = ""
     var userAwards = [""]
@@ -45,7 +45,7 @@ class AwardsViewController: UIViewController {
             userDefaults.set(userTier, forKey: "User Tier")
         }
         
-        if (userPoints != "") {
+        if (userPoints != 0) {
             userDefaults.set(userPoints, forKey: "User Points")
         }
         
@@ -65,10 +65,13 @@ class AwardsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-      if let rank = userDefaults.string(forKey: "User Tier") {
-            userTier = rank
-        } else {
-            userTier = "NIL"
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
         }
+        if let rank = userDefaults.string(forKey: "User Tier") {
+              userTier = rank
+          } else {
+              userTier = "NIL"
+          }
     }
 }

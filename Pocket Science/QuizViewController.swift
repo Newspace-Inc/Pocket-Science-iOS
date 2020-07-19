@@ -12,13 +12,13 @@ class QuizViewController: UIViewController {
     
     // Variales
     var recentlyOpenedLevel:String = ""
-    var storedUserPoints:Int = 0
     var dataPassCheck:Bool = false
     var primaryLevel:String = ""
     var amtOfCorrectAns:Int = 0
     var amtOfPointsEarned:Int = 0
     var totalAmtOfQns:Int = 0
     var quizType = ""
+    var userPoints = 0
     
     let userDefaults = UserDefaults.standard
 
@@ -32,14 +32,16 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var primarySchoolLvel: UILabel!
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (storedUserPoints != 0) {
-            userDefaults.set(storedUserPoints, forKey: "Userpoints")
+        if (userPoints != 0) {
+            userDefaults.set(userPoints, forKey: "User Points")
         }
         
         if let priSchLvl = userDefaults.string(forKey: "Recently Opened") {

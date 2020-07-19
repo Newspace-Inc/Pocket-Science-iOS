@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController, dataFromSettings {
     // Variables
     var userName:String = ""
     var tierLevel:String = ""
-    var amtOfPoints:Int = 0
+    var userPoints:Int = 0
     var primaryLevel:Int = 0
     var numberOfBadges:Int = 0
     
@@ -67,7 +67,9 @@ class ProfileViewController: UIViewController, dataFromSettings {
         } else {
             tierLevel = "NIL"
         }
-        
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
+        }
     }
     
     @IBAction func settingsBtn(_ sender: Any) {

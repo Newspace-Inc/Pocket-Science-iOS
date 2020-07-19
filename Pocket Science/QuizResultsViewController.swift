@@ -41,6 +41,10 @@ class QuizResultsViewController: UIViewController {
             correctAmountOfQuiz = "0"
         }
         
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
+        }
+        
         // Set Buttons and Padding Corner
         uiBG.clipsToBounds = true
         uiBG.layer.cornerRadius = 20
@@ -55,6 +59,10 @@ class QuizResultsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if (correctAmountOfQuiz != "") {
             userDefaults.set(correctAmountOfQuiz, forKey: "Correct Quizes")
+        }
+        // Save User Points
+        if userPoints != 0 {
+            userDefaults.set(userPoints, forKey: "User Points")
         }
     }
 

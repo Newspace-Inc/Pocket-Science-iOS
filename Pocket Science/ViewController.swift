@@ -77,6 +77,11 @@ class ViewController: UIViewController, dataFromSettings {
             recentlyOpenedBtn.backgroundColor = UIColor(red: 243.0/255.0, green: 223.0/255.0, blue: 162.0/255.0, alpha: 1.0)
             recentlyOpenedBtn.setTitle("", for: .normal)
         }
+        
+        // Get User Points
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
+        }
     }
     
     
@@ -97,6 +102,11 @@ class ViewController: UIViewController, dataFromSettings {
         // Change Label Text to Data
         pointLabel.text = "\(userPoints) Points"
         print("\(recentlyOpenedTopic)")
+        
+        // Save User Points
+        if userPoints != 0 {
+            userDefaults.set(userPoints, forKey: "User Points")
+        }
     }
     
     // Button Config

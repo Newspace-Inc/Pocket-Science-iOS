@@ -21,10 +21,41 @@
 		598075822474206F00DFE8AB /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598075812474206F00DFE8AB /* ChooseTopicViewController.swift */; };
 		5995AA4E2477D054003800A6 /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */; };
 		59E0D46C245EA38000A55E81 /* TiersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E0D46B245EA38000A55E81 /* TiersViewController.swift */; };
+		59E288EC24C155C500210814 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E288EB24C155C500210814 /* WidgetKit.framework */; };
+		59E288EE24C155C500210814 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E288ED24C155C500210814 /* SwiftUI.framework */; };
+		59E288F124C155C500210814 /* Pocket_Science_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E288F024C155C500210814 /* Pocket_Science_Widget.swift */; };
+		59E288F424C155C700210814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59E288F324C155C700210814 /* Assets.xcassets */; };
+		59E288F624C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */; };
+		59E288F724C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */; };
+		59E288FA24C155C700210814 /* Pocket Science WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		59EE919A24449B84001EEFEE /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EE919924449B84001EEFEE /* QuizViewController.swift */; };
 		59EE919C24449BC4001EEFEE /* QuizResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */; };
 		BC9F6947F54C116608FDC07C /* Pods_Pocket_Science.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266B9D0439333E190FA508 /* Pods_Pocket_Science.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		59E288F824C155C700210814 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5917C12924337F9500107213 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59E288E924C155C500210814;
+			remoteInfo = "Pocket Science WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		59E288FB24C155C700210814 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				59E288FA24C155C700210814 /* Pocket Science WidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		340E62B78DDF9F68C2ABFD4C /* Pods-Pocket Science.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pocket Science.debug.xcconfig"; path = "Target Support Files/Pods-Pocket Science/Pods-Pocket Science.debug.xcconfig"; sourceTree = "<group>"; };
@@ -46,6 +77,13 @@
 		598075812474206F00DFE8AB /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
 		5995AA4D2477D054003800A6 /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashcardsViewController.swift; path = Assets.xcassets/FlashcardsViewController.swift; sourceTree = "<group>"; };
 		59E0D46B245EA38000A55E81 /* TiersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiersViewController.swift; sourceTree = "<group>"; };
+		59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pocket Science WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59E288EB24C155C500210814 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		59E288ED24C155C500210814 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		59E288F024C155C500210814 /* Pocket_Science_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pocket_Science_Widget.swift; sourceTree = "<group>"; };
+		59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Pocket_Science_Widget.intentdefinition; sourceTree = "<group>"; };
+		59E288F324C155C700210814 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		59E288F524C155C700210814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59EE919924449B84001EEFEE /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		59EE919B24449BC4001EEFEE /* QuizResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +97,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		59E288E724C155C500210814 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59E288EE24C155C500210814 /* SwiftUI.framework in Frameworks */,
+				59E288EC24C155C500210814 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -66,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				5917C13324337F9500107213 /* Pocket Science */,
+				59E288EF24C155C500210814 /* Pocket Science Widget */,
 				5917C13224337F9500107213 /* Products */,
 				A8E6874E56146C7B3AC49890 /* Pods */,
 				9530B26F3CCEF8DC3F12ACE6 /* Frameworks */,
@@ -76,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				5917C13124337F9500107213 /* Pocket Science.app */,
+				59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,10 +153,23 @@
 			path = "Pocket Science";
 			sourceTree = "<group>";
 		};
+		59E288EF24C155C500210814 /* Pocket Science Widget */ = {
+			isa = PBXGroup;
+			children = (
+				59E288F024C155C500210814 /* Pocket_Science_Widget.swift */,
+				59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */,
+				59E288F324C155C700210814 /* Assets.xcassets */,
+				59E288F524C155C700210814 /* Info.plist */,
+			);
+			path = "Pocket Science Widget";
+			sourceTree = "<group>";
+		};
 		9530B26F3CCEF8DC3F12ACE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				54266B9D0439333E190FA508 /* Pods_Pocket_Science.framework */,
+				59E288EB24C155C500210814 /* WidgetKit.framework */,
+				59E288ED24C155C500210814 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -133,15 +195,34 @@
 				5917C12E24337F9500107213 /* Frameworks */,
 				5917C12F24337F9500107213 /* Resources */,
 				250902D489AA4D3F727AB8C0 /* [CP] Embed Pods Frameworks */,
+				59E288FB24C155C700210814 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				59E288F924C155C700210814 /* PBXTargetDependency */,
 			);
 			name = "Pocket Science";
 			productName = "Pocket Science";
 			productReference = 5917C13124337F9500107213 /* Pocket Science.app */;
 			productType = "com.apple.product-type.application";
+		};
+		59E288E924C155C500210814 /* Pocket Science WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59E288FE24C155C700210814 /* Build configuration list for PBXNativeTarget "Pocket Science WidgetExtension" */;
+			buildPhases = (
+				59E288E624C155C500210814 /* Sources */,
+				59E288E724C155C500210814 /* Frameworks */,
+				59E288E824C155C500210814 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pocket Science WidgetExtension";
+			productName = "Pocket Science WidgetExtension";
+			productReference = 59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -149,12 +230,15 @@
 		5917C12924337F9500107213 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Ethan Chew";
 				TargetAttributes = {
 					5917C13024337F9500107213 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					59E288E924C155C500210814 = {
+						CreatedOnToolsVersion = 12.0;
 					};
 				};
 			};
@@ -172,6 +256,7 @@
 			projectRoot = "";
 			targets = (
 				5917C13024337F9500107213 /* Pocket Science */,
+				59E288E924C155C500210814 /* Pocket Science WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -184,6 +269,14 @@
 				595197AC24C08BD000F102A9 /* Main Data.xlsx in Resources */,
 				5917C13E24337F9A00107213 /* Assets.xcassets in Resources */,
 				5917C13C24337F9500107213 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59E288E824C155C500210814 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59E288F424C155C700210814 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,12 +340,30 @@
 				590293392470408600615098 /* SettingsViewController.swift in Sources */,
 				59EE919A24449B84001EEFEE /* QuizViewController.swift in Sources */,
 				59576DB7243D83AD005B3269 /* LessonsViewController.swift in Sources */,
+				59E288F724C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */,
 				5995AA4E2477D054003800A6 /* FlashcardsViewController.swift in Sources */,
 				590A362B243ADAD60053CAF9 /* ProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		59E288E624C155C500210814 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59E288F124C155C500210814 /* Pocket_Science_Widget.swift in Sources */,
+				59E288F624C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		59E288F924C155C700210814 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 59E288E924C155C500210814 /* Pocket Science WidgetExtension */;
+			targetProxy = 59E288F824C155C700210814 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5917C13A24337F9500107213 /* Main.storyboard */ = {
@@ -386,6 +497,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 340E62B78DDF9F68C2ABFD4C /* Pods-Pocket Science.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46YLK6L3QN;
@@ -406,6 +518,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 459B87B22F4B4E15CA344B73 /* Pods-Pocket Science.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46YLK6L3QN;
@@ -417,6 +530,50 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ethanchew.Pocket-Science";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		59E288FC24C155C700210814 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 46YLK6L3QN;
+				INFOPLIST_FILE = "Pocket Science Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ethanchew.Pocket-Science.Pocket-Science-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		59E288FD24C155C700210814 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 46YLK6L3QN;
+				INFOPLIST_FILE = "Pocket Science Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ethanchew.Pocket-Science.Pocket-Science-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -439,6 +596,15 @@
 			buildConfigurations = (
 				5917C14624337F9A00107213 /* Debug */,
 				5917C14724337F9A00107213 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59E288FE24C155C700210814 /* Build configuration list for PBXNativeTarget "Pocket Science WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59E288FC24C155C700210814 /* Debug */,
+				59E288FD24C155C700210814 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

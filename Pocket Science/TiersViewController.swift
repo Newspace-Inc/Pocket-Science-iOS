@@ -14,7 +14,7 @@ class TiersViewController: UIViewController {
     var tierRequirment = [""]
     var awardRequirment = [100, 500, 1000, 5000]
     var awardName = [""]
-    var userPoints = ""
+    var userPoints = 0
     var tierRewards = [""]
     var userTier = ""
     
@@ -29,18 +29,18 @@ class TiersViewController: UIViewController {
     @IBOutlet weak var uiBG: UILabel!
     
     override func viewDidAppear(_ animated: Bool) {
-        if let storedUserPoints = userDefaults.string(forKey: "Userpoints") {
-            userPoints = storedUserPoints
-            pointLabel.text = "\(storedUserPoints) Points"
-        } else {
-            userPoints = "0"
-            pointLabel.text = "0 Points"
-        }
-        
         if let tierLevel = userDefaults.string(forKey: "User Tier") {
             userTier = tierLevel
         } else {
             userTier = "NIL"
+        }
+        if let rank = userDefaults.string(forKey: "User Tier") {
+            userTier = rank
+        } else {
+            userTier = "NIL"
+        }
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
         }
     }
     
@@ -65,15 +65,15 @@ class TiersViewController: UIViewController {
         
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

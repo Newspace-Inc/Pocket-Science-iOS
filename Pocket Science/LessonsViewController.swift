@@ -82,49 +82,51 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
                 
         // Collect Data
-        
         worksheetName = recentlyOpenedLevel
         
         do {
             let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
-            
+
             guard let file = XLSXFile(filepath: filepath) else {
                 fatalError("XLSX file at \(filepath) is corrupted or does not exist")
             }
-            
+
             for wbk in try file.parseWorkbooks() {
-                for (name, path) in try file.parseWorksheetPathsAndNames(workbook: wbk) {
+                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
+                        .filter({ $0.name == worksheetName })
+                else { continue }
+
                     let sharedStrings = try file.parseSharedStrings()
                     let worksheet = try file.parseWorksheet(at: path)
-                    
-                     
+
+
                     var endTopicSel = 0
                     var startTopicSel = 0
-                    
+
                     var endLevelSel = 0
                     var startLevelSel = 0
-                     
+
                     // Get Cell Data
                     var topic = worksheet.cells(atColumns: [ColumnReference("B")!])
                         .compactMap{ $0.stringValue(sharedStrings) }
-                    
+
                     var level = worksheet.cells(atColumns: [ColumnReference("A")!])
                         .compactMap{ $0.stringValue(sharedStrings) }
-                    
+
                     overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
                       .compactMap { $0.stringValue(sharedStrings) }
-                     
+
                     // Find Rows of Selected Level
                     let findLevelSelectedStart = level.firstIndex(of: recentlyOpenedLevel)
                     if findLevelSelectedStart != nil {
                         startLevelSel = Int(findLevelSelectedStart ?? 0) + 1
                     }
-                    
+
                     let findLevelSelectedEnd = level.firstIndex(of: recentlyOpenedLevel)
                     if findLevelSelectedEnd != nil {
                         endLevelSel = Int(findLevelSelectedEnd ?? 0) + 1
                     }
-                    
+
                     // Find Rows of Selected Topic
                     let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
                     if findTopicSelectedStart != nil {
@@ -135,13 +137,12 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     if findTopicSelectedEnd != nil {
                         endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
                     }
-                    
+
                     for i in startTopicSel...endTopicSel {
                         userSelectedTopic.append(overallTopics[i])
                     }
                     userSelectedTopic = Array(Set(userSelectedTopic))
                 }
-            }
         } catch {
             fatalError("\(error.localizedDescription)")
         }
