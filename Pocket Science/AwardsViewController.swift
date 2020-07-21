@@ -16,7 +16,7 @@ class AwardsViewController: UIViewController {
     // Variables/Arrays
     var tierRequirment = [100, 500, 1000, 5000]
     var awardRequirment = [""]
-    var awardName = [""]
+    var awardName = ["Beginner", "Expert"]
     var userPoints = 0
     var tierRewards = [""]
     var userTier = ""

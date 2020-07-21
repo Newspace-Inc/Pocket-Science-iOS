@@ -9,6 +9,12 @@
 import UIKit
 import CoreXLSX
 
+extension Array where Element: Equatable {
+    func remove(_ obj: Element) -> [Element] {
+        return filter { $0 != obj }
+    }
+}
+
 class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Variables
@@ -21,7 +27,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var worksheetName = ""
     
     let userDefaults = UserDefaults.standard
-            
+    
     // Labels and Buttons
     @IBOutlet weak var primaryLabel1: UILabel!
     @IBOutlet weak var primaryLabel2: UILabel!
@@ -80,69 +86,61 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Set Delegate and Data Source
         tableView.delegate = self
         tableView.dataSource = self
-                
+        
         // Collect Data
-        worksheetName = recentlyOpenedLevel
+        worksheetName = "\(primaryLevel) Data"
+        print(worksheetName)
         
         do {
             let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
-
+            
             guard let file = XLSXFile(filepath: filepath) else {
                 fatalError("XLSX file at \(filepath) is corrupted or does not exist")
             }
-
+            
             for wbk in try file.parseWorkbooks() {
                 guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
-                        .filter({ $0.name == worksheetName })
+                        .first(where: { $0.name == worksheetName }).map({ $0.path })
                 else { continue }
-
-                    let sharedStrings = try file.parseSharedStrings()
-                    let worksheet = try file.parseWorksheet(at: path)
-
-
-                    var endTopicSel = 0
-                    var startTopicSel = 0
-
-                    var endLevelSel = 0
-                    var startLevelSel = 0
-
-                    // Get Cell Data
-                    var topic = worksheet.cells(atColumns: [ColumnReference("B")!])
-                        .compactMap{ $0.stringValue(sharedStrings) }
-
-                    var level = worksheet.cells(atColumns: [ColumnReference("A")!])
-                        .compactMap{ $0.stringValue(sharedStrings) }
-
-                    overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
-                      .compactMap { $0.stringValue(sharedStrings) }
-
-                    // Find Rows of Selected Level
-                    let findLevelSelectedStart = level.firstIndex(of: recentlyOpenedLevel)
-                    if findLevelSelectedStart != nil {
-                        startLevelSel = Int(findLevelSelectedStart ?? 0) + 1
-                    }
-
-                    let findLevelSelectedEnd = level.firstIndex(of: recentlyOpenedLevel)
-                    if findLevelSelectedEnd != nil {
-                        endLevelSel = Int(findLevelSelectedEnd ?? 0) + 1
-                    }
-
-                    // Find Rows of Selected Topic
-                    let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
-                    if findTopicSelectedStart != nil {
-                        startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
-                    }
-                    
-                    let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
-                    if findTopicSelectedEnd != nil {
-                        endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
-                    }
-
-                    for i in startTopicSel...endTopicSel {
-                        userSelectedTopic.append(overallTopics[i])
-                    }
-                    userSelectedTopic = Array(Set(userSelectedTopic))
+                
+                let sharedStrings = try file.parseSharedStrings()
+                let worksheet = try file.parseWorksheet(at: path)
+                
+                var endTopicSel = 0
+                var startTopicSel = 0
+                
+                // Get Cell Data
+                let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
+                    .compactMap{ $0.stringValue(sharedStrings) }
+                
+                let level = worksheet.cells(atColumns: [ColumnReference("A")!])
+                    .compactMap{ $0.stringValue(sharedStrings) }
+                
+                overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                                
+                // Find Rows of Selected Topic
+                let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
+                if findTopicSelectedStart != nil {
+                    startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
                 }
+                
+                let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
+                if findTopicSelectedEnd != nil {
+                    endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
+                }
+                print(overallTopics.count)
+                
+                for i in startTopicSel...endTopicSel {
+                    userSelectedTopic.append(overallTopics[i])
+                }
+
+                userSelectedTopic = Array(Set(userSelectedTopic))
+                userSelectedTopic = userSelectedTopic.remove("")
+                
+                userDefaults.set(startTopicSel, forKey: "TopicSelStart")
+                userDefaults.set(endTopicSel, forKey: "TopicSelEnd")
+            }
         } catch {
             fatalError("\(error.localizedDescription)")
         }
@@ -155,7 +153,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         cell.layer.cornerRadius = 5
-
+        
         cell.textLabel!.text = "\(userSelectedTopic[indexPath.row])"
         
         return cell
@@ -169,15 +167,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if overallTopics[indexPath.row] != "" {
             userDefaults.set(userSelectedTopic[indexPath.row], forKey: "Overall Selected Topic")
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC1 = segue.destination as! QuizViewController
-        
-        // Send data to Quiz Controller
-        destinationVC1.recentlyOpenedLevel = recentlyOpenedLevel
-        destinationVC1.primaryLevel = primaryLevel
-        destinationVC1.quizType = quizType
+        performSegue(withIdentifier: "flashcards", sender: nil)
     }
     
     @IBAction func segmentedCtrl(_ sender: UISegmentedControl) {
@@ -212,17 +202,17 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func spellingBtn(_ sender: Any) {
         // Create Alert
         var dialogMessage = UIAlertController(title: "Work In Progress", message: "The spelling test is currently a work in progress. Please check back soon.", preferredStyle: .alert)
-
+        
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             // Erase Data code
         })
-
+        
         // Create Cancel button with action handlder
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             // Cancelation code
         }
-
+        
         //Add OK and Cancel button to an Alert object
         dialogMessage.addAction(ok)
         dialogMessage.addAction(cancel)
