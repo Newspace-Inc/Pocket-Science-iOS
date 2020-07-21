@@ -69,27 +69,16 @@ class FlashcardsViewController: UIViewController {
         conceptNameLabel.text = currentFlashcard[2]
         
         var count = currentFlashcard.count - 1
+                
+        currentFlashcard.removeSubrange(0..<4)
+
+        let flashcardKnowledge = currentFlashcard.joined(separator: "\n")
         
-        for i in 3...count {
-            textField.text = "\(currentFlashcard[i])"
-        }
+        textField.text = "\(flashcardKnowledge)"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        label1.text = "\(primaryLevel)"
-        label2.text = "The \(primaryLevel) Syllabus"
-        
-        // Set Clip to Bounds
-        imageView.clipsToBounds = true
-        bgPadding.clipsToBounds = true
-        uiBG.clipsToBounds = true
-        
-        // Curved Corners
-        imageView.layer.cornerRadius = 20
-        bgPadding.layer.cornerRadius = 20
-        uiBG.layer.cornerRadius = 20
         
         if let selectedOverall = userDefaults.string(forKey: "Overall Selected Topics") {
             selectedOverallTopic = selectedOverall
@@ -110,6 +99,19 @@ class FlashcardsViewController: UIViewController {
             topicSelRowEnd = rowEnd
         }
         
+        label1.text = "\(primaryLevel ?? "")"
+        label2.text = "The \(primaryLevel ?? "") Syllabus"
+        
+        // Set Clip to Bounds
+        imageView.clipsToBounds = true
+        bgPadding.clipsToBounds = true
+        uiBG.clipsToBounds = true
+        
+        // Curved Corners
+        imageView.layer.cornerRadius = 20
+        bgPadding.layer.cornerRadius = 20
+        uiBG.layer.cornerRadius = 20
+        
         getData()
     }
     
@@ -128,6 +130,7 @@ class FlashcardsViewController: UIViewController {
             userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
         }
     }
+    
     @IBAction func swipeGesture(_ sender: UISwipeGestureRecognizer) {
         if swipeGesture.direction == .left {
             flashcardsIndex -= 1

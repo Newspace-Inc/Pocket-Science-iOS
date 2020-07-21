@@ -17,31 +17,18 @@
 		59E288F724C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */; };
 		59E288FA24C155C700210814 /* Pocket Science WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		876F595724C72210007414AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594A24C7220F007414AA /* ViewController.swift */; };
-		876F595824C72210007414AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594A24C7220F007414AA /* ViewController.swift */; };
 		876F595924C72210007414AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594B24C7220F007414AA /* SceneDelegate.swift */; };
-		876F595A24C72210007414AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594B24C7220F007414AA /* SceneDelegate.swift */; };
 		876F595B24C72210007414AA /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594C24C7220F007414AA /* ChooseTopicViewController.swift */; };
-		876F595C24C72210007414AA /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594C24C7220F007414AA /* ChooseTopicViewController.swift */; };
 		876F595D24C72210007414AA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594D24C7220F007414AA /* ProfileViewController.swift */; };
-		876F595E24C72210007414AA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594D24C7220F007414AA /* ProfileViewController.swift */; };
 		876F595F24C72210007414AA /* TiersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594E24C7220F007414AA /* TiersViewController.swift */; };
-		876F596024C72210007414AA /* TiersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594E24C7220F007414AA /* TiersViewController.swift */; };
 		876F596124C72210007414AA /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594F24C7220F007414AA /* FavouritesViewController.swift */; };
-		876F596224C72210007414AA /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594F24C7220F007414AA /* FavouritesViewController.swift */; };
 		876F596324C72210007414AA /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595024C7220F007414AA /* FlashcardsViewController.swift */; };
-		876F596424C72210007414AA /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595024C7220F007414AA /* FlashcardsViewController.swift */; };
 		876F596524C72210007414AA /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595124C7220F007414AA /* LessonsViewController.swift */; };
-		876F596624C72210007414AA /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595124C7220F007414AA /* LessonsViewController.swift */; };
 		876F596724C72210007414AA /* QuizResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595224C7220F007414AA /* QuizResultsViewController.swift */; };
-		876F596824C72210007414AA /* QuizResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595224C7220F007414AA /* QuizResultsViewController.swift */; };
 		876F596924C72210007414AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595324C7220F007414AA /* AppDelegate.swift */; };
-		876F596A24C72210007414AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595324C7220F007414AA /* AppDelegate.swift */; };
 		876F596B24C72210007414AA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595424C7220F007414AA /* SettingsViewController.swift */; };
-		876F596C24C72210007414AA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595424C7220F007414AA /* SettingsViewController.swift */; };
 		876F596D24C72210007414AA /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595524C72210007414AA /* QuizViewController.swift */; };
-		876F596E24C72210007414AA /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595524C72210007414AA /* QuizViewController.swift */; };
 		876F596F24C72210007414AA /* AwardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595624C72210007414AA /* AwardsViewController.swift */; };
-		876F597024C72210007414AA /* AwardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595624C72210007414AA /* AwardsViewController.swift */; };
 		876F597224C7223E007414AA /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 876F597124C7223E007414AA /* Main Data.xlsx */; };
 		876F597324C7223E007414AA /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 876F597124C7223E007414AA /* Main Data.xlsx */; };
 		BC9F6947F54C116608FDC07C /* Pods_Pocket_Science.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266B9D0439333E190FA508 /* Pods_Pocket_Science.framework */; };
@@ -365,21 +352,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				876F596A24C72210007414AA /* AppDelegate.swift in Sources */,
-				876F596E24C72210007414AA /* QuizViewController.swift in Sources */,
-				876F596224C72210007414AA /* FavouritesViewController.swift in Sources */,
-				876F595E24C72210007414AA /* ProfileViewController.swift in Sources */,
-				876F595824C72210007414AA /* ViewController.swift in Sources */,
 				59E288F124C155C500210814 /* Pocket_Science_Widget.swift in Sources */,
-				876F596424C72210007414AA /* FlashcardsViewController.swift in Sources */,
-				876F596024C72210007414AA /* TiersViewController.swift in Sources */,
-				876F596624C72210007414AA /* LessonsViewController.swift in Sources */,
 				59E288F624C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */,
-				876F595C24C72210007414AA /* ChooseTopicViewController.swift in Sources */,
-				876F596C24C72210007414AA /* SettingsViewController.swift in Sources */,
-				876F595A24C72210007414AA /* SceneDelegate.swift in Sources */,
-				876F596824C72210007414AA /* QuizResultsViewController.swift in Sources */,
-				876F597024C72210007414AA /* AwardsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,6 +34,8 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var MCQBtn: UIButton! // Quiz View
     @IBOutlet weak var spellingBtn: UIButton! // Quiz View
     @IBOutlet weak var uiBG: UILabel!
+    @IBOutlet weak var ExplainationImgView: UIImageView!
+    @IBOutlet weak var ExplainationTextField: UITextView!
     
     // View Types
     @IBOutlet weak var topicSelectionView: UIView!
@@ -113,9 +115,6 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
                     .compactMap{ $0.stringValue(sharedStrings) }
                 
-                let level = worksheet.cells(atColumns: [ColumnReference("A")!])
-                    .compactMap{ $0.stringValue(sharedStrings) }
-                
                 overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
                     .compactMap { $0.stringValue(sharedStrings) }
                                 
@@ -129,9 +128,10 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if findTopicSelectedEnd != nil {
                     endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
                 }
-                print(overallTopics.count)
                 
-                for i in startTopicSel...endTopicSel {
+                let count = overallTopics.count
+                
+                for i in startTopicSel...endTopicSel - 1 {
                     userSelectedTopic.append(overallTopics[i])
                 }
 
@@ -140,6 +140,17 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 userDefaults.set(startTopicSel, forKey: "TopicSelStart")
                 userDefaults.set(endTopicSel, forKey: "TopicSelEnd")
+                
+                var topicExplaination = worksheet.cells(atRows: [UInt(startTopicSel)])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                
+                if (topicExplaination[2] == topicExplaination[3]) {
+                    topicExplaination.removeSubrange(0..<4)
+                    
+                    let explaination = topicExplaination.joined(separator: "\n")
+                    
+                    ExplainationTextField.text = "\(explaination)"
+                }
             }
         } catch {
             fatalError("\(error.localizedDescription)")
