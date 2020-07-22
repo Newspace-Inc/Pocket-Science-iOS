@@ -132,10 +132,7 @@ class FlashcardsViewController: UIViewController {
     }
     
     @IBAction func swipeGesture(_ sender: UISwipeGestureRecognizer) {
-        let flashcard = sender.view!
-        
         if swipeGesture.direction == .left {
-            
             flashcardsIndex -= 1
             
             if (flashcardsIndex < 0) {
@@ -144,7 +141,6 @@ class FlashcardsViewController: UIViewController {
             
             getData()
         } else if (swipeGesture.direction == .right) {
-
             flashcardsIndex += 1
             
             if (flashcardsIndex < 0) {

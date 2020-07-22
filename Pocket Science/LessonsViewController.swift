@@ -128,7 +128,9 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if findTopicSelectedEnd != nil {
                     endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
                 }
-                                
+                
+                let count = overallTopics.count
+                
                 for i in startTopicSel...endTopicSel - 1 {
                     userSelectedTopic.append(overallTopics[i])
                 }
@@ -205,15 +207,12 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     @IBAction func MCQBtn(_ sender: Any) {
-        quizType = "Multiple Choice Questions"
-        
-        userDefaults.set(quizType, forKey: "Quiz Type")
-        
         performSegue(withIdentifier: "Quiz", sender: nil)
+        quizType = "Multiple Choice Questions"
     }
     @IBAction func spellingBtn(_ sender: Any) {
         // Create Alert
-        let dialogMessage = UIAlertController(title: "Work In Progress", message: "The spelling test is currently a work in progress. Please check back soon.", preferredStyle: .alert)
+        var dialogMessage = UIAlertController(title: "Work In Progress", message: "The spelling test is currently a work in progress. Please check back soon.", preferredStyle: .alert)
         
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in

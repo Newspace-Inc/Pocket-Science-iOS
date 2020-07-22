@@ -19,7 +19,6 @@ class QuizViewController: UIViewController {
     var totalAmtOfQns:Int = 0
     var quizType = ""
     var userPoints = 0
-    var selectedLesson = ""
     
     let userDefaults = UserDefaults.standard
 
@@ -32,9 +31,11 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var quizTypeLabel: UILabel!
     @IBOutlet weak var primarySchoolLvel: UILabel!
     
-    // Views
-    @IBOutlet weak var spellingView: UIView!
-    @IBOutlet weak var MCQView: UIView!
+    override func viewDidAppear(_ animated: Bool) {
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,20 +44,8 @@ class QuizViewController: UIViewController {
             userDefaults.set(userPoints, forKey: "User Points")
         }
         
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
-            userPoints = userPointsGrab
-        }
-        
         if let priSchLvl = userDefaults.string(forKey: "Recently Opened") {
             primaryLevel = priSchLvl
-        }
-        
-        if let selectedQuizType = userDefaults.string(forKey: "Quiz Type") {
-            quizType = selectedQuizType
-        }
-        
-        if let openedLesson = userDefaults.string(forKey: "Opened Lesson") {
-            selectedLesson = openedLesson
         }
         
         // Set Clip to Bounds
@@ -75,16 +64,7 @@ class QuizViewController: UIViewController {
         
         // Set Label Names
         quizTypeLabel.text = quizType
-        primarySchoolLvel.text = "\(primaryLevel) \(selectedLesson)"
-        
-        // Change Quiz Type
-        if (quizType == "Multiple Choice Questions") {
-            spellingView.isHidden = true
-            MCQView.isHidden = false
-        } else if (quizType == "Spelling") {
-            spellingView.isHidden = false
-            MCQView.isHidden = true
-        }
+        primarySchoolLvel.text = primaryLevel
     }
     
 
