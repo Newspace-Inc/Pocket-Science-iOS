@@ -19,9 +19,10 @@ class QuizViewController: UIViewController {
     var totalAmtOfQns:Int = 0
     var quizType = ""
     var userPoints = 0
+    var selectedLesson = ""
     
     let userDefaults = UserDefaults.standard
-
+    
     // Labels and Buttons
     @IBOutlet weak var uiBG: UILabel!
     @IBOutlet weak var optionOneBtn: UIButton!
@@ -31,21 +32,27 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var quizTypeLabel: UILabel!
     @IBOutlet weak var primarySchoolLvel: UILabel!
     
-    override func viewDidAppear(_ animated: Bool) {
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
-            userPoints = userPointsGrab
-        }
-    }
+    // Views
+    @IBOutlet weak var spellingView: UIView!
+    @IBOutlet weak var MCQView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (userPoints != 0) {
-            userDefaults.set(userPoints, forKey: "User Points")
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
         }
         
         if let priSchLvl = userDefaults.string(forKey: "Recently Opened") {
             primaryLevel = priSchLvl
+        }
+        
+        if let selectedQuizType = userDefaults.string(forKey: "Quiz Type") {
+            quizType = selectedQuizType
+        }
+        
+        if let openedLesson = userDefaults.string(forKey: "Opened Lesson") {
+            selectedLesson = openedLesson
         }
         
         // Set Clip to Bounds
@@ -64,10 +71,19 @@ class QuizViewController: UIViewController {
         
         // Set Label Names
         quizTypeLabel.text = quizType
-        primarySchoolLvel.text = primaryLevel
+        primarySchoolLvel.text = "\(primaryLevel) \(selectedLesson)"
+
+        // Change Quiz Type
+        if (quizType == "Multiple Choice Questions") {
+            spellingView.isHidden = true
+            MCQView.isHidden = false
+        } else if (quizType == "Spelling") {
+            spellingView.isHidden = false
+            MCQView.isHidden = true
+        }
     }
     
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! QuizResultsViewController
         destinationVC.primaryLevel = primaryLevel
@@ -75,5 +91,5 @@ class QuizViewController: UIViewController {
         destinationVC.amtOfPointsEarned = amtOfPointsEarned
         destinationVC.totalAmtOfQns = totalAmtOfQns
     }
-
+    
 }

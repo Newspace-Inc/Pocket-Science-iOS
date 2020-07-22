@@ -67,9 +67,7 @@ class FlashcardsViewController: UIViewController {
             fatalError("\(error.localizedDescription)")
         }
         conceptNameLabel.text = currentFlashcard[2]
-        
-        var count = currentFlashcard.count - 1
-                
+                        
         currentFlashcard.removeSubrange(0..<4)
 
         let flashcardKnowledge = currentFlashcard.joined(separator: "\n")
