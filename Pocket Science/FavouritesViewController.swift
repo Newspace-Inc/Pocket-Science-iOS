@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouritesViewController: UIViewController {
+class FavouritesViewController: UIViewController { // To Be completed
     
     // Variables
     
