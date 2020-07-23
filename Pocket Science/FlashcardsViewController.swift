@@ -23,8 +23,8 @@ class FlashcardsViewController: UIViewController {
     @IBOutlet weak var label1: UILabel!
     
     // Variables
-    var favouriteFlashcard = [""]
-    var currentFlashcard = [""]
+    var favouriteFlashcard:Array<String> = []
+    var currentFlashcard:Array<String> = []
     var selectedOverallTopic = ""
     var selectedConcept = ""
     var primaryLevel = ""
@@ -32,6 +32,10 @@ class FlashcardsViewController: UIViewController {
     var topicSelRowStart = 0
     var topicSelRowEnd = 0
     var flashcardsIndex = 0
+    var isFlashcardFavourited:Bool = false
+    var conceptName = ""
+    
+    var uneditedCurrentFlashcard:Array<String> = []
     
     let userDefaults = UserDefaults.standard
     
@@ -39,7 +43,6 @@ class FlashcardsViewController: UIViewController {
         // Collect Data
         var worksheetName = ""
         worksheetName = "\(primaryLevel) Data"
-        print(worksheetName)
         
         do {
             let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
@@ -60,19 +63,56 @@ class FlashcardsViewController: UIViewController {
                     currentFlashcard = worksheet.cells(atRows: [UInt(topicSelRowStart + flashcardsIndex)])
                         .compactMap { $0.stringValue(sharedStrings) }
                     currentFlashcard = currentFlashcard.remove("Empty Cell")
-                    print(currentFlashcard)
                 }
             }
         } catch {
             fatalError("\(error.localizedDescription)")
         }
-        conceptNameLabel.text = currentFlashcard[2]
-                        
+        
+        conceptName = currentFlashcard[2]
+        conceptNameLabel.text = conceptName
+                
+        uneditedCurrentFlashcard = currentFlashcard
         currentFlashcard.removeSubrange(0..<4)
-
+        
         let flashcardKnowledge = currentFlashcard.joined(separator: "\n")
         
         textField.text = "\(flashcardKnowledge)"
+    }
+    
+    func checkFavourited() {
+        let count = favouriteFlashcard.count - 1
+        if (count == -1) {
+            isFlashcardFavourited = false
+        } else if (count == 0) {
+            if (uneditedCurrentFlashcard[2] == favouriteFlashcard[0]) {
+                isFlashcardFavourited = true
+            } else {
+                isFlashcardFavourited = false
+            }
+        } else {
+            for i in 0...count {
+                if (uneditedCurrentFlashcard[2] == favouriteFlashcard[i]) {
+                    isFlashcardFavourited = true
+                } else {
+                    isFlashcardFavourited = false
+                }
+            }
+        }
+        
+        if (isFlashcardFavourited == true) {
+            if let image = UIImage(named: "heart.fill") {
+                favouriteButton.setImage(image, for: .normal)
+            } else {
+                fatalError("Image does not exist or is corrupted.")
+            }
+        } else if (isFlashcardFavourited == false) {
+            if let image = UIImage(named: "heart.empty") {
+                favouriteButton.setImage(image, for: .normal)
+            } else {
+                fatalError("Image does not exist or is corrupted.")
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -111,18 +151,38 @@ class FlashcardsViewController: UIViewController {
         uiBG.layer.cornerRadius = 20
         
         getData()
+        checkFavourited()
     }
     
     @IBAction func favouriteBtn(_ sender: Any) {
+        checkFavourited()
         
-        for i in 0...favouriteFlashcard.count {
-            if (favouriteFlashcard[i] == selectedConcept) {
-                favouriteButton.setImage(UIImage(named: "heart.fill"), for: .normal)
-                favouriteFlashcard.append(selectedConcept)
+        if (isFlashcardFavourited == true) {
+            // Remove Favourite
+            let count = favouriteFlashcard.count - 1
+            
+            for i in 0...count {
+                if (uneditedCurrentFlashcard[2] == favouriteFlashcard[i]) {
+                    favouriteFlashcard.remove(at: i)
+                    if let image = UIImage(named: "heart.empty") {
+                        favouriteButton.setImage(image, for: .normal)
+                    } else {
+                        fatalError("Image does not exist or is corrupted.")
+                    }
+                }
+            }
+        } else {
+            // Add Favourite
+            favouriteFlashcard.append(uneditedCurrentFlashcard[2])
+            if let image = UIImage(named: "heart.fill") {
+                favouriteButton.setImage(image, for: .normal)
             } else {
-                favouriteButton.setImage(UIImage(named: "heart"), for: .normal)
+                fatalError("Image does not exist or is corrupted.")
             }
         }
+        
+        print(favouriteFlashcard)
+        print(isFlashcardFavourited)
         
         if (favouriteFlashcard != [""]) {
             userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
@@ -136,8 +196,9 @@ class FlashcardsViewController: UIViewController {
             if (flashcardsIndex < 0) {
                 flashcardsIndex = 0
             }
-            
+
             getData()
+            checkFavourited()
         } else if (swipeGesture.direction == .right) {
             flashcardsIndex += 1
             
@@ -145,7 +206,9 @@ class FlashcardsViewController: UIViewController {
                 flashcardsIndex = 0
             }
             
+            
             getData()
+            checkFavourited()
         }
     }
 }
