@@ -16,6 +16,7 @@
 		59E288F624C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */; };
 		59E288F724C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */; };
 		59E288FA24C155C700210814 /* Pocket Science WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		87279BA924C952E300F5450E /* FavouriteFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87279BA824C952E300F5450E /* FavouriteFlashcardsViewController.swift */; };
 		876F595724C72210007414AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594A24C7220F007414AA /* ViewController.swift */; };
 		876F595924C72210007414AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594B24C7220F007414AA /* SceneDelegate.swift */; };
 		876F595B24C72210007414AA /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F594C24C7220F007414AA /* ChooseTopicViewController.swift */; };
@@ -73,6 +74,7 @@
 		59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Pocket_Science_Widget.intentdefinition; sourceTree = "<group>"; };
 		59E288F324C155C700210814 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59E288F524C155C700210814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87279BA824C952E300F5450E /* FavouriteFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFlashcardsViewController.swift; sourceTree = "<group>"; };
 		876F594A24C7220F007414AA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		876F594B24C7220F007414AA /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		876F594C24C7220F007414AA /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
@@ -142,10 +144,11 @@
 				876F594A24C7220F007414AA /* ViewController.swift */,
 				876F595624C72210007414AA /* AwardsViewController.swift */,
 				876F594E24C7220F007414AA /* TiersViewController.swift */,
-				876F594C24C7220F007414AA /* ChooseTopicViewController.swift */,
 				876F594F24C7220F007414AA /* FavouritesViewController.swift */,
+				87279BA824C952E300F5450E /* FavouriteFlashcardsViewController.swift */,
 				876F595124C7220F007414AA /* LessonsViewController.swift */,
 				876F595024C7220F007414AA /* FlashcardsViewController.swift */,
+				876F594C24C7220F007414AA /* ChooseTopicViewController.swift */,
 				876F595224C7220F007414AA /* QuizResultsViewController.swift */,
 				876F595524C72210007414AA /* QuizViewController.swift */,
 				876F594D24C7220F007414AA /* ProfileViewController.swift */,
@@ -339,6 +342,7 @@
 				876F596324C72210007414AA /* FlashcardsViewController.swift in Sources */,
 				876F595D24C72210007414AA /* ProfileViewController.swift in Sources */,
 				876F596724C72210007414AA /* QuizResultsViewController.swift in Sources */,
+				87279BA924C952E300F5450E /* FavouriteFlashcardsViewController.swift in Sources */,
 				876F596F24C72210007414AA /* AwardsViewController.swift in Sources */,
 				876F596D24C72210007414AA /* QuizViewController.swift in Sources */,
 				59E288F724C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */,
