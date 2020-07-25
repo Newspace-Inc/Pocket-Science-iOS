@@ -43,12 +43,19 @@ struct PlaceholderView : View {
     }
 }
 
+struct MainView: View {
+    var body: some View {
+        Text("Hi")
+    }
+}
+
 struct Pocket_Science_WidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
-    }
+        MainView()
+//        Text(entry.date, style: .time)
+     }
 }
 
 @main

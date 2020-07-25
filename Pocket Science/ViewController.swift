@@ -20,6 +20,9 @@ class ViewController: UIViewController, dataFromSettings {
     var storedUserName:String = ""
     var storedUserAge = ""
     var userSchool:String = ""
+    var userRank = ""
+    var welcomeMessageShown:Bool = false
+    
     let userDefaults = UserDefaults.standard
     
     // Buttons and Labels
@@ -30,6 +33,11 @@ class ViewController: UIViewController, dataFromSettings {
     @IBOutlet weak var topicLabel: UILabel!
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var dismissWelcomeMessage: UIButton!
+    
+    // Views
+    @IBOutlet weak var welcomeView: UIView!
+    
     
     // Background Padding
     @IBOutlet weak var bgPad: UILabel!
@@ -56,6 +64,10 @@ class ViewController: UIViewController, dataFromSettings {
         
         if let primaryLevel = userDefaults.string(forKey: "Recently Opened") {
             recentlyOpenedTopic = primaryLevel
+        }
+        
+        if let rank = userDefaults.string(forKey: "User Rank") {
+            userRank = rank
         }
         
         if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
@@ -90,15 +102,17 @@ class ViewController: UIViewController, dataFromSettings {
         
         // Set Clip to Bounds
         bgPad.clipsToBounds = true
+        welcomeView.clipsToBounds = true
+        dismissWelcomeMessage.clipsToBounds = true
         
         // Curved Edges
         recentlyOpenedBtn.layer.cornerRadius = 20
         upperPrimaryBtn.layer.cornerRadius = 20
         lowerPrimaryBtn.layer.cornerRadius = 20
-        bgPad.layer.cornerRadius = 30
-        
-        // Shadows
-                
+        bgPad.layer.cornerRadius = 20
+        welcomeView.layer.cornerRadius = 20
+        dismissWelcomeMessage.layer.cornerRadius = 10
+                        
         // Change Label Text to Data
         pointLabel.text = "\(userPoints) Points"
         print("\(recentlyOpenedTopic)")
@@ -106,6 +120,20 @@ class ViewController: UIViewController, dataFromSettings {
         // Save User Points
         if userPoints != 0 {
             userDefaults.set(userPoints, forKey: "User Points")
+        }
+        
+        if userRank != "" {
+            userDefaults.set(userRank, forKey: "User Rank")
+        }
+        
+        // Check if Welcome Message was shown before
+        if let welcomeMessageShownBefore:Bool = userDefaults.bool(forKey: "Welcome Message") {
+            welcomeMessageShown = welcomeMessageShownBefore
+        }
+        if (welcomeMessageShown == false) {
+            welcomeView.isHidden = false
+        } else {
+            welcomeView.isHidden = true
         }
     }
     
@@ -123,6 +151,11 @@ class ViewController: UIViewController, dataFromSettings {
         
     }
     
+    @IBAction func dismissWelcomeMessage(_ sender: Any) {
+        welcomeMessageShown = true
+        userDefaults.set(welcomeMessageShown, forKey: "Welcome Message")
+        welcomeView.isHidden = true
+    }
     @IBAction func goToLowerPrimary(_ sender: Any) {
        let selectLessonVC = ChooseTopicViewController()
         

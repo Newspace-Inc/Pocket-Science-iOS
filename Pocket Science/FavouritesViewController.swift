@@ -25,6 +25,9 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] ?? [String](){
             favouriteFlashcards = favourited
         }
+        
+        print(favouriteFlashcards)
+        print(favouriteFlashcards.count)
 
         // Set Clip to Bounds
         uiBG.clipsToBounds = true
@@ -34,14 +37,21 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favouriteFlashcards.count
+        if (favouriteFlashcards.count == 0) {
+            return 1
+        } else {
+            return favouriteFlashcards.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-        cell.layer.cornerRadius = 5
-        
-        cell.textLabel!.text = "\(favouriteFlashcards[indexPath.row])"
+                
+        if (favouriteFlashcards.count == 0) {
+            cell.textLabel!.text = "You have not favourited anything."
+        } else {
+            cell.textLabel!.text = "\(favouriteFlashcards[indexPath.row])"
+        }
         
         return cell
     }

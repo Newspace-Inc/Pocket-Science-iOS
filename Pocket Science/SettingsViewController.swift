@@ -19,6 +19,7 @@ class SettingsViewController: UIViewController {
     var primaryLevel:String = ""
     var settingsUserAge = ""
     var delegate:dataFromSettings!
+    
     let userDefaults = UserDefaults.standard
     
     // Text Fields
@@ -43,13 +44,20 @@ class SettingsViewController: UIViewController {
         creditsBtn.layer.cornerRadius = 10
     }
     
-    func deleteDataAlert(check:Bool) {
+    func deleteDataAlert() {
+        let intReset = 0
+        let strReset = ""
+        let arrReset = [""]
         // Create Alert
         var dialogMessage = UIAlertController(title: "Delete Data", message: "Are you sure you want to erase your data? This action is NOT REVERSABLE.", preferredStyle: .alert)
 
         // Create OK button with action handler
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            // Erase Data code
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { [self] (action) -> Void in
+            self.userDefaults.set(strReset,forKey: "Selected Favourite Flashcard")
+            self.userDefaults.set(arrReset, forKey: "Favourite Flashcards")
+            self.userDefaults.set(strReset, forKey: "Username")
+            self.userDefaults.set(intReset, forKey: "Userage")
+            self.userDefaults.set(strReset, forKey: "Overall Selected Topics")
         })
 
         // Create Cancel button with action handlder
@@ -61,9 +69,7 @@ class SettingsViewController: UIViewController {
         dialogMessage.addAction(ok)
         dialogMessage.addAction(cancel)
         
-        if (check) {
-            self.present(dialogMessage, animated: true, completion: nil)
-        }
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     @IBAction func saveEditBtn(_ sender: Any) {
@@ -111,6 +117,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func eraseDataBtn(_ sender: Any) {
+        deleteDataAlert()
         statusLabel.alpha = 0
     }
     @IBAction func tutorialBtn(_ sender: Any) {

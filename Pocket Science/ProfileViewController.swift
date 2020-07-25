@@ -16,6 +16,10 @@ class ProfileViewController: UIViewController, dataFromSettings {
     var userPoints:Int = 0
     var primaryLevel:Int = 0
     var numberOfBadges:Int = 0
+    var userRank:String = ""
+    var numberOfTopics = 0
+    var studiedTopicsArray = [""]
+    var numOfStudiedTopics = 0
     
     var storedUserName = ""
     var storedUserAge = ""
@@ -34,19 +38,13 @@ class ProfileViewController: UIViewController, dataFromSettings {
     @IBOutlet weak var perfomanceBG: UILabel!
     @IBOutlet weak var uiBG: UILabel!
     
+    @IBOutlet weak var userRankLabel: UILabel!
+    @IBOutlet weak var userBadgesLabel: UILabel!
+    @IBOutlet weak var studiedTopicsLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set Clip to Bounds
-        perfomanceBG.clipsToBounds = true
-        uiBG.clipsToBounds = true
-        
-        // Set Corner Radius
-        perfomanceBG.layer.cornerRadius = 15
-        uiBG.layer.cornerRadius = 20
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         if let userName = userDefaults.string(forKey: "Username") {
             userNameLabel.text = "\(userName)"
             storedUserName = "\(userName)"
@@ -70,6 +68,51 @@ class ProfileViewController: UIViewController, dataFromSettings {
         if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
             userPoints = userPointsGrab
         }
+        
+        if let rank = userDefaults.string(forKey: "User Rank") {
+            userRank = rank
+        } else {
+            userRank = "No Rank"
+        }
+        
+        if let studiedTopicsArr = userDefaults.object(forKey: "Studied Topics") as? [String] ?? [String]() {
+            studiedTopicsArray = studiedTopicsArr
+            
+            studiedTopicsArray = Array(Set(studiedTopicsArray))
+            
+            numOfStudiedTopics = studiedTopicsArray.count
+        } else {
+            numOfStudiedTopics = 0
+        }
+        
+        print(storedUserAge)
+        
+        if (storedUserAge == "Lower Primary") {
+            numberOfTopics = 5
+        } else if (storedUserAge == "Upper Primary") {
+            numberOfTopics = 4
+        } else if (storedUserAge == "Post-Primary") {
+            numberOfTopics = 9
+        } else {
+            numberOfTopics = 0
+        }
+            
+        // Set Clip to Bounds
+        perfomanceBG.clipsToBounds = true
+        uiBG.clipsToBounds = true
+        
+        // Set Corner Radius
+        perfomanceBG.layer.cornerRadius = 15
+        uiBG.layer.cornerRadius = 20
+        
+        // Label Text
+        userRankLabel.text = userRank
+        studiedTopicsLabel.text = "\(numOfStudiedTopics)/\(numberOfTopics)"
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     @IBAction func settingsBtn(_ sender: Any) {

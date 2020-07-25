@@ -40,7 +40,6 @@ class FavouriteFlashcardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         if let selectedOverall = userDefaults.string(forKey: "Overall Selected Topics") {
             selectedOverallTopic = selectedOverall
         }

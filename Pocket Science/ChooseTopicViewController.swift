@@ -21,6 +21,7 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     let upperPriTopics = ["Cycles", "Systems", "Interactions", "Energy"]
     let lowerPriTopicsAmt = ["", "", "", "", ""]
     let upperPriTopicsAmt = ["", "", "", ""]
+    var studiedTopics = [""]
     
     let userDefaults = UserDefaults.standard
     
@@ -95,15 +96,19 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
             
             if (lowerPriTopics[indexPath.row] != "") {
                 userDefaults.set(lowerPriTopics[indexPath.row], forKey: "Opened Lesson")
+                studiedTopics.append(lowerPriTopics[indexPath.row])
             }
         } else {
             destinationVC.selectedLesson = upperPriTopics[indexPath.row]
             
             if (upperPriTopics[indexPath.row] != "") {
                 userDefaults.set(upperPriTopics[indexPath.row], forKey: "Opened Lesson")
+                studiedTopics.append(upperPriTopics[indexPath.row])
             }
         }
         
+        userDefaults.set(studiedTopics, forKey: "Studied Topics")
+                
         performSegue(withIdentifier: "lessons", sender: self)
     }
     

@@ -56,6 +56,7 @@ class AwardsViewController: UIViewController {
         badgesLabel.clipsToBounds = true
         rankLabel.clipsToBounds = true
         uiBG.clipsToBounds = true
+        userRankLabel.clipsToBounds = true
         
         // Set Corner Radius
         badgesLabel.layer.cornerRadius = 20
