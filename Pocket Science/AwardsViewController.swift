@@ -24,9 +24,8 @@ class AwardsViewController: UIViewController {
     
     // UI Elements
     @IBOutlet weak var badgesLabel: UILabel!
-    @IBOutlet weak var rankLabel: UILabel!
-    @IBOutlet weak var userRankLabel: UILabel!
     @IBOutlet weak var uiBG: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,20 +48,15 @@ class AwardsViewController: UIViewController {
             userDefaults.set(userPoints, forKey: "User Points")
         }
         
-        // Rank Label
-        userRankLabel.text = "Current Rank: \(userTier)"
-        
         // Set Clip to Bounds
         badgesLabel.clipsToBounds = true
-        rankLabel.clipsToBounds = true
         uiBG.clipsToBounds = true
-        userRankLabel.clipsToBounds = true
         
         // Set Corner Radius
         badgesLabel.layer.cornerRadius = 20
-        rankLabel.layer.cornerRadius = 20
-        userRankLabel.layer.cornerRadius = 20
         uiBG.layer.cornerRadius = 20
+        
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 671)
     }
     
     override func viewDidAppear(_ animated: Bool) {
