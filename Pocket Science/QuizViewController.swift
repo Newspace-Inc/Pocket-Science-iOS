@@ -23,7 +23,7 @@ class QuizViewController: UIViewController {
     var selectedLesson = ""
     var userSelectedTopic = [""]
     
-    var quizQuestionIndex = 0
+    var quizQuestionIndex = 1
     var currentQuizQn = [""]
     
     let userDefaults = UserDefaults.standard
@@ -36,6 +36,7 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var optionFourBtn: UIButton!
     @IBOutlet weak var quizTypeLabel: UILabel!
     @IBOutlet weak var primarySchoolLvel: UILabel!
+    @IBOutlet weak var questionNumber: UILabel!
     
     // Views
     @IBOutlet weak var spellingView: UIView!
@@ -79,6 +80,9 @@ class QuizViewController: UIViewController {
                     endTopicSel = Int(findTopicSelectedEnd ?? 0)
                 }
                 
+                totalAmtOfQns = endTopicSel - startTopicSel
+                print(totalAmtOfQns)
+                
                 if (startTopicSel + quizQuestionIndex <= endTopicSel) {
                     currentQuizQn = worksheet.cells(atRows: [UInt(startTopicSel + quizQuestionIndex)])
                         .compactMap { $0.stringValue(sharedStrings) }
@@ -90,6 +94,14 @@ class QuizViewController: UIViewController {
             fatalError("\(error.localizedDescription)")
         }
         
+    }
+    
+    func quizConfig() {
+        if (quizType == "Multiple Choice Questions") {
+            questionNumber.text = "\(quizQuestionIndex)/\(totalAmtOfQns)"
+        } else if (quizType == "Spelling") {
+            
+        }
     }
     
     override func viewDidLoad() {

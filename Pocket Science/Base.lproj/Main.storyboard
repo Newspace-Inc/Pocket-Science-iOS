@@ -1437,6 +1437,7 @@
                         <outlet property="optionThreeBtn" destination="jRY-sf-gL6" id="WEa-fy-QGG"/>
                         <outlet property="optionTwoBtn" destination="1dH-UK-itR" id="EI5-FK-lBE"/>
                         <outlet property="primarySchoolLvel" destination="WEF-I7-3mc" id="ZPh-FI-fpR"/>
+                        <outlet property="questionNumber" destination="f4f-Mb-Aom" id="sr2-9R-UIt"/>
                         <outlet property="quizTypeLabel" destination="GbV-Ov-1qc" id="Cl6-h8-aqT"/>
                         <outlet property="spellingView" destination="dYe-px-rCq" id="c4D-7w-OxV"/>
                         <outlet property="uiBG" destination="oKX-Xj-WNq" id="FAc-zy-kiv"/>

@@ -144,6 +144,8 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if (topicExplaination[2] == topicExplaination[3]) {
                     topicExplaination.removeSubrange(0..<4)
                     
+                    topicExplaination = topicExplaination.remove("Empty Cell")
+                    
                     let explaination = topicExplaination.joined(separator: "\n")
                     
                     ExplainationTextField.text = "\(explaination)"

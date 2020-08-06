@@ -40,8 +40,6 @@ class SettingsViewController: UIViewController {
         // Corner Radius
         saveEditBtn.layer.cornerRadius = 20
         eraseData.layer.cornerRadius = 20
-        tutorialBtn.layer.cornerRadius = 10
-        creditsBtn.layer.cornerRadius = 10
     }
     
     func deleteDataAlert() {
