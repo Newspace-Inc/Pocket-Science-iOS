@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreXLSX
 
 class QuizViewController: UIViewController {
     
@@ -20,6 +21,10 @@ class QuizViewController: UIViewController {
     var quizType = ""
     var userPoints = 0
     var selectedLesson = ""
+    var userSelectedTopic = [""]
+    
+    var quizQuestionIndex = 0
+    var currentQuizQn = [""]
     
     let userDefaults = UserDefaults.standard
     
@@ -35,6 +40,57 @@ class QuizViewController: UIViewController {
     // Views
     @IBOutlet weak var spellingView: UIView!
     @IBOutlet weak var MCQView: UIView!
+    
+    func getData() {
+        // Collect Data
+        let worksheetName = "Questions and Answers (\(primaryLevel))"
+        
+        do {
+            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
+            
+            guard let file = XLSXFile(filepath: filepath) else {
+                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+            }
+            
+            for wbk in try file.parseWorkbooks() {
+                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
+                        .first(where: { $0.name == worksheetName }).map({ $0.path })
+                else { continue }
+                
+                let sharedStrings = try file.parseSharedStrings()
+                let worksheet = try file.parseWorksheet(at: path)
+                var startTopicSel = 0
+                var endTopicSel = 0
+                
+                // Get Cell Data
+                let lowerUpperPri = worksheet.cells(atColumns: [ColumnReference("A")!])
+                    .compactMap{ $0.stringValue(sharedStrings) }
+                let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                
+                // Find Rows of Selected Topic
+                let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
+                if findTopicSelectedStart != nil {
+                    startTopicSel = Int(findTopicSelectedStart ?? 0)
+                }
+                
+                let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
+                if findTopicSelectedEnd != nil {
+                    endTopicSel = Int(findTopicSelectedEnd ?? 0)
+                }
+                
+                if (startTopicSel + quizQuestionIndex <= endTopicSel) {
+                    currentQuizQn = worksheet.cells(atRows: [UInt(startTopicSel + quizQuestionIndex)])
+                        .compactMap { $0.stringValue(sharedStrings) }
+                    print(currentQuizQn)
+                }
+                
+            }
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +137,7 @@ class QuizViewController: UIViewController {
             spellingView.isHidden = false
             MCQView.isHidden = true
         }
+        getData()
     }
     
     

@@ -181,8 +181,6 @@ class FlashcardsViewController: UIViewController {
             }
         }
         
-        print(favouriteFlashcard)
-        print(isFlashcardFavourited)
         
         if (favouriteFlashcard != [""]) {
             userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")

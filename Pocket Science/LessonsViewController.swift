@@ -91,7 +91,6 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Collect Data
         worksheetName = "\(primaryLevel) Data"
-        print(worksheetName)
         
         do {
             let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
@@ -132,7 +131,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 for i in startTopicSel...endTopicSel - 1 {
                     userSelectedTopic.append(overallTopics[i])
                 }
-
+                
                 userSelectedTopic = Array(Set(userSelectedTopic))
                 userSelectedTopic = userSelectedTopic.remove("")
                 
@@ -141,7 +140,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 var topicExplaination = worksheet.cells(atRows: [UInt(startTopicSel)])
                     .compactMap { $0.stringValue(sharedStrings) }
-                
+                                
                 if (topicExplaination[2] == topicExplaination[3]) {
                     topicExplaination.removeSubrange(0..<4)
                     

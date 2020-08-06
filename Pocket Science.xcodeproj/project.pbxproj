@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5917C13C24337F9500107213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13A24337F9500107213 /* Main.storyboard */; };
 		5917C13E24337F9A00107213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13D24337F9A00107213 /* Assets.xcassets */; };
+		59247B7524DC04D60078306C /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 59247B7424DC04D60078306C /* Main Data.xlsx */; };
 		59E288EC24C155C500210814 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E288EB24C155C500210814 /* WidgetKit.framework */; };
 		59E288EE24C155C500210814 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E288ED24C155C500210814 /* SwiftUI.framework */; };
 		59E288F124C155C500210814 /* Pocket_Science_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E288F024C155C500210814 /* Pocket_Science_Widget.swift */; };
@@ -30,8 +31,6 @@
 		876F596B24C72210007414AA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595424C7220F007414AA /* SettingsViewController.swift */; };
 		876F596D24C72210007414AA /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595524C72210007414AA /* QuizViewController.swift */; };
 		876F596F24C72210007414AA /* AwardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595624C72210007414AA /* AwardsViewController.swift */; };
-		876F597224C7223E007414AA /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 876F597124C7223E007414AA /* Main Data.xlsx */; };
-		876F597324C7223E007414AA /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 876F597124C7223E007414AA /* Main Data.xlsx */; };
 		BC9F6947F54C116608FDC07C /* Pods_Pocket_Science.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266B9D0439333E190FA508 /* Pods_Pocket_Science.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +66,7 @@
 		5917C13B24337F9500107213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5917C13D24337F9A00107213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5917C14224337F9A00107213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59247B7424DC04D60078306C /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../../../Downloads/Main Data.xlsx"; sourceTree = "<group>"; };
 		59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pocket Science WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E288EB24C155C500210814 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		59E288ED24C155C500210814 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -88,7 +88,6 @@
 		876F595424C7220F007414AA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		876F595524C72210007414AA /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		876F595624C72210007414AA /* AwardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsViewController.swift; sourceTree = "<group>"; };
-		876F597124C7223E007414AA /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../Main Data.xlsx"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +137,7 @@
 				5917C13D24337F9A00107213 /* Assets.xcassets */,
 				5917C13A24337F9500107213 /* Main.storyboard */,
 				5917C14224337F9A00107213 /* Info.plist */,
-				876F597124C7223E007414AA /* Main Data.xlsx */,
+				59247B7424DC04D60078306C /* Main Data.xlsx */,
 				876F595324C7220F007414AA /* AppDelegate.swift */,
 				876F594B24C7220F007414AA /* SceneDelegate.swift */,
 				876F594A24C7220F007414AA /* ViewController.swift */,
@@ -149,8 +148,8 @@
 				876F595124C7220F007414AA /* LessonsViewController.swift */,
 				876F595024C7220F007414AA /* FlashcardsViewController.swift */,
 				876F594C24C7220F007414AA /* ChooseTopicViewController.swift */,
-				876F595224C7220F007414AA /* QuizResultsViewController.swift */,
 				876F595524C72210007414AA /* QuizViewController.swift */,
+				876F595224C7220F007414AA /* QuizResultsViewController.swift */,
 				876F594D24C7220F007414AA /* ProfileViewController.swift */,
 				876F595424C7220F007414AA /* SettingsViewController.swift */,
 			);
@@ -270,8 +269,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59247B7524DC04D60078306C /* Main Data.xlsx in Resources */,
 				5917C13E24337F9A00107213 /* Assets.xcassets in Resources */,
-				876F597224C7223E007414AA /* Main Data.xlsx in Resources */,
 				5917C13C24337F9500107213 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,7 +279,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				876F597324C7223E007414AA /* Main Data.xlsx in Resources */,
 				59E288F424C155C700210814 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
