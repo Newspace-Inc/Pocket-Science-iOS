@@ -9,15 +9,40 @@
 import UIKit
 import CoreXLSX
 
+extension UIView {
+    func flashcardAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil, r2lDirection: Bool) {
+        // Create a CATransition object
+        let leftToRightTransition = CATransition()
+        
+        // Set its callback delegate to the completionDelegate that was provided
+        if let delegate: AnyObject = completionDelegate {
+            leftToRightTransition.delegate = delegate as? CAAnimationDelegate
+        }
+        
+        if r2lDirection == true {
+            leftToRightTransition.subtype = CATransitionSubtype.fromLeft
+        } else {
+            leftToRightTransition.subtype = CATransitionSubtype.fromRight
+        }
+        
+        leftToRightTransition.type = CATransitionType.push
+        leftToRightTransition.duration = duration
+        leftToRightTransition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        leftToRightTransition.fillMode = CAMediaTimingFillMode.removed
+        
+        // Add the animation to the View's layer
+        self.layer.add(leftToRightTransition, forKey: "leftToRightTransition")
+    }
+}
+
 class FlashcardsViewController: UIViewController {
     
     // UI Elements
     @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var conceptNameLabel: UILabel!
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var favouriteButton: UIButton!
-    @IBOutlet weak var bgPadding: UILabel!
+    @IBOutlet weak var flashcardBG: UIView!
     @IBOutlet weak var uiBG: UILabel!
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var label1: UILabel!
@@ -34,10 +59,12 @@ class FlashcardsViewController: UIViewController {
     var flashcardsIndex = 0
     var isFlashcardFavourited:Bool = false
     var conceptName = ""
+    var favouritedRowNum = [0]
     
     var uneditedCurrentFlashcard:Array<String> = []
     
     let userDefaults = UserDefaults.standard
+    var r2lDirection = false  // Initialize to right to left swipe
     
     func getData() {
         // Collect Data
@@ -70,6 +97,9 @@ class FlashcardsViewController: UIViewController {
         }
         
         conceptName = currentFlashcard[2]
+        
+        conceptNameLabel.numberOfLines = 3; // Dynamic number of lines
+        conceptNameLabel.lineBreakMode = NSLineBreakMode.byWordWrapping;
         conceptNameLabel.text = conceptName
                 
         uneditedCurrentFlashcard = currentFlashcard
@@ -103,6 +133,8 @@ class FlashcardsViewController: UIViewController {
         if (isFlashcardFavourited == true) {
             if let image = UIImage(named: "heart.fill") {
                 favouriteButton.setImage(image, for: .normal)
+                favouritedRowNum.append(topicSelRowStart + flashcardsIndex)
+                userDefaults.set(favouritedRowNum, forKey: "Favourited Row Number")
             } else {
                 fatalError("Image does not exist or is corrupted.")
             }
@@ -141,13 +173,11 @@ class FlashcardsViewController: UIViewController {
         label2.text = "The \(primaryLevel ?? "") Syllabus"
         
         // Set Clip to Bounds
-        imageView.clipsToBounds = true
-        bgPadding.clipsToBounds = true
+        flashcardBG.clipsToBounds = true
         uiBG.clipsToBounds = true
         
         // Curved Corners
-        imageView.layer.cornerRadius = 20
-        bgPadding.layer.cornerRadius = 20
+        flashcardBG.layer.cornerRadius = 20
         uiBG.layer.cornerRadius = 20
         
         getData()
@@ -176,6 +206,9 @@ class FlashcardsViewController: UIViewController {
             favouriteFlashcard.append(uneditedCurrentFlashcard[2])
             if let image = UIImage(named: "heart.fill") {
                 favouriteButton.setImage(image, for: .normal)
+                favouritedRowNum.append(topicSelRowStart + flashcardsIndex)
+                
+                userDefaults.set(favouritedRowNum, forKey: "Favourited Row Number")
             } else {
                 fatalError("Image does not exist or is corrupted.")
             }
@@ -194,6 +227,8 @@ class FlashcardsViewController: UIViewController {
             if (flashcardsIndex < 0) {
                 flashcardsIndex = 0
             }
+            
+            flashcardBG.flashcardAnimation(r2lDirection: false)
 
             getData()
             checkFavourited()
@@ -204,6 +239,7 @@ class FlashcardsViewController: UIViewController {
                 flashcardsIndex = 0
             }
             
+            flashcardBG.flashcardAnimation(r2lDirection: true)
             
             getData()
             checkFavourited()

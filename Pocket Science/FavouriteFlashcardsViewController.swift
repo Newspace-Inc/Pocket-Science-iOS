@@ -10,7 +10,7 @@ import UIKit
 import CoreXLSX
 
 class FavouriteFlashcardsViewController: UIViewController {
-
+    
     // Variables
     var favouriteFlashcard:Array<String> = []
     var currentFlashcard:Array<String> = []
@@ -25,6 +25,8 @@ class FavouriteFlashcardsViewController: UIViewController {
     var conceptName = ""
     var selectedFavouriteFlashcard = ""
     var flashcardData = [""]
+    var flashcardRowNum = [0]
+    var favouriteFlashcards = [""]
     
     var uneditedCurrentFlashcard:Array<String> = []
     
@@ -33,8 +35,7 @@ class FavouriteFlashcardsViewController: UIViewController {
     // Labels and Buttons
     @IBOutlet weak var conceptNameLabel: UILabel!
     @IBOutlet weak var textField: UITextView!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var flashcardBG: UILabel!
+    @IBOutlet weak var flashcardBG: UIView!
     @IBOutlet weak var UIBG: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
     
@@ -55,13 +56,19 @@ class FavouriteFlashcardsViewController: UIViewController {
             selectedFavouriteFlashcard = favouriteSelected
         }
         
+        if let favouritedNum = userDefaults.object(forKey: "Favourited Row Number") as? [Int] ?? [] {
+            flashcardRowNum = favouritedNum
+        }
+        
+        if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] ?? [String](){
+            favouriteFlashcards = favourited
+        }
+        
         // Set Clip to Bounds
-        imageView.clipsToBounds = true
         UIBG.clipsToBounds = true
         flashcardBG.clipsToBounds = true
         
         // Curved Corners
-        imageView.layer.cornerRadius = 20
         UIBG.layer.cornerRadius = 20
         flashcardBG.layer.cornerRadius = 20
         
@@ -94,7 +101,7 @@ class FavouriteFlashcardsViewController: UIViewController {
                 // Get Cell Data
                 let lesson = worksheet.cells(atColumns: [ColumnReference("D")!])
                     .compactMap{ $0.stringValue(sharedStrings) }
-                                
+                
                 // Find Rows of Selected Topic
                 let findTopicSelectedStart = lesson.firstIndex(of: selectedFavouriteFlashcard)
                 if findTopicSelectedStart != nil {
@@ -105,14 +112,26 @@ class FavouriteFlashcardsViewController: UIViewController {
                 if findTopicSelectedEnd != nil {
                     endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
                 }
-                if (topicSelRowStart + flashcardsIndex <= topicSelRowEnd) {
-                    currentFlashcard = worksheet.cells(atRows: [UInt(topicSelRowStart)])
-                        .compactMap { $0.stringValue(sharedStrings) }
-                    currentFlashcard = currentFlashcard.remove("Empty Cell")
-                }
+                                
+                let firstIndex = favouriteFlashcards.firstIndex(of: selectedFavouriteFlashcard) ?? 0
+                
+                print(favouriteFlashcards)
+                print(selectedFavouriteFlashcard)
+                print(firstIndex)
+                
+                let index = flashcardRowNum[firstIndex]
+                
+                print(index)
+                
+                currentFlashcard = worksheet.cells(atRows: [UInt(index)])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                currentFlashcard = currentFlashcard.remove("Empty Cell")
+                
+                print(currentFlashcard)
+                
                 conceptName = currentFlashcard[2]
                 conceptNameLabel.text = conceptName
-                        
+                
                 uneditedCurrentFlashcard = currentFlashcard
                 currentFlashcard.removeSubrange(0..<4)
                 
@@ -126,7 +145,7 @@ class FavouriteFlashcardsViewController: UIViewController {
         
         conceptName = currentFlashcard[2]
         conceptNameLabel.text = conceptName
-                
+        
         uneditedCurrentFlashcard = currentFlashcard
         currentFlashcard.removeSubrange(0..<4)
         

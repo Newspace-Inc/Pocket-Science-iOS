@@ -47,7 +47,39 @@ class ViewController: UIViewController, dataFromSettings {
         storedUserAge = settingsUserAge
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Get User Points
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
+        }
+        
+        // Set Clip to Bounds
+        bgPad.clipsToBounds = true
+        welcomeView.clipsToBounds = true
+        dismissWelcomeMessage.clipsToBounds = true
+        
+        // Curved Edges
+        recentlyOpenedBtn.layer.cornerRadius = 20
+        upperPrimaryBtn.layer.cornerRadius = 20
+        lowerPrimaryBtn.layer.cornerRadius = 20
+        bgPad.layer.cornerRadius = 20
+        welcomeView.layer.cornerRadius = 20
+        dismissWelcomeMessage.layer.cornerRadius = 10
+                        
+        // Change Label Text to Data
+        pointLabel.text = "\(userPoints) Points"
+        
+        // Save User Points
+        if userPoints != 0 {
+            userDefaults.set(userPoints, forKey: "User Points")
+        }
+        
+        if userRank != "" {
+            userDefaults.set(userRank, forKey: "User Rank")
+        }
+        
         if let userName = userDefaults.string(forKey: "Username") {
             userNameLabel.text = "\(userName)"
             storedUserName = "\(userName)"
@@ -70,6 +102,7 @@ class ViewController: UIViewController, dataFromSettings {
             userRank = rank
         }
         
+        // Recently Opened
         if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
             lvlLabel.textColor = UIColor.white
             topicLabel.textColor = UIColor.white
@@ -89,43 +122,6 @@ class ViewController: UIViewController, dataFromSettings {
             recentlyOpenedBtn.backgroundColor = UIColor(red: 243.0/255.0, green: 223.0/255.0, blue: 162.0/255.0, alpha: 1.0)
             recentlyOpenedBtn.setTitle("", for: .normal)
         }
-        
-        // Get User Points
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
-            userPoints = userPointsGrab
-        }
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Set Clip to Bounds
-        bgPad.clipsToBounds = true
-        welcomeView.clipsToBounds = true
-        dismissWelcomeMessage.clipsToBounds = true
-        
-        // Curved Edges
-        recentlyOpenedBtn.layer.cornerRadius = 20
-        upperPrimaryBtn.layer.cornerRadius = 20
-        lowerPrimaryBtn.layer.cornerRadius = 20
-        bgPad.layer.cornerRadius = 20
-        welcomeView.layer.cornerRadius = 20
-        dismissWelcomeMessage.layer.cornerRadius = 10
-                        
-        // Change Label Text to Data
-        pointLabel.text = "\(userPoints) Points"
-        print("\(recentlyOpenedTopic)")
-        
-        // Save User Points
-        if userPoints != 0 {
-            userDefaults.set(userPoints, forKey: "User Points")
-        }
-        
-        if userRank != "" {
-            userDefaults.set(userRank, forKey: "User Rank")
-        }
-        
         // Check if Welcome Message was shown before
         if let welcomeMessageShownBefore:Bool = userDefaults.bool(forKey: "Welcome Message") {
             welcomeMessageShown = welcomeMessageShownBefore
@@ -136,7 +132,7 @@ class ViewController: UIViewController, dataFromSettings {
             welcomeView.isHidden = true
         }
         
-        print(welcomeView.isHidden)
+        
     }
     
     // Button Config

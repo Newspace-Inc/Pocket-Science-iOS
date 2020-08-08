@@ -21,6 +21,7 @@ class QuizResultsViewController: UIViewController {
     var correctQnName = [""]
     var incorrectQnName = [""]
     var earnedPoints = 0
+    var selectedLesson = ""
     
     let message = ["Good Job!", "Try Again!", "You can do it!", "Almost There!"]
     
@@ -35,6 +36,7 @@ class QuizResultsViewController: UIViewController {
     @IBOutlet weak var scoredLabel: UILabel!
     @IBOutlet weak var earnedLabel: UILabel!
     @IBOutlet weak var totalAmtPoints: UILabel!
+    @IBOutlet weak var priSchLvl: UILabel!
     
     func pointSystem() {
         let amountOfPointsPerQn = 10
@@ -71,6 +73,14 @@ class QuizResultsViewController: UIViewController {
             userPoints = userPointsGrab
         }
         
+        if let priSchLvl = userDefaults.string(forKey: "Recently Opened") {
+            primaryLevel = priSchLvl
+        }
+        
+        if let openedLesson = userDefaults.string(forKey: "Opened Lesson") {
+            selectedLesson = openedLesson
+        }
+        
         // Set Buttons and Padding Corner
         uiBG.clipsToBounds = true
         uiBG.layer.cornerRadius = 20
@@ -92,6 +102,7 @@ class QuizResultsViewController: UIViewController {
         scoredLabel.text = "\(correctQnName.count)/\(totalAmtOfQns)"
         earnedLabel.text = "You earned \(earnedPoints) Points"
         messageLabel.text = "\(message[0])"
+        priSchLvl.text = "\(primaryLevel) \(selectedLesson)"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,5 +118,4 @@ class QuizResultsViewController: UIViewController {
     @IBAction func reviewBtn(_ sender: Any) {
         performSegue(withIdentifier: "reviewAns", sender: nil)
     }
-
 }

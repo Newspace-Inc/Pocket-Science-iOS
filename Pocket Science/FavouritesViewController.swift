@@ -13,12 +13,14 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Variables
     var favouriteFlashcards:Array<String> = []
-
+    var isFavouritesEmpty = false
+    
     let userDefaults = UserDefaults.standard
     
     // Labels and Buttons
     @IBOutlet weak var uiBG: UILabel!
-
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,16 +30,20 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         print(favouriteFlashcards)
         print(favouriteFlashcards.count)
-
+        
         // Set Clip to Bounds
         uiBG.clipsToBounds = true
         
         // Set Corner Radius
         uiBG.layer.cornerRadius = 20
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (favouriteFlashcards.count == 0) {
+            isFavouritesEmpty = true
             return 1
         } else {
             return favouriteFlashcards.count
@@ -46,22 +52,28 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-                
-        if (favouriteFlashcards.count == 0) {
-            cell.textLabel!.text = "You have not favourited anything."
-        } else {
-            cell.textLabel!.text = "\(favouriteFlashcards[indexPath.row])"
-        }
         
+        if (isFavouritesEmpty) {
+            print(isFavouritesEmpty)
+            cell.textLabel?.text = "You have not favourited anything."
+        } else {
+            print(favouriteFlashcards[indexPath.row])
+            cell.textLabel?.text = "\(favouriteFlashcards[indexPath.row])"
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destinationVC = FavouriteFlashcardsViewController()
-                
-        if favouriteFlashcards[indexPath.row] != "" {
-            userDefaults.set(favouriteFlashcards[indexPath.row], forKey: "Selected Favourite Flashcard")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
+        
+        if (cell.textLabel?.text == "You have not favourited anything.") {
+            return
+        } else {
+            if favouriteFlashcards[indexPath.row] != "" {
+                userDefaults.set(favouriteFlashcards[indexPath.row], forKey: "Selected Favourite Flashcard")
+            }
+            performSegue(withIdentifier: "favouriteFlashcards", sender: nil)
         }
-        performSegue(withIdentifier: "favouriteFlashcards", sender: nil)
     }
 }

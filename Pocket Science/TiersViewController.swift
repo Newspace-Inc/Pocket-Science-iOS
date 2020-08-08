@@ -28,7 +28,9 @@ class TiersViewController: UIViewController {
     @IBOutlet weak var diamondBG: UILabel!
     @IBOutlet weak var uiBG: UILabel!
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         if let tierLevel = userDefaults.string(forKey: "User Tier") {
             userTier = tierLevel
         } else {
@@ -42,10 +44,6 @@ class TiersViewController: UIViewController {
         if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
             userPoints = userPointsGrab
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         // Set Clips to Bounds
         pointLabel.clipsToBounds = true
@@ -63,6 +61,8 @@ class TiersViewController: UIViewController {
         diamondBG?.layer.cornerRadius = 20
         uiBG.layer.cornerRadius = 20
         
+        // Set User Points
+        pointLabel.text = "\(userPoints) Points"
     }
     
     
