@@ -18,13 +18,33 @@ class QuizResultsViewController: UIViewController {
     var primaryLevel:String = ""
     var userName:String = ""
     var correctAmountOfQuiz = ""
+    var correctQnName = [""]
+    var incorrectQnName = [""]
+    var earnedPoints = 0
+    
+    let message = ["Good Job!", "Try Again!", "You can do it!", "Almost There!"]
     
     let userDefaults = UserDefaults.standard
     
     // Buttons and Labels
     @IBOutlet weak var uiBG: UILabel!
+    @IBOutlet weak var reviewAns: UIButton!
     @IBOutlet weak var noRetryBtn: UIButton!
     @IBOutlet weak var retryBtn: UIButton!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var scoredLabel: UILabel!
+    @IBOutlet weak var earnedLabel: UILabel!
+    @IBOutlet weak var totalAmtPoints: UILabel!
+    
+    func pointSystem() {
+        let amountOfPointsPerQn = 10
+        
+        earnedPoints = correctQnName.count * amountOfPointsPerQn
+        
+        userPoints += earnedPoints
+        
+        userDefaults.set(userPoints,forKey: "User Points")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +55,16 @@ class QuizResultsViewController: UIViewController {
             userName = "User"
         }
         
-        if let correctQuizes = userDefaults.string(forKey: "Correct Quizes") {
-            correctAmountOfQuiz = correctQuizes
-        } else {
-            correctAmountOfQuiz = "0"
+        if let correctQn = userDefaults.object(forKey: "Correct Qns Array") as? [String] ?? [] {
+            correctQnName = correctQn
+        }
+        
+        if let incorrectQn = userDefaults.object(forKey: "Incorrect Qns Array") as? [String] ?? [] {
+            incorrectQnName = incorrectQn
+        }
+        
+        if let amtOfQns:Int = userDefaults.integer(forKey: "Total amount of Quiz Qns") {
+            totalAmtOfQns = amtOfQns
         }
         
         if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
@@ -54,6 +80,18 @@ class QuizResultsViewController: UIViewController {
         
         retryBtn.clipsToBounds = true
         retryBtn.layer.cornerRadius = 20
+        
+        reviewAns.clipsToBounds = true
+        reviewAns.layer.cornerRadius = 20
+        
+        // Point System
+        pointSystem()
+        
+        // Set Label Text
+        totalAmtPoints.text = "You have \(userPoints) Points now"
+        scoredLabel.text = "\(correctQnName.count)/\(totalAmtOfQns)"
+        earnedLabel.text = "You earned \(earnedPoints) Points"
+        messageLabel.text = "\(message[0])"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,15 +103,9 @@ class QuizResultsViewController: UIViewController {
             userDefaults.set(userPoints, forKey: "User Points")
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func reviewBtn(_ sender: Any) {
+        performSegue(withIdentifier: "reviewAns", sender: nil)
     }
-    */
 
 }

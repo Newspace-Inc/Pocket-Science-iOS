@@ -64,9 +64,7 @@ class QuizViewController: UIViewController {
                 else {
                     continue
                 }
-                
-                print(path)
-                
+                                
                 let sharedStrings = try file.parseSharedStrings()
                 let worksheet = try file.parseWorksheet(at: path)
                 
@@ -107,16 +105,28 @@ class QuizViewController: UIViewController {
     func quizConfig() {
         if (quizType == "Multiple Choice Questions") {
             questionNumber.text = "\(quizQuestionIndex)/\(totalAmtOfQns)"
+            print(currentQuizQn)
             currentQn = currentQuizQn[0]
             questionView.text = currentQn
             correctAns = currentQuizQn.last ?? "NIL"
             currentQuizQn.removeFirst()
             currentQuizQn.shuffle()
+                        
+            // Set Button Lines
+            optionOneBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+            optionOneBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+            optionTwoBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+            optionTwoBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+            optionThreeBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+            optionThreeBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+            optionFourBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+            optionFourBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
             
-            optionOneBtn.setTitle(currentQuizQn[1], for: .normal)
-            optionTwoBtn.setTitle(currentQuizQn[2], for: .normal)
-            optionThreeBtn.setTitle(currentQuizQn[3], for: .normal)
-            optionFourBtn.setTitle(currentQuizQn[4], for: .normal)
+            // Set Button Title
+            optionOneBtn.setTitle(currentQuizQn[0], for: .normal)
+            optionTwoBtn.setTitle(currentQuizQn[1], for: .normal)
+            optionThreeBtn.setTitle(currentQuizQn[2], for: .normal)
+            optionFourBtn.setTitle(currentQuizQn[3], for: .normal)
         } else if (quizType == "Spelling") {
             
         }
@@ -169,7 +179,7 @@ class QuizViewController: UIViewController {
         }
         
         getData()
-        
+        quizConfig()
     }
     
     
@@ -189,7 +199,18 @@ class QuizViewController: UIViewController {
         } else {
             incorrectQnName.append(currentQn)
         }
+        
+        if (quizQuestionIndex == totalAmtOfQns) {
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(correctQnName, forKey: "Correct Qns Array")
+            userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            performSegue(withIdentifier: "quizResults", sender: nil)
+        } else {
+            getData()
+            quizConfig()
+        }
     }
+    
     @IBAction func optionTwoBtn(_ sender: Any) {
         quizQuestionIndex += 1
         
@@ -198,7 +219,18 @@ class QuizViewController: UIViewController {
         } else {
             incorrectQnName.append(currentQn)
         }
+        
+        if (quizQuestionIndex == totalAmtOfQns) {
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(correctQnName, forKey: "Correct Qns Array")
+            userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            performSegue(withIdentifier: "quizResults", sender: nil)
+        } else {
+            getData()
+            quizConfig()
+        }
     }
+    
     @IBAction func optionThreeBtn(_ sender: Any) {
         quizQuestionIndex += 1
         
@@ -207,7 +239,18 @@ class QuizViewController: UIViewController {
         } else {
             incorrectQnName.append(currentQn)
         }
+        
+        if (quizQuestionIndex == totalAmtOfQns) {
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(correctQnName, forKey: "Correct Qns Array")
+            userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            performSegue(withIdentifier: "quizResults", sender: nil)
+        } else {
+            getData()
+            quizConfig()
+        }
     }
+    
     @IBAction func optionFourBtn(_ sender: Any) {
         quizQuestionIndex += 1
         
@@ -215,6 +258,16 @@ class QuizViewController: UIViewController {
             correctQnName.append(currentQn)
         } else {
             incorrectQnName.append(currentQn)
+        }
+        
+        if (quizQuestionIndex == totalAmtOfQns) {
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(correctQnName, forKey: "Correct Qns Array")
+            userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            performSegue(withIdentifier: "quizResults", sender: nil)
+        } else {
+            getData()
+            quizConfig()
         }
     }
 }
