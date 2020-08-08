@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0IZ-u6-x9k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0IZ-u6-x9k">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17120"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1387,6 +1387,9 @@
                                         <state key="normal" title="Option 1">
                                             <color key="titleColor" red="1" green="0.96909108639999997" blue="0.97900416379999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="optionOneBtn:" destination="RB2-20-OZx" eventType="touchUpInside" id="wZH-Ij-Auz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRY-sf-gL6">
                                         <rect key="frame" x="23" y="374" width="369" height="82"/>
@@ -1396,6 +1399,9 @@
                                         <state key="normal" title="Option 3">
                                             <color key="titleColor" red="1" green="0.96909108639999997" blue="0.97900416379999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="optionThreeBtn:" destination="RB2-20-OZx" eventType="touchUpInside" id="bto-br-ORR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJu-5f-Mup">
                                         <rect key="frame" x="23" y="468" width="369" height="82"/>
@@ -1405,6 +1411,9 @@
                                         <state key="normal" title="Option 4">
                                             <color key="titleColor" red="1" green="0.96909108639999997" blue="0.97900416379999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="optionFourBtn:" destination="RB2-20-OZx" eventType="touchUpInside" id="WDo-ji-4T7"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question X/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4f-Mb-Aom">
                                         <rect key="frame" x="16" y="21" width="127" height="26"/>
@@ -1421,6 +1430,9 @@
                                         <state key="normal" title="Option 2">
                                             <color key="titleColor" red="1" green="0.96909108639999997" blue="0.97900416379999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="optionTwoBtn:" destination="RB2-20-OZx" eventType="touchUpInside" id="u6s-Rl-ghw"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1438,6 +1450,7 @@
                         <outlet property="optionTwoBtn" destination="1dH-UK-itR" id="EI5-FK-lBE"/>
                         <outlet property="primarySchoolLvel" destination="WEF-I7-3mc" id="ZPh-FI-fpR"/>
                         <outlet property="questionNumber" destination="f4f-Mb-Aom" id="sr2-9R-UIt"/>
+                        <outlet property="questionView" destination="E3i-xl-8m4" id="xMf-rB-QPC"/>
                         <outlet property="quizTypeLabel" destination="GbV-Ov-1qc" id="Cl6-h8-aqT"/>
                         <outlet property="spellingView" destination="dYe-px-rCq" id="c4D-7w-OxV"/>
                         <outlet property="uiBG" destination="oKX-Xj-WNq" id="FAc-zy-kiv"/>

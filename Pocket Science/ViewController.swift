@@ -135,6 +135,8 @@ class ViewController: UIViewController, dataFromSettings {
         } else {
             welcomeView.isHidden = true
         }
+        
+        print(welcomeView.isHidden)
     }
     
     // Button Config

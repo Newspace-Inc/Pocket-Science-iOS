@@ -22,6 +22,10 @@ class QuizViewController: UIViewController {
     var userPoints = 0
     var selectedLesson = ""
     var userSelectedTopic = [""]
+    var correctAns = ""
+    var correctQnName = [""]
+    var incorrectQnName = [""]
+    var currentQn = ""
     
     var quizQuestionIndex = 1
     var currentQuizQn = [""]
@@ -37,6 +41,7 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var quizTypeLabel: UILabel!
     @IBOutlet weak var primarySchoolLvel: UILabel!
     @IBOutlet weak var questionNumber: UILabel!
+    @IBOutlet weak var questionView: UITextView!
     
     // Views
     @IBOutlet weak var spellingView: UIView!
@@ -44,10 +49,10 @@ class QuizViewController: UIViewController {
     
     func getData() {
         // Collect Data
-        let worksheetName = "Questions and Answers (\(primaryLevel))"
+        let worksheetName = "\(primaryLevel) Data"
         
         do {
-            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
+            let filepath = Bundle.main.path(forResource: "Questions and Answers", ofType: "xlsx")!
             
             guard let file = XLSXFile(filepath: filepath) else {
                 fatalError("XLSX file at \(filepath) is corrupted or does not exist")
@@ -56,10 +61,15 @@ class QuizViewController: UIViewController {
             for wbk in try file.parseWorkbooks() {
                 guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
                         .first(where: { $0.name == worksheetName }).map({ $0.path })
-                else { continue }
+                else {
+                    continue
+                }
+                
+                print(path)
                 
                 let sharedStrings = try file.parseSharedStrings()
                 let worksheet = try file.parseWorksheet(at: path)
+                
                 var startTopicSel = 0
                 var endTopicSel = 0
                 
@@ -81,24 +91,32 @@ class QuizViewController: UIViewController {
                 }
                 
                 totalAmtOfQns = endTopicSel - startTopicSel
-                print(totalAmtOfQns)
-                
+                 
                 if (startTopicSel + quizQuestionIndex <= endTopicSel) {
                     currentQuizQn = worksheet.cells(atRows: [UInt(startTopicSel + quizQuestionIndex)])
                         .compactMap { $0.stringValue(sharedStrings) }
-                    print(currentQuizQn)
                 }
                 
+                currentQuizQn.removeSubrange(0..<2)
             }
         } catch {
             fatalError("\(error.localizedDescription)")
         }
-        
     }
     
     func quizConfig() {
         if (quizType == "Multiple Choice Questions") {
             questionNumber.text = "\(quizQuestionIndex)/\(totalAmtOfQns)"
+            currentQn = currentQuizQn[0]
+            questionView.text = currentQn
+            correctAns = currentQuizQn.last ?? "NIL"
+            currentQuizQn.removeFirst()
+            currentQuizQn.shuffle()
+            
+            optionOneBtn.setTitle(currentQuizQn[1], for: .normal)
+            optionTwoBtn.setTitle(currentQuizQn[2], for: .normal)
+            optionThreeBtn.setTitle(currentQuizQn[3], for: .normal)
+            optionFourBtn.setTitle(currentQuizQn[4], for: .normal)
         } else if (quizType == "Spelling") {
             
         }
@@ -140,7 +158,7 @@ class QuizViewController: UIViewController {
         // Set Label Names
         quizTypeLabel.text = quizType
         primarySchoolLvel.text = "\(primaryLevel) \(selectedLesson)"
-
+        
         // Change Quiz Type
         if (quizType == "Multiple Choice Questions") {
             spellingView.isHidden = true
@@ -149,7 +167,9 @@ class QuizViewController: UIViewController {
             spellingView.isHidden = false
             MCQView.isHidden = true
         }
+        
         getData()
+        
     }
     
     
@@ -161,4 +181,40 @@ class QuizViewController: UIViewController {
         destinationVC.totalAmtOfQns = totalAmtOfQns
     }
     
+    @IBAction func optionOneBtn(_ sender: Any) {
+        quizQuestionIndex += 1
+        
+        if (optionOneBtn.currentTitle == correctAns) {
+            correctQnName.append(currentQn)
+        } else {
+            incorrectQnName.append(currentQn)
+        }
+    }
+    @IBAction func optionTwoBtn(_ sender: Any) {
+        quizQuestionIndex += 1
+        
+        if (optionTwoBtn.currentTitle == correctAns) {
+            correctQnName.append(currentQn)
+        } else {
+            incorrectQnName.append(currentQn)
+        }
+    }
+    @IBAction func optionThreeBtn(_ sender: Any) {
+        quizQuestionIndex += 1
+        
+        if (optionThreeBtn.currentTitle == correctAns) {
+            correctQnName.append(currentQn)
+        } else {
+            incorrectQnName.append(currentQn)
+        }
+    }
+    @IBAction func optionFourBtn(_ sender: Any) {
+        quizQuestionIndex += 1
+        
+        if (optionFourBtn.currentTitle == correctAns) {
+            correctQnName.append(currentQn)
+        } else {
+            incorrectQnName.append(currentQn)
+        }
+    }
 }
