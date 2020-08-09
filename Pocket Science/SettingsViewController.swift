@@ -43,9 +43,10 @@ class SettingsViewController: UIViewController {
     }
     
     func deleteDataAlert() {
-        let intReset = 0
-        let strReset = ""
-        let arrReset = [""]
+        let intReset:Int = 0
+        let strReset:String = ""
+        let arrReset:Array<String> = []
+        let intArrReset:Array<Int> = []
         // Create Alert
         var dialogMessage = UIAlertController(title: "Delete Data", message: "Are you sure you want to erase your data? This action is NOT REVERSABLE.", preferredStyle: .alert)
 
@@ -56,6 +57,8 @@ class SettingsViewController: UIViewController {
             self.userDefaults.set(strReset, forKey: "Username")
             self.userDefaults.set(intReset, forKey: "Userage")
             self.userDefaults.set(strReset, forKey: "Overall Selected Topics")
+            self.userDefaults.set(intReset, forKey: "Favourited Row Number")
+            self.userDefaults.set(intArrReset,forKey: "Favourite Flashcard")
         })
 
         // Create Cancel button with action handlder

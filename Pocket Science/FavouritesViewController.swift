@@ -28,9 +28,6 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
             favouriteFlashcards = favourited
         }
         
-        print(favouriteFlashcards)
-        print(favouriteFlashcards.count)
-        
         // Set Clip to Bounds
         uiBG.clipsToBounds = true
         
@@ -54,10 +51,8 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         
         if (isFavouritesEmpty) {
-            print(isFavouritesEmpty)
             cell.textLabel?.text = "You have not favourited anything."
         } else {
-            print(favouriteFlashcards[indexPath.row])
             cell.textLabel?.text = "\(favouriteFlashcards[indexPath.row])"
         }
         return cell

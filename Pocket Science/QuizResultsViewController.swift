@@ -81,6 +81,14 @@ class QuizResultsViewController: UIViewController {
             selectedLesson = openedLesson
         }
         
+        if (correctAmountOfQuiz != "") {
+            userDefaults.set(correctAmountOfQuiz, forKey: "Correct Quizes")
+        }
+        // Save User Points
+        if userPoints != 0 {
+            userDefaults.set(userPoints, forKey: "User Points")
+        }
+        
         // Set Buttons and Padding Corner
         uiBG.clipsToBounds = true
         uiBG.layer.cornerRadius = 20
@@ -97,22 +105,16 @@ class QuizResultsViewController: UIViewController {
         // Point System
         pointSystem()
         
+        // Set Clip
+        priSchLvl.numberOfLines = 0; // Dynamic number of lines
+        priSchLvl.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        
         // Set Label Text
         totalAmtPoints.text = "You have \(userPoints) Points now"
         scoredLabel.text = "\(correctQnName.count)/\(totalAmtOfQns)"
         earnedLabel.text = "You earned \(earnedPoints) Points"
-        messageLabel.text = "\(message[0])"
+        messageLabel.text = "\(message[0]) \(userName)"
         priSchLvl.text = "\(primaryLevel) \(selectedLesson)"
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if (correctAmountOfQuiz != "") {
-            userDefaults.set(correctAmountOfQuiz, forKey: "Correct Quizes")
-        }
-        // Save User Points
-        if userPoints != 0 {
-            userDefaults.set(userPoints, forKey: "User Points")
-        }
     }
     
     @IBAction func reviewBtn(_ sender: Any) {

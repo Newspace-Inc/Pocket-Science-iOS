@@ -1494,13 +1494,6 @@
                                 <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFN-hf-osd">
-                                <rect key="frame" x="105" y="253" width="197" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Would you like to retry?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-8A-5m4">
                                 <rect key="frame" x="52" y="670" width="304" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1559,6 +1552,13 @@
                                     <action selector="reviewBtn:" destination="zhf-80-zvz" eventType="touchUpInside" id="Hk2-h2-1Ss"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFN-hf-osd">
+                                <rect key="frame" x="4" y="250" width="410" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tip-mP-sH7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1568,6 +1568,7 @@
                         <outlet property="earnedLabel" destination="FuL-Tn-zMY" id="yhI-dD-c5U"/>
                         <outlet property="messageLabel" destination="XFN-hf-osd" id="sGV-K6-VZM"/>
                         <outlet property="noRetryBtn" destination="WDN-cU-v6y" id="2DS-pH-2Z3"/>
+                        <outlet property="priSchLvl" destination="xqS-hk-edU" id="ygO-zq-jzB"/>
                         <outlet property="retryBtn" destination="X0D-IO-mey" id="E2p-1a-iGN"/>
                         <outlet property="reviewAns" destination="o0S-Z6-cZu" id="zX0-dk-IEK"/>
                         <outlet property="scoredLabel" destination="c2Y-eK-gmf" id="YW5-VC-8YC"/>

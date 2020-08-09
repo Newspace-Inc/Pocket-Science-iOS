@@ -25,8 +25,7 @@ class FavouriteFlashcardsViewController: UIViewController {
     var conceptName = ""
     var selectedFavouriteFlashcard = ""
     var flashcardData = [""]
-    var flashcardRowNum = [0]
-    var favouriteFlashcards = [""]
+    var flashcardRowNum:Array<Int> = []
     
     var uneditedCurrentFlashcard:Array<String> = []
     
@@ -61,7 +60,7 @@ class FavouriteFlashcardsViewController: UIViewController {
         }
         
         if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] ?? [String](){
-            favouriteFlashcards = favourited
+            favouriteFlashcard = favourited
         }
         
         // Set Clip to Bounds
@@ -95,42 +94,20 @@ class FavouriteFlashcardsViewController: UIViewController {
                 
                 let sharedStrings = try file.parseSharedStrings()
                 let worksheet = try file.parseWorksheet(at: path)
-                var startTopicSel = 0
-                var endTopicSel = 0
-                
-                // Get Cell Data
-                let lesson = worksheet.cells(atColumns: [ColumnReference("D")!])
-                    .compactMap{ $0.stringValue(sharedStrings) }
-                
-                // Find Rows of Selected Topic
-                let findTopicSelectedStart = lesson.firstIndex(of: selectedFavouriteFlashcard)
-                if findTopicSelectedStart != nil {
-                    startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
-                }
-                
-                let findTopicSelectedEnd = lesson.lastIndex(of: selectedFavouriteFlashcard)
-                if findTopicSelectedEnd != nil {
-                    endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
-                }
                                 
-                let firstIndex = favouriteFlashcards.firstIndex(of: selectedFavouriteFlashcard) ?? 0
-                
-                print(favouriteFlashcards)
-                print(selectedFavouriteFlashcard)
-                print(firstIndex)
+                // Find Rows of Selected Topic
+                let firstIndex = favouriteFlashcard.firstIndex(of: selectedFavouriteFlashcard) ?? 0
+
+                flashcardRowNum = flashcardRowNum.remove(0)
                 
                 let index = flashcardRowNum[firstIndex]
-                
-                print(index)
                 
                 currentFlashcard = worksheet.cells(atRows: [UInt(index)])
                     .compactMap { $0.stringValue(sharedStrings) }
                 currentFlashcard = currentFlashcard.remove("Empty Cell")
                 
-                print(currentFlashcard)
-                
-                conceptName = currentFlashcard[2]
-                conceptNameLabel.text = conceptName
+                conceptName = selectedFavouriteFlashcard
+                conceptNameLabel.text = "\(conceptName)"
                 
                 uneditedCurrentFlashcard = currentFlashcard
                 currentFlashcard.removeSubrange(0..<4)
@@ -142,23 +119,13 @@ class FavouriteFlashcardsViewController: UIViewController {
         } catch {
             fatalError("\(error.localizedDescription)")
         }
-        
-        conceptName = currentFlashcard[2]
-        conceptNameLabel.text = conceptName
-        
-        uneditedCurrentFlashcard = currentFlashcard
-        currentFlashcard.removeSubrange(0..<4)
-        
-        let flashcardKnowledge = currentFlashcard.joined(separator: "\n")
-        
-        textField.text = "\(flashcardKnowledge)"
     }
     
     func checkFavourited() {
         let count = favouriteFlashcard.count - 1
-        if (count == -1) {
+        if (count == -1) { // When count is -1, favouriteFlashcard.count = 0, meaning that there are no favourited items.
             isFlashcardFavourited = false
-        } else if (count == 0) {
+        } else if (count == 0) { // When count is 0, favouriteFlashcard.count = 1, meaning that there are at least 1 favourited items.
             if (uneditedCurrentFlashcard[2] == favouriteFlashcard[0]) {
                 isFlashcardFavourited = true
             } else {
@@ -190,6 +157,7 @@ class FavouriteFlashcardsViewController: UIViewController {
     }
     
     @IBAction func favouriteBtn(_ sender: Any) {
+        getData()
         checkFavourited()
         
         if (isFlashcardFavourited == true) {
@@ -199,6 +167,9 @@ class FavouriteFlashcardsViewController: UIViewController {
             for i in 0...count {
                 if (uneditedCurrentFlashcard[2] == favouriteFlashcard[i]) {
                     favouriteFlashcard.remove(at: i)
+                    flashcardRowNum.remove(at: i)
+                    userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
+                    userDefaults.set(flashcardRowNum, forKey: "Favourited Row Number")
                     if let image = UIImage(named: "heart.empty") {
                         favouriteButton.setImage(image, for: .normal)
                     } else {

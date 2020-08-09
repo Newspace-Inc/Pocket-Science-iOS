@@ -122,6 +122,7 @@ class ViewController: UIViewController, dataFromSettings {
             recentlyOpenedBtn.backgroundColor = UIColor(red: 243.0/255.0, green: 223.0/255.0, blue: 162.0/255.0, alpha: 1.0)
             recentlyOpenedBtn.setTitle("", for: .normal)
         }
+        
         // Check if Welcome Message was shown before
         if let welcomeMessageShownBefore:Bool = userDefaults.bool(forKey: "Welcome Message") {
             welcomeMessageShown = welcomeMessageShownBefore
@@ -131,8 +132,7 @@ class ViewController: UIViewController, dataFromSettings {
         } else {
             welcomeView.isHidden = true
         }
-        
-        
+                        
     }
     
     // Button Config

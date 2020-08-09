@@ -52,8 +52,69 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var overallTopics = [""]
     var userSelectedTopic = [""]
     
-    override func viewDidAppear(_ animated: Bool) {
-        
+    func getData() {
+        do {
+            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
+            
+            guard let file = XLSXFile(filepath: filepath) else {
+                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+            }
+            
+            for wbk in try file.parseWorkbooks() {
+                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
+                        .first(where: { $0.name == worksheetName }).map({ $0.path })
+                else { continue }
+                
+                let sharedStrings = try file.parseSharedStrings()
+                let worksheet = try file.parseWorksheet(at: path)
+                
+                var endTopicSel = 0
+                var startTopicSel = 0
+                
+                // Get Cell Data
+                let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
+                    .compactMap{ $0.stringValue(sharedStrings) }
+                
+                overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                                                
+                // Find Rows of Selected Topic
+                let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
+                if findTopicSelectedStart != nil {
+                    startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
+                }
+                
+                let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
+                if findTopicSelectedEnd != nil {
+                    endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
+                }
+                                
+                for i in startTopicSel...endTopicSel - 1 {
+                    userSelectedTopic.append(overallTopics[i])
+                }
+                
+                userSelectedTopic = Array(Set(userSelectedTopic))
+                userSelectedTopic = userSelectedTopic.remove("")
+                
+                userDefaults.set(startTopicSel, forKey: "TopicSelStart")
+                userDefaults.set(endTopicSel, forKey: "TopicSelEnd")
+                
+                var topicExplaination = worksheet.cells(atRows: [UInt(startTopicSel)])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                                             
+                if (topicExplaination[2] == topicExplaination[3]) {
+                    topicExplaination.removeSubrange(0..<4)
+                    
+                    topicExplaination = topicExplaination.remove("Empty Cell")
+                    
+                    let explaination = topicExplaination.joined(separator: "\n")
+                    
+                    ExplainationTextField.text = "\(explaination)"
+                }
+            }
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
     }
     
     override func viewDidLoad() {
@@ -92,68 +153,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Collect Data
         worksheetName = "\(primaryLevel) Data"
         
-        do {
-            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
-            
-            guard let file = XLSXFile(filepath: filepath) else {
-                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
-            }
-            
-            for wbk in try file.parseWorkbooks() {
-                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
-                        .first(where: { $0.name == worksheetName }).map({ $0.path })
-                else { continue }
-                
-                let sharedStrings = try file.parseSharedStrings()
-                let worksheet = try file.parseWorksheet(at: path)
-                
-                var endTopicSel = 0
-                var startTopicSel = 0
-                
-                // Get Cell Data
-                let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
-                    .compactMap{ $0.stringValue(sharedStrings) }
-                
-                overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
-                    .compactMap { $0.stringValue(sharedStrings) }
-                                
-                // Find Rows of Selected Topic
-                let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
-                if findTopicSelectedStart != nil {
-                    startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
-                }
-                
-                let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
-                if findTopicSelectedEnd != nil {
-                    endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
-                }
-                                
-                for i in startTopicSel...endTopicSel - 1 {
-                    userSelectedTopic.append(overallTopics[i])
-                }
-                
-                userSelectedTopic = Array(Set(userSelectedTopic))
-                userSelectedTopic = userSelectedTopic.remove("")
-                
-                userDefaults.set(startTopicSel, forKey: "TopicSelStart")
-                userDefaults.set(endTopicSel, forKey: "TopicSelEnd")
-                
-                var topicExplaination = worksheet.cells(atRows: [UInt(startTopicSel)])
-                    .compactMap { $0.stringValue(sharedStrings) }
-                                
-                if (topicExplaination[2] == topicExplaination[3]) {
-                    topicExplaination.removeSubrange(0..<4)
-                    
-                    topicExplaination = topicExplaination.remove("Empty Cell")
-                    
-                    let explaination = topicExplaination.joined(separator: "\n")
-                    
-                    ExplainationTextField.text = "\(explaination)"
-                }
-            }
-        } catch {
-            fatalError("\(error.localizedDescription)")
-        }
+        getData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -174,7 +174,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         destinationVC.selectedOverallTopic = userSelectedTopic[indexPath.row]
         
-        if overallTopics[indexPath.row] != "" {
+        if userSelectedTopic[indexPath.row] != "" {
             userDefaults.set(userSelectedTopic[indexPath.row], forKey: "Overall Selected Topic")
         }
         performSegue(withIdentifier: "flashcards", sender: nil)
