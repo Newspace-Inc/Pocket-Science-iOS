@@ -97,9 +97,9 @@ class FavouriteFlashcardsViewController: UIViewController {
                                 
                 // Find Rows of Selected Topic
                 let firstIndex = favouriteFlashcard.firstIndex(of: selectedFavouriteFlashcard) ?? 0
-
-                flashcardRowNum = flashcardRowNum.remove(0)
                 
+                print(flashcardRowNum)
+                print(favouriteFlashcard)
                 let index = flashcardRowNum[firstIndex]
                 
                 currentFlashcard = worksheet.cells(atRows: [UInt(index)])
@@ -167,6 +167,7 @@ class FavouriteFlashcardsViewController: UIViewController {
             for i in 0...count {
                 if (uneditedCurrentFlashcard[2] == favouriteFlashcard[i]) {
                     favouriteFlashcard.remove(at: i)
+                    print(flashcardRowNum)
                     flashcardRowNum.remove(at: i)
                     userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
                     userDefaults.set(flashcardRowNum, forKey: "Favourited Row Number")
