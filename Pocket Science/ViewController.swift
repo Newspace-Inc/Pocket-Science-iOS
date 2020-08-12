@@ -22,6 +22,7 @@ class ViewController: UIViewController, dataFromSettings {
     var userSchool:String = ""
     var userRank = ""
     var welcomeMessageShown:Bool = false
+    var numOfTimesAppWasOpened = 0
     
     let userDefaults = UserDefaults.standard
     
@@ -102,6 +103,10 @@ class ViewController: UIViewController, dataFromSettings {
             userRank = rank
         }
         
+        if let numOfTimes:Int = userDefaults.integer(forKey: "Number Of Times App Opened") {
+            numOfTimesAppWasOpened = numOfTimes
+        }
+        
         // Recently Opened
         if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
             lvlLabel.textColor = UIColor.white
@@ -132,7 +137,11 @@ class ViewController: UIViewController, dataFromSettings {
         } else {
             welcomeView.isHidden = true
         }
-                        
+        
+        numOfTimesAppWasOpened += 1
+        userDefaults.set(numOfTimesAppWasOpened, forKey: "Number Of Times App Opened")
+        
+        print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
     }
     
     // Button Config

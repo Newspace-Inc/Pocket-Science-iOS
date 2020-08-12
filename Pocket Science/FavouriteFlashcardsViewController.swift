@@ -38,6 +38,7 @@ class FavouriteFlashcardsViewController: UIViewController {
     @IBOutlet weak var UIBG: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let selectedOverall = userDefaults.string(forKey: "Overall Selected Topics") {

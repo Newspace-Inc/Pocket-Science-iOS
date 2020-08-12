@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5917C13C24337F9500107213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13A24337F9500107213 /* Main.storyboard */; };
 		5917C13E24337F9A00107213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13D24337F9A00107213 /* Assets.xcassets */; };
-		591B21A224DE6C7E00706273 /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 591B21A024DE6C7E00706273 /* Main Data.xlsx */; };
+		592EB96F24E3D75B0060DF50 /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 592EB96E24E3D75A0060DF50 /* Main Data.xlsx */; };
 		59BFA7C924DE749300A6467E /* Questions and Answers.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 59BFA7C824DE749300A6467E /* Questions and Answers.xlsx */; };
 		59BFA7CB24DE844500A6467E /* ReviewQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BFA7CA24DE844500A6467E /* ReviewQuestionsViewController.swift */; };
 		59E288EC24C155C500210814 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E288EB24C155C500210814 /* WidgetKit.framework */; };
@@ -68,7 +68,7 @@
 		5917C13B24337F9500107213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5917C13D24337F9A00107213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5917C14224337F9A00107213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		591B21A024DE6C7E00706273 /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../../../Downloads/Main Data.xlsx"; sourceTree = "<group>"; };
+		592EB96E24E3D75A0060DF50 /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../../Pocket Science Assets/Main Data.xlsx"; sourceTree = "<group>"; };
 		59BFA7C824DE749300A6467E /* Questions and Answers.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Questions and Answers.xlsx"; sourceTree = "<group>"; };
 		59BFA7CA24DE844500A6467E /* ReviewQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQuestionsViewController.swift; sourceTree = "<group>"; };
 		59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pocket Science WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +141,7 @@
 				5917C13D24337F9A00107213 /* Assets.xcassets */,
 				5917C13A24337F9500107213 /* Main.storyboard */,
 				5917C14224337F9A00107213 /* Info.plist */,
-				591B21A024DE6C7E00706273 /* Main Data.xlsx */,
+				592EB96E24E3D75A0060DF50 /* Main Data.xlsx */,
 				59BFA7C824DE749300A6467E /* Questions and Answers.xlsx */,
 				876F595324C7220F007414AA /* AppDelegate.swift */,
 				876F594B24C7220F007414AA /* SceneDelegate.swift */,
@@ -277,7 +277,7 @@
 			files = (
 				59BFA7C924DE749300A6467E /* Questions and Answers.xlsx in Resources */,
 				5917C13E24337F9A00107213 /* Assets.xcassets in Resources */,
-				591B21A224DE6C7E00706273 /* Main Data.xlsx in Resources */,
+				592EB96F24E3D75B0060DF50 /* Main Data.xlsx in Resources */,
 				5917C13C24337F9500107213 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
