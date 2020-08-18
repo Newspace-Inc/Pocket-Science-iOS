@@ -213,20 +213,6 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     @IBAction func spellingBtn(_ sender: Any) {
         // Create Alert
-        let dialogMessage = UIAlertController(title: "Work In Progress", message: "The spelling test is currently a work in progress. Please check back soon.", preferredStyle: .alert)
-        
-        // Create OK button with action handler
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            // Erase Data code
-        })
-        
-        // Create Cancel button with action handlder
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            // Cancelation code
-        }
-        
-        //Add OK and Cancel button to an Alert object
-        dialogMessage.addAction(ok)
-        dialogMessage.addAction(cancel)
+        MotionToast(message: "Spelling is still under Development! Check back soon! :)", toastType: .warning, duration: .long, toastStyle: .style_pale, toastGravity: .centre, pulseEffect: false)
     }
 }

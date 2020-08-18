@@ -88,7 +88,7 @@ class QuizViewController: UIViewController {
                     endTopicSel = Int(findTopicSelectedEnd ?? 0)
                 }
                 
-                totalAmtOfQns = endTopicSel - startTopicSel
+                totalAmtOfQns = endTopicSel - startTopicSel - 1
                  
                 if (startTopicSel + quizQuestionIndex <= endTopicSel) {
                     currentQuizQn = worksheet.cells(atRows: [UInt(startTopicSel + quizQuestionIndex)])

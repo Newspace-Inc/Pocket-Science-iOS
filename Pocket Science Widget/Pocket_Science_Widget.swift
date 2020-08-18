@@ -68,7 +68,7 @@ struct Pocket_Science_Widget: Widget {
         }
         .supportedFamilies([.systemSmall])
         .configurationDisplayName("Pocket Science")
-        .description("This helps you track your progress in Pocket Science.")
+        .description("Helps you track your Awards and Streaks.")
     }
 }
 

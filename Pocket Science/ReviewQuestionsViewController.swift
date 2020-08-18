@@ -10,7 +10,7 @@ import UIKit
 import CoreXLSX
 
 class ReviewQuestionsViewController: UIViewController {
-
+    
     // Variables
     var userName = ""
     var correctQnName = [""]
@@ -30,10 +30,10 @@ class ReviewQuestionsViewController: UIViewController {
     @IBOutlet weak var optionTwoBtn: UIButton!
     @IBOutlet weak var optionThreeBtn: UIButton!
     @IBOutlet weak var optionFourBtn: UIButton!
-    @IBOutlet weak var quizTypeLabel: UILabel!
     @IBOutlet weak var primarySchoolLvel: UILabel!
     @IBOutlet weak var questionNumber: UILabel!
     @IBOutlet weak var questionView: UITextView!
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     func getData() {
         // Collect Data
@@ -52,7 +52,7 @@ class ReviewQuestionsViewController: UIViewController {
                 else {
                     continue
                 }
-                                
+                
                 let sharedStrings = try file.parseSharedStrings()
                 let worksheet = try file.parseWorksheet(at: path)
                 
@@ -77,7 +77,7 @@ class ReviewQuestionsViewController: UIViewController {
                 }
                 
                 totalAmtOfQns = endTopicSel - startTopicSel
-                 
+                
                 if (startTopicSel + quizQuestionIndex <= endTopicSel) {
                     currentQuizQn = worksheet.cells(atRows: [UInt(startTopicSel + quizQuestionIndex)])
                         .compactMap { $0.stringValue(sharedStrings) }
@@ -92,31 +92,36 @@ class ReviewQuestionsViewController: UIViewController {
     }
     
     func quizConfig() {
-            questionNumber.text = "\(quizQuestionIndex)/\(totalAmtOfQns)"
-            print(currentQuizQn)
-            currentQuizQn.removeFirst()
-            currentQuizQn.shuffle()
-                        
-            // Set Button Lines
-            optionOneBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
-            optionOneBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-            optionTwoBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
-            optionTwoBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-            optionThreeBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
-            optionThreeBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-            optionFourBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
-            optionFourBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-            
-            // Set Button Title
-            optionOneBtn.setTitle(currentQuizQn[0], for: .normal)
-            optionTwoBtn.setTitle(currentQuizQn[1], for: .normal)
-            optionThreeBtn.setTitle(currentQuizQn[2], for: .normal)
-            optionFourBtn.setTitle(currentQuizQn[3], for: .normal)
-    }
+        questionNumber.text = "\(quizQuestionIndex)/\(totalAmtOfQns)"
+        print(currentQuizQn)
+        currentQuizQn.removeFirst()
+        currentQuizQn.shuffle()
         
+        // Set Button Lines
+        optionOneBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+        optionOneBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        optionTwoBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+        optionTwoBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        optionThreeBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+        optionThreeBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        optionFourBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
+        optionFourBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        
+        // Set Button Title
+        optionOneBtn.setTitle(currentQuizQn[0], for: .normal)
+        optionTwoBtn.setTitle(currentQuizQn[1], for: .normal)
+        optionThreeBtn.setTitle(currentQuizQn[2], for: .normal)
+        optionFourBtn.setTitle(currentQuizQn[3], for: .normal)
+        
+        // Check Correct/Wrong
+        for i in 0...currentQuizQn.count - 1 {
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let settingsUserName = userDefaults.string(forKey: "Username") {
             userName = settingsUserName
         } else {
@@ -146,24 +151,20 @@ class ReviewQuestionsViewController: UIViewController {
         if let openedLesson = userDefaults.string(forKey: "Opened Lesson") {
             selectedLesson = openedLesson
         }
-                
+        
         // Save User Points
         if userPoints != 0 {
             userDefaults.set(userPoints, forKey: "User Points")
         }
         
         getData()
+        quizConfig()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func tapGesture(_ sender: Any) {
+        quizQuestionIndex += 1
+        
+        getData()
+        quizConfig()
     }
-    */
-
 }

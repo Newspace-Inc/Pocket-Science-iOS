@@ -5,5 +5,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 target 'Pocket Science' do
     pod 'CoreXLSX'
+    pod 'MotionToastView'
 end
 

@@ -2,23 +2,27 @@ PODS:
   - CoreXLSX (0.12.0):
     - XMLCoder (~> 0.11.1)
     - ZIPFoundation (~> 0.9.11)
+  - MotionToastView (0.1.9)
   - XMLCoder (0.11.1)
   - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - CoreXLSX
+  - MotionToastView
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CoreXLSX
+    - MotionToastView
     - XMLCoder
     - ZIPFoundation
 
 SPEC CHECKSUMS:
   CoreXLSX: 6cc62592f76130f23e1b5c7d775b4bc47b099d78
+  MotionToastView: c53ef5ef34d3311cad2cb4be54bd9d149a90ca82
   XMLCoder: c4638336674de7ba279cd23f2005817d69f538e0
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 24faafeddd6cdfc69f4530bed74cbed3ac74dd01
+PODFILE CHECKSUM: 9a1dd590531f93943de8565c4a6c4f03cd5d1bf6
 
 COCOAPODS: 1.9.3

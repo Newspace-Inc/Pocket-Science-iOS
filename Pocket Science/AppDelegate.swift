@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreXLSX
+import MotionToastView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

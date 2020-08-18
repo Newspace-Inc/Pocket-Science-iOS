@@ -582,6 +582,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZK-BV-XbH">
+                                <rect key="frame" x="0.0" y="212" width="414" height="158"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favourites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vm-5c-40P">
+                                <rect key="frame" x="20" y="139" width="137" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt; Swipe Left or Right to see New Flashcards &gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3o-BN-MHv">
+                                <rect key="frame" x="49" y="783" width="316" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rbt-NV-k5C" userLabel="Flashcard">
                                 <rect key="frame" x="20" y="264" width="374" height="503"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -614,28 +636,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.90588235289999997" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favourites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vm-5c-40P">
-                                <rect key="frame" x="20" y="139" width="137" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt; Swipe Left or Right to see New Flashcards &gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3o-BN-MHv">
-                                <rect key="frame" x="49" y="783" width="316" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZK-BV-XbH">
-                                <rect key="frame" x="0.0" y="212" width="414" height="158"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w5c-tr-MIK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1581,10 +1581,10 @@
             </objects>
             <point key="canvasLocation" x="3347.826086956522" y="320.75892857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Review Questions View Controller-->
         <scene sceneID="BOK-EH-UeW">
             <objects>
-                <viewController id="icu-D6-CZS" sceneMemberID="viewController">
+                <viewController id="icu-D6-CZS" customClass="ReviewQuestionsViewController" customModule="Pocket_Science" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="azK-ei-aR3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1700,10 +1700,30 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JQb-xt-qL5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="edw-oW-TIM" appends="YES" id="cqc-U0-xdA"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="frK-Fc-h9F"/>
+                    <connections>
+                        <outlet property="optionFourBtn" destination="xwp-Za-WaR" id="h5q-GW-9mp"/>
+                        <outlet property="optionOneBtn" destination="DEA-yA-eP3" id="nTD-tR-N6b"/>
+                        <outlet property="optionThreeBtn" destination="kVI-Je-bAn" id="Jev-PE-IBI"/>
+                        <outlet property="optionTwoBtn" destination="mEG-x3-8Uz" id="XC5-3V-E7R"/>
+                        <outlet property="primarySchoolLvel" destination="dzT-tt-Bms" id="9RD-RF-13g"/>
+                        <outlet property="questionNumber" destination="3B7-YK-Gd8" id="7rz-3X-1Ki"/>
+                        <outlet property="questionView" destination="6Qa-oD-qfl" id="Moh-cK-mDn"/>
+                        <outlet property="tapGesture" destination="edw-oW-TIM" id="2Ku-su-18v"/>
+                        <outlet property="uiBG" destination="kxV-XI-NWa" id="CVN-Yd-ahS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zk6-rk-1uP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="edw-oW-TIM">
+                    <connections>
+                        <action selector="tapGesture:" destination="icu-D6-CZS" id="tSQ-m1-WSP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4484" y="321"/>
         </scene>

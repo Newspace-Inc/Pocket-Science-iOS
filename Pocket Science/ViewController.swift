@@ -8,11 +8,10 @@
 
 import UIKit
 import CoreXLSX
+import MotionToastView
 
 class ViewController: UIViewController, dataFromSettings {
-    // Call Data Collection file
-    let lessonVC = LessonsViewController()
-    
+        
     // Variables
     var recentlyOpenedTopic:String = LessonsViewController().recentlyOpenedLevel
     var userPoints:Int = 0
@@ -38,7 +37,6 @@ class ViewController: UIViewController, dataFromSettings {
     
     // Views
     @IBOutlet weak var welcomeView: UIView!
-    
     
     // Background Padding
     @IBOutlet weak var bgPad: UILabel!
@@ -142,6 +140,7 @@ class ViewController: UIViewController, dataFromSettings {
         userDefaults.set(numOfTimesAppWasOpened, forKey: "Number Of Times App Opened")
         
         print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
+        
     }
     
     // Button Config

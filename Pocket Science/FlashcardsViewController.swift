@@ -20,8 +20,10 @@ extension UIView {
         }
         
         if r2lDirection == true {
+            print(r2lDirection)
             leftToRightTransition.subtype = CATransitionSubtype.fromLeft
         } else {
+            print(r2lDirection)
             leftToRightTransition.subtype = CATransitionSubtype.fromRight
         }
         
@@ -110,18 +112,23 @@ class FlashcardsViewController: UIViewController {
                 if findLessonSelectedEnd != nil {
                     lessonsSelRowEnd = Int(findLessonSelectedEnd ?? 0) + 1
                 }
-                
-                print(lessonsSelRowStart)
-                print(lessonsSelRowEnd)
-                
-                for _ in lessonsSelRowStart...lessonsSelRowEnd - 1 {
-                    if (lessonsSelRowStart + index <= lessonsSelRowEnd) {
-                        var parsingFlashcards = worksheet.cells(atRows: [UInt(lessonsSelRowStart + index)])
-                            .compactMap { $0.stringValue(sharedStrings) }
-                        parsingFlashcards = parsingFlashcards.remove("Empty Cell")
-                        
-                        data["Flashcard \(index)"] = parsingFlashcards
-                        index += 1
+                                                
+                if (lessonsSelRowStart == lessonsSelRowEnd) {
+                    var parsingFlashcards = worksheet.cells(atRows: [UInt(lessonsSelRowStart)])
+                        .compactMap { $0.stringValue(sharedStrings) }
+                    parsingFlashcards = parsingFlashcards.remove("Empty Cell")
+                    
+                    data["Flashcard \(1)"] = parsingFlashcards
+                } else {
+                    for _ in lessonsSelRowStart...lessonsSelRowEnd - 1 {
+                        if (lessonsSelRowStart + index <= lessonsSelRowEnd) {
+                            var parsingFlashcards = worksheet.cells(atRows: [UInt(lessonsSelRowStart + index)])
+                                .compactMap { $0.stringValue(sharedStrings) }
+                            parsingFlashcards = parsingFlashcards.remove("Empty Cell")
+                            
+                            data["Flashcard \(index)"] = parsingFlashcards
+                            index += 1
+                        } 
                     }
                 }
                 index = 1
@@ -133,7 +140,6 @@ class FlashcardsViewController: UIViewController {
     
     func checkFavourited() {
         let count = favouriteFlashcard.count - 1
-        print(favouriteFlashcard)
         if (count == -1) { // When count is -1, favouriteFlashcard.count = 0, meaning that there are no favourited items.
             isFlashcardFavourited = false
         } else if (count == 0) { // When count is 0, favouriteFlashcard.count = 1, meaning that there are at least 1 favourited items.
@@ -168,14 +174,14 @@ class FlashcardsViewController: UIViewController {
                 fatalError("Image does not exist or is corrupted.")
             }
         }
-        print(isFlashcardFavourited)
     }
     
     var storedFlashcardIndex = 0
     var storedFlashcardData:Array<String> = []
+    
     func configFlashcards() {
         currentFlashcard.removeAll()
-        
+                
         if ((data["Flashcard \(flashcardsIndex)"]) == nil) {
             if let tempData = data["Flashcard \(storedFlashcardIndex)"] {
                 currentFlashcard = tempData
@@ -190,7 +196,7 @@ class FlashcardsViewController: UIViewController {
             }
             storedFlashcardIndex = flashcardsIndex
             storedFlashcardData = currentFlashcard
-        }
+}
         
         conceptName = currentFlashcard[2]
         
@@ -205,7 +211,7 @@ class FlashcardsViewController: UIViewController {
         textField.text = "\(flashcardKnowledge)"
         
         checkFavourited()
-    }
+}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -247,16 +253,13 @@ class FlashcardsViewController: UIViewController {
     
     @IBAction func favouriteBtn(_ sender: Any) {
         checkFavourited()
-        
-        print(isFlashcardFavourited)
-        
+                
         if (isFlashcardFavourited == true) {
             // Remove Favourite
             let count = favouriteFlashcard.count - 1
             if (count != 0) {
                 for i in 0...count {
                     if (conceptName == favouriteFlashcard[i]) {
-                        print(i)
                         favouriteFlashcard.remove(at: i)
                         favouriteFlashcard.remove(at: i)
                         if let image = UIImage(named: "heart.empty") {
@@ -296,7 +299,8 @@ class FlashcardsViewController: UIViewController {
     }
     
     @IBAction func swipeGesture(_ sender: UISwipeGestureRecognizer) {
-        if swipeGesture.direction == .left {
+        if (swipeGesture.direction == .left) {
+            print("yes")
             
             if (flashcardsIndex < 0) {
                 flashcardsIndex = 0
@@ -307,19 +311,26 @@ class FlashcardsViewController: UIViewController {
             if (flashcardsIndex < 0) {
                 flashcardsIndex = 0
             }
+                        
+            let tF = false
             
-            flashcardBG.flashcardAnimation(r2lDirection: false)
+            flashcardBG.flashcardAnimation(r2lDirection: tF)
+            print(tF)
             
             configFlashcards()
             checkFavourited()
+            
         } else if (swipeGesture.direction == .right) {
             flashcardsIndex += 1
             
             if (flashcardsIndex < 0) {
                 flashcardsIndex = 0
             }
+                        
+            let tF = true
             
-            flashcardBG.flashcardAnimation(r2lDirection: true)
+            flashcardBG.flashcardAnimation(r2lDirection: tF)
+            print(tF)
             
             configFlashcards()
             checkFavourited()
