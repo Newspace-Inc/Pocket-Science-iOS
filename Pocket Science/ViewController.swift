@@ -34,9 +34,11 @@ class ViewController: UIViewController, dataFromSettings {
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var dismissWelcomeMessage: UIButton!
+    @IBOutlet weak var dismissEarnedAward: UIButton!
     
     // Views
     @IBOutlet weak var welcomeView: UIView!
+    @IBOutlet weak var earnedAwardView: UIView!
     
     // Background Padding
     @IBOutlet weak var bgPad: UILabel!
@@ -58,6 +60,8 @@ class ViewController: UIViewController, dataFromSettings {
         bgPad.clipsToBounds = true
         welcomeView.clipsToBounds = true
         dismissWelcomeMessage.clipsToBounds = true
+        earnedAwardView.clipsToBounds = true
+        dismissEarnedAward.clipsToBounds = true
         
         // Curved Edges
         recentlyOpenedBtn.layer.cornerRadius = 20
@@ -66,6 +70,8 @@ class ViewController: UIViewController, dataFromSettings {
         bgPad.layer.cornerRadius = 20
         welcomeView.layer.cornerRadius = 20
         dismissWelcomeMessage.layer.cornerRadius = 10
+        earnedAwardView.layer.cornerRadius = 20
+        dismissEarnedAward.layer.cornerRadius = 10
                         
         // Change Label Text to Data
         pointLabel.text = "\(userPoints) Points"

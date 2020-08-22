@@ -40,7 +40,6 @@ extension UIView {
 class FlashcardsViewController: UIViewController {
     
     // UI Elements
-    @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
     @IBOutlet weak var conceptNameLabel: UILabel!
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var favouriteButton: UIButton!
@@ -246,6 +245,15 @@ class FlashcardsViewController: UIViewController {
         flashcardBG.layer.cornerRadius = 20
         uiBG.layer.cornerRadius = 20
         
+        // Config Swipe Gesture
+        let rightSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+                rightSwipeRecognizer.direction = .right
+        self.view.addGestureRecognizer(rightSwipeRecognizer)
+                
+                let leftSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+                leftSwipeRecognizer.direction = .left
+        self.view.addGestureRecognizer(leftSwipeRecognizer)
+        
         getData()
         configFlashcards()
         checkFavourited()
@@ -298,42 +306,39 @@ class FlashcardsViewController: UIViewController {
         userDefaults.set(favouritedRowNum, forKey: "Favourited Row Number")
     }
     
-    @IBAction func swipeGesture(_ sender: UISwipeGestureRecognizer) {
-        if (swipeGesture.direction == .left) {
-            print("yes")
-            
-            if (flashcardsIndex < 0) {
-                flashcardsIndex = 0
-            } else {
-                flashcardsIndex -= 1
-            }
-            
-            if (flashcardsIndex < 0) {
-                flashcardsIndex = 0
-            }
-                        
-            let tF = false
-            
-            flashcardBG.flashcardAnimation(r2lDirection: tF)
-            print(tF)
-            
-            configFlashcards()
-            checkFavourited()
-            
-        } else if (swipeGesture.direction == .right) {
-            flashcardsIndex += 1
-            
-            if (flashcardsIndex < 0) {
-                flashcardsIndex = 0
-            }
-                        
-            let tF = true
-            
-            flashcardBG.flashcardAnimation(r2lDirection: tF)
-            print(tF)
-            
-            configFlashcards()
-            checkFavourited()
+    @objc func swipeRight(_ swipeGesture: UISwipeGestureRecognizer) {
+        flashcardsIndex += 1
+        
+        if (flashcardsIndex < 0) {
+            flashcardsIndex = 0
         }
+                    
+        let tF = true
+        
+        flashcardBG.flashcardAnimation(r2lDirection: tF)
+        print(tF)
+        
+        configFlashcards()
+        checkFavourited()
+    }
+    
+    @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer) {
+        if (flashcardsIndex < 0) {
+            flashcardsIndex = 0
+        } else {
+            flashcardsIndex -= 1
+        }
+        
+        if (flashcardsIndex < 0) {
+            flashcardsIndex = 0
+        }
+                    
+        let tF = false
+        
+        flashcardBG.flashcardAnimation(r2lDirection: tF)
+        print(tF)
+        
+        configFlashcards()
+        checkFavourited()
     }
 }
