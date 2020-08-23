@@ -90,7 +90,7 @@ class QuizViewController: UIViewController {
                 
                 totalAmtOfQns = endTopicSel - startTopicSel - 1
                  
-                if (startTopicSel + quizQuestionIndex <= endTopicSel) {
+                if (startTopicSel + (quizQuestionIndex - 1) <= endTopicSel) {
                     currentQuizQn = worksheet.cells(atRows: [UInt(startTopicSel + quizQuestionIndex)])
                         .compactMap { $0.stringValue(sharedStrings) }
                 }
@@ -269,5 +269,8 @@ class QuizViewController: UIViewController {
             getData()
             quizConfig()
         }
+    }
+    @IBAction func retryQuiz( _ seg: UIStoryboardSegue) {
+        self.loadView()
     }
 }

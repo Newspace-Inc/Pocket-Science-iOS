@@ -79,11 +79,8 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         
         if (primaryLevel == "Lower Primary") {
             cell.textLabel!.text = "\(lowerPriTopics[indexPath.row])"
-            cell.detailTextLabel!.text = "\(lowerPriTopicsAmt[indexPath.row])"
         } else {
             cell.textLabel!.text = "\(upperPriTopics[indexPath.row])"
-            cell.detailTextLabel!.text = "\(upperPriTopicsAmt[indexPath.row])"
-
         }
         return cell
     }
@@ -112,8 +109,7 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         performSegue(withIdentifier: "lessons", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func unwind( _ seg: UIStoryboardSegue) {
+        
     }
 }
