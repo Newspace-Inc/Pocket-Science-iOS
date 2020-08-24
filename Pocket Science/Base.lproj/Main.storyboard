@@ -71,7 +71,7 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Maestro Badge" translatesAutoresizingMaskIntoConstraints="NO" id="URv-y6-jkW">
                                                         <rect key="frame" x="0.0" y="0.0" width="123" height="82.5"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Badge Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6g-uT-sbG">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Mastero Badge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6g-uT-sbG">
                                                         <rect key="frame" x="0.0" y="83.5" width="123" height="17"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -385,7 +385,19 @@
                     <navigationItem key="navigationItem" id="1mf-sF-OZ3"/>
                     <connections>
                         <outlet property="badgesLabel" destination="N59-Gh-UYO" id="ZMy-Cf-EWC"/>
+                        <outlet property="beginnerImage" destination="UyY-dP-A2q" id="U7D-Vo-xjk"/>
+                        <outlet property="bookworkImage" destination="eZT-LM-WhO" id="kYr-78-oyP"/>
+                        <outlet property="diligentAntImage" destination="05f-Ff-LdZ" id="crw-bm-Grj"/>
+                        <outlet property="expertImage" destination="t4E-lS-Dgf" id="4um-VI-JGG"/>
+                        <outlet property="frequentMemberImage" destination="Jyd-ws-voa" id="Jxx-QM-M3j"/>
+                        <outlet property="industriousBeeImage" destination="8hm-Q8-SuC" id="Hza-Ha-lJr"/>
+                        <outlet property="masteroImage" destination="URv-y6-jkW" id="Nmi-Qf-hAH"/>
+                        <outlet property="normalMemberImage" destination="HiX-Db-7Ik" id="0mv-SA-sHM"/>
+                        <outlet property="regularMemberImage" destination="wi6-mT-rqc" id="t27-hR-WwK"/>
                         <outlet property="scrollView" destination="ir1-YR-fVG" id="41S-xl-gYm"/>
+                        <outlet property="streakerBronzeImage" destination="7uS-xv-AwH" id="zr9-SK-P7p"/>
+                        <outlet property="streakerGoldImage" destination="YKi-mv-qBG" id="ODm-8B-t2r"/>
+                        <outlet property="streakerSilverImage" destination="6h3-IF-6oa" id="Whh-xC-kWY"/>
                         <outlet property="uiBG" destination="b05-cY-Xf0" id="E4n-DL-GvQ"/>
                     </connections>
                 </viewController>

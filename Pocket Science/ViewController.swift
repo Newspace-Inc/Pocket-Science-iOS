@@ -22,6 +22,7 @@ class ViewController: UIViewController, dataFromSettings {
     var userRank = ""
     var welcomeMessageShown:Bool = false
     var numOfTimesAppWasOpened = 0
+    var earnedAwards:Array<String> = []
     
     let userDefaults = UserDefaults.standard
     
@@ -146,6 +147,8 @@ class ViewController: UIViewController, dataFromSettings {
         userDefaults.set(numOfTimesAppWasOpened, forKey: "Number Of Times App Opened")
         
         print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
+        
+        userDefaults.set(earnedAwards, forKey: "Earned Awards")
         
     }
     

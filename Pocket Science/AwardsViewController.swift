@@ -27,6 +27,21 @@ class AwardsViewController: UIViewController {
     @IBOutlet weak var uiBG: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    // Award Image Views
+    @IBOutlet weak var beginnerImage: UIImageView!
+    @IBOutlet weak var expertImage: UIImageView!
+    @IBOutlet weak var masteroImage: UIImageView!
+    @IBOutlet weak var streakerBronzeImage: UIImageView!
+    @IBOutlet weak var streakerSilverImage: UIImageView!
+    @IBOutlet weak var streakerGoldImage: UIImageView!
+    @IBOutlet weak var bookworkImage: UIImageView!
+    @IBOutlet weak var diligentAntImage: UIImageView!
+    @IBOutlet weak var industriousBeeImage: UIImageView!
+    @IBOutlet weak var normalMemberImage: UIImageView!
+    @IBOutlet weak var regularMemberImage: UIImageView!
+    @IBOutlet weak var frequentMemberImage: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
