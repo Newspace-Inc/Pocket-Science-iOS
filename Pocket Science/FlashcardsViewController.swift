@@ -20,10 +20,8 @@ extension UIView {
         }
         
         if r2lDirection == true {
-            print(r2lDirection)
             leftToRightTransition.subtype = CATransitionSubtype.fromLeft
         } else {
-            print(r2lDirection)
             leftToRightTransition.subtype = CATransitionSubtype.fromRight
         }
         
@@ -111,14 +109,6 @@ class FlashcardsViewController: UIViewController {
                 if findLessonSelectedEnd != nil {
                     lessonsSelRowEnd = Int(findLessonSelectedEnd ?? 0) + 1
                 }
-                                                
-                if (lessonsSelRowStart == lessonsSelRowEnd) {
-                    var parsingFlashcards = worksheet.cells(atRows: [UInt(lessonsSelRowStart)])
-                        .compactMap { $0.stringValue(sharedStrings) }
-                    parsingFlashcards = parsingFlashcards.remove("Empty Cell")
-                    
-                    data["Flashcard \(1)"] = parsingFlashcards
-                } else {
                     for _ in lessonsSelRowStart...lessonsSelRowEnd - 1 {
                         if (lessonsSelRowStart + index <= lessonsSelRowEnd) {
                             var parsingFlashcards = worksheet.cells(atRows: [UInt(lessonsSelRowStart + index)])
@@ -129,8 +119,6 @@ class FlashcardsViewController: UIViewController {
                             index += 1
                         } 
                     }
-                }
-                index = 1
             }
         } catch {
             fatalError("\(error.localizedDescription)")
@@ -312,14 +300,19 @@ class FlashcardsViewController: UIViewController {
         if (flashcardsIndex < 0) {
             flashcardsIndex = 0
         }
-                    
-        let tF = true
         
-        flashcardBG.flashcardAnimation(r2lDirection: tF)
-        print(tF)
-        
-        configFlashcards()
-        checkFavourited()
+        if (lessonsSelRowEnd - lessonsSelRowStart == flashcardsIndex) {
+            print("End of Flashcards")
+        } else {
+            let tF = true
+            
+            flashcardBG.flashcardAnimation(r2lDirection: tF)
+            
+            configFlashcards()
+            checkFavourited()
+        }
+        print(data.count)
+        print(currentFlashcard)
     }
     
     @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer) {
@@ -332,13 +325,20 @@ class FlashcardsViewController: UIViewController {
         if (flashcardsIndex < 0) {
             flashcardsIndex = 0
         }
-                    
-        let tF = false
         
-        flashcardBG.flashcardAnimation(r2lDirection: tF)
-        print(tF)
+        if (lessonsSelRowEnd - lessonsSelRowStart == flashcardsIndex) {
+            print("End of Flashcards")
+        } else {
+            let tF = false
+            
+            flashcardBG.flashcardAnimation(r2lDirection: tF)
+            
+            configFlashcards()
+            checkFavourited()
+        }
+        print("\(lessonsSelRowEnd - lessonsSelRowStart) yes")
         
-        configFlashcards()
-        checkFavourited()
+        print(data.count)
+        print(currentFlashcard)
     }
 }

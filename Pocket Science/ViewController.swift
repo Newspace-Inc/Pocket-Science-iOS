@@ -141,6 +141,7 @@ class ViewController: UIViewController, dataFromSettings {
             welcomeView.isHidden = false
         } else {
             welcomeView.isHidden = true
+            earnedAwards.append("Beginner Badge")
         }
         
         numOfTimesAppWasOpened += 1
@@ -148,8 +149,8 @@ class ViewController: UIViewController, dataFromSettings {
         
         print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
         
+        print(earnedAwards)
         userDefaults.set(earnedAwards, forKey: "Earned Awards")
-        
     }
     
     // Button Config

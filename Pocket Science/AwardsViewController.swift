@@ -9,7 +9,7 @@
 import UIKit
 
 class AwardsViewController: UIViewController {
-
+    
     
     let userDefaults = UserDefaults.standard
     
@@ -20,7 +20,9 @@ class AwardsViewController: UIViewController {
     var userPoints = 0
     var tierRewards = [""]
     var userTier = ""
-    var userAwards = [""]
+    var earnedAwards = [""]
+    var notEarnedImage = ["Beginner_Not_Earned", "Bookworm_Not_Earned","Brainy_Not_Earned", "Diligent_Ant_Not_Earned","Expert_Not_Earned", "Industrious_Bee_Not_Earned","Maestro_Not_Earned","Normal member_Not_Earned","Perfectionist_Not_Earned","Quintessential_Not_Earned","Regular member_Not_Earned","Star collector_Not_Earned", "Streaker_Bronze_Not_Earned", "Streaker_Gold_Not_Earned","Streaker_Silver_Not_Earned"]
+    var earnedImage = ["Beginner Badge", "Bookworm Badge", "Brainy Badge", "Diligent Ant Badge", "Expert Badge", "Frequent Member Badge", "Industrious Bee Badge", "Maestro Badge", "Normal Member Badge", "Perfectionist Badge", "Regular Member Badge","Star Collector Badge","Streaker Bronze Badge","Streaker Gold Badge", "Streaker Silver Badge"]
     
     // UI Elements
     @IBOutlet weak var badgesLabel: UILabel!
@@ -63,6 +65,20 @@ class AwardsViewController: UIViewController {
             userDefaults.set(userPoints, forKey: "User Points")
         }
         
+        if let earned = userDefaults.object(forKey: "Earned Awards") {
+            earnedAwards = earned as! [String]
+        }
+        
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+            userPoints = userPointsGrab
+        }
+        
+        if let rank = userDefaults.string(forKey: "User Tier") {
+            userTier = rank
+        } else {
+            userTier = "NIL"
+        }
+        
         // Set Clip to Bounds
         badgesLabel.clipsToBounds = true
         uiBG.clipsToBounds = true
@@ -71,17 +87,74 @@ class AwardsViewController: UIViewController {
         badgesLabel.layer.cornerRadius = 20
         uiBG.layer.cornerRadius = 20
         
+        // Set Scroll View
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: 671)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
-            userPoints = userPointsGrab
+        
+        // Check User Awards
+        if (earnedAwards.count == 1) {
+            print("yes")
+            beginnerImage.image = UIImage(named: earnedImage[0])
+            return
+        } else {
+            for i in 0...earnedImage.count - 1 {
+                print(i)
+                print("\(earnedAwards.count) Earned Awards Count")
+                if (i + 1 == earnedAwards.count) {
+                    print("yes")
+                    beginnerImage.image = UIImage(named: earnedImage[i])
+                    return
+                } else {
+                    if (earnedAwards[i] == earnedImage[i]) {
+                        if (earnedAwards[i] == "Beginner Badge") {
+                            beginnerImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Bookworm Badge") {
+                            bookworkImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Diligent Ant Badge") {
+                            diligentAntImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Expert Badge") {
+                            expertImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Frequent Member Badge") {
+                            frequentMemberImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Industrious Bee Badge") {
+                            industriousBeeImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Normal Member Badge") {
+                            normalMemberImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Regular Member Badge") {
+                            regularMemberImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Streaker Gold Badge") {
+                            streakerGoldImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Streaker Bronze Badge") {
+                            streakerBronzeImage.image = UIImage(named: earnedImage[i])
+                        } else if (earnedAwards[i] == "Streaker Silver Badge") {
+                            streakerSilverImage.image = UIImage(named: earnedImage[i])
+                        }
+                    } else {
+                        if (earnedAwards[i] != "Beginner Badge") {
+                            beginnerImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Bookworm Badge") {
+                            bookworkImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Diligent Ant Badge") {
+                            diligentAntImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Expert Badge") {
+                            expertImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Frequent Member Badge") {
+                            frequentMemberImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Industrious Bee Badge") {
+                            industriousBeeImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Normal Member Badge") {
+                            normalMemberImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Regular Member Badge") {
+                            regularMemberImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Streaker Gold Badge") {
+                            streakerGoldImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Streaker Bronze Badge") {
+                            streakerBronzeImage.image = UIImage(named: notEarnedImage[i])
+                        } else if (earnedAwards[i] != "Streaker Silver Badge") {
+                            streakerSilverImage.image = UIImage(named: notEarnedImage[i])
+                        }
+                    }
+                }
+            }
         }
-        if let rank = userDefaults.string(forKey: "User Tier") {
-              userTier = rank
-          } else {
-              userTier = "NIL"
-          }
     }
 }
