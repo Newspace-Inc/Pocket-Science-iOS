@@ -316,14 +316,10 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer) {
-        if (flashcardsIndex < 0) {
-            flashcardsIndex = 0
-        } else {
-            flashcardsIndex -= 1
-        }
+        flashcardsIndex -= 1
         
-        if (flashcardsIndex < 0) {
-            flashcardsIndex = 0
+        if (flashcardsIndex >= 0) {
+            flashcardsIndex == 0
         }
         
         if (lessonsSelRowEnd - lessonsSelRowStart == flashcardsIndex) {

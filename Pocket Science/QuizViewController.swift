@@ -132,6 +132,17 @@ class QuizViewController: UIViewController {
         }
     }
     
+    
+    func initQuiz() {
+        amtOfCorrectAns = 0
+        amtOfPointsEarned = 0
+        totalAmtOfQns = 0
+        correctAns = ""
+        correctQnName = [""]
+        incorrectQnName = [""]
+        currentQn = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -200,7 +211,9 @@ class QuizViewController: UIViewController {
             incorrectQnName.append(currentQn)
         }
         
-        if (quizQuestionIndex == totalAmtOfQns) {
+        print(totalAmtOfQns)
+        
+        if (quizQuestionIndex == totalAmtOfQns + 1) {
             userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             userDefaults.set(correctQnName, forKey: "Correct Qns Array")
             userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
@@ -220,7 +233,7 @@ class QuizViewController: UIViewController {
             incorrectQnName.append(currentQn)
         }
         
-        if (quizQuestionIndex == totalAmtOfQns) {
+        if (quizQuestionIndex == totalAmtOfQns + 1) {
             userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             userDefaults.set(correctQnName, forKey: "Correct Qns Array")
             userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
@@ -240,7 +253,7 @@ class QuizViewController: UIViewController {
             incorrectQnName.append(currentQn)
         }
         
-        if (quizQuestionIndex == totalAmtOfQns) {
+        if (quizQuestionIndex == totalAmtOfQns + 1) {
             userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             userDefaults.set(correctQnName, forKey: "Correct Qns Array")
             userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
@@ -260,7 +273,7 @@ class QuizViewController: UIViewController {
             incorrectQnName.append(currentQn)
         }
         
-        if (quizQuestionIndex == totalAmtOfQns) {
+        if (quizQuestionIndex == totalAmtOfQns + 1) {
             userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             userDefaults.set(correctQnName, forKey: "Correct Qns Array")
             userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")

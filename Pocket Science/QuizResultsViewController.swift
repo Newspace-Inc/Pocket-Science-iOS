@@ -118,6 +118,6 @@ class QuizResultsViewController: UIViewController {
     }
     
     @IBAction func reviewBtn(_ sender: Any) {
-        MotionToast(message: "Quiz Revision is still under Development! Check back soon! :)", toastType: .warning, duration: .short, toastStyle: .style_vibrant, toastGravity: .centre, pulseEffect: false)
+        MotionToast(message: "Quiz Revision is still under Development! Check back soon! :)", toastType: .info, duration: .short, toastStyle: .style_vibrant, toastGravity: .centre, pulseEffect: false)
     }
 }

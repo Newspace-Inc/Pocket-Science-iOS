@@ -20,6 +20,8 @@ class ReviewQuestionsViewController: UIViewController {
     var primaryLevel = ""
     var selectedLesson = ""
     var quizQuestionIndex = 1
+    var currentQuestion = ""
+    var questionAnswer = ""
     var currentQuizQn:Array<String> = []
     
     let userDefaults = UserDefaults.standard
@@ -83,8 +85,11 @@ class ReviewQuestionsViewController: UIViewController {
                         .compactMap { $0.stringValue(sharedStrings) }
                 }
                 
+                questionView.text = currentQuizQn[2]
+                currentQuestion = questionView.text
+                questionAnswer = currentQuizQn[6]
+                
                 currentQuizQn.removeSubrange(0..<2)
-                print(currentQuizQn)
             }
         } catch {
             fatalError("\(error.localizedDescription)")
@@ -93,9 +98,10 @@ class ReviewQuestionsViewController: UIViewController {
     
     func quizConfig() {
         questionNumber.text = "\(quizQuestionIndex)/\(totalAmtOfQns)"
-        print(currentQuizQn)
         currentQuizQn.removeFirst()
-        currentQuizQn.shuffle()
+        for i in 0...3 {
+            currentQuizQn.shuffle()
+        }
         
         // Set Button Lines
         optionOneBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
@@ -114,8 +120,88 @@ class ReviewQuestionsViewController: UIViewController {
         optionFourBtn.setTitle(currentQuizQn[3], for: .normal)
         
         // Check Correct/Wrong
-        for i in 0...currentQuizQn.count - 1 {
+        if (quizQuestionIndex == totalAmtOfQns) {
             
+        } else {
+            // Check Correct/Wrong
+            
+            if (questionAnswer == optionOneBtn.currentTitle) { // Check if the text of button one is the correct answer
+                optionOneBtn.backgroundColor = UIColor.systemGreen
+                optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                optionFourBtn.backgroundColor = UIColor.secondaryLabel
+            } else if (questionAnswer == optionTwoBtn.currentTitle) { // Check if the text of button two is the correct answer
+                optionTwoBtn.backgroundColor = UIColor.systemGreen
+                optionOneBtn.backgroundColor = UIColor.secondaryLabel
+                optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                optionFourBtn.backgroundColor = UIColor.secondaryLabel
+            } else if (questionAnswer == optionThreeBtn.currentTitle) { // Check if the text of button three is the correct answer
+                optionThreeBtn.backgroundColor = UIColor.systemGreen
+                optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                optionOneBtn.backgroundColor = UIColor.secondaryLabel
+                optionFourBtn.backgroundColor = UIColor.secondaryLabel
+            } else if (questionAnswer == optionFourBtn.currentTitle) { // Check if the text of button four is the correct answer
+                optionFourBtn.backgroundColor = UIColor.systemGreen
+                optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                optionOneBtn.backgroundColor = UIColor.secondaryLabel
+            }
+            
+            if (correctQnName.count == 0) { // User got all questions incorrect
+                for i in 0...incorrectQnName.count - 1 {
+                    if (optionOneBtn.currentTitle == incorrectQnName[i]) {
+                        optionOneBtn.backgroundColor = UIColor.systemRed
+                        optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                        optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                        optionFourBtn.backgroundColor = UIColor.secondaryLabel
+                    } else if (optionTwoBtn.currentTitle == incorrectQnName[i]) {
+                        optionTwoBtn.backgroundColor = UIColor.systemRed
+                        optionOneBtn.backgroundColor = UIColor.secondaryLabel
+                        optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                        optionFourBtn.backgroundColor = UIColor.secondaryLabel
+                    } else if (optionThreeBtn.currentTitle == incorrectQnName[i]) {
+                        optionThreeBtn.backgroundColor = UIColor.systemRed
+                        optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                        optionOneBtn.backgroundColor = UIColor.secondaryLabel
+                        optionFourBtn.backgroundColor = UIColor.secondaryLabel
+                    } else if (optionFourBtn.currentTitle == incorrectQnName[i]) {
+                        optionFourBtn.backgroundColor = UIColor.systemRed
+                        optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                        optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                        optionOneBtn.backgroundColor = UIColor.secondaryLabel
+                    } else {
+                        fatalError("Incorrect Qns not found")
+                    }
+                }
+            } else { // User got at least 1 question correct
+                for i in 0...incorrectQnName.count - 1 {
+                    if (optionOneBtn.currentTitle == incorrectQnName[i]) {
+                        print(optionOneBtn.currentTitle == incorrectQnName[i])
+                        optionOneBtn.backgroundColor = UIColor.systemRed
+                        optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                        optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                        optionFourBtn.backgroundColor = UIColor.secondaryLabel
+                    } else if (optionTwoBtn.currentTitle == incorrectQnName[i]) {
+                        print(optionTwoBtn.currentTitle == incorrectQnName[i])
+                        optionTwoBtn.backgroundColor = UIColor.systemRed
+                        optionOneBtn.backgroundColor = UIColor.secondaryLabel
+                        optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                        optionFourBtn.backgroundColor = UIColor.secondaryLabel
+                    } else if (optionThreeBtn.currentTitle == incorrectQnName[i]) {
+                        print(optionThreeBtn.currentTitle == incorrectQnName[i])
+                        optionThreeBtn.backgroundColor = UIColor.systemRed
+                        optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                        optionOneBtn.backgroundColor = UIColor.secondaryLabel
+                        optionFourBtn.backgroundColor = UIColor.secondaryLabel
+                    } else if (optionFourBtn.currentTitle == incorrectQnName[i]) {
+                        print(optionFourBtn.currentTitle == incorrectQnName[i])
+                        optionFourBtn.backgroundColor = UIColor.systemRed
+                        optionTwoBtn.backgroundColor = UIColor.secondaryLabel
+                        optionThreeBtn.backgroundColor = UIColor.secondaryLabel
+                        optionOneBtn.backgroundColor = UIColor.secondaryLabel
+                    }
+                }
+            }
         }
     }
     
@@ -163,6 +249,7 @@ class ReviewQuestionsViewController: UIViewController {
     
     @IBAction func tapGesture(_ sender: Any) {
         quizQuestionIndex += 1
+        print(quizQuestionIndex)
         
         getData()
         quizConfig()
