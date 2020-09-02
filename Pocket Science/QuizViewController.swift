@@ -24,7 +24,7 @@ class QuizViewController: UIViewController {
     var userSelectedTopic = [""]
     var correctAns = ""
     var correctQnName = [""]
-    var incorrectQnName = [""]
+    var incorrectQnName:Dictionary = [String: String]()
     var currentQn = ""
     
     var quizQuestionIndex = 1
@@ -110,7 +110,9 @@ class QuizViewController: UIViewController {
             questionView.text = currentQn
             correctAns = currentQuizQn.last ?? "NIL"
             currentQuizQn.removeFirst()
-            currentQuizQn.shuffle()
+            for _ in 0...3 {
+                currentQuizQn.shuffle()
+            }
                         
             // Set Button Lines
             optionOneBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
@@ -139,7 +141,6 @@ class QuizViewController: UIViewController {
         totalAmtOfQns = 0
         correctAns = ""
         correctQnName = [""]
-        incorrectQnName = [""]
         currentQn = ""
     }
     
@@ -208,7 +209,7 @@ class QuizViewController: UIViewController {
         if (optionOneBtn.currentTitle == correctAns) {
             correctQnName.append(currentQn)
         } else {
-            incorrectQnName.append(currentQn)
+            incorrectQnName[currentQn] = optionOneBtn.currentTitle
         }
         
         print(totalAmtOfQns)
@@ -230,7 +231,7 @@ class QuizViewController: UIViewController {
         if (optionTwoBtn.currentTitle == correctAns) {
             correctQnName.append(currentQn)
         } else {
-            incorrectQnName.append(currentQn)
+            incorrectQnName[currentQn] = optionTwoBtn.currentTitle
         }
         
         if (quizQuestionIndex == totalAmtOfQns + 1) {
@@ -250,7 +251,7 @@ class QuizViewController: UIViewController {
         if (optionThreeBtn.currentTitle == correctAns) {
             correctQnName.append(currentQn)
         } else {
-            incorrectQnName.append(currentQn)
+            incorrectQnName[currentQn] = optionThreeBtn.currentTitle
         }
         
         if (quizQuestionIndex == totalAmtOfQns + 1) {
@@ -270,7 +271,7 @@ class QuizViewController: UIViewController {
         if (optionFourBtn.currentTitle == correctAns) {
             correctQnName.append(currentQn)
         } else {
-            incorrectQnName.append(currentQn)
+            incorrectQnName[currentQn] = optionFourBtn.currentTitle
         }
         
         if (quizQuestionIndex == totalAmtOfQns + 1) {
