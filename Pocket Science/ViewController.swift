@@ -23,6 +23,8 @@ class ViewController: UIViewController, dataFromSettings {
     var welcomeMessageShown:Bool = false
     var numOfTimesAppWasOpened = 0
     var earnedAwards:Array<String> = []
+    let lowerPriColour = UIColor(red: 117, green: 170, blue: 230, alpha: 1.0)
+    let upperPriColour = UIColor(red: 86, green: 146, blue: 229, alpha: 1.0)
     
     let userDefaults = UserDefaults.standard
     
@@ -114,22 +116,18 @@ class ViewController: UIViewController, dataFromSettings {
         
         // Recently Opened
         if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
-            lvlLabel.textColor = UIColor.white
-            topicLabel.textColor = UIColor.white
             lvlLabel.text = "\(recentlyOpenedTopic)"
             topicLabel.text = "5 Chapters"
             lvlLabel.alpha = 1
             topicLabel.alpha = 1
-            recentlyOpenedBtn.backgroundColor = UIColor(red: 50.0/255.0, green: 170.0/255.0, blue: 149.0/255.0, alpha: 1.0)
+            recentlyOpenedBtn.backgroundColor = lowerPriColour
             recentlyOpenedBtn.setTitle("", for: .normal)
         } else if (recentlyOpenedTopic == "Upper Primary" || primaryLevel == "Upper Primary") {
             lvlLabel.text = "\(recentlyOpenedTopic)"
             topicLabel.text = "4 Chapters"
-            lvlLabel.textColor = UIColor.gray
-            topicLabel.textColor = UIColor.gray
             lvlLabel.alpha = 1
             topicLabel.alpha = 1
-            recentlyOpenedBtn.backgroundColor = UIColor(red: 243.0/255.0, green: 223.0/255.0, blue: 162.0/255.0, alpha: 1.0)
+            recentlyOpenedBtn.backgroundColor = lowerPriColour
             recentlyOpenedBtn.setTitle("", for: .normal)
         }
         
