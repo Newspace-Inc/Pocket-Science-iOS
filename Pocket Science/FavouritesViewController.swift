@@ -36,11 +36,17 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        // Check for Favourite Flashcards
+        if (favouriteFlashcards.count == 0) {
+            isFavouritesEmpty = true
+        } else {
+            isFavouritesEmpty = false
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (favouriteFlashcards.count == 0) {
-            isFavouritesEmpty = true
+        if (isFavouritesEmpty) {
             return 1
         } else {
             return favouriteFlashcards.count
@@ -55,11 +61,11 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             cell.textLabel?.text = "\(favouriteFlashcards[indexPath.row])"
         }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destinationVC = FavouriteFlashcardsViewController()
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         
         if (cell.textLabel?.text == "You have not favourited anything.") {

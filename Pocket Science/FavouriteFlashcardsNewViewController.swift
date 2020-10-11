@@ -1,16 +1,17 @@
 //
-//  FavouriteFlashcardsViewController.swift
+//  FavouriteFlashcardsNewViewController.swift
 //  Pocket Science
 //
-//  Created by Ethan Chew on 23/7/20.
+//  Created by Ethan Chew on 10/10/20.
 //  Copyright © 2020 Ethan Chew. All rights reserved.
 //
 
 import UIKit
 import CoreXLSX
+import MotionToastView
 
-class FavouriteFlashcardsViewController: UIViewController {
-    
+class FavouriteFlashcardsNewViewController: UIViewController {
+
     // Variables
     var favouriteFlashcard:Array<String> = []
     var currentFlashcard:Array<String> = []
@@ -24,7 +25,7 @@ class FavouriteFlashcardsViewController: UIViewController {
     var isFlashcardFavourited:Bool = false
     var conceptName = ""
     var selectedFavouriteFlashcard = ""
-    var flashcardData = [""]
+    var flashcardData: [String:[String]] = [:]
     var flashcardRowNum:Array<Int> = []
     
     var uneditedCurrentFlashcard:Array<String> = []
@@ -38,9 +39,9 @@ class FavouriteFlashcardsViewController: UIViewController {
     @IBOutlet weak var UIBG: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if let selectedOverall = userDefaults.string(forKey: "Overall Selected Topics") {
             selectedOverallTopic = selectedOverall
         }
@@ -72,8 +73,6 @@ class FavouriteFlashcardsViewController: UIViewController {
         UIBG.layer.cornerRadius = 20
         flashcardBG.layer.cornerRadius = 20
         
-        getData()
-        checkFavourited()
     }
     
     func getData() {
@@ -99,13 +98,17 @@ class FavouriteFlashcardsViewController: UIViewController {
                 // Find Rows of Selected Topic
                 let firstIndex = favouriteFlashcard.firstIndex(of: selectedFavouriteFlashcard) ?? 0
                 
-                let index = flashcardRowNum[firstIndex]
+                var index = 0
+                
+                if (firstIndex == 0) {
+                    fatalError("Unknown Flashcard ID")
+                } else {
+                    index = flashcardRowNum[firstIndex]
+                }
                 
                 currentFlashcard = worksheet.cells(atRows: [UInt(index)])
                     .compactMap { $0.stringValue(sharedStrings) }
                 currentFlashcard = currentFlashcard.remove("Empty Cell")
-                
-                print(currentFlashcard)
                 
                 conceptName = selectedFavouriteFlashcard
                 conceptNameLabel.text = "\(conceptName)"
@@ -119,78 +122,6 @@ class FavouriteFlashcardsViewController: UIViewController {
             }
         } catch {
             fatalError("\(error.localizedDescription)")
-        }
-    }
-    
-    func checkFavourited() {
-        let count = favouriteFlashcard.count - 1
-        if (count == -1) { // When count is -1, favouriteFlashcard.count = 0, meaning that there are no favourited items.
-            isFlashcardFavourited = false
-        } else if (count == 0) { // When count is 0, favouriteFlashcard.count = 1, meaning that there are at least 1 favourited items.
-            if (uneditedCurrentFlashcard[2] == favouriteFlashcard[0]) {
-                isFlashcardFavourited = true
-            } else {
-                isFlashcardFavourited = false
-            }
-        } else {
-            for i in 0...count {
-                if (uneditedCurrentFlashcard[2] == favouriteFlashcard[i]) {
-                    isFlashcardFavourited = true
-                } else {
-                    isFlashcardFavourited = false
-                }
-            }
-        }
-        
-        if (isFlashcardFavourited == true) {
-            if let image = UIImage(named: "heart.fill") {
-                favouriteButton.setImage(image, for: .normal)
-            } else {
-                fatalError("Image does not exist or is corrupted.")
-            }
-        } else if (isFlashcardFavourited == false) {
-            if let image = UIImage(named: "heart.empty") {
-                favouriteButton.setImage(image, for: .normal)
-            } else {
-                fatalError("Image does not exist or is corrupted.")
-            }
-        }
-    }
-    
-    @IBAction func favouriteBtn(_ sender: Any) {
-        getData()
-        checkFavourited()
-        
-        if (isFlashcardFavourited == true) {
-            // Remove Favourite
-            let count = favouriteFlashcard.count - 1
-            
-            for i in 0...count {
-                if (uneditedCurrentFlashcard[2] == favouriteFlashcard[i]) {
-                    favouriteFlashcard.remove(at: i)
-                    print(flashcardRowNum)
-                    flashcardRowNum.remove(at: i)
-                    userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
-                    userDefaults.set(flashcardRowNum, forKey: "Favourited Row Number")
-                    if let image = UIImage(named: "heart.empty") {
-                        favouriteButton.setImage(image, for: .normal)
-                    } else {
-                        fatalError("Image does not exist or is corrupted.")
-                    }
-                }
-            }
-        } else {
-            // Add Favourite
-            favouriteFlashcard.append(uneditedCurrentFlashcard[2])
-            if let image = UIImage(named: "heart.fill") {
-                favouriteButton.setImage(image, for: .normal)
-            } else {
-                fatalError("Image does not exist or is corrupted.")
-            }
-        }
-        
-        if (favouriteFlashcard != [""]) {
-            userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
         }
     }
     

@@ -126,6 +126,49 @@ class FlashcardsViewController: UIViewController {
     }
     
     func checkFavourited() {
+        var amtOfFavouritedFlashcards = 0
+        
+        if (favouriteFlashcard.count == 0) {
+            amtOfFavouritedFlashcards = 0
+        } else {
+            amtOfFavouritedFlashcards = favouriteFlashcard.count
+            
+            if (amtOfFavouritedFlashcards == 1) {
+                if (conceptName == favouriteFlashcard[0]) {
+                    isFlashcardFavourited = true
+                } else {
+                    isFlashcardFavourited = false
+                }
+            } else {
+                for i in 0...amtOfFavouritedFlashcards - 1 {
+                    if (conceptName == favouriteFlashcard[i]) {
+                        isFlashcardFavourited = true
+                    } else {
+                        isFlashcardFavourited = false
+                    }
+                }
+            }
+        }
+        
+        if (isFlashcardFavourited) {
+            print("\(conceptName) is Favourited")
+            if let image = UIImage(named: "heart.fill") {
+                favouriteButton.setImage(image, for: .normal)
+            } else {
+                fatalError("Image does not exist or is corrupted.")
+            }
+        } else {
+            print("\(conceptName) is not Favourited")
+            if let image = UIImage(named: "heart.empty") {
+                favouriteButton.setImage(image, for: .normal)
+            } else {
+                fatalError("Image does not exist or is corrupted.")
+            }
+        }
+        
+    }
+    
+    func checkFavouritedOld() {
         let count = favouriteFlashcard.count - 1
         if (count == -1) { // When count is -1, favouriteFlashcard.count = 0, meaning that there are no favourited items.
             isFlashcardFavourited = false
@@ -168,6 +211,7 @@ class FlashcardsViewController: UIViewController {
     
     func configFlashcards() {
         currentFlashcard.removeAll()
+        checkFavourited()
                 
         if ((data["Flashcard \(flashcardsIndex)"]) == nil) {
             if let tempData = data["Flashcard \(storedFlashcardIndex)"] {
@@ -183,7 +227,7 @@ class FlashcardsViewController: UIViewController {
             }
             storedFlashcardIndex = flashcardsIndex
             storedFlashcardData = currentFlashcard
-}
+        }
         
         conceptName = currentFlashcard[2]
         
@@ -197,8 +241,7 @@ class FlashcardsViewController: UIViewController {
         var flashcardKnowledge = currentFlashcard.joined(separator: "\n")
         textField.text = "\(flashcardKnowledge)"
         
-        checkFavourited()
-}
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -311,8 +354,6 @@ class FlashcardsViewController: UIViewController {
             configFlashcards()
             checkFavourited()
         }
-        print(data.count)
-        print(currentFlashcard)
     }
     
     @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer) {
@@ -332,9 +373,5 @@ class FlashcardsViewController: UIViewController {
             configFlashcards()
             checkFavourited()
         }
-        print("\(lessonsSelRowEnd - lessonsSelRowStart) yes")
-        
-        print(data.count)
-        print(currentFlashcard)
     }
 }

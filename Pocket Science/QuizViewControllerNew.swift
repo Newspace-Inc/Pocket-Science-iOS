@@ -1,5 +1,5 @@
 //
-//  QuizViewController1.swift
+//  QuizViewControllerNew.swift
 //  Pocket Science
 //
 //  Created by Ethan Chew on 9/10/20.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreXLSX
 
-class QuizViewController1: UIViewController {
+class QuizViewControllerNew: UIViewController {
     
     // Variales
     var recentlyOpenedLevel:String = ""

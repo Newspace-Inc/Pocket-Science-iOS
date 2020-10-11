@@ -92,17 +92,22 @@ class AwardsViewController: UIViewController {
         
         // Check User Awards
         if (earnedAwards.count == 1) {
-            print("yes")
             beginnerImage.image = UIImage(named: earnedImage[0])
-            return
+            bookworkImage.image = UIImage(named: notEarnedImage[1])
+            diligentAntImage.image = UIImage(named: notEarnedImage[3])
+            expertImage.image = UIImage(named: notEarnedImage[4])
+            frequentMemberImage.image = UIImage(named: notEarnedImage[5])
+            industriousBeeImage.image = UIImage(named: notEarnedImage[6])
+            masteroImage.image = UIImage(named: notEarnedImage[7])
+            normalMemberImage.image = UIImage(named: notEarnedImage[8])
+            regularMemberImage.image = UIImage(named: notEarnedImage[10])
+            streakerBronzeImage.image = UIImage(named: notEarnedImage[11])
+            streakerGoldImage.image = UIImage(named: notEarnedImage[12])
+            streakerSilverImage.image = UIImage(named: notEarnedImage[1])
         } else {
             for i in 0...earnedImage.count - 1 {
-                print(i)
-                print("\(earnedAwards.count) Earned Awards Count")
                 if (i + 1 == earnedAwards.count) {
-                    print("yes")
                     beginnerImage.image = UIImage(named: earnedImage[i])
-                    return
                 } else {
                     if (earnedAwards[i] == earnedImage[i]) {
                         if (earnedAwards[i] == "Beginner Badge") {
