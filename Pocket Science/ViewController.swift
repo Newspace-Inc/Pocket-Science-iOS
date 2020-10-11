@@ -147,7 +147,12 @@ class ViewController: UIViewController, dataFromSettings {
         
         print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
         
-        print(earnedAwards)
+        if (numOfTimesAppWasOpened == 10) {
+            earnedAwards.append("Regular Member")
+        } else if (numOfTimesAppWasOpened == 100) {
+            earnedAwards.append("Frequent Member")
+        }
+        
         userDefaults.set(earnedAwards, forKey: "Earned Awards")
     }
     

@@ -60,7 +60,6 @@ class FlashcardsViewController: UIViewController {
     var flashcardsIndex = 1
     var isFlashcardFavourited:Bool = false
     var conceptName = ""
-    var favouritedRowNum = [0]
     var overallTopics:Array<String> = []
     
     var uneditedCurrentFlashcard:Array<String> = []
@@ -308,7 +307,6 @@ class FlashcardsViewController: UIViewController {
                         }
                     }
                     userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
-                    userDefaults.set(favouritedRowNum, forKey: "Favourited Row Number")
                 }
             } else {
                 favouriteFlashcard.remove(at: 0)
@@ -321,12 +319,10 @@ class FlashcardsViewController: UIViewController {
                 }
                 
                 userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
-                userDefaults.set(favouritedRowNum, forKey: "Favourited Row Number")
             }
         } else {
             // Add Favourite
             favouriteFlashcard.append(conceptName)
-            favouritedRowNum.append(topicSelRowStart + flashcardsIndex)
             if let image = UIImage(named: "heart.fill") {
                 favouriteButton.setImage(image, for: .normal)
             } else {
@@ -334,7 +330,6 @@ class FlashcardsViewController: UIViewController {
             }
         }
         userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
-        userDefaults.set(favouritedRowNum, forKey: "Favourited Row Number")
     }
     
     @objc func swipeRight(_ swipeGesture: UISwipeGestureRecognizer) {

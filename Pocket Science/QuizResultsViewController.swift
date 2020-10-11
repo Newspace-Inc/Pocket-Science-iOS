@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuizResultsViewController: UIViewController {
+class QuizResultsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
 
     // Variables
     var amtOfCorrectAns:Int = 0
@@ -22,6 +22,8 @@ class QuizResultsViewController: UIViewController {
     var incorrectQnName = [""]
     var earnedPoints = 0
     var selectedLesson = ""
+    var correctQuestions: [String] = []
+    var incorrectQuestions: [String] = []
     
     let message = ["Good Job!", "Try Again!", "You can do it!", "Almost There!"]
     
@@ -29,7 +31,7 @@ class QuizResultsViewController: UIViewController {
     
     // Buttons and Labels
     @IBOutlet weak var uiBG: UILabel!
-    @IBOutlet weak var reviewAns: UIButton!
+    @IBOutlet weak var reviewAnsTable: UITableView!
     @IBOutlet weak var noRetryBtn: UIButton!
     @IBOutlet weak var retryBtn: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
@@ -84,6 +86,10 @@ class QuizResultsViewController: UIViewController {
         if (correctAmountOfQuiz != "") {
             userDefaults.set(correctAmountOfQuiz, forKey: "Correct Quizes")
         }
+        
+        correctQuestions = userDefaults.object(forKey: "Correct Questions") as? [String] ?? [String]()
+        incorrectQuestions = userDefaults.object(forKey: "Incorrect Questions") as? [String] ?? [String]()
+        
         // Save User Points
         if userPoints != 0 {
             userDefaults.set(userPoints, forKey: "User Points")
@@ -99,9 +105,6 @@ class QuizResultsViewController: UIViewController {
         retryBtn.clipsToBounds = true
         retryBtn.layer.cornerRadius = 20
         
-        reviewAns.clipsToBounds = true
-        reviewAns.layer.cornerRadius = 20
-        
         // Point System
         pointSystem()
         
@@ -115,10 +118,29 @@ class QuizResultsViewController: UIViewController {
         earnedLabel.text = "You earned \(earnedPoints) Points"
         messageLabel.text = "\(message[0]) \(userName)"
         priSchLvl.text = "\(primaryLevel) \(selectedLesson)"
+        
+        // Configure Table View
+        reviewAnsTable.dataSource = self
+        reviewAnsTable.delegate = self
     }
     
-    @IBAction func reviewBtn(_ sender: Any) {
-        MotionToast(message: "Quiz Revision is still under Development! Check back soon! :)", toastType: .info, duration: .short, toastStyle: .style_vibrant, toastGravity: .centre, pulseEffect: false)
-        performSegue(withIdentifier: "reviewAns", sender: nil)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return correctQuestions.count + incorrectQuestions.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
+        
+        
+        if (correctQuestions.contains("Question \(indexPath.row + 1)")) {
+            cell.textLabel?.text = "Question \(indexPath.row + 1) = Correct"
+        } else if (incorrectQuestions.contains("Question \(indexPath.row + 1)")) {
+            cell.textLabel?.text = "Question \(indexPath.row + 1) = Incorrect"
+        } else {
+            fatalError()
+        }
+
+        return cell
+    }
+    
 }
