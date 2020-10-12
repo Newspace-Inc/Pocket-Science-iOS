@@ -15,6 +15,9 @@ extension Color {
 struct BadgeView: View {
     var body: some View {
         
+        let userDefaults = UserDefaults.standard
+        let userPoints = userDefaults.integer(forKey: "User Points")
+        
         HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 Text("User Rank: ")
@@ -30,7 +33,7 @@ struct BadgeView: View {
                     .padding(1)
                 Text("1 Day")
                     .padding(1)
-                Text("1024")
+                Text("\(userPoints)")
             }
             .padding(1)
             

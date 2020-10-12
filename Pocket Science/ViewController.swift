@@ -39,6 +39,11 @@ class ViewController: UIViewController, dataFromSettings {
     @IBOutlet weak var dismissWelcomeMessage: UIButton!
     @IBOutlet weak var dismissEarnedAward: UIButton!
     
+    // Earned Award View
+    @IBOutlet weak var awardImgView: UIImageView!
+    @IBOutlet weak var awardName: UILabel!
+    @IBOutlet weak var awardDiscrip: UILabel!
+    
     // Views
     @IBOutlet weak var welcomeView: UIView!
     @IBOutlet weak var earnedAwardView: UIView!
@@ -49,6 +54,25 @@ class ViewController: UIViewController, dataFromSettings {
     func passDataBack(settingsUserName: String, settingsUserAge: String) {
         storedUserName = settingsUserName
         storedUserAge = settingsUserAge
+    }
+    
+    // Badge Check
+    func checkBadge() {
+        if (numOfTimesAppWasOpened >= 10 && earnedAwards.contains("Regular Member")) {
+            awardImgView.image = UIImage(named: "Regular Member Badge")
+            awardName.text = "Regular Member"
+            awardDiscrip.text = "Open the app 10 times"
+            earnedAwardView.isHidden = false
+            
+            earnedAwards.append("Regular Member")
+        } else if (numOfTimesAppWasOpened >= 100 && earnedAwards.contains("Frequent Member")) {
+            awardImgView.image = UIImage(named: "Frequent Member Badge")
+            awardName.text = "Frequent Member"
+            awardDiscrip.text = "Open the app 100 times"
+            earnedAwardView.isHidden = false
+            
+            earnedAwards.append("Frequent Member")
+        }
     }
     
     override func viewDidLoad() {
@@ -147,11 +171,7 @@ class ViewController: UIViewController, dataFromSettings {
         
         print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
         
-        if (numOfTimesAppWasOpened == 10) {
-            earnedAwards.append("Regular Member")
-        } else if (numOfTimesAppWasOpened == 100) {
-            earnedAwards.append("Frequent Member")
-        }
+        checkBadge()
         
         userDefaults.set(earnedAwards, forKey: "Earned Awards")
     }
@@ -170,11 +190,16 @@ class ViewController: UIViewController, dataFromSettings {
         
     }
     
+    @IBAction func dismissAwards(_ sender: Any) {
+        earnedAwardView.isHidden = true
+    }
+    
     @IBAction func dismissWelcomeMessage(_ sender: Any) {
         welcomeMessageShown = true
         userDefaults.set(welcomeMessageShown, forKey: "Welcome Message")
         welcomeView.isHidden = true
     }
+    
     @IBAction func goToLowerPrimary(_ sender: Any) {
        let selectLessonVC = ChooseTopicViewController()
         
