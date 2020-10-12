@@ -56,25 +56,6 @@ class ViewController: UIViewController, dataFromSettings {
         storedUserAge = settingsUserAge
     }
     
-    // Badge Check
-    func checkBadge() {
-        if (numOfTimesAppWasOpened >= 10 && earnedAwards.contains("Regular Member")) {
-            awardImgView.image = UIImage(named: "Regular Member Badge")
-            awardName.text = "Regular Member"
-            awardDiscrip.text = "Open the app 10 times"
-            earnedAwardView.isHidden = false
-            
-            earnedAwards.append("Regular Member")
-        } else if (numOfTimesAppWasOpened >= 100 && earnedAwards.contains("Frequent Member")) {
-            awardImgView.image = UIImage(named: "Frequent Member Badge")
-            awardName.text = "Frequent Member"
-            awardDiscrip.text = "Open the app 100 times"
-            earnedAwardView.isHidden = false
-            
-            earnedAwards.append("Frequent Member")
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -171,7 +152,11 @@ class ViewController: UIViewController, dataFromSettings {
         
         print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
         
-        checkBadge()
+        if (numOfTimesAppWasOpened == 10) {
+            earnedAwards.append("Regular Member")
+        } else if (numOfTimesAppWasOpened == 100) {
+            earnedAwards.append("Frequent Member")
+        }
         
         userDefaults.set(earnedAwards, forKey: "Earned Awards")
     }
@@ -190,16 +175,11 @@ class ViewController: UIViewController, dataFromSettings {
         
     }
     
-    @IBAction func dismissAwards(_ sender: Any) {
-        earnedAwardView.isHidden = true
-    }
-    
     @IBAction func dismissWelcomeMessage(_ sender: Any) {
         welcomeMessageShown = true
         userDefaults.set(welcomeMessageShown, forKey: "Welcome Message")
         welcomeView.isHidden = true
     }
-    
     @IBAction func goToLowerPrimary(_ sender: Any) {
        let selectLessonVC = ChooseTopicViewController()
         
