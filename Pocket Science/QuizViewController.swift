@@ -2,7 +2,7 @@
 //  QuizViewController.swift
 //  Pocket Science
 //
-//  Created by Ethan Chew on 9/10/20.
+//  Created by Ethan Chew on 13/4/20.
 //  Copyright © 2020 Ethan Chew. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ class QuizViewController: UIViewController {
     
     // Variales
     var recentlyOpenedLevel:String = ""
-    var userSelected:Bool = false
+    var dataPassCheck:Bool = false
     var primaryLevel:String = ""
     var amtOfCorrectAns:Int = 0
     var amtOfPointsEarned:Int = 0
@@ -22,18 +22,13 @@ class QuizViewController: UIViewController {
     var userPoints = 0
     var selectedLesson = ""
     var userSelectedTopic = [""]
-    
-    // Quiz Config
     var correctAns = ""
     var correctQnName = [""]
+    var incorrectQnName:Dictionary = [String: String]()
     var currentQn = ""
-    var data: [String:[String]] = [:]
+    
     var quizQuestionIndex = 1
-    var userSelectedOption = ""
-    var didSelectOption = false
-    let buttonSelectColour = UIColor(red: 134/255, green: 154/255, blue: 255/255, alpha: 1)
-    var correctQuestions: [String] = []
-    var incorrectQuestions: [String] = []
+    var currentQuizQn = [""]
     
     let userDefaults = UserDefaults.standard
     
@@ -47,7 +42,6 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var primarySchoolLvel: UILabel!
     @IBOutlet weak var questionNumber: UILabel!
     @IBOutlet weak var questionView: UITextView!
-    @IBOutlet weak var submitBtn: UIButton!
     
     // Views
     @IBOutlet weak var spellingView: UIView!
@@ -70,7 +64,7 @@ class QuizViewController: UIViewController {
                 else {
                     continue
                 }
-                
+                                
                 let sharedStrings = try file.parseSharedStrings()
                 let worksheet = try file.parseWorksheet(at: path)
                 
@@ -95,120 +89,59 @@ class QuizViewController: UIViewController {
                 }
                 
                 totalAmtOfQns = endTopicSel - startTopicSel - 1
-                
+                 
                 if (startTopicSel + (quizQuestionIndex - 1) <= endTopicSel) {
-                    var index = endTopicSel - startTopicSel - 1
-                    
-                    for i in 0...index {
-                        let parseData = worksheet.cells(atRows: [UInt(startTopicSel + i + 1)])
-                            .compactMap { $0.stringValue(sharedStrings) }
-                        data["Data \(i + 1)"] = parseData
-                    }
-                    totalAmtOfQns = index
+                    currentQuizQn = worksheet.cells(atRows: [UInt(startTopicSel + quizQuestionIndex)])
+                        .compactMap { $0.stringValue(sharedStrings) }
                 }
                 
+                currentQuizQn.removeSubrange(0..<2)
             }
         } catch {
             fatalError("\(error.localizedDescription)")
         }
     }
     
-    func resetButtonColours() {
-        optionOneBtn.backgroundColor = UIColor.systemGray
-        optionTwoBtn.backgroundColor = UIColor.systemGray
-        optionThreeBtn.backgroundColor = UIColor.systemGray
-        optionFourBtn.backgroundColor = UIColor.systemGray
-    }
-    
     func quizConfig() {
-        var currentQuizQn: [String] = []
-        
-        if (quizQuestionIndex == totalAmtOfQns + 1) {
-            submitBtn.setTitle("Finish", for: .normal)
-        } else {
-            if (data["Data \(quizQuestionIndex)"] != nil) {
-                currentQuizQn = data["Data \(quizQuestionIndex)"]!
-            } else {
-                currentQuizQn = data["Data \(quizQuestionIndex)"]!
-            }
-            
-            questionView.text = currentQuizQn[2] // Question will always be at index 0 of the array
-            currentQuizQn.remove(at: 0) // Remove Question from the array
-            correctAns = currentQuizQn[3] // Last option will always be the answer
-            
-            // Shuffle the options
-            for _ in 0...5 {
+        if (quizType == "Multiple Choice Questions") {
+            questionNumber.text = "\(quizQuestionIndex)/\(totalAmtOfQns)"
+            print(currentQuizQn)
+            currentQn = currentQuizQn[0]
+            questionView.text = currentQn
+            correctAns = currentQuizQn.last ?? "NIL"
+            currentQuizQn.removeFirst()
+            for _ in 0...3 {
                 currentQuizQn.shuffle()
             }
-            
-            // Configure the Buttons
-            optionOneBtn.titleLabel?.numberOfLines = 0;
+                        
+            // Set Button Lines
+            optionOneBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
             optionOneBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-            optionTwoBtn.titleLabel?.numberOfLines = 0;
+            optionTwoBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
             optionTwoBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-            optionThreeBtn.titleLabel?.numberOfLines = 0;
+            optionThreeBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
             optionThreeBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-            optionFourBtn.titleLabel?.numberOfLines = 0;
+            optionFourBtn.titleLabel?.numberOfLines = 0; // Dynamic number of lines
             optionFourBtn.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
             
-            // Configure the Options
+            // Set Button Title
             optionOneBtn.setTitle(currentQuizQn[0], for: .normal)
             optionTwoBtn.setTitle(currentQuizQn[1], for: .normal)
             optionThreeBtn.setTitle(currentQuizQn[2], for: .normal)
             optionFourBtn.setTitle(currentQuizQn[3], for: .normal)
+        } else if (quizType == "Spelling") {
             
-            // Set the question number
-            questionNumber.text = "Question \(quizQuestionIndex)/\(totalAmtOfQns)"
-            
-            // Set the text of the submit button back to submit
-            submitBtn.setTitle("Submit", for: .normal)
-            
-            resetButtonColours()
         }
     }
     
-    func checkAnswer() {
-        let originalColour = UIColor.systemGray
-        let correctColour = UIColor.systemGreen
-        let incorrectColour = UIColor.systemRed
-        userSelected = true
-        
-        // Reset all button colours
-        resetButtonColours()
-        
-        
-        // Check what button has the correct answer
-        if (optionOneBtn.currentTitle == correctAns) {
-            optionOneBtn.backgroundColor = correctColour
-        } else if (optionTwoBtn.currentTitle == correctAns) {
-            optionTwoBtn.backgroundColor = correctColour
-        } else if (optionThreeBtn.currentTitle == correctAns) {
-            optionThreeBtn.backgroundColor = correctColour
-        } else if (optionFourBtn.currentTitle == correctAns) {
-            optionFourBtn.backgroundColor = correctColour
-        }
-        
-        if (userSelectedOption != correctAns) { // User got the question wrong
-            incorrectQuestions.append("Question \(quizQuestionIndex)")
-            if (optionOneBtn.currentTitle == userSelectedOption) {
-                optionOneBtn.backgroundColor = incorrectColour
-            } else if (optionTwoBtn.currentTitle == userSelectedOption) {
-                optionTwoBtn.backgroundColor = incorrectColour
-            } else if (optionThreeBtn.currentTitle == userSelectedOption) {
-                optionThreeBtn.backgroundColor = incorrectColour
-            } else if (optionFourBtn.currentTitle == userSelectedOption) {
-                optionFourBtn.backgroundColor = incorrectColour
-            }
-        } else {
-            correctQuestions.append("Question \(quizQuestionIndex)")
-        }
-        
-        if (quizQuestionIndex == totalAmtOfQns + 1) {
-            submitBtn.setTitle("Finish", for: .normal)
-        } else {
-            submitBtn.setTitle("Next", for: .normal)
-        }
-        userSelected = false
+    
+    func initQuiz() {
+        amtOfCorrectAns = 0
+        amtOfPointsEarned = 0
+        totalAmtOfQns = 0
+        correctAns = ""
+        correctQnName = [""]
+        currentQn = ""
     }
     
     override func viewDidLoad() {
@@ -236,115 +169,122 @@ class QuizViewController: UIViewController {
         optionTwoBtn.clipsToBounds = true
         optionThreeBtn.clipsToBounds = true
         optionFourBtn.clipsToBounds = true
-        submitBtn.clipsToBounds = true
         
         // Set Corner Radius
         uiBG?.layer.cornerRadius = 20
-        optionOneBtn.layer.cornerRadius = 10
-        optionTwoBtn.layer.cornerRadius = 10
-        optionThreeBtn.layer.cornerRadius = 10
-        optionFourBtn.layer.cornerRadius = 10
-        submitBtn.layer.cornerRadius = 15
-        
+        optionOneBtn.layer.cornerRadius = 20
+        optionTwoBtn.layer.cornerRadius = 20
+        optionThreeBtn.layer.cornerRadius = 20
+        optionFourBtn.layer.cornerRadius = 20
         
         // Set Label Names
         quizTypeLabel.text = quizType
         primarySchoolLvel.text = "\(primaryLevel) \(selectedLesson)"
         
         // Change Quiz Type
-        //                if (quizType == "Multiple Choice Questions") {
-        //                    spellingView.isHidden = true
-        //                    MCQView.isHidden = false
-        //                } else if (quizType == "Spelling") {
-        //                    spellingView.isHidden = false
-        //                    MCQView.isHidden = true
-        //                }
+        if (quizType == "Multiple Choice Questions") {
+            spellingView.isHidden = true
+            MCQView.isHidden = false
+        } else if (quizType == "Spelling") {
+            spellingView.isHidden = false
+            MCQView.isHidden = true
+        }
         
         getData()
         quizConfig()
-        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! QuizResultsViewController
+        destinationVC.primaryLevel = primaryLevel
+        destinationVC.amtOfCorrectAns = amtOfCorrectAns
+        destinationVC.amtOfPointsEarned = amtOfPointsEarned
+        destinationVC.totalAmtOfQns = totalAmtOfQns
     }
     
     @IBAction func optionOneBtn(_ sender: Any) {
-        userSelectedOption = optionOneBtn.currentTitle!
+        quizQuestionIndex += 1
         
-        if (userSelected) {
-            
+        if (optionOneBtn.currentTitle == correctAns) {
+            correctQnName.append(currentQn)
         } else {
-            optionOneBtn.backgroundColor = buttonSelectColour
-            optionTwoBtn.backgroundColor = UIColor.systemGray
-            optionThreeBtn.backgroundColor = UIColor.systemGray
-            optionFourBtn.backgroundColor = UIColor.systemGray
+            incorrectQnName[currentQn] = optionOneBtn.currentTitle
         }
         
-        didSelectOption = true
+        print(totalAmtOfQns)
+        
+        if (quizQuestionIndex == totalAmtOfQns + 1) {
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(correctQnName, forKey: "Correct Qns Array")
+            userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            performSegue(withIdentifier: "quizResults", sender: nil)
+        } else {
+            getData()
+            quizConfig()
+        }
     }
     
     @IBAction func optionTwoBtn(_ sender: Any) {
-        userSelectedOption = optionTwoBtn.currentTitle!
+        quizQuestionIndex += 1
         
-        if (userSelected) {
-            
+        if (optionTwoBtn.currentTitle == correctAns) {
+            correctQnName.append(currentQn)
         } else {
-            optionTwoBtn.backgroundColor = buttonSelectColour
-            optionOneBtn.backgroundColor = UIColor.systemGray
-            optionThreeBtn.backgroundColor = UIColor.systemGray
-            optionFourBtn.backgroundColor = UIColor.systemGray
+            incorrectQnName[currentQn] = optionTwoBtn.currentTitle
         }
         
-        didSelectOption = true
+        if (quizQuestionIndex == totalAmtOfQns + 1) {
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(correctQnName, forKey: "Correct Qns Array")
+            userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            performSegue(withIdentifier: "quizResults", sender: nil)
+        } else {
+            getData()
+            quizConfig()
+        }
     }
     
     @IBAction func optionThreeBtn(_ sender: Any) {
-        userSelectedOption = optionThreeBtn.currentTitle!
+        quizQuestionIndex += 1
         
-        if (userSelected) {
-            
+        if (optionThreeBtn.currentTitle == correctAns) {
+            correctQnName.append(currentQn)
         } else {
-            optionThreeBtn.backgroundColor = buttonSelectColour
-            optionTwoBtn.backgroundColor = UIColor.systemGray
-            optionOneBtn.backgroundColor = UIColor.systemGray
-            optionFourBtn.backgroundColor = UIColor.systemGray
+            incorrectQnName[currentQn] = optionThreeBtn.currentTitle
         }
-            
-        didSelectOption = true
+        
+        if (quizQuestionIndex == totalAmtOfQns + 1) {
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(correctQnName, forKey: "Correct Qns Array")
+            userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            performSegue(withIdentifier: "quizResults", sender: nil)
+        } else {
+            getData()
+            quizConfig()
+        }
     }
     
     @IBAction func optionFourBtn(_ sender: Any) {
-        userSelectedOption = optionFourBtn.currentTitle!
+        quizQuestionIndex += 1
         
-        if (userSelected) {
-            
+        if (optionFourBtn.currentTitle == correctAns) {
+            correctQnName.append(currentQn)
         } else {
-            optionFourBtn.backgroundColor = buttonSelectColour
-            optionTwoBtn.backgroundColor = UIColor.systemGray
-            optionThreeBtn.backgroundColor = UIColor.systemGray
-            optionOneBtn.backgroundColor = UIColor.systemGray
+            incorrectQnName[currentQn] = optionFourBtn.currentTitle
         }
-        didSelectOption = true
-    }
-    
-    @IBAction func answerBtn(_sender: Any) {
-        if (submitBtn.currentTitle == "Submit") {
-            if (didSelectOption) {
-                checkAnswer()
-                didSelectOption = false
-            } else {
-                let alert = UIAlertController(title: "Please select a option before submitting!", message: "You can't submit a blank answer script during an exam right?", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                
-                self.present(alert, animated: true)
-            }
-        } else if (submitBtn.currentTitle == "Next") {
-            quizQuestionIndex += 1
+        
+        if (quizQuestionIndex == totalAmtOfQns + 1) {
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(correctQnName, forKey: "Correct Qns Array")
+            userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            performSegue(withIdentifier: "quizResults", sender: nil)
+        } else {
+            getData()
             quizConfig()
-        } else if (submitBtn.currentTitle == "Finish") {
-            userDefaults.set(correctQuestions, forKey: "Correct Questions")
-            userDefaults.set(incorrectQuestions, forKey: "Incorrect Questions")
-            
-            performSegue(withIdentifier: "reviewScore", sender: nil)
         }
     }
-    
+    @IBAction func retryQuiz( _ seg: UIStoryboardSegue) {
+        self.loadView()
+    }
 }
