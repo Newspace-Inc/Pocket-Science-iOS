@@ -117,7 +117,7 @@ class FlashcardsViewController: UIViewController {
                             
                             data["Flashcard \(index)"] = parsingFlashcards
                             index += 1
-                        } 
+                        }
                     }
             }
         } catch {
@@ -166,44 +166,6 @@ class FlashcardsViewController: UIViewController {
             }
         }
         
-    }
-    
-    func checkFavouritedOld() {
-        let count = favouriteFlashcard.count - 1
-        if (count == -1) { // When count is -1, favouriteFlashcard.count = 0, meaning that there are no favourited items.
-            isFlashcardFavourited = false
-        } else if (count == 0) { // When count is 0, favouriteFlashcard.count = 1, meaning that there are at least 1 favourited items.
-            for i in 0...favouriteFlashcard.count - 1 {
-                if (conceptName == favouriteFlashcard[i]) {
-                    isFlashcardFavourited = true
-                } else {
-                    isFlashcardFavourited = false
-                }
-            }
-            
-        } else {
-            for i in 0...count {
-                if (conceptName == favouriteFlashcard[i]) {
-                    isFlashcardFavourited = true
-                } else {
-                    isFlashcardFavourited = false
-                }
-            }
-        }
-        
-        if (isFlashcardFavourited == true) {
-            if let image = UIImage(named: "heart.fill") {
-                favouriteButton.setImage(image, for: .normal)
-            } else {
-                fatalError("Image does not exist or is corrupted.")
-            }
-        } else if (isFlashcardFavourited == false) {
-            if let image = UIImage(named: "heart.empty") {
-                favouriteButton.setImage(image, for: .normal)
-            } else {
-                fatalError("Image does not exist or is corrupted.")
-            }
-        }
     }
     
     var storedFlashcardIndex = 0

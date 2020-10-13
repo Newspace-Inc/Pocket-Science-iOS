@@ -67,6 +67,13 @@ class FavouriteFlashcardsViewController: UIViewController {
         UIBG.layer.cornerRadius = 20
         flashcardBG.layer.cornerRadius = 20
         
+        if let image = UIImage(named: "heart.fill") {
+            favouriteButton.setImage(image, for: .normal)
+        } else {
+            fatalError("Image does not exist or is corrupted.")
+        }
+        
+        getData()
     }
     
     func getData() {
@@ -104,6 +111,8 @@ class FavouriteFlashcardsViewController: UIViewController {
                     fatalError("Unknown Flashcard ID")
                 }
                 
+                
+                
                 currentFlashcard = worksheet.cells(atRows: [UInt(rowNum)])
                     .compactMap { $0.stringValue(sharedStrings) }
                 currentFlashcard = currentFlashcard.remove("Empty Cell")
@@ -122,5 +131,19 @@ class FavouriteFlashcardsViewController: UIViewController {
             fatalError("\(error.localizedDescription)")
         }
     }
+    
+    @IBAction func favouriteBtn(_ sender: Any) {
+        let index = favouriteFlashcard.firstIndex(of: conceptName) ?? 0
+        favouriteFlashcard.remove(at: index)
+        
+        if let image = UIImage(named: "heart.empty") {
+            favouriteButton.setImage(image, for: .normal)
+        } else {
+            fatalError("Image does not exist or is corrupted.")
+        }
+        
+        userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
+    }
+    
     
 }
