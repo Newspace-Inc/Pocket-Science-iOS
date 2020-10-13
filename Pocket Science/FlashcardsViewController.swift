@@ -61,6 +61,7 @@ class FlashcardsViewController: UIViewController {
     var isFlashcardFavourited:Bool = false
     var conceptName = ""
     var overallTopics:Array<String> = []
+    var isFlashcardNil = false
     
     var uneditedCurrentFlashcard:Array<String> = []
     
@@ -212,25 +213,22 @@ class FlashcardsViewController: UIViewController {
         currentFlashcard.removeAll()
         checkFavourited()
                 
-        if ((data["Flashcard \(flashcardsIndex)"]) == nil) {
-            if let tempData = data["Flashcard \(storedFlashcardIndex)"] {
-                currentFlashcard = tempData
-            } else {
-                currentFlashcard = data["Flashcard \(storedFlashcardIndex)"]!
-            }
+        
+        if (flashcardsIndex == 1) {
+            currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
         } else {
-            if let tempData = data["Flashcard \(flashcardsIndex)"] {
-                currentFlashcard = tempData
+            if (data["Flashcard \(flashcardsIndex)"] == nil) {
+                currentFlashcard = data["Flashcard \(flashcardsIndex - 1)"]!
+                isFlashcardNil = true
             } else {
                 currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
+                isFlashcardNil = false
             }
-            storedFlashcardIndex = flashcardsIndex
-            storedFlashcardData = currentFlashcard
         }
         
-        conceptName = currentFlashcard[2]
+        conceptName = currentFlashcard[3]
         
-        conceptNameLabel.numberOfLines = 3; // Dynamic number of lines
+        conceptNameLabel.numberOfLines = 0; // Dynamic number of lines
         conceptNameLabel.lineBreakMode = NSLineBreakMode.byWordWrapping;
         conceptNameLabel.text = conceptName
         
@@ -264,6 +262,8 @@ class FlashcardsViewController: UIViewController {
             topicSelRowEnd = rowEnd
         }
         
+        favouriteFlashcard = userDefaults.object(forKey: "Favourite Flashcard") as! Array<String>
+        
         label1.text = "\(primaryLevel ?? "")"
         label2.text = "The \(primaryLevel ?? "") Syllabus"
         
@@ -283,6 +283,10 @@ class FlashcardsViewController: UIViewController {
                 let leftSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
                 leftSwipeRecognizer.direction = .left
         self.view.addGestureRecognizer(leftSwipeRecognizer)
+        
+        // Config Concept Label
+        conceptNameLabel.numberOfLines = 3; // Dynamic number of lines
+        conceptNameLabel.lineBreakMode = NSLineBreakMode.byWordWrapping;
         
         getData()
         configFlashcards()
@@ -333,10 +337,15 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc func swipeRight(_ swipeGesture: UISwipeGestureRecognizer) {
-        flashcardsIndex += 1
         
-        if (flashcardsIndex < 0) {
-            flashcardsIndex = 0
+        if (isFlashcardNil) {
+            
+        } else {
+            flashcardsIndex -= 1
+        }
+        
+        if (flashcardsIndex < 1) {
+            flashcardsIndex = 1
         }
         
         if (lessonsSelRowEnd - lessonsSelRowStart == flashcardsIndex) {
@@ -352,12 +361,12 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer) {
-        flashcardsIndex -= 1
-        
-        if (flashcardsIndex >= 0) {
-            flashcardsIndex == 0
+        if (isFlashcardNil) {
+            
+        } else {
+            flashcardsIndex += 1
         }
-        
+
         if (lessonsSelRowEnd - lessonsSelRowStart == flashcardsIndex) {
             print("End of Flashcards")
         } else {
