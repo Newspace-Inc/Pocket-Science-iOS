@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-Pocket Science/Pods-Pocket Science-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework
 ${BUILT_PRODUCTS_DIR}/CoreXLSX/CoreXLSX.framework
 ${BUILT_PRODUCTS_DIR}/MotionToastView/MotionToastView.framework
 ${BUILT_PRODUCTS_DIR}/XMLCoder/XMLCoder.framework

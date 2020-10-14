@@ -1,4 +1,5 @@
 PODS:
+  - AcknowList (1.9.4)
   - CoreXLSX (0.12.0):
     - XMLCoder (~> 0.11.1)
     - ZIPFoundation (~> 0.9.11)
@@ -7,22 +8,25 @@ PODS:
   - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
+  - AcknowList
   - CoreXLSX
   - MotionToastView
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - AcknowList
     - CoreXLSX
     - MotionToastView
     - XMLCoder
     - ZIPFoundation
 
 SPEC CHECKSUMS:
+  AcknowList: a236060b8c33141d7756814fd21d5dab477fc193
   CoreXLSX: 6cc62592f76130f23e1b5c7d775b4bc47b099d78
   MotionToastView: c53ef5ef34d3311cad2cb4be54bd9d149a90ca82
   XMLCoder: c4638336674de7ba279cd23f2005817d69f538e0
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 9a1dd590531f93943de8565c4a6c4f03cd5d1bf6
+PODFILE CHECKSUM: add43f2cfd5c89b7c016b6cf4da4c582c9fc041f
 
 COCOAPODS: 1.9.3

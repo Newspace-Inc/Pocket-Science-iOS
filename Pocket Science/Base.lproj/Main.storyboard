@@ -2066,7 +2066,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5D-Nu-JHM">
-                                <rect key="frame" x="128" y="666" width="165" height="57"/>
+                                <rect key="frame" x="125" y="678" width="165" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -2078,7 +2078,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBT-K4-WqQ">
-                                <rect key="frame" x="98" y="530" width="224" height="78"/>
+                                <rect key="frame" x="98" y="494" width="224" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.49104719749999998" green="0.78977633250000001" blue="0.63888760850000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -2112,12 +2112,25 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txd-Ja-b3R">
+                                <rect key="frame" x="107" y="592" width="199" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Acknowledgments">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="acknowledgeBtn:" destination="sbs-pB-JJY" eventType="touchUpInside" id="ee9-H8-jOP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ru9-12-pw5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="GPa-il-yJY"/>
                     <connections>
+                        <outlet property="acknowledgeBtn" destination="txd-Ja-b3R" id="kVE-a3-yVo"/>
                         <outlet property="ageTF" destination="ef2-ny-qeW" id="Knj-gb-CnR"/>
                         <outlet property="eraseData" destination="p5D-Nu-JHM" id="KTp-ee-XO0"/>
                         <outlet property="nameTF" destination="wHQ-qY-HjD" id="ZR7-UF-kYW"/>

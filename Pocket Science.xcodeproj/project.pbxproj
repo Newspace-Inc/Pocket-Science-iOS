@@ -16,6 +16,7 @@
 		59ADEEF82535956400675EFE /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 59ADEEF72535956400675EFE /* Main Data.xlsx */; };
 		59BFA7C924DE749300A6467E /* Questions and Answers.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 59BFA7C824DE749300A6467E /* Questions and Answers.xlsx */; };
 		59BFA7CB24DE844500A6467E /* ReviewQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BFA7CA24DE844500A6467E /* ReviewQuestionsViewController.swift */; };
+		59C2EF692537292500FF5941 /* Pods-To Do List-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59C2EF682537292500FF5941 /* Pods-To Do List-acknowledgements.plist */; };
 		59DD90AB25316E930050AE10 /* FavouriteFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DD90AA25316E930050AE10 /* FavouriteFlashcardsViewController.swift */; };
 		59E288EC24C155C500210814 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E288EB24C155C500210814 /* WidgetKit.framework */; };
 		59E288F124C155C500210814 /* Pocket_Science_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E288F024C155C500210814 /* Pocket_Science_Widget.swift */; };
@@ -76,6 +77,7 @@
 		59ADEEF72535956400675EFE /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../../../Downloads/Main Data.xlsx"; sourceTree = "<group>"; };
 		59BFA7C824DE749300A6467E /* Questions and Answers.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Questions and Answers.xlsx"; sourceTree = "<group>"; };
 		59BFA7CA24DE844500A6467E /* ReviewQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQuestionsViewController.swift; sourceTree = "<group>"; };
+		59C2EF682537292500FF5941 /* Pods-To Do List-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-To Do List-acknowledgements.plist"; sourceTree = "<group>"; };
 		59DD90AA25316E930050AE10 /* FavouriteFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFlashcardsViewController.swift; sourceTree = "<group>"; };
 		59E288EA24C155C500210814 /* Pocket Science WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pocket Science WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E288EB24C155C500210814 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -161,6 +163,7 @@
 				59BFA7CA24DE844500A6467E /* ReviewQuestionsViewController.swift */,
 				876F594D24C7220F007414AA /* ProfileViewController.swift */,
 				876F595424C7220F007414AA /* SettingsViewController.swift */,
+				59C2EF682537292500FF5941 /* Pods-To Do List-acknowledgements.plist */,
 			);
 			path = "Pocket Science";
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C2EF692537292500FF5941 /* Pods-To Do List-acknowledgements.plist in Resources */,
 				59BFA7C924DE749300A6467E /* Questions and Answers.xlsx in Resources */,
 				5917C13E24337F9A00107213 /* Assets.xcassets in Resources */,
 				59ADEEF82535956400675EFE /* Main Data.xlsx in Resources */,

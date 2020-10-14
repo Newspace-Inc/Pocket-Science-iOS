@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AcknowList
 
 protocol dataFromSettings {
     func passDataBack(settingsUserName: String, settingsUserAge: String)
@@ -31,7 +32,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var eraseData: UIButton!
     @IBOutlet weak var tutorialBtn: UIButton!
-    @IBOutlet weak var creditsBtn: UIButton!
+    @IBOutlet weak var acknowledgeBtn: UIButton!
     
     
     override func viewDidLoad() {
@@ -40,6 +41,8 @@ class SettingsViewController: UIViewController {
         // Corner Radius
         saveEditBtn.layer.cornerRadius = 20
         eraseData.layer.cornerRadius = 20
+        acknowledgeBtn.clipsToBounds = true
+        acknowledgeBtn.layer.cornerRadius = 20
     }
     
     func deleteDataAlert() {
@@ -126,5 +129,10 @@ class SettingsViewController: UIViewController {
     }
     @IBAction func creditsBtn(_ sender: Any) {
         performSegue(withIdentifier: "credits", sender: nil)
+    }
+    @IBAction func acknowledgeBtn(_ sender: Any) {
+        let path = Bundle.main.path(forResource: "Pods-To Do List-acknowledgements", ofType: "plist")
+        let viewController = AcknowListViewController(acknowledgementsPlistPath: path)
+        navigationController!.pushViewController(viewController, animated: true)
     }
 }
