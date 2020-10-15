@@ -131,7 +131,7 @@ class SettingsViewController: UIViewController {
         performSegue(withIdentifier: "credits", sender: nil)
     }
     @IBAction func acknowledgeBtn(_ sender: Any) {
-        let path = Bundle.main.path(forResource: "Pods-To Do List-acknowledgements", ofType: "plist")
+        let path = Bundle.main.path(forResource: "Pods-Pocket Science-acknowledgements", ofType: "plist")
         let viewController = AcknowListViewController(acknowledgementsPlistPath: path)
         navigationController!.pushViewController(viewController, animated: true)
     }

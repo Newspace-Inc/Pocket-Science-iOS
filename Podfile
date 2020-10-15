@@ -6,6 +6,7 @@ use_frameworks!
 target 'Pocket Science' do
     pod 'CoreXLSX'
     pod 'AcknowList'
+    pod 'AcknowList'
     pod 'MotionToastView'
 end
 
