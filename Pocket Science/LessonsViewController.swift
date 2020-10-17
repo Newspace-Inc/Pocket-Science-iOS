@@ -49,12 +49,16 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var segmentedCtrl: UISegmentedControl!
     
     // Data Collection Arrays
-    var overallTopics = [""]
     var userSelectedTopic = [""]
     
     func getData() {
+        
+        // Collect Data
+        var worksheetName = ""
+        worksheetName = "\(primaryLevel) Data"
+        
         do {
-            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
+            let filepath = Bundle.main.path(forResource: "Topic Explaination", ofType: "xlsx")!
             
             guard let file = XLSXFile(filepath: filepath) else {
                 fatalError("XLSX file at \(filepath) is corrupted or does not exist")
@@ -68,54 +72,30 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let sharedStrings = try file.parseSharedStrings()
                 let worksheet = try file.parseWorksheet(at: path)
                 
-                var endTopicSel = 0
-                var startTopicSel = 0
-                
                 // Get Cell Data
-                let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
-                    .compactMap{ $0.stringValue(sharedStrings) }
-                
-                overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
+                var lessons = worksheet.cells(atColumns: [ColumnReference("A")!])
                     .compactMap { $0.stringValue(sharedStrings) }
-                                                
-                // Find Rows of Selected Topic
-                let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
-                if findTopicSelectedStart != nil {
-                    startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
-                }
+                let index = lessons.firstIndex(of: selectedLesson)!
                 
-                let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
-                if findTopicSelectedEnd != nil {
-                    endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
-                }
+                // Get Data
+                var data = worksheet.cells(atRows: [UInt(index)])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                
+                data.remove(at: 0)
+                
+                let topicImg = data[3]
+                
+                data = data.remove("Empty Cell")
+                data = data.remove("Enpty Cell")
                                 
-                for i in startTopicSel...endTopicSel - 1 {
-                    userSelectedTopic.append(overallTopics[i])
-                }
-                
-                userSelectedTopic = Array(Set(userSelectedTopic))
-                userSelectedTopic = userSelectedTopic.remove("")
-                
-                userDefaults.set(startTopicSel, forKey: "TopicSelStart")
-                userDefaults.set(endTopicSel, forKey: "TopicSelEnd")
-                
-                var topicExplaination = worksheet.cells(atRows: [UInt(startTopicSel)])
-                    .compactMap { $0.stringValue(sharedStrings) }
-                                             
-                if (topicExplaination[2] == topicExplaination[3]) {
-                    topicExplaination.removeSubrange(0..<4)
-                    
-                    topicExplaination = topicExplaination.remove("Empty Cell")
-                    
-                    let explaination = topicExplaination.joined(separator: "\n")
-                    
-                    ExplainationTextField.text = "\(explaination)"
-                }
+                ExplainationTextField.text = data.joined(separator: "\n")
+                ExplainationImgView.image = UIImage(cgImage: topicImg as! CGImage)
             }
         } catch {
             fatalError("\(error.localizedDescription)")
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,7 +188,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func MCQBtn(_ sender: Any) {
         quizType = "Multiple Choice Questions"
         userDefaults.set(quizType, forKey: "Quiz Type")
-                
+        
         performSegue(withIdentifier: "Quiz", sender: nil)
     }
     @IBAction func spellingBtn(_ sender: Any) {
