@@ -49,6 +49,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var segmentedCtrl: UISegmentedControl!
     
     // Data Collection Arrays
+    var overallTopics = [""]
     var userSelectedTopic = [""]
     
     func getData() {
@@ -73,9 +74,10 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let worksheet = try file.parseWorksheet(at: path)
                 
                 // Get Cell Data
-                var lessons = worksheet.cells(atColumns: [ColumnReference("A")!])
+                let lessons = worksheet.cells(atColumns: [ColumnReference("A")!])
                     .compactMap { $0.stringValue(sharedStrings) }
-                let index = lessons.firstIndex(of: selectedLesson)!
+                
+                let index = lessons.firstIndex(of: selectedLesson)! + 1
                 
                 // Get Data
                 var data = worksheet.cells(atRows: [UInt(index)])
@@ -87,15 +89,84 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 data = data.remove("Empty Cell")
                 data = data.remove("Enpty Cell")
-                                
+                
                 ExplainationTextField.text = data.joined(separator: "\n")
-                ExplainationImgView.image = UIImage(cgImage: topicImg as! CGImage)
+                ExplainationImgView.image = UIImage(named: topicImg + ".img")
             }
         } catch {
             fatalError("\(error.localizedDescription)")
         }
     }
     
+    func getDataAgain() {
+        
+        // Collect Data
+        var worksheetName = ""
+        worksheetName = "\(primaryLevel) Data"
+        
+        do {
+            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
+            
+            guard let file = XLSXFile(filepath: filepath) else {
+                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+            }
+            
+            for wbk in try file.parseWorkbooks() {
+                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
+                        .first(where: { $0.name == worksheetName }).map({ $0.path })
+                else { continue }
+                
+                let sharedStrings = try file.parseSharedStrings()
+                let worksheet = try file.parseWorksheet(at: path)
+                
+                var endTopicSel = 0
+                var startTopicSel = 0
+                
+                // Get Cell Data
+                let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
+                    .compactMap{ $0.stringValue(sharedStrings) }
+                
+                overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                
+                // Find Rows of Selected Topic
+                let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
+                if findTopicSelectedStart != nil {
+                    startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
+                }
+                
+                let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
+                if findTopicSelectedEnd != nil {
+                    endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
+                }
+                
+                for i in startTopicSel...endTopicSel - 1 {
+                    userSelectedTopic.append(overallTopics[i])
+                }
+                
+                userSelectedTopic = Array(Set(userSelectedTopic))
+                userSelectedTopic = userSelectedTopic.remove("")
+                
+                userDefaults.set(startTopicSel, forKey: "TopicSelStart")
+                userDefaults.set(endTopicSel, forKey: "TopicSelEnd")
+                
+                var topicExplaination = worksheet.cells(atRows: [UInt(startTopicSel)])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                
+                if (topicExplaination[2] == topicExplaination[3]) {
+                    topicExplaination.removeSubrange(0..<4)
+                    
+                    topicExplaination = topicExplaination.remove("Empty Cell")
+                    
+                    let explaination = topicExplaination.joined(separator: "\n")
+                    
+                    ExplainationTextField.text = "\(explaination)"
+                }
+            }
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +205,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         worksheetName = "\(primaryLevel) Data"
         
         getData()
+        getDataAgain()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
