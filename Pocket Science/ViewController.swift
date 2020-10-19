@@ -10,6 +10,11 @@ import UIKit
 import CoreXLSX
 import MotionToastView
 
+extension UIColor {
+    static let lowerPriColour = UIColor(red: 117, green: 170, blue: 230, alpha: 1.0)
+    static let upperPriColour = UIColor(red: 86, green: 146, blue: 229, alpha: 1.0)
+}
+
 class ViewController: UIViewController, dataFromSettings {
         
     // Variables
@@ -23,8 +28,6 @@ class ViewController: UIViewController, dataFromSettings {
     var welcomeMessageShown:Bool = false
     var numOfTimesAppWasOpened = 0
     var earnedAwards:Array<String> = []
-    let lowerPriColour = UIColor(red: 117, green: 170, blue: 230, alpha: 1.0)
-    let upperPriColour = UIColor(red: 86, green: 146, blue: 229, alpha: 1.0)
     
     let userDefaults = UserDefaults.standard
     
@@ -56,6 +59,24 @@ class ViewController: UIViewController, dataFromSettings {
         storedUserAge = settingsUserAge
     }
     
+    func checkRecentlyOpened() {
+        if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
+            lvlLabel.text = "\(recentlyOpenedTopic)"
+            topicLabel.text = "5 Chapters"
+            lvlLabel.alpha = 1
+            topicLabel.alpha = 1
+            recentlyOpenedBtn.backgroundColor = UIColor(red: 86/255, green: 146/255, blue: 229/255, alpha: 1.0)
+            recentlyOpenedBtn.setTitle("", for: .normal)
+        } else if (recentlyOpenedTopic == "Upper Primary" || primaryLevel == "Upper Primary") {
+            lvlLabel.text = "\(recentlyOpenedTopic)"
+            topicLabel.text = "4 Chapters"
+            lvlLabel.alpha = 1
+            topicLabel.alpha = 1
+            recentlyOpenedBtn.backgroundColor = UIColor(red: 86/255, green: 146/255, blue: 229/255, alpha: 1.0)
+            recentlyOpenedBtn.setTitle("", for: .normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,27 +85,6 @@ class ViewController: UIViewController, dataFromSettings {
             userPoints = userPointsGrab
         }
         
-        // Set Clip to Bounds
-        bgPad.clipsToBounds = true
-        welcomeView.clipsToBounds = true
-        dismissWelcomeMessage.clipsToBounds = true
-        earnedAwardView.clipsToBounds = true
-        dismissEarnedAward.clipsToBounds = true
-        
-        // Curved Edges
-        recentlyOpenedBtn.layer.cornerRadius = 20
-        upperPrimaryBtn.layer.cornerRadius = 20
-        lowerPrimaryBtn.layer.cornerRadius = 20
-        bgPad.layer.cornerRadius = 20
-        welcomeView.layer.cornerRadius = 20
-        dismissWelcomeMessage.layer.cornerRadius = 10
-        earnedAwardView.layer.cornerRadius = 20
-        dismissEarnedAward.layer.cornerRadius = 10
-                        
-        // Change Label Text to Data
-        pointLabel.text = "\(userPoints) Points"
-        
-        // Save User Points
         if userPoints != 0 {
             userDefaults.set(userPoints, forKey: "User Points")
         }
@@ -114,28 +114,31 @@ class ViewController: UIViewController, dataFromSettings {
         if let rank = userDefaults.string(forKey: "User Rank") {
             userRank = rank
         }
+                        
+        // Set Clip to Bounds
+        bgPad.clipsToBounds = true
+        welcomeView.clipsToBounds = true
+        dismissWelcomeMessage.clipsToBounds = true
+        earnedAwardView.clipsToBounds = true
+        dismissEarnedAward.clipsToBounds = true
         
+        // Curved Edges
+        recentlyOpenedBtn.layer.cornerRadius = 20
+        upperPrimaryBtn.layer.cornerRadius = 20
+        lowerPrimaryBtn.layer.cornerRadius = 20
+        bgPad.layer.cornerRadius = 20
+        welcomeView.layer.cornerRadius = 20
+        dismissWelcomeMessage.layer.cornerRadius = 10
+        earnedAwardView.layer.cornerRadius = 20
+        dismissEarnedAward.layer.cornerRadius = 10
+                        
+        // Change Label Text to Data
+        pointLabel.text = "\(userPoints) Points"
+                
         if let numOfTimes:Int = userDefaults.integer(forKey: "Number Of Times App Opened") {
             numOfTimesAppWasOpened = numOfTimes
         }
-        
-        // Recently Opened
-        if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
-            lvlLabel.text = "\(recentlyOpenedTopic)"
-            topicLabel.text = "5 Chapters"
-            lvlLabel.alpha = 1
-            topicLabel.alpha = 1
-            recentlyOpenedBtn.backgroundColor = lowerPriColour
-            recentlyOpenedBtn.setTitle("", for: .normal)
-        } else if (recentlyOpenedTopic == "Upper Primary" || primaryLevel == "Upper Primary") {
-            lvlLabel.text = "\(recentlyOpenedTopic)"
-            topicLabel.text = "4 Chapters"
-            lvlLabel.alpha = 1
-            topicLabel.alpha = 1
-            recentlyOpenedBtn.backgroundColor = lowerPriColour
-            recentlyOpenedBtn.setTitle("", for: .normal)
-        }
-        
+                
         // Check if Welcome Message was shown before
         if let welcomeMessageShownBefore:Bool = userDefaults.bool(forKey: "Welcome Message") {
             welcomeMessageShown = welcomeMessageShownBefore
@@ -159,6 +162,8 @@ class ViewController: UIViewController, dataFromSettings {
         }
         
         userDefaults.set(earnedAwards, forKey: "Earned Awards")
+        
+        checkRecentlyOpened()
     }
     
     // Button Config
@@ -192,6 +197,7 @@ class ViewController: UIViewController, dataFromSettings {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
         }
 
+        checkRecentlyOpened()
     }
     
     @IBAction func goToUpperPrimary(_ sender: Any) {
@@ -206,13 +212,7 @@ class ViewController: UIViewController, dataFromSettings {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
         }
         
-        lvlLabel.text = "\(recentlyOpenedTopic)"
-        lvlLabel.textColor = UIColor(displayP3Red: 96.0, green: 96.0, blue: 96.0, alpha: 1.0)
-        topicLabel.textColor = UIColor(displayP3Red: 96.0, green: 96.0, blue: 96.0, alpha: 1.0)
-        lvlLabel.alpha = 1
-        topicLabel.alpha = 1
-        recentlyOpenedBtn.backgroundColor = UIColor(red: 243.0/255.0, green: 223.0/255.0, blue: 162.0/255.0, alpha: 1.0)
-        recentlyOpenedBtn.setTitle("", for: .normal)
+        checkRecentlyOpened()
     }
     
     // Segue Config
