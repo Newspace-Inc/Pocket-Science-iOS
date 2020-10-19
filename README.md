@@ -1,5 +1,16 @@
-# Pocket-Science
+# Pocket Science (iOS)
 
-Pocket Science is a app being developed by Newspace Inc.
+Pocket Science hopes to help primary school students are struggling with remembering keywords for their science exams so therefore we decided to help them to study everything by consolidating the all keywords in one app sorted by chapters
 
-Newspace Inc. 2020
+
+## Installation
+App will be published to the iOS App Store <i>soon</i>
+
+## Tech/framework used
+<b>Built with</b>
+- Swift
+- Cocoapods
+
+## People who contributed
+[Ethan-Chew](https://github.com/Ethan-Chew)
+[Howie-Chia](https://github.com/Chiachiarealsmooth)
