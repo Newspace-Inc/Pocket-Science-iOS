@@ -10,6 +10,7 @@ import UIKit
 import CoreXLSX
 import MotionToastView
 import AcknowList
+import SwiftDate
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

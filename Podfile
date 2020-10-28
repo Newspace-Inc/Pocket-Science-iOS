@@ -8,5 +8,6 @@ target 'Pocket Science' do
     pod 'AcknowList'
     pod 'AcknowList'
     pod 'MotionToastView'
+    pod 'SwiftDate'
 end
 

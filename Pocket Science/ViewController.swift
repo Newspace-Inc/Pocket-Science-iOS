@@ -9,6 +9,7 @@
 import UIKit
 import CoreXLSX
 import MotionToastView
+import SwiftDate
 
 extension UIColor {
     static let lowerPriColour = UIColor(red: 117, green: 170, blue: 230, alpha: 1.0)
@@ -19,6 +20,7 @@ class ViewController: UIViewController, dataFromSettings {
         
     // Variables
     var recentlyOpenedTopic:String = LessonsViewController().recentlyOpenedLevel
+    var recentlyOpenedDate:String = ""
     var userPoints:Int = 0
     var primaryLevel:String = LessonsViewController().primaryLevel
     var storedUserName:String = ""
@@ -28,6 +30,8 @@ class ViewController: UIViewController, dataFromSettings {
     var welcomeMessageShown:Bool = false
     var numOfTimesAppWasOpened = 0
     var earnedAwards:Array<String> = []
+    let date = Date()
+    var newDate = ""
     
     let userDefaults = UserDefaults.standard
     
@@ -40,6 +44,7 @@ class ViewController: UIViewController, dataFromSettings {
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var dismissWelcomeMessage: UIButton!
+    @IBOutlet weak var lastOpenedDateLabel: UILabel!
     @IBOutlet weak var dismissEarnedAward: UIButton!
     
     // Earned Award View
@@ -63,34 +68,42 @@ class ViewController: UIViewController, dataFromSettings {
         if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
             lvlLabel.text = "\(recentlyOpenedTopic)"
             topicLabel.text = "5 Chapters"
+            lastOpenedDateLabel.text = recentlyOpenedDate
             lvlLabel.alpha = 1
             topicLabel.alpha = 1
-            recentlyOpenedBtn.backgroundColor = UIColor(red: 86/255, green: 146/255, blue: 229/255, alpha: 1.0)
+            lastOpenedDateLabel.alpha = 1
+            recentlyOpenedBtn.backgroundColor = UIColor(red: 117/255, green: 170/255, blue: 230/255, alpha: 1.0)
             recentlyOpenedBtn.setTitle("", for: .normal)
         } else if (recentlyOpenedTopic == "Upper Primary" || primaryLevel == "Upper Primary") {
             lvlLabel.text = "\(recentlyOpenedTopic)"
             topicLabel.text = "4 Chapters"
+            lastOpenedDateLabel.text = recentlyOpenedDate
             lvlLabel.alpha = 1
             topicLabel.alpha = 1
+            lastOpenedDateLabel.alpha = 1
             recentlyOpenedBtn.backgroundColor = UIColor(red: 86/255, green: 146/255, blue: 229/255, alpha: 1.0)
             recentlyOpenedBtn.setTitle("", for: .normal)
         }
     }
     
+    func checkAwards() {
+        if (numOfTimesAppWasOpened == 10) {
+            earnedAwards.append("Regular Member")
+        } else if (numOfTimesAppWasOpened == 100) {
+            earnedAwards.append("Frequent Member")
+        }
+        
+        userDefaults.set(earnedAwards, forKey: "Earned Awards")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        newDate = date.toFormat("dd MMM yyyy',' HH:mm")
         
         // Get User Points
         if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
             userPoints = userPointsGrab
-        }
-        
-        if userPoints != 0 {
-            userDefaults.set(userPoints, forKey: "User Points")
-        }
-        
-        if userRank != "" {
-            userDefaults.set(userRank, forKey: "User Rank")
         }
         
         if let userName = userDefaults.string(forKey: "Username") {
@@ -113,6 +126,14 @@ class ViewController: UIViewController, dataFromSettings {
         
         if let rank = userDefaults.string(forKey: "User Rank") {
             userRank = rank
+        }
+        
+        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<String> {
+            earnedAwards = userBadges
+        }
+        
+        if let lastOpenedDate = userDefaults.string(forKey: "Recently Opened Date") {
+            recentlyOpenedDate = lastOpenedDate
         }
                         
         // Set Clip to Bounds
@@ -155,15 +176,8 @@ class ViewController: UIViewController, dataFromSettings {
         
         print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
         
-        if (numOfTimesAppWasOpened == 10) {
-            earnedAwards.append("Regular Member")
-        } else if (numOfTimesAppWasOpened == 100) {
-            earnedAwards.append("Frequent Member")
-        }
-        
-        userDefaults.set(earnedAwards, forKey: "Earned Awards")
-        
         checkRecentlyOpened()
+        checkAwards()
     }
     
     // Button Config
@@ -171,11 +185,13 @@ class ViewController: UIViewController, dataFromSettings {
         let selectLessonVC = ChooseTopicViewController()
         
         recentlyOpenedTopic = primaryLevel
+        recentlyOpenedDate = newDate
         selectLessonVC.primaryLevel = primaryLevel
         performSegue(withIdentifier: "lessons", sender: nil)
         
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
+            userDefaults.set(primaryLevel, forKey: "Recently Opened Date")
         }
         
     }
@@ -189,12 +205,14 @@ class ViewController: UIViewController, dataFromSettings {
        let selectLessonVC = ChooseTopicViewController()
         
         primaryLevel = "Lower Primary"
+        recentlyOpenedDate = newDate
         recentlyOpenedTopic = primaryLevel
         selectLessonVC.primaryLevel = primaryLevel
         performSegue(withIdentifier: "lessons", sender: nil)
         
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
+            userDefaults.set(primaryLevel, forKey: "Recently Opened Date")
         }
 
         checkRecentlyOpened()
@@ -204,12 +222,14 @@ class ViewController: UIViewController, dataFromSettings {
         let selectLessonVC = ChooseTopicViewController()
         
         primaryLevel = "Upper Primary"
+        recentlyOpenedDate = newDate
         recentlyOpenedTopic = primaryLevel
         selectLessonVC.primaryLevel = primaryLevel
         performSegue(withIdentifier: "lessons", sender: nil)
         
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
+            userDefaults.set(primaryLevel, forKey: "Recently Opened Date")
         }
         
         checkRecentlyOpened()

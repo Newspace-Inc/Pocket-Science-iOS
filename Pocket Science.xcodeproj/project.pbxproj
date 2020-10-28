@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		5917C13C24337F9500107213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13A24337F9500107213 /* Main.storyboard */; };
 		5917C13E24337F9A00107213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5917C13D24337F9A00107213 /* Assets.xcassets */; };
-		593FDAF02530743D00589B95 /* CircleBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FDAEF2530743D00589B95 /* CircleBadge.swift */; };
-		593FDAF42530744C00589B95 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FDAF32530744C00589B95 /* BadgeView.swift */; };
-		593FDAF72530747900589B95 /* CircleBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FDAEF2530743D00589B95 /* CircleBadge.swift */; };
-		593FDAFA2530747B00589B95 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FDAF32530744C00589B95 /* BadgeView.swift */; };
+		592CF2182548F9BE000EC4E5 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592CF2172548F9BE000EC4E5 /* WidgetView.swift */; };
+		592CF2192548F9BE000EC4E5 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592CF2172548F9BE000EC4E5 /* WidgetView.swift */; };
 		59455CBB253D8772006A1C92 /* Main Data.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 59455CBA253D8772006A1C92 /* Main Data.xlsx */; };
 		59455CC1253D877B006A1C92 /* Topic Explaination.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 59455CC0253D877A006A1C92 /* Topic Explaination.xlsx */; };
 		59549A5A25383E9C00BD68A7 /* Pods-Pocket Science-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59549A5925383E9B00BD68A7 /* Pods-Pocket Science-acknowledgements.plist */; };
@@ -72,8 +70,7 @@
 		5917C13B24337F9500107213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5917C13D24337F9A00107213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5917C14224337F9A00107213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		593FDAEF2530743D00589B95 /* CircleBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBadge.swift; sourceTree = "<group>"; };
-		593FDAF32530744C00589B95 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		592CF2172548F9BE000EC4E5 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		59455CBA253D8772006A1C92 /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../../Pocket Science Assets/Main Data.xlsx"; sourceTree = "<group>"; };
 		59455CC0253D877A006A1C92 /* Topic Explaination.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Topic Explaination.xlsx"; path = "../../../Pocket Science Assets/Topic Explaination.xlsx"; sourceTree = "<group>"; };
 		59549A5925383E9B00BD68A7 /* Pods-Pocket Science-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-Pocket Science-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Pocket Science/Pods-Pocket Science-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
@@ -172,11 +169,10 @@
 			isa = PBXGroup;
 			children = (
 				59E288F024C155C500210814 /* Pocket_Science_Widget.swift */,
+				592CF2172548F9BE000EC4E5 /* WidgetView.swift */,
 				59E288F224C155C500210814 /* Pocket_Science_Widget.intentdefinition */,
 				59E288F324C155C700210814 /* Assets.xcassets */,
 				59E288F524C155C700210814 /* Info.plist */,
-				593FDAEF2530743D00589B95 /* CircleBadge.swift */,
-				593FDAF32530744C00589B95 /* BadgeView.swift */,
 			);
 			path = "Pocket Science Widget";
 			sourceTree = "<group>";
@@ -354,8 +350,7 @@
 				876F595B24C72210007414AA /* ChooseTopicViewController.swift in Sources */,
 				876F595F24C72210007414AA /* TiersViewController.swift in Sources */,
 				876F596324C72210007414AA /* FlashcardsViewController.swift in Sources */,
-				593FDAF42530744C00589B95 /* BadgeView.swift in Sources */,
-				593FDAF02530743D00589B95 /* CircleBadge.swift in Sources */,
+				592CF2182548F9BE000EC4E5 /* WidgetView.swift in Sources */,
 				876F595D24C72210007414AA /* ProfileViewController.swift in Sources */,
 				59DD90AB25316E930050AE10 /* FavouriteFlashcardsViewController.swift in Sources */,
 				876F596724C72210007414AA /* QuizResultsViewController.swift in Sources */,
@@ -372,10 +367,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				593FDAFA2530747B00589B95 /* BadgeView.swift in Sources */,
 				59E288F124C155C500210814 /* Pocket_Science_Widget.swift in Sources */,
 				59E288F624C155C700210814 /* Pocket_Science_Widget.intentdefinition in Sources */,
-				593FDAF72530747900589B95 /* CircleBadge.swift in Sources */,
+				592CF2192548F9BE000EC4E5 /* WidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
