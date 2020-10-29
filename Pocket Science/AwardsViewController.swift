@@ -10,7 +10,6 @@ import UIKit
 
 class AwardsViewController: UIViewController {
     
-    
     let userDefaults = UserDefaults.standard
     
     // Variables/Arrays
@@ -21,6 +20,7 @@ class AwardsViewController: UIViewController {
     var tierRewards = [""]
     var userTier = ""
     var earnedAwards = [""]
+    var quizAttempts = 0
     var notEarnedImage = ["Beginner_Not_Earned", "Bookworm_Not_Earned","Brainy_Not_Earned", "Diligent_Ant_Not_Earned","Expert_Not_Earned", "Industrious_Bee_Not_Earned","Maestro_Not_Earned","Normal member_Not_Earned","Perfectionist_Not_Earned","Quintessential_Not_Earned","Regular member_Not_Earned","Star collector_Not_Earned", "Streaker_Bronze_Not_Earned", "Streaker_Gold_Not_Earned","Streaker_Silver_Not_Earned"]
     var earnedImage = ["Beginner Badge", "Bookworm Badge", "Brainy Badge", "Diligent Ant Badge", "Expert Badge", "Frequent Member Badge", "Industrious Bee Badge", "Maestro Badge", "Normal Member Badge", "Perfectionist Badge", "Regular Member Badge","Star Collector Badge","Streaker Bronze Badge","Streaker Gold Badge", "Streaker Silver Badge"]
     
@@ -55,6 +55,10 @@ class AwardsViewController: UIViewController {
             userTier = "Gold"
         } else if (Int(userPoints) == tierRequirment[3]) {
             userTier = "Diamond"
+        }
+        
+        if let attemptCount:Int = userDefaults.integer(forKey: "Quiz Attempts") {
+            quizAttempts = attemptCount
         }
         
         if (userTier != "") {

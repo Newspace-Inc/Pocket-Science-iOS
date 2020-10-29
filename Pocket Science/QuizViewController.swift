@@ -29,6 +29,7 @@ class QuizViewController: UIViewController {
     
     var quizQuestionIndex = 1
     var currentQuizQn = [""]
+    var quizAttempts = 0
     
     let userDefaults = UserDefaults.standard
     
@@ -103,6 +104,8 @@ class QuizViewController: UIViewController {
     }
     
     func quizConfig() {
+        quizAttempts += 1
+        
         if (quizType == "Multiple Choice Questions") {
             questionNumber.text = "\(quizQuestionIndex)/\(totalAmtOfQns)"
             print(currentQuizQn)
@@ -163,6 +166,10 @@ class QuizViewController: UIViewController {
             selectedLesson = openedLesson
         }
         
+        if let numOfAttempts:Int = userDefaults.integer(forKey: "Quiz Attempts") {
+            quizAttempts = numOfAttempts
+        }
+        
         // Set Clip to Bounds
         uiBG.clipsToBounds = true
         optionOneBtn.clipsToBounds = true
@@ -218,6 +225,7 @@ class QuizViewController: UIViewController {
             userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             userDefaults.set(correctQnName, forKey: "Correct Qns Array")
             userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            userDefaults.set(quizAttempts, forKey: "Quiz Attempts")
             performSegue(withIdentifier: "quizResults", sender: nil)
         } else {
             getData()
@@ -238,6 +246,7 @@ class QuizViewController: UIViewController {
             userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             userDefaults.set(correctQnName, forKey: "Correct Qns Array")
             userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            userDefaults.set(quizAttempts, forKey: "Quiz Attempts")
             performSegue(withIdentifier: "quizResults", sender: nil)
         } else {
             getData()
@@ -258,6 +267,7 @@ class QuizViewController: UIViewController {
             userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             userDefaults.set(correctQnName, forKey: "Correct Qns Array")
             userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            userDefaults.set(quizAttempts, forKey: "Quiz Attempts")
             performSegue(withIdentifier: "quizResults", sender: nil)
         } else {
             getData()
@@ -278,6 +288,7 @@ class QuizViewController: UIViewController {
             userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             userDefaults.set(correctQnName, forKey: "Correct Qns Array")
             userDefaults.set(incorrectQnName, forKey: "Incorrect Qns Array")
+            userDefaults.set(quizAttempts, forKey: "Quiz Attempts")
             performSegue(withIdentifier: "quizResults", sender: nil)
         } else {
             getData()
