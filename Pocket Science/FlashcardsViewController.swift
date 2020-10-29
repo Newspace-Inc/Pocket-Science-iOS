@@ -9,32 +9,6 @@
 import UIKit
 import CoreXLSX
 
-extension UIView {
-    func flashcardAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil, r2lDirection: Bool) {
-        // Create a CATransition object
-        let leftToRightTransition = CATransition()
-        
-        // Set its callback delegate to the completionDelegate that was provided
-        if let delegate: AnyObject = completionDelegate {
-            leftToRightTransition.delegate = delegate as? CAAnimationDelegate
-        }
-        
-        if r2lDirection == true {
-            leftToRightTransition.subtype = CATransitionSubtype.fromLeft
-        } else {
-            leftToRightTransition.subtype = CATransitionSubtype.fromRight
-        }
-        
-        leftToRightTransition.type = CATransitionType.push
-        leftToRightTransition.duration = duration
-        leftToRightTransition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        leftToRightTransition.fillMode = CAMediaTimingFillMode.removed
-        
-        // Add the animation to the View's layer
-        self.layer.add(leftToRightTransition, forKey: "leftToRightTransition")
-    }
-}
-
 class FlashcardsViewController: UIViewController {
     
     // UI Elements

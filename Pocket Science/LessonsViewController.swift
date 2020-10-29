@@ -9,12 +9,6 @@
 import UIKit
 import CoreXLSX
 
-extension Array where Element: Equatable {
-    func remove(_ obj: Element) -> [Element] {
-        return filter { $0 != obj }
-    }
-}
-
 class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Variables

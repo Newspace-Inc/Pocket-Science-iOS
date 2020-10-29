@@ -11,11 +11,6 @@ import CoreXLSX
 import MotionToastView
 import SwiftDate
 
-extension UIColor {
-    static let lowerPriColour = UIColor(red: 117, green: 170, blue: 230, alpha: 1.0)
-    static let upperPriColour = UIColor(red: 86, green: 146, blue: 229, alpha: 1.0)
-}
-
 class ViewController: UIViewController, dataFromSettings {
         
     // Variables
@@ -32,6 +27,8 @@ class ViewController: UIViewController, dataFromSettings {
     var earnedAwards:Array<String> = []
     let date = Date()
     var newDate = ""
+    var dailyStreak = 0
+    var earnedImage = ["Beginner Badge", "Bookworm Badge", "Brainy Badge", "Diligent Ant Badge", "Expert Badge", "Frequent Member Badge", "Industrious Bee Badge", "Maestro Badge", "Normal Member Badge", "Perfectionist Badge", "Regular Member Badge","Star Collector Badge","Streaker Bronze Badge","Streaker Gold Badge", "Streaker Silver Badge"]
     
     let userDefaults = UserDefaults.standard
     
@@ -94,6 +91,45 @@ class ViewController: UIViewController, dataFromSettings {
         }
         
         userDefaults.set(earnedAwards, forKey: "Earned Awards")
+    }
+    
+    func showNewAwardView(award: String) {
+        earnedAwardView.isHidden = false
+        awardName.text = award
+        
+    }
+    
+    func dailyStreakCheck() {
+        let currentDate = Date()
+        var lastLoginDate:Date
+        
+        if let lastLogin = userDefaults.object(forKey: "Last Login Date") as? Date {
+            lastLoginDate = lastLogin
+        } else {
+            return
+        }
+        
+        if let streak:Int = userDefaults.integer(forKey: "Daily Streak") {
+            dailyStreak = streak
+        } else {
+            dailyStreak = 0
+        }
+        
+        print(currentDate)
+        print(lastLoginDate)
+        
+        if (currentDate.compare(.isToday) && lastLoginDate.compare(.isYesterday)) {
+            dailyStreak += 1
+            lastLoginDate = currentDate
+            userDefaults.set(dailyStreak, forKey: "Daily Streak")
+            userDefaults.set(lastLoginDate, forKey: "Last Login Date")
+        } else if (currentDate.compare(.isToday) && lastLoginDate.compare(.isToday)) {
+            lastLoginDate = currentDate
+            userDefaults.set(dailyStreak, forKey: "Daily Streak")
+            userDefaults.set(lastLoginDate, forKey: "Last Login Date")
+        } else {
+            return
+        }
     }
     
     override func viewDidLoad() {
@@ -176,6 +212,7 @@ class ViewController: UIViewController, dataFromSettings {
         
         print("Number of Times App was Opened: \(numOfTimesAppWasOpened)")
         
+        dailyStreakCheck()
         checkRecentlyOpened()
         checkAwards()
     }
@@ -201,6 +238,7 @@ class ViewController: UIViewController, dataFromSettings {
         userDefaults.set(welcomeMessageShown, forKey: "Welcome Message")
         welcomeView.isHidden = true
     }
+    
     @IBAction func goToLowerPrimary(_ sender: Any) {
        let selectLessonVC = ChooseTopicViewController()
         
