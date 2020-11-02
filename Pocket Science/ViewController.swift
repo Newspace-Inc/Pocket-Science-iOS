@@ -215,7 +215,7 @@ class ViewController: UIViewController, dataFromSettings {
         dailyStreakCheck()
         checkRecentlyOpened()
         checkAwards()
-    }
+}
     
     // Button Config
     @IBAction func goToRecentlyOpened(_ sender: Any) {
