@@ -9,6 +9,14 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+let data = prepareData()
+
+var numOfTimesAppWasOpened = data.numOfTimesAppWasOpened
+var earnedAwards:[String] = data.earnedAwards
+let earnedImage = data.earnedImage
+var lastOpenedDate = data.lastOpenedDate
+var lastOpened = data.lastOpened
+
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationIntent())
@@ -42,7 +50,6 @@ struct SimpleEntry: TimelineEntry {
 
 struct WidgetEntryView : View {
     var entry: Provider.Entry
-    let data = prepareData()
  
     var body: some View {
                 
@@ -64,10 +71,10 @@ struct WidgetEntryView : View {
                             .frame(width: 5, height: 34)
                         
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(data.lastOpened)
+                            Text("Test 1")
                                 .bold()
                                 .font(.system(size: 13))
-                            Text(data.lastOpenedDate)
+                            Text("Some Date")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 10))
                         }

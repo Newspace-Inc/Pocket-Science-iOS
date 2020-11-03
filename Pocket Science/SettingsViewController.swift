@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var eraseData: UIButton!
     @IBOutlet weak var tutorialBtn: UIButton!
     @IBOutlet weak var acknowledgeBtn: UIButton!
-    
+    @IBOutlet weak var UIBG: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,8 @@ class SettingsViewController: UIViewController {
         eraseData.layer.cornerRadius = 20
         acknowledgeBtn.clipsToBounds = true
         acknowledgeBtn.layer.cornerRadius = 20
+        UIBG.clipsToBounds = true
+        UIBG.layer.cornerRadius = 20
     }
     
     func deleteDataAlert() {
@@ -107,13 +109,11 @@ class SettingsViewController: UIViewController {
             userDefaults.set(userAge, forKey: "Userage")
         }
         
-        statusLabel.text = "Saved Successfully."
+        statusLabel.text = "Saved Successfully. Please restart app to apply changes."
         statusLabel.alpha = 1
         
         settingsVC.settingsUserName = settingsUserName
         mainVC.storedUserName = settingsUserName
-        
-        delegate.passDataBack(settingsUserName: settingsUserName, settingsUserAge: settingsUserAge)
     }
     
     @IBAction func DismissKeyboard(_ sender: UITextField) {

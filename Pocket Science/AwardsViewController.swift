@@ -110,56 +110,56 @@ class AwardsViewController: UIViewController {
             streakerSilverImage.image = UIImage(named: notEarnedImage[1])
         } else {
             for i in 0...earnedImage.count - 1 {
-                if (i + 1 == earnedAwards.count) {
-                    beginnerImage.image = UIImage(named: earnedImage[i])
-                } else {
-                    if (earnedAwards[i] == earnedImage[i]) {
-                        if (earnedAwards[i] == "Beginner Badge") {
-                            beginnerImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Bookworm Badge") {
-                            bookworkImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Diligent Ant Badge") {
-                            diligentAntImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Expert Badge") {
-                            expertImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Frequent Member Badge") {
-                            frequentMemberImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Industrious Bee Badge") {
-                            industriousBeeImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Normal Member Badge") {
-                            normalMemberImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Regular Member Badge") {
-                            regularMemberImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Streaker Gold Badge") {
-                            streakerGoldImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Streaker Bronze Badge") {
-                            streakerBronzeImage.image = UIImage(named: earnedImage[i])
-                        } else if (earnedAwards[i] == "Streaker Silver Badge") {
-                            streakerSilverImage.image = UIImage(named: earnedImage[i])
-                        }
-                    } else {
-                        if (earnedAwards[i] != "Beginner Badge") {
-                            beginnerImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Bookworm Badge") {
-                            bookworkImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Diligent Ant Badge") {
-                            diligentAntImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Expert Badge") {
-                            expertImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Frequent Member Badge") {
-                            frequentMemberImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Industrious Bee Badge") {
-                            industriousBeeImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Normal Member Badge") {
-                            normalMemberImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Regular Member Badge") {
-                            regularMemberImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Streaker Gold Badge") {
-                            streakerGoldImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Streaker Bronze Badge") {
-                            streakerBronzeImage.image = UIImage(named: notEarnedImage[i])
-                        } else if (earnedAwards[i] != "Streaker Silver Badge") {
-                            streakerSilverImage.image = UIImage(named: notEarnedImage[i])
+                for j in 0...earnedAwards.count - 1 {
+                    print("\(earnedImage[i]) and \(earnedAwards[j])")
+                    if (earnedImage[i] == earnedAwards[j]) {
+                        switch earnedAwards[j] {
+                        case "Beginner Badge":
+                            beginnerImage.image = UIImage(named: earnedImage[j])
+                        case "Bookworm Badge":
+                            bookworkImage.image = UIImage(named: earnedImage[j])
+                        case "Diligent Ant Badge":
+                            diligentAntImage.image = UIImage(named: earnedImage[j])
+                        case "Expert Badge":
+                            expertImage.image = UIImage(named: earnedImage[j])
+                        case "Frequent Member Badge":
+                            frequentMemberImage.image = UIImage(named: earnedImage[j])
+                        case "Industrious Bee Badge":
+                            industriousBeeImage.image = UIImage(named: earnedImage[j])
+                        case "Normal Member Badge":
+                            normalMemberImage.image = UIImage(named: earnedImage[j])
+                        case "Regular Member Badge":
+                            regularMemberImage.image = UIImage(named: earnedImage[j])
+                        case "Streaker Bronze Badge":
+                            streakerBronzeImage.image = UIImage(named: earnedImage[j])
+                        case "Streaker Gold Badge":
+                            streakerGoldImage.image = UIImage(named: earnedImage[j])
+                        case "Streaker Silver Badge":
+                            streakerSilverImage.image = UIImage(named: earnedImage[j])
+                        default:
+                            if (earnedAwards[j] != "Beginner Badge") {
+                                beginnerImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Bookworm Badge") {
+                                bookworkImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Diligent Ant Badge") {
+                                diligentAntImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Expert Badge") {
+                                expertImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Frequent Member Badge") {
+                                frequentMemberImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Industrious Bee Badge") {
+                                industriousBeeImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Normal Member Badge") {
+                                normalMemberImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Regular Member Badge") {
+                                regularMemberImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Streaker Gold Badge") {
+                                streakerGoldImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Streaker Bronze Badge") {
+                                streakerBronzeImage.image = UIImage(named: notEarnedImage[j])
+                            } else if (earnedAwards[j] != "Streaker Silver Badge") {
+                                streakerSilverImage.image = UIImage(named: notEarnedImage[j])
+                            }
                         }
                     }
                 }

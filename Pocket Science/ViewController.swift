@@ -83,14 +83,16 @@ class ViewController: UIViewController, dataFromSettings {
         }
     }
     
-    func checkAwards() {
-        if (numOfTimesAppWasOpened == 10) {
-            earnedAwards.append("Regular Member")
-        } else if (numOfTimesAppWasOpened == 100) {
-            earnedAwards.append("Frequent Member")
+    func removeDuplicates<S : Sequence, T : Hashable>(source: S) -> [T] where S.Iterator.Element == T {
+        var buffer = [T]()
+        var added = Set<T>()
+        for elem in source {
+            if !added.contains(elem) {
+                buffer.append(elem)
+                added.insert(elem)
+            }
         }
-        
-        userDefaults.set(earnedAwards, forKey: "Earned Awards")
+        return buffer
     }
     
     func showNewAwardView(award: String) {
@@ -114,10 +116,7 @@ class ViewController: UIViewController, dataFromSettings {
         } else {
             dailyStreak = 0
         }
-        
-        print(currentDate)
-        print(lastLoginDate)
-        
+                
         if (currentDate.compare(.isToday) && lastLoginDate.compare(.isYesterday)) {
             dailyStreak += 1
             lastLoginDate = currentDate
@@ -130,6 +129,37 @@ class ViewController: UIViewController, dataFromSettings {
         } else {
             return
         }
+    }
+    
+    func checkAwards() {
+        earnedAwards = earnedAwards.remove("Regular Member")
+        if (numOfTimesAppWasOpened == 1) {
+            if (earnedAwards.contains("Normal Member Badge")) {} else {
+                earnedAwards.append("Normal Member Badge")
+            }
+        }
+        
+        if (numOfTimesAppWasOpened == 10) {
+            if (earnedAwards.contains("Regular Member Badge")) {} else {
+                earnedAwards.append("Regular Member Badge")
+            }
+        } else if (numOfTimesAppWasOpened == 100) {
+            if (earnedAwards.contains("Frequent Member Badge")) {} else {
+                earnedAwards.append("Frequent Member Badge")
+            }
+        }
+        
+        if (welcomeMessageShown == false) {
+            welcomeView.isHidden = false
+        } else {
+            welcomeView.isHidden = true
+            if (earnedAwards.contains("Beginner Badge")) {} else {
+                earnedAwards.append("Beginner Badge")
+            }
+        }
+        
+        earnedAwards = removeDuplicates(source: earnedAwards)
+        userDefaults.set(earnedAwards, forKey: "Earned Awards")
     }
     
     override func viewDidLoad() {
@@ -171,7 +201,7 @@ class ViewController: UIViewController, dataFromSettings {
         if let lastOpenedDate = userDefaults.string(forKey: "Recently Opened Date") {
             recentlyOpenedDate = lastOpenedDate
         }
-                        
+                
         // Set Clip to Bounds
         bgPad.clipsToBounds = true
         welcomeView.clipsToBounds = true
@@ -200,12 +230,6 @@ class ViewController: UIViewController, dataFromSettings {
         if let welcomeMessageShownBefore:Bool = userDefaults.bool(forKey: "Welcome Message") {
             welcomeMessageShown = welcomeMessageShownBefore
         }
-        if (welcomeMessageShown == false) {
-            welcomeView.isHidden = false
-        } else {
-            welcomeView.isHidden = true
-            earnedAwards.append("Beginner Badge")
-        }
         
         numOfTimesAppWasOpened += 1
         userDefaults.set(numOfTimesAppWasOpened, forKey: "Number Of Times App Opened")
@@ -228,7 +252,7 @@ class ViewController: UIViewController, dataFromSettings {
         
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
-            userDefaults.set(primaryLevel, forKey: "Recently Opened Date")
+            userDefaults.set(recentlyOpenedDate, forKey: "Recently Opened Date")
         }
         
     }
@@ -250,7 +274,7 @@ class ViewController: UIViewController, dataFromSettings {
         
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
-            userDefaults.set(primaryLevel, forKey: "Recently Opened Date")
+            userDefaults.set(recentlyOpenedDate, forKey: "Recently Opened Date")
         }
 
         checkRecentlyOpened()
@@ -265,9 +289,10 @@ class ViewController: UIViewController, dataFromSettings {
         selectLessonVC.primaryLevel = primaryLevel
         performSegue(withIdentifier: "lessons", sender: nil)
         
+        print(recentlyOpenedDate)
         if primaryLevel != "" {
             userDefaults.set(primaryLevel, forKey: "Recently Opened")
-            userDefaults.set(primaryLevel, forKey: "Recently Opened Date")
+            userDefaults.set(recentlyOpenedDate, forKey: "Recently Opened Date")
         }
         
         checkRecentlyOpened()

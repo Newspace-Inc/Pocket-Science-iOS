@@ -202,6 +202,39 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         getDataAgain()
     }
     
+    func frequentlyOpened(lesson: String) {
+        var frequentlyOpened:[String:Int] = [:]
+        
+        if let frequentlyOpened1 = userDefaults.object(forKey: "Frequently Opened") as? [String:Int] {
+            frequentlyOpened = frequentlyOpened1
+        } else {
+            frequentlyOpened = [:]
+        }
+        
+        if (frequentlyOpened[lesson] != nil) {
+            // Frequently Opened aleardy has the lesson
+            var timesOpened = 0
+            
+            if let timesOpened1 = frequentlyOpened[lesson] {
+                timesOpened = timesOpened1
+            }
+            
+            timesOpened += 1
+            frequentlyOpened[lesson] = timesOpened
+
+            userDefaults.set(frequentlyOpened, forKey: "Frequently Opened")
+            
+        } else {
+            // Frequently Opened has no lesson
+            var timesOpened = 0
+
+            timesOpened += 1
+            frequentlyOpened[lesson] = timesOpened
+            
+            userDefaults.set(frequentlyOpened, forKey: "Frequently Opened")
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userSelectedTopic.count
     }
@@ -222,7 +255,9 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if userSelectedTopic[indexPath.row] != "" {
             userDefaults.set(userSelectedTopic[indexPath.row], forKey: "Overall Selected Topic")
+            frequentlyOpened(lesson: userSelectedTopic[indexPath.row])
         }
+        
         performSegue(withIdentifier: "flashcards", sender: nil)
     }
     
