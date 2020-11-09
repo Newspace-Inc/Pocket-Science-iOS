@@ -24,8 +24,8 @@ class ProfileViewController: UIViewController, dataFromSettings {
     var storedUserName = ""
     var storedUserAge = ""
     
-    let userDefaults = UserDefaults.standard
-    
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+
     func passDataBack(settingsUserName: String, settingsUserAge:String) {
         storedUserName = settingsUserName
         storedUserAge = settingsUserAge

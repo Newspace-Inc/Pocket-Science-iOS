@@ -20,8 +20,8 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var quizType = ""
     var worksheetName = ""
     
-    let userDefaults = UserDefaults.standard
-    
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+
     // Labels and Buttons
     @IBOutlet weak var primaryLabel1: UILabel!
     @IBOutlet weak var primaryLabel2: UILabel!
@@ -152,6 +152,8 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     topicExplaination = topicExplaination.remove("Empty Cell")
                     
+                    topicExplaination.removeLast()
+                    
                     let explaination = topicExplaination.joined(separator: "\n")
                     
                     ExplainationTextField.text = "\(explaination)"
@@ -182,10 +184,12 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let openedLesson = userDefaults.string(forKey: "Opened Lesson") {
             selectedLesson = openedLesson
         }
-        
+                        
         // Set labels
         primaryLabel1.text = "\(primaryLevel)"
         primaryLabel2.text =  "Primary School \(selectedLesson)"
+        
+        userDefaults.set("Hello", forKey: "User Selected Lesson")
         
         topicSelectionView.isHidden = false
         subtopicTableView.isHidden = true
@@ -197,7 +201,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Collect Data
         worksheetName = "\(primaryLevel) Data"
-        
+                
         getData()
         getDataAgain()
     }
@@ -292,6 +296,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         performSegue(withIdentifier: "Quiz", sender: nil)
     }
+    
     @IBAction func spellingBtn(_ sender: Any) {
         // Create Alert
         MotionToast(message: "Spelling is still under Development! Check back soon! :)", toastType: .warning, duration: .long, toastStyle: .style_pale, toastGravity: .centre, pulseEffect: false)

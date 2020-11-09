@@ -7,42 +7,113 @@
 //
 
 import UIKit
+import CoreXLSX
 
-class AwardsViewController: UIViewController {
+class CollectionViewCell: UICollectionViewCell {
     
-    let userDefaults = UserDefaults.standard
+    let badgeNameArr = ["Beginner","Expert","Maestro","Brainy","Perfectionist","Quintessential","Bookworm","Diligent Ant","Industrious Bee","Normal Member","Regular Member","Frequent member","Streaker Bronze","Streaker Silver","Streaker Gold"]
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+    
+    
+    @IBOutlet weak var badgeName: UILabel!
+    @IBOutlet weak var badgeDescription: UILabel!
+    @IBOutlet weak var badgeImageView: UIImageView!
+    
+    func config(with rowIndex:Int) {
+        var data:[String:[String]] = [:]
+        var earnedAwards = [""]
+        
+        if let data1 = userDefaults.object(forKey: "Badge Data") as? [String:[String]] {
+            data = data1
+        }
+        
+        if let awards = userDefaults.object(forKey: "Earned Awards") as? [String] {
+            earnedAwards = awards
+        }
+        
+        var badgeData = [""]
+        
+        if let badgeData1 = data[badgeNameArr[rowIndex]] {
+            badgeData = badgeData1
+        }
+        
+        let currentBadgeName = badgeNameArr[rowIndex]
+        let earnedImageName = badgeData[2]
+        let notEarnedImageName = badgeData[1]
+        
+        badgeDescription.text = badgeData[0]
+        badgeName.text = currentBadgeName
+        
+        if (earnedAwards.count != 1) {
+            for i in 0...earnedAwards.count - 1 {
+                if (earnedAwards[i] == currentBadgeName) {
+                    badgeImageView.image = UIImage(named: earnedImageName + ".img")
+                } else {
+                    badgeImageView.image = UIImage(named: notEarnedImageName + ".img")
+                }
+            }
+        }
+    }
+}
+
+class AwardsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     
     // Variables/Arrays
     var tierRequirment = [100, 500, 1000, 5000]
     var awardRequirment = [""]
-    var awardName = ["Beginner", "Expert"]
     var userPoints = 0
     var tierRewards = [""]
     var userTier = ""
     var earnedAwards = [""]
     var quizAttempts = 0
-    var notEarnedImage = ["Beginner_Not_Earned", "Bookworm_Not_Earned","Brainy_Not_Earned", "Diligent_Ant_Not_Earned","Expert_Not_Earned", "Industrious_Bee_Not_Earned","Maestro_Not_Earned","Normal member_Not_Earned","Perfectionist_Not_Earned","Quintessential_Not_Earned","Regular member_Not_Earned","Star collector_Not_Earned", "Streaker_Bronze_Not_Earned", "Streaker_Gold_Not_Earned","Streaker_Silver_Not_Earned"]
-    var earnedImage = ["Beginner Badge", "Bookworm Badge", "Brainy Badge", "Diligent Ant Badge", "Expert Badge", "Frequent Member Badge", "Industrious Bee Badge", "Maestro Badge", "Normal Member Badge", "Perfectionist Badge", "Regular Member Badge","Star Collector Badge","Streaker Bronze Badge","Streaker Gold Badge", "Streaker Silver Badge"]
+    var data:[String:[String]] = [:]
     
     // UI Elements
     @IBOutlet weak var badgesLabel: UILabel!
     @IBOutlet weak var uiBG: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    // Award Image Views
-    @IBOutlet weak var beginnerImage: UIImageView!
-    @IBOutlet weak var expertImage: UIImageView!
-    @IBOutlet weak var masteroImage: UIImageView!
-    @IBOutlet weak var streakerBronzeImage: UIImageView!
-    @IBOutlet weak var streakerSilverImage: UIImageView!
-    @IBOutlet weak var streakerGoldImage: UIImageView!
-    @IBOutlet weak var bookworkImage: UIImageView!
-    @IBOutlet weak var diligentAntImage: UIImageView!
-    @IBOutlet weak var industriousBeeImage: UIImageView!
-    @IBOutlet weak var normalMemberImage: UIImageView!
-    @IBOutlet weak var regularMemberImage: UIImageView!
-    @IBOutlet weak var frequentMemberImage: UIImageView!
-    
+    func getData() {
+        // Collect Data
+        let worksheetName = "Sheet1"
+        
+        do {
+            let filepath = Bundle.main.path(forResource: "Badges", ofType: "xlsx")!
+            
+            guard let file = XLSXFile(filepath: filepath) else {
+                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+            }
+            
+            for wbk in try file.parseWorkbooks() {
+                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
+                        .first(where: { $0.name == worksheetName }).map({ $0.path })
+                else {
+                    continue
+                }
+                
+                let sharedStrings = try file.parseSharedStrings()
+                let worksheet = try file.parseWorksheet(at: path)
+                let numOfBadges = 15
+                
+                for i in 1...numOfBadges {
+                    var parseBadges = worksheet.cells(atRows: [UInt(i)])
+                        .compactMap { $0.stringValue(sharedStrings) }
+                    let badgeName = parseBadges[0]
+                    parseBadges.remove(at: 0)
+                    
+                    data[badgeName] = parseBadges
+                    
+                    userDefaults.set(data, forKey: "Badge Data")
+                    print(data)
+                }
+                
+            }
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,10 +140,6 @@ class AwardsViewController: UIViewController {
             userDefaults.set(userPoints, forKey: "User Points")
         }
         
-        if let earned = userDefaults.object(forKey: "Earned Awards") {
-            earnedAwards = earned as! [String]
-        }
-        
         if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
             userPoints = userPointsGrab
         }
@@ -91,79 +158,22 @@ class AwardsViewController: UIViewController {
         badgesLabel.layer.cornerRadius = 20
         uiBG.layer.cornerRadius = 20
         
-        // Set Scroll View
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 671)
+        getData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = CollectionViewCell()
         
-        // Check User Awards
-        if (earnedAwards.count == 1) {
-            beginnerImage.image = UIImage(named: earnedImage[0])
-            bookworkImage.image = UIImage(named: notEarnedImage[1])
-            diligentAntImage.image = UIImage(named: notEarnedImage[3])
-            expertImage.image = UIImage(named: notEarnedImage[4])
-            frequentMemberImage.image = UIImage(named: notEarnedImage[5])
-            industriousBeeImage.image = UIImage(named: notEarnedImage[6])
-            masteroImage.image = UIImage(named: notEarnedImage[7])
-            normalMemberImage.image = UIImage(named: notEarnedImage[8])
-            regularMemberImage.image = UIImage(named: notEarnedImage[10])
-            streakerBronzeImage.image = UIImage(named: notEarnedImage[11])
-            streakerGoldImage.image = UIImage(named: notEarnedImage[12])
-            streakerSilverImage.image = UIImage(named: notEarnedImage[1])
-        } else {
-            for i in 0...earnedImage.count - 1 {
-                for j in 0...earnedAwards.count - 1 {
-                    print("\(earnedImage[i]) and \(earnedAwards[j])")
-                    if (earnedImage[i] == earnedAwards[j]) {
-                        switch earnedAwards[j] {
-                        case "Beginner Badge":
-                            beginnerImage.image = UIImage(named: earnedImage[j])
-                        case "Bookworm Badge":
-                            bookworkImage.image = UIImage(named: earnedImage[j])
-                        case "Diligent Ant Badge":
-                            diligentAntImage.image = UIImage(named: earnedImage[j])
-                        case "Expert Badge":
-                            expertImage.image = UIImage(named: earnedImage[j])
-                        case "Frequent Member Badge":
-                            frequentMemberImage.image = UIImage(named: earnedImage[j])
-                        case "Industrious Bee Badge":
-                            industriousBeeImage.image = UIImage(named: earnedImage[j])
-                        case "Normal Member Badge":
-                            normalMemberImage.image = UIImage(named: earnedImage[j])
-                        case "Regular Member Badge":
-                            regularMemberImage.image = UIImage(named: earnedImage[j])
-                        case "Streaker Bronze Badge":
-                            streakerBronzeImage.image = UIImage(named: earnedImage[j])
-                        case "Streaker Gold Badge":
-                            streakerGoldImage.image = UIImage(named: earnedImage[j])
-                        case "Streaker Silver Badge":
-                            streakerSilverImage.image = UIImage(named: earnedImage[j])
-                        default:
-                            if (earnedAwards[j] != "Beginner Badge") {
-                                beginnerImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Bookworm Badge") {
-                                bookworkImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Diligent Ant Badge") {
-                                diligentAntImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Expert Badge") {
-                                expertImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Frequent Member Badge") {
-                                frequentMemberImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Industrious Bee Badge") {
-                                industriousBeeImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Normal Member Badge") {
-                                normalMemberImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Regular Member Badge") {
-                                regularMemberImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Streaker Gold Badge") {
-                                streakerGoldImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Streaker Bronze Badge") {
-                                streakerBronzeImage.image = UIImage(named: notEarnedImage[j])
-                            } else if (earnedAwards[j] != "Streaker Silver Badge") {
-                                streakerSilverImage.image = UIImage(named: notEarnedImage[j])
-                            }
-                        }
-                    }
-                }
-            }
+        if let badgeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? CollectionViewCell {
+            badgeCell.config(with: indexPath.row)
+            
+            cell = badgeCell
         }
+        
+        return cell
     }
 }

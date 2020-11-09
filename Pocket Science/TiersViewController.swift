@@ -18,8 +18,8 @@ class TiersViewController: UIViewController {
     var tierRewards = [""]
     var userTier = ""
     
-    let userDefaults = UserDefaults.standard
-    
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+
     // Labels and Buttons
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var bronzeBG: UILabel!

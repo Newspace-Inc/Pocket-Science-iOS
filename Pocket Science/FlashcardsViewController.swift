@@ -39,7 +39,7 @@ class FlashcardsViewController: UIViewController {
     
     var uneditedCurrentFlashcard:Array<String> = []
     
-    let userDefaults = UserDefaults.standard
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     var r2lDirection = false  // Initialize to right to left swipe
     
     var data:[String:[String]] = [:]
@@ -98,7 +98,7 @@ class FlashcardsViewController: UIViewController {
             fatalError("\(error.localizedDescription)")
         }
     }
-    
+
     func checkFavourited() {
         var amtOfFavouritedFlashcards = 0
         
@@ -198,7 +198,9 @@ class FlashcardsViewController: UIViewController {
             topicSelRowEnd = rowEnd
         }
         
-        favouriteFlashcard = userDefaults.object(forKey: "Favourite Flashcard") as! Array<String>
+        if let favFlashcard = userDefaults.object(forKey: "Favourite Flashcard") as? Array<String> {
+            favouriteFlashcard = favFlashcard
+        }
         
         label1.text = "\(primaryLevel ?? "")"
         label2.text = "The \(primaryLevel ?? "") Syllabus"

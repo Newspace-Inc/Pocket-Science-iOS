@@ -15,8 +15,8 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     var favouriteFlashcards:Array<String> = []
     var isFavouritesEmpty = false
     
-    let userDefaults = UserDefaults.standard
-    
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+
     // Labels and Buttons
     @IBOutlet weak var uiBG: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -69,7 +69,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         
         if (cell.textLabel?.text == "You have not favourited anything.") {
-            return
+            
         } else {
             if favouriteFlashcards[indexPath.row] != "" {
                 userDefaults.set(favouriteFlashcards[indexPath.row], forKey: "Selected Favourite Flashcard")

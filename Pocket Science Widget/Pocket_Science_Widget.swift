@@ -71,7 +71,7 @@ struct WidgetEntryView : View {
                             .frame(width: 5, height: 34)
                         
                         VStack(alignment: .leading, spacing: 2) {
-                            Text("Test 1")
+                            Text(lastOpened)
                                 .bold()
                                 .font(.system(size: 13))
                             Text("Some Date")

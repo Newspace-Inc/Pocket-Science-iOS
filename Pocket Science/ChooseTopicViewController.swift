@@ -23,8 +23,8 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     let upperPriTopicsAmt = ["", "", "", ""]
     var studiedTopics = [""]
     
-    let userDefaults = UserDefaults.standard
-    
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+
     // UI Elements
     @IBOutlet weak var mainUPLabel: UILabel!
     @IBOutlet weak var secUPLabel: UILabel!

@@ -28,8 +28,8 @@ class FavouriteFlashcardsViewController: UIViewController {
     
     var uneditedCurrentFlashcard:Array<String> = []
     
-    let userDefaults = UserDefaults.standard
-    
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+
     // Labels and Buttons
     @IBOutlet weak var conceptNameLabel: UILabel!
     @IBOutlet weak var textField: UITextView!
@@ -74,6 +74,12 @@ class FavouriteFlashcardsViewController: UIViewController {
         }
         
         getData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        let viewController = FavouritesViewController()
+        
+        viewController.tableView.reloadData()
     }
     
     func getData() {

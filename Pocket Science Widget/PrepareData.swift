@@ -9,7 +9,7 @@
 import Foundation
 
 func prepareData() -> (numOfTimesAppWasOpened: Int, earnedAwards: [String], earnedImage: [String], lastOpenedDate: String, lastOpened: String) {
-    let userDefaults = UserDefaults.standard
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     var numOfTimesAppWasOpened = 0
     var earnedAwards:[String] = []
     let earnedImage = ["Beginner Badge", "Bookworm Badge", "Brainy Badge", "Diligent Ant Badge", "Expert Badge", "Frequent Member Badge", "Industrious Bee Badge", "Maestro Badge", "Normal Member Badge", "Perfectionist Badge", "Regular Member Badge","Star Collector Badge","Streaker Bronze Badge","Streaker Gold Badge", "Streaker Silver Badge"]
@@ -31,9 +31,7 @@ func prepareData() -> (numOfTimesAppWasOpened: Int, earnedAwards: [String], earn
     if let primaryLevel = userDefaults.string(forKey: "Recently Opened") {
         lastOpened = primaryLevel
     }
-    
-    print(lastOpened)
-    
+        
     return (numOfTimesAppWasOpened, earnedAwards, earnedImage, lastOpenedDate, lastOpened)
 }
 

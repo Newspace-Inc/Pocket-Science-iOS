@@ -21,8 +21,8 @@ class SettingsViewController: UIViewController {
     var settingsUserAge = ""
     var delegate:dataFromSettings!
     
-    let userDefaults = UserDefaults.standard
-    
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+
     // Text Fields
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var ageTF: UITextField!

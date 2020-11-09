@@ -30,7 +30,8 @@ class ViewController: UIViewController, dataFromSettings {
     var dailyStreak = 0
     var earnedImage = ["Beginner Badge", "Bookworm Badge", "Brainy Badge", "Diligent Ant Badge", "Expert Badge", "Frequent Member Badge", "Industrious Bee Badge", "Maestro Badge", "Normal Member Badge", "Perfectionist Badge", "Regular Member Badge","Star Collector Badge","Streaker Bronze Badge","Streaker Gold Badge", "Streaker Silver Badge"]
     
-    let userDefaults = UserDefaults.standard
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
+    
     
     // Buttons and Labels
     @IBOutlet weak var recentlyOpenedBtn: UIButton!
@@ -230,7 +231,7 @@ class ViewController: UIViewController, dataFromSettings {
         if let welcomeMessageShownBefore:Bool = userDefaults.bool(forKey: "Welcome Message") {
             welcomeMessageShown = welcomeMessageShownBefore
         }
-        
+
         numOfTimesAppWasOpened += 1
         userDefaults.set(numOfTimesAppWasOpened, forKey: "Number Of Times App Opened")
         
@@ -239,7 +240,7 @@ class ViewController: UIViewController, dataFromSettings {
         dailyStreakCheck()
         checkRecentlyOpened()
         checkAwards()
-}
+    }
     
     // Button Config
     @IBAction func goToRecentlyOpened(_ sender: Any) {
