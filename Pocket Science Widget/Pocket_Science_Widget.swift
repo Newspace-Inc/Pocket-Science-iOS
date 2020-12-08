@@ -74,7 +74,7 @@ struct WidgetEntryView : View {
                             Text(lastOpened)
                                 .bold()
                                 .font(.system(size: 13))
-                            Text("Some Date")
+                            Text(lastOpenedDate)
                                 .foregroundColor(.gray)
                                 .font(.system(size: 10))
                         }
