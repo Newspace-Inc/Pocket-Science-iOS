@@ -65,7 +65,7 @@ class ProfileViewController: UIViewController, dataFromSettings {
         } else {
             tierLevel = "NIL"
         }
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") as? Int {
             userPoints = userPointsGrab
         }
         
@@ -75,9 +75,14 @@ class ProfileViewController: UIViewController, dataFromSettings {
             userRank = "No Rank"
         }
         
-        if let studiedTopicsArr = userDefaults.object(forKey: "Studied Topics") as? [String] ?? [String]() {
+        studiedTopicsArray = userDefaults.object(forKey: "Studied Topics") as? [String] ?? [String]()
+        
+        studiedTopicsArray = Array(Set(studiedTopicsArray))
+        
+        numOfStudiedTopics = studiedTopicsArray.count
+        if let studiedTopicsArr = userDefaults.object(forKey: "Studied Topics") as? [String]  {
             studiedTopicsArray = studiedTopicsArr
-            
+
             studiedTopicsArray = Array(Set(studiedTopicsArray))
             
             numOfStudiedTopics = studiedTopicsArray.count

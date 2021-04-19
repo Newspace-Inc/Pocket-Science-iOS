@@ -24,7 +24,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] ?? [String](){
+        if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] {
             favouriteFlashcards = favourited
         }
         

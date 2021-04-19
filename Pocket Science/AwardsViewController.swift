@@ -128,7 +128,7 @@ class AwardsViewController: UIViewController, UICollectionViewDelegate, UICollec
             userTier = "Diamond"
         }
         
-        if let attemptCount:Int = userDefaults.integer(forKey: "Quiz Attempts") {
+        if let attemptCount:Int = userDefaults.integer(forKey: "Quiz Attempts") as? Int {
             quizAttempts = attemptCount
         }
         
@@ -140,7 +140,7 @@ class AwardsViewController: UIViewController, UICollectionViewDelegate, UICollec
             userDefaults.set(userPoints, forKey: "User Points")
         }
         
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") as? Int {
             userPoints = userPointsGrab
         }
         

@@ -112,7 +112,7 @@ class ViewController: UIViewController, dataFromSettings {
             return
         }
         
-        if let streak:Int = userDefaults.integer(forKey: "Daily Streak") {
+        if let streak:Int = userDefaults.integer(forKey: "Daily Streak") as? Int {
             dailyStreak = streak
         } else {
             dailyStreak = 0
@@ -169,7 +169,7 @@ class ViewController: UIViewController, dataFromSettings {
         newDate = date.toFormat("dd MMM yyyy',' HH:mm")
         
         // Get User Points
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") as? Int{
             userPoints = userPointsGrab
         }
         
@@ -223,12 +223,12 @@ class ViewController: UIViewController, dataFromSettings {
         // Change Label Text to Data
         pointLabel.text = "\(userPoints) Points"
                 
-        if let numOfTimes:Int = userDefaults.integer(forKey: "Number Of Times App Opened") {
+        if let numOfTimes:Int = userDefaults.integer(forKey: "Number Of Times App Opened") as? Int {
             numOfTimesAppWasOpened = numOfTimes
         }
                 
         // Check if Welcome Message was shown before
-        if let welcomeMessageShownBefore:Bool = userDefaults.bool(forKey: "Welcome Message") {
+        if let welcomeMessageShownBefore:Bool = userDefaults.bool(forKey: "Welcome Message") as? Bool {
             welcomeMessageShown = welcomeMessageShownBefore
         }
 

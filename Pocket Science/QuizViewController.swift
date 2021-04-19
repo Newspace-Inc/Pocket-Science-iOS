@@ -215,7 +215,7 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") as? Int{
             userPoints = userPointsGrab
         }
         

@@ -41,7 +41,7 @@ class TiersViewController: UIViewController {
         } else {
             userTier = "NIL"
         }
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") as? Int {
             userPoints = userPointsGrab
         }
         

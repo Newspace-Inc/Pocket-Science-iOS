@@ -55,7 +55,7 @@ class FavouriteFlashcardsViewController: UIViewController {
             selectedFavouriteFlashcard = favouriteSelected
         }
         
-        if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] ?? [String](){
+        if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] {
             favouriteFlashcard = favourited
         }
         

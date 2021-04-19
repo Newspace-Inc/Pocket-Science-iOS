@@ -75,7 +75,7 @@
 		59248A7C254F923100B0FE91 /* PrepareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareData.swift; sourceTree = "<group>"; };
 		59549A5925383E9B00BD68A7 /* Pods-Pocket Science-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-Pocket Science-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Pocket Science/Pods-Pocket Science-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		59790E27254A4B85005723E3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		599C8B3B257FE01A004D6F9D /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Main Data.xlsx"; path = "../../../../Pocket Science Assets/Main Data.xlsx"; sourceTree = "<group>"; };
+		599C8B3B257FE01A004D6F9D /* Main Data.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Main Data.xlsx"; sourceTree = "<group>"; };
 		599C8B3F257FE021004D6F9D /* Topic Explaination.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Topic Explaination.xlsx"; sourceTree = "<group>"; };
 		59BFA7C824DE749300A6467E /* Questions and Answers.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Questions and Answers.xlsx"; sourceTree = "<group>"; };
 		59D4A2842554DB6D00C972AA /* Badges.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Badges.xlsx; sourceTree = "<group>"; };

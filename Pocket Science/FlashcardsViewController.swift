@@ -190,11 +190,11 @@ class FlashcardsViewController: UIViewController {
             selectedLesson = openedLesson
         }
         
-        if let rowStart:Int = userDefaults.integer(forKey: "TopicSelStart") {
+        if let rowStart:Int = userDefaults.integer(forKey: "TopicSelStart") as? Int {
             topicSelRowStart = rowStart
         }
         
-        if let rowEnd:Int = userDefaults.integer(forKey: "TopicSelEnd") {
+        if let rowEnd:Int = userDefaults.integer(forKey: "TopicSelEnd") as? Int{
             topicSelRowEnd = rowEnd
         }
         

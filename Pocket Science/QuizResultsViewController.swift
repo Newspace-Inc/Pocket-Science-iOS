@@ -59,19 +59,19 @@ class QuizResultsViewController: UIViewController,UITableViewDataSource, UITable
             userName = "User"
         }
         
-        if let correctQn = userDefaults.object(forKey: "Correct Qns Array") as? [String] ?? [] {
+        if let correctQn = userDefaults.object(forKey: "Correct Qns Array") as? [String]  {
             correctQnName = correctQn
         }
         
-        if let incorrectQn = userDefaults.object(forKey: "Incorrect Qns Array") as? [String] ?? [] {
+        if let incorrectQn = userDefaults.object(forKey: "Incorrect Qns Array") as? [String]  {
             incorrectQnName = incorrectQn
         }
         
-        if let amtOfQns:Int = userDefaults.integer(forKey: "Total amount of Quiz Qns") {
+        if let amtOfQns:Int = userDefaults.integer(forKey: "Total amount of Quiz Qns") as? Int{
             totalAmtOfQns = amtOfQns
         }
         
-        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") {
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") as? Int{
             userPoints = userPointsGrab
         }
         
