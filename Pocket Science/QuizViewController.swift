@@ -219,22 +219,18 @@ class QuizViewController: UIViewController {
             userPoints = userPointsGrab
         }
         
-        if let priSchLvl = userDefaults.string(forKey: "Recently Opened") {
-            primaryLevel = priSchLvl
+        if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
+            primaryLevel = recentlyOpened
+        }
+        
+        if let openedLesson = userDefaults.string(forKey: "Opened Lesson") {
+            selectedLesson = openedLesson
         }
         
         if let selectedQuizType = userDefaults.string(forKey: "Quiz Type") {
             quizType = selectedQuizType
         }
-        print(quizType)
-                
-        if let openedLesson = userDefaults.string(forKey: "User Selected Lesson") {
-            selectedLesson = openedLesson
-            print(selectedLesson)
-        } else {
-            fatalError("")
-        }
-        
+
         // Set Clip to Bounds
         uiBG.clipsToBounds = true
         optionOneBtn.clipsToBounds = true
@@ -263,10 +259,9 @@ class QuizViewController: UIViewController {
         //                    spellingView.isHidden = false
         //                    MCQView.isHidden = true
         //                }
-        
+
         getData()
         quizConfig()
-        
     }
     
     @IBAction func optionOneBtn(_ sender: Any) {

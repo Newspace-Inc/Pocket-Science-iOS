@@ -80,7 +80,8 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 data.remove(at: 0)
                 
                 let topicImg = data[3]
-                
+                data = data.remove(topicImg)
+
                 data = data.remove("Empty Cell")
                 data = data.remove("Enpty Cell")
                 
@@ -293,7 +294,6 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func MCQBtn(_ sender: Any) {
         quizType = "Multiple Choice Questions"
         userDefaults.set(quizType, forKey: "Quiz Type")
-        
         performSegue(withIdentifier: "Quiz", sender: nil)
     }
     
