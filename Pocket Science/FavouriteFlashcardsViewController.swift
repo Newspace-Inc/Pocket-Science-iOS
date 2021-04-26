@@ -77,9 +77,9 @@ class FavouriteFlashcardsViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        let viewController = FavouritesViewController()
-        
-        viewController.tableView.reloadData()
+//        let viewController = FavouritesViewController()
+//
+//        viewController.tableView.reloadData()
     }
     
     func getData() {
@@ -102,18 +102,19 @@ class FavouriteFlashcardsViewController: UIViewController {
                 let sharedStrings = try file.parseSharedStrings()
                 let worksheet = try file.parseWorksheet(at: path)
                                 
-                let firstIndex = favouriteFlashcard.firstIndex(of: selectedFavouriteFlashcard) ?? 13934
+                let firstIndex = favouriteFlashcard.firstIndex(of: selectedFavouriteFlashcard) ?? -1
                 
-                if (firstIndex == 13934) {
+                if (firstIndex == -1) {
                     fatalError("Unknown Flashcard ID")
                 }
                 
                 // Check for row num of favourited flashcard
                 let checkForFav = worksheet.cells(atColumns: [ColumnReference("D")!])
                     .compactMap { $0.stringValue(sharedStrings) }
-                let rowNum = checkForFav.firstIndex(of: selectedFavouriteFlashcard) ?? 13934
+                let rowNum = checkForFav.firstIndex(of: selectedFavouriteFlashcard) ?? -1
                 
-                if (rowNum == 13934) {
+                if (rowNum == -1) {
+                    
                     fatalError("Unknown Flashcard ID")
                 }
                 

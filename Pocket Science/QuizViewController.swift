@@ -22,6 +22,7 @@ class QuizViewController: UIViewController {
     var userPoints = 0
     var selectedLesson = ""
     var userSelectedTopic = [""]
+    var submittedAnswer=false
     
     // Quiz Config
     var correctAns = ""
@@ -35,7 +36,7 @@ class QuizViewController: UIViewController {
     var correctQuestions: [String] = []
     var incorrectQuestions: [String] = []
     
-    let userDefaults = UserDefaults.standard
+    let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     
     // Labels and Buttons
     @IBOutlet weak var uiBG: UILabel!
@@ -133,11 +134,16 @@ class QuizViewController: UIViewController {
                 currentQuizQn = data["Data \(quizQuestionIndex)"]!
             }
             
+            
+            
+            
             questionView.text = currentQuizQn[2] // Question will always be at index 0 of the array
-            currentQuizQn.remove(at: 0) // Remove Question from the array
-            correctAns = currentQuizQn[3] // Last option will always be the answer
+            currentQuizQn.remove(at: 0) // Remove Question from the array(small brain it just removes the topic)
+            correctAns = currentQuizQn[5] // Last option will always be the answer(small brain it is the 'last' option which is the first option because you iterated from the fron back)
             
             // Shuffle the options
+            print(currentQuizQn)
+            currentQuizQn=[currentQuizQn[2],currentQuizQn[3],currentQuizQn[4],currentQuizQn[5]]
             for _ in 0...5 {
                 currentQuizQn.shuffle()
             }
@@ -227,13 +233,15 @@ class QuizViewController: UIViewController {
             quizType = selectedQuizType
         }
         print(quizType)
-                
-        if let openedLesson = userDefaults.string(forKey: "User Selected Lesson") {
+        
+        if let openedLesson = userDefaults.string(forKey: "User Selected Lesson")  {
             selectedLesson = openedLesson
             print(selectedLesson)
         } else {
-            fatalError("")
+            //selectedLesson="Cycles"
+            fatalError("Thread 1: Fatal error: Unexpectedly found nil while unwrapping an Optional value(probablyi)")
         }
+        
         
         // Set Clip to Bounds
         uiBG.clipsToBounds = true
@@ -272,7 +280,7 @@ class QuizViewController: UIViewController {
     @IBAction func optionOneBtn(_ sender: Any) {
         userSelectedOption = optionOneBtn.currentTitle!
         
-        if (userSelected) {
+        if (userSelected || submittedAnswer) {
             
         } else {
             optionOneBtn.backgroundColor = buttonSelectColour
@@ -287,7 +295,7 @@ class QuizViewController: UIViewController {
     @IBAction func optionTwoBtn(_ sender: Any) {
         userSelectedOption = optionTwoBtn.currentTitle!
         
-        if (userSelected) {
+        if (userSelected || submittedAnswer) {
             
         } else {
             optionTwoBtn.backgroundColor = buttonSelectColour
@@ -302,7 +310,7 @@ class QuizViewController: UIViewController {
     @IBAction func optionThreeBtn(_ sender: Any) {
         userSelectedOption = optionThreeBtn.currentTitle!
         
-        if (userSelected) {
+        if (userSelected || submittedAnswer) {
             
         } else {
             optionThreeBtn.backgroundColor = buttonSelectColour
@@ -316,8 +324,7 @@ class QuizViewController: UIViewController {
     
     @IBAction func optionFourBtn(_ sender: Any) {
         userSelectedOption = optionFourBtn.currentTitle!
-        
-        if (userSelected) {
+        if (userSelected || submittedAnswer) {
             
         } else {
             optionFourBtn.backgroundColor = buttonSelectColour
@@ -331,6 +338,7 @@ class QuizViewController: UIViewController {
     @IBAction func answerBtn(_sender: Any) {
         if (submitBtn.currentTitle == "Submit") {
             if (didSelectOption) {
+                submittedAnswer=true
                 checkAnswer()
                 didSelectOption = false
             } else {
@@ -343,10 +351,11 @@ class QuizViewController: UIViewController {
         } else if (submitBtn.currentTitle == "Next") {
             quizQuestionIndex += 1
             quizConfig()
+            submittedAnswer=false
         } else if (submitBtn.currentTitle == "Finish") {
             userDefaults.set(correctQuestions, forKey: "Correct Questions")
             userDefaults.set(incorrectQuestions, forKey: "Incorrect Questions")
-            
+            userDefaults.set(totalAmtOfQns+1,forKey: "Total amount of Quiz Qns")
             performSegue(withIdentifier: "reviewScore", sender: nil)
         }
     }

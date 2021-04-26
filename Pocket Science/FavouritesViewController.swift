@@ -23,11 +23,10 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.reloadData()
         if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] {
             favouriteFlashcards = favourited
         }
-        
         // Set Clip to Bounds
         uiBG.clipsToBounds = true
         
@@ -68,9 +67,10 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         
-        if (cell.textLabel?.text == "You have not favourited anything.") {
+        if (isFavouritesEmpty) {
             
         } else {
+            
             if favouriteFlashcards[indexPath.row] != "" {
                 userDefaults.set(favouriteFlashcards[indexPath.row], forKey: "Selected Favourite Flashcard")
             }

@@ -189,7 +189,8 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         primaryLabel1.text = "\(primaryLevel)"
         primaryLabel2.text =  "Primary School \(selectedLesson)"
         
-        userDefaults.set("Hello", forKey: "User Selected Lesson")
+        userDefaults.set(selectedLesson, forKey: "User Selected Lesson")
+        userDefaults.synchronize()
         
         topicSelectionView.isHidden = false
         subtopicTableView.isHidden = true
