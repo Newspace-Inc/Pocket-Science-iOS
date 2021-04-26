@@ -210,7 +210,7 @@ class QuizViewController: UIViewController {
             correctQuestions.append("Question \(quizQuestionIndex)")
         }
         
-        if (quizQuestionIndex == totalAmtOfQns + 1) {
+        if (quizQuestionIndex == totalAmtOfQns ) {
             submitBtn.setTitle("Finish", for: .normal)
         } else {
             submitBtn.setTitle("Next", for: .normal)
@@ -232,11 +232,11 @@ class QuizViewController: UIViewController {
         if let selectedQuizType = userDefaults.string(forKey: "Quiz Type") {
             quizType = selectedQuizType
         }
-        print(quizType)
+        //print(quizType)
         
         if let openedLesson = userDefaults.string(forKey: "User Selected Lesson")  {
             selectedLesson = openedLesson
-            print(selectedLesson)
+            //print(selectedLesson)
         } else {
             //selectedLesson="Cycles"
             fatalError("Thread 1: Fatal error: Unexpectedly found nil while unwrapping an Optional value(probablyi)")
@@ -354,7 +354,7 @@ class QuizViewController: UIViewController {
         } else if (submitBtn.currentTitle == "Finish") {
             userDefaults.set(correctQuestions, forKey: "Correct Questions")
             userDefaults.set(incorrectQuestions, forKey: "Incorrect Questions")
-            userDefaults.set(totalAmtOfQns+1,forKey: "Total amount of Quiz Qns")
+            userDefaults.set(totalAmtOfQns,forKey: "Total amount of Quiz Qns")
             performSegue(withIdentifier: "reviewScore", sender: nil)
         }
     }

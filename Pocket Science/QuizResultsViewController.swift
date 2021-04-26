@@ -41,9 +41,9 @@ class QuizResultsViewController: UIViewController,UITableViewDataSource, UITable
     @IBOutlet weak var priSchLvl: UILabel!
     
     func pointSystem() {
-        let amountOfPointsPerQn = 10
+        let amountOfPointsPerQn = 5
         
-        earnedPoints = correctQnName.count * amountOfPointsPerQn
+        earnedPoints = correctQuestions.count * correctQuestions.count * amountOfPointsPerQn
         
         userPoints += earnedPoints
         
@@ -114,7 +114,7 @@ class QuizResultsViewController: UIViewController,UITableViewDataSource, UITable
         
         // Set Label Text
         totalAmtPoints.text = "You have \(userPoints) Points now"
-        scoredLabel.text = "\(correctQnName.count)/\(totalAmtOfQns)"
+        scoredLabel.text = "\(correctQuestions.count)/\(totalAmtOfQns)"
         earnedLabel.text = "You earned \(earnedPoints) Points"
         messageLabel.text = "\(message[0]) \(userName)"
         priSchLvl.text = "\(primaryLevel) \(selectedLesson)"
