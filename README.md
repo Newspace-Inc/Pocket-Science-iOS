@@ -12,5 +12,5 @@ App will be published to the iOS App Store <i>soon</i>
 - Cocoapods
 
 ## People who contributed
-[Ethan-Chew](https://github.com/Ethan-Chew)
-[Howie-Chia](https://github.com/Chiachiarealsmooth)
+[Ethan-Chew](https://github.com/Ethan-Chew)  
+[jer123se12](https://github.com/jer123se12)

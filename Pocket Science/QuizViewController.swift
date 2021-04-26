@@ -271,10 +271,9 @@ class QuizViewController: UIViewController {
         //                    spellingView.isHidden = false
         //                    MCQView.isHidden = true
         //                }
-        
+
         getData()
         quizConfig()
-        
     }
     
     @IBAction func optionOneBtn(_ sender: Any) {
