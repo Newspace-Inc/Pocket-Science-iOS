@@ -92,7 +92,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func getDataAgain() {
+    func getMainData() {
         
         // Collect Data
         var worksheetName = ""
@@ -164,6 +164,57 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func confirmQuiz() {
+        // Collect Data
+        let worksheetName = "\(primaryLevel) Data"
+        
+        do {
+            let filepath = Bundle.main.path(forResource: "Questions and Answers", ofType: "xlsx")!
+            
+            guard let file = XLSXFile(filepath: filepath) else {
+                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+            }
+            
+            for wbk in try file.parseWorkbooks() {
+                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
+                        .first(where: { $0.name == worksheetName }).map({ $0.path })
+                else {
+                    continue
+                }
+                
+                let sharedStrings = try file.parseSharedStrings()
+                let worksheet = try file.parseWorksheet(at: path)
+                
+                var startTopicSel = 0
+                var endTopicSel = 0
+                
+                // Get Cell Data
+                let lowerUpperPri = worksheet.cells(atColumns: [ColumnReference("A")!])
+                    .compactMap{ $0.stringValue(sharedStrings) }
+                let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                                
+                // Find Rows of Selected Topic
+                let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
+                if findTopicSelectedStart != nil {
+                    startTopicSel = Int(findTopicSelectedStart ?? 0)
+                }
+                
+                let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
+                if findTopicSelectedEnd != nil {
+                    endTopicSel = Int(findTopicSelectedEnd ?? 0)
+                }
+                if (startTopicSel - endTopicSel >= 0) {
+                    MotionToast(message: "No Known Quiz", toastType: .error, toastStyle: .style_vibrant, toastGravity: .centre, toastCornerRadius: 10)
+                    MCQBtn.isEnabled = false
+                    MCQBtn.isHidden = true
+                }
+            }
+        } catch {
+            fatalError("\(error.localizedDescription)")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -202,7 +253,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         worksheetName = "\(primaryLevel) Data"
                 
         getData()
-        getDataAgain()
+        getMainData()
     }
     
     func frequentlyOpened(lesson: String) {
@@ -280,6 +331,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             break
         case 2:
+            confirmQuiz()
             topicSelectionView.isHidden = true
             subtopicTableView.isHidden = true
             quizSelectionView.isHidden = false

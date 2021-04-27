@@ -186,7 +186,6 @@ class FlashcardsViewController: UIViewController {
         currentFlashcard.removeAll()
         checkFavourited(needUpdate: false)
                 
-        
         if (flashcardsIndex == 1) {
             currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
         } else {
@@ -239,6 +238,7 @@ class FlashcardsViewController: UIViewController {
             favouriteFlashcard = favFlashcard
         }
         
+        // Set Label Text
         label1.text = "\(primaryLevel ?? "")"
         label2.text = "The \(primaryLevel ?? "") Syllabus"
         
@@ -263,6 +263,7 @@ class FlashcardsViewController: UIViewController {
         conceptNameLabel.numberOfLines = 3; // Dynamic number of lines
         conceptNameLabel.lineBreakMode = NSLineBreakMode.byWordWrapping;
         
+        // Init Page Data
         getData()
         configFlashcards()
         checkFavourited(needUpdate: false)
@@ -274,9 +275,7 @@ class FlashcardsViewController: UIViewController {
     
     @objc func swipeRight(_ swipeGesture: UISwipeGestureRecognizer) {
         
-        if (isFlashcardNil) {
-            
-        } else {
+        if (!isFlashcardNil) {
             flashcardsIndex -= 1
         }
         
@@ -284,9 +283,7 @@ class FlashcardsViewController: UIViewController {
             flashcardsIndex = 1
         }
         
-        if (lessonsSelRowEnd - lessonsSelRowStart == flashcardsIndex) {
-            print("End of Flashcards")
-        } else {
+        if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex) {
             let tF = true
             
             flashcardBG.flashcardAnimation(r2lDirection: tF)
@@ -297,15 +294,11 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer) {
-        if (isFlashcardNil) {
-            
-        } else {
+        if (!isFlashcardNil) {
             flashcardsIndex += 1
         }
 
-        if (lessonsSelRowEnd - lessonsSelRowStart == flashcardsIndex) {
-            print("End of Flashcards")
-        } else {
+        if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex) {
             let tF = false
             
             flashcardBG.flashcardAnimation(r2lDirection: tF)

@@ -19,19 +19,48 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // Labels and Buttons
     @IBOutlet weak var uiBG: UILabel!
+    @IBOutlet weak var removeAll: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    
+    func deleteDataAlert() {
+
+        // Create Alert
+        var dialogMessage = UIAlertController(title: "Delete All Favourites", message: "Are you sure you want to erase your favourited items? This action is NOT REVERSABLE.", preferredStyle: .alert)
+
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { [self] (action) -> Void in
+            favouriteFlashcards = []
+            userDefaults.set(favouriteFlashcards, forKey: "Favourite Flashcard")
+            self.tableView.reloadData()
+            self.tableView.reloadInputViews()
+        })
+
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            // Cancelation code
+        }
+
+        //Add OK and Cancel button to an Alert object
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
+        self.tableView.reloadInputViews()
         if let favourited:Array<String> = userDefaults.object(forKey: "Favourite Flashcard") as? [String] {
             favouriteFlashcards = favourited
         }
         // Set Clip to Bounds
         uiBG.clipsToBounds = true
+        removeAll.clipsToBounds = true
         
         // Set Corner Radius
         uiBG.layer.cornerRadius = 20
+        removeAll.layer.cornerRadius = 10
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -47,6 +76,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         print("Data Refresh")
         self.tableView.reloadData()
+        self.tableView.reloadInputViews()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,5 +111,8 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             performSegue(withIdentifier: "favouriteFlashcards", sender: nil)
         }
+    }
+    @IBAction func removeAllBtn(_ sender: Any) {
+        deleteDataAlert()
     }
 }

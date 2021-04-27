@@ -96,17 +96,19 @@ class QuizViewController: UIViewController {
                 }
                 
                 totalAmtOfQns = endTopicSel - startTopicSel - 1
-                
-                if (startTopicSel + (quizQuestionIndex - 1) <= endTopicSel) {
-                    var index = endTopicSel - startTopicSel - 1
-                    
-                    
-                    for i in 0...index {
-                        let parseData = worksheet.cells(atRows: [UInt(startTopicSel + i + 1)])
-                            .compactMap { $0.stringValue(sharedStrings) }
-                        data["Data \(i + 1)"] = parseData
+                var index = endTopicSel - startTopicSel - 1
+                if index < 0 {
+                    MotionToast(message: "No Known Quiz", toastType: .error,
+                                  duration: .long, toastStyle: .style_pale, toastGravity: .top)
+                } else {
+                    if (startTopicSel + (quizQuestionIndex - 1) <= endTopicSel) {
+                        for i in 0...index {
+                            let parseData = worksheet.cells(atRows: [UInt(startTopicSel + i + 1)])
+                                .compactMap { $0.stringValue(sharedStrings) }
+                            data["Data \(i + 1)"] = parseData
+                        }
+                        totalAmtOfQns = index
                     }
-                    totalAmtOfQns = index
                 }
                 
             }

@@ -25,7 +25,9 @@ class QuizResultsViewController: UIViewController,UITableViewDataSource, UITable
     var correctQuestions: [String] = []
     var incorrectQuestions: [String] = []
     
-    let message = ["Good Job!", "Try Again!", "You can do it!", "Almost There!"]
+    let pos2Message = ["So Close!", "Keep Trying!"]
+    let posMessage = ["Good Job!", "Nice Job!", "Amazing!"]
+    let negMessage = ["Keep Trying!", "You can do it!", "Almost There!"]
     
     let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
 
@@ -116,8 +118,17 @@ class QuizResultsViewController: UIViewController,UITableViewDataSource, UITable
         totalAmtPoints.text = "You have \(userPoints) Points now"
         scoredLabel.text = "\(correctQuestions.count)/\(totalAmtOfQns)"
         earnedLabel.text = "You earned \(earnedPoints) Points"
-        messageLabel.text = "\(message[0]) \(userName)"
         priSchLvl.text = "\(primaryLevel) \(selectedLesson)"
+            // 'Personalised' Message
+        if (correctQuestions.count == totalAmtOfQns) {
+            messageLabel.text = "\(posMessage.randomElement()) \(userName)"
+        } else if (correctQuestions.count < totalAmtOfQns/2) {
+            messageLabel.text = "\(negMessage.randomElement()) \(userName)"
+        } else if (correctQuestions.count == totalAmtOfQns - 1) {
+            messageLabel.text = "\(pos2Message.randomElement()) \(userName)"
+        } else {
+            messageLabel.text = "Parameters Unknown"
+        }
         
         // Configure Table View
         reviewAnsTable.dataSource = self
