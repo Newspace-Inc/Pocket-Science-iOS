@@ -44,6 +44,11 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("Data Refresh")
+        self.tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (isFavouritesEmpty) {
             return 1

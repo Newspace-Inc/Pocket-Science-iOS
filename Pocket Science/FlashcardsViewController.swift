@@ -99,47 +99,84 @@ class FlashcardsViewController: UIViewController {
         }
     }
 
-    func checkFavourited() {
-        var amtOfFavouritedFlashcards = 0
-        
-        if (favouriteFlashcard.count == 0) {
-            amtOfFavouritedFlashcards = 0
-        } else {
-            amtOfFavouritedFlashcards = favouriteFlashcard.count
+    func checkFavourited(needUpdate: Bool) {
+        if needUpdate {
+            var amtOfFavouritedFlashcards = favouriteFlashcard.count
             
-            if (amtOfFavouritedFlashcards == 1) {
-                if (conceptName == favouriteFlashcard[0]) {
-                    isFlashcardFavourited = true
-                } else {
-                    isFlashcardFavourited = false
-                }
-            } else {
-                for i in 0...amtOfFavouritedFlashcards - 1 {
-                    if (conceptName == favouriteFlashcard[i]) {
+            if (amtOfFavouritedFlashcards != 0) {
+                if (amtOfFavouritedFlashcards == 1) {
+                    if (conceptName == favouriteFlashcard[0]) {
                         isFlashcardFavourited = true
                     } else {
                         isFlashcardFavourited = false
                     }
+                } else {
+                    for i in 0...amtOfFavouritedFlashcards - 1 {
+                        if (conceptName == favouriteFlashcard[i]) {
+                            isFlashcardFavourited = true
+                        } else {
+                            isFlashcardFavourited = false
+                        }
+                    }
+                }
+            } else {isFlashcardFavourited = false}
+        
+            if (isFlashcardFavourited) {
+                print("\(conceptName) is now not Favourited")
+                favouriteFlashcard = favouriteFlashcard.remove(conceptName)
+                if let image = UIImage(named: "heart.empty") {
+                    favouriteButton.setImage(image, for: .normal)
+                } else {
+                    fatalError("Image does not exist or is corrupted.")
+                }
+            } else {
+                print("\(conceptName) is now Favourited")
+                favouriteFlashcard.append(conceptName)
+                if let image = UIImage(named: "heart.fill") {
+                    favouriteButton.setImage(image, for: .normal)
+                } else {
+                    fatalError("Image does not exist or is corrupted.")
+                }
+            }
+            
+            userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
+        } else {
+            var amtOfFavouritedFlashcards = favouriteFlashcard.count
+            
+            if (amtOfFavouritedFlashcards != 0) {
+                if (amtOfFavouritedFlashcards == 1) {
+                    if (conceptName == favouriteFlashcard[0]) {
+                        isFlashcardFavourited = true
+                    } else {
+                        isFlashcardFavourited = false
+                    }
+                } else {
+                    for i in 0...amtOfFavouritedFlashcards - 1 {
+                        if (conceptName == favouriteFlashcard[i]) {
+                            isFlashcardFavourited = true
+                        } else {
+                            isFlashcardFavourited = false
+                        }
+                    }
+                }
+            } else {isFlashcardFavourited = false}
+        
+            if (isFlashcardFavourited) {
+                print("\(conceptName) is Favourited")
+                if let image = UIImage(named: "heart.fill") {
+                    favouriteButton.setImage(image, for: .normal)
+                } else {
+                    fatalError("Image does not exist or is corrupted.")
+                }
+            } else {
+                print("\(conceptName) is not Favourited")
+                if let image = UIImage(named: "heart.empty") {
+                    favouriteButton.setImage(image, for: .normal)
+                } else {
+                    fatalError("Image does not exist or is corrupted.")
                 }
             }
         }
-        
-        if (isFlashcardFavourited) {
-            print("\(conceptName) is Favourited")
-            if let image = UIImage(named: "heart.fill") {
-                favouriteButton.setImage(image, for: .normal)
-            } else {
-                fatalError("Image does not exist or is corrupted.")
-            }
-        } else {
-            print("\(conceptName) is not Favourited")
-            if let image = UIImage(named: "heart.empty") {
-                favouriteButton.setImage(image, for: .normal)
-            } else {
-                fatalError("Image does not exist or is corrupted.")
-            }
-        }
-        
     }
     
     var storedFlashcardIndex = 0
@@ -147,7 +184,7 @@ class FlashcardsViewController: UIViewController {
     
     func configFlashcards() {
         currentFlashcard.removeAll()
-        checkFavourited()
+        checkFavourited(needUpdate: false)
                 
         
         if (flashcardsIndex == 1) {
@@ -228,50 +265,11 @@ class FlashcardsViewController: UIViewController {
         
         getData()
         configFlashcards()
-        checkFavourited()
+        checkFavourited(needUpdate: false)
     }
     
     @IBAction func favouriteBtn(_ sender: Any) {
-        checkFavourited()
-                
-        if (isFlashcardFavourited == true) {
-            // Remove Favourite
-            let count = favouriteFlashcard.count - 1
-            if (count != 0) {
-                for i in 0...count {
-                    if (conceptName == favouriteFlashcard[i]) {
-                        favouriteFlashcard.remove(at: i)
-                        favouriteFlashcard.remove(at: i)
-                        if let image = UIImage(named: "heart.empty") {
-                            favouriteButton.setImage(image, for: .normal)
-                        } else {
-                            fatalError("Image does not exist or is corrupted.")
-                        }
-                    }
-                    userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
-                }
-            } else {
-                favouriteFlashcard.remove(at: 0)
-                favouriteFlashcard.remove(at: 0)
-                
-                if let image = UIImage(named: "heart.empty") {
-                    favouriteButton.setImage(image, for: .normal)
-                } else {
-                    fatalError("Image does not exist or is corrupted.")
-                }
-                
-                userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
-            }
-        } else {
-            // Add Favourite
-            favouriteFlashcard.append(conceptName)
-            if let image = UIImage(named: "heart.fill") {
-                favouriteButton.setImage(image, for: .normal)
-            } else {
-                fatalError("Image does not exist or is corrupted.")
-            }
-        }
-        userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
+        checkFavourited(needUpdate: true)
     }
     
     @objc func swipeRight(_ swipeGesture: UISwipeGestureRecognizer) {
@@ -294,7 +292,7 @@ class FlashcardsViewController: UIViewController {
             flashcardBG.flashcardAnimation(r2lDirection: tF)
             
             configFlashcards()
-            checkFavourited()
+            checkFavourited(needUpdate: false)
         }
     }
     
@@ -313,7 +311,7 @@ class FlashcardsViewController: UIViewController {
             flashcardBG.flashcardAnimation(r2lDirection: tF)
             
             configFlashcards()
-            checkFavourited()
+            checkFavourited(needUpdate: false)
         }
     }
 }

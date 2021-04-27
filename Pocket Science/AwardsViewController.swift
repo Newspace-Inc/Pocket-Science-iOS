@@ -14,7 +14,6 @@ class CollectionViewCell: UICollectionViewCell {
     let badgeNameArr = ["Beginner","Expert","Maestro","Brainy","Perfectionist","Quintessential","Bookworm","Diligent Ant","Industrious Bee","Normal Member","Regular Member","Frequent member","Streaker Bronze","Streaker Silver","Streaker Gold"]
     let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     
-    
     @IBOutlet weak var badgeName: UILabel!
     @IBOutlet weak var badgeDescription: UILabel!
     @IBOutlet weak var badgeImageView: UIImageView!

@@ -26,7 +26,6 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var primaryLabel1: UILabel!
     @IBOutlet weak var primaryLabel2: UILabel!
     @IBOutlet weak var MCQBtn: UIButton! // Quiz View
-    @IBOutlet weak var spellingBtn: UIButton! // Quiz View
     @IBOutlet weak var uiBG: UILabel!
     @IBOutlet weak var ExplainationImgView: UIImageView!
     @IBOutlet weak var ExplainationTextField: UITextView!
@@ -170,12 +169,10 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Set Clip to Bounds
         MCQBtn.clipsToBounds = true
-        spellingBtn.clipsToBounds = true
         uiBG.clipsToBounds = true
         
         // Set Corner Radius
         MCQBtn.layer.cornerRadius = 20
-        spellingBtn.layer.cornerRadius = 20
         uiBG?.layer.cornerRadius = 20
         
         if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
@@ -296,10 +293,5 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         quizType = "Multiple Choice Questions"
         userDefaults.set(quizType, forKey: "Quiz Type")
         performSegue(withIdentifier: "Quiz", sender: nil)
-    }
-    
-    @IBAction func spellingBtn(_ sender: Any) {
-        // Create Alert
-        MotionToast(message: "Spelling is still under Development! Check back soon! :)", toastType: .warning, duration: .long, toastStyle: .style_pale, toastGravity: .centre, pulseEffect: false)
     }
 }
