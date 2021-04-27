@@ -105,7 +105,6 @@ class AwardsViewController: UIViewController, UICollectionViewDelegate, UICollec
                     data[badgeName] = parseBadges
                     
                     userDefaults.set(data, forKey: "Badge Data")
-                    print(data)
                 }
                 
             }

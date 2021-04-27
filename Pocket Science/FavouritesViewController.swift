@@ -21,6 +21,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var uiBG: UILabel!
     @IBOutlet weak var removeAll: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noFavLabel: UILabel!
     
     func deleteDataAlert() {
 
@@ -33,6 +34,8 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
             userDefaults.set(favouriteFlashcards, forKey: "Favourite Flashcard")
             self.tableView.reloadData()
             self.tableView.reloadInputViews()
+            self.tableView.isHidden = true
+            noFavLabel.isHidden = false
         })
 
         // Create Cancel button with action handlder
@@ -71,9 +74,12 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             isFavouritesEmpty = false
         }
+        
+        self.tableView.isHidden = false
+        noFavLabel.isHidden = true
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
+
+    override func viewWillAppear(_ animated: Bool) {
         print("Data Refresh")
         self.tableView.reloadData()
         self.tableView.reloadInputViews()
@@ -91,8 +97,11 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         
         if (isFavouritesEmpty) {
-            cell.textLabel?.text = "You have not favourited anything."
+            self.tableView.isHidden = true
+            noFavLabel.isHidden = false
         } else {
+            self.tableView.isHidden = false
+            noFavLabel.isHidden = true
             cell.textLabel?.text = "\(favouriteFlashcards[indexPath.row])"
         }
         
@@ -102,10 +111,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         
-        if (isFavouritesEmpty) {
-            
-        } else {
-            
+        if (!isFavouritesEmpty) {
             if favouriteFlashcards[indexPath.row] != "" {
                 userDefaults.set(favouriteFlashcards[indexPath.row], forKey: "Selected Favourite Flashcard")
             }

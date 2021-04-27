@@ -36,6 +36,7 @@ class ProfileViewController: UIViewController, dataFromSettings {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var primaryLevelLabel: UILabel!
     @IBOutlet weak var perfomanceBG: UILabel!
+    @IBOutlet weak var statusBG: UILabel!
     @IBOutlet weak var uiBG: UILabel!
     
     @IBOutlet weak var userRankLabel: UILabel!
@@ -89,9 +90,7 @@ class ProfileViewController: UIViewController, dataFromSettings {
         } else {
             numOfStudiedTopics = 0
         }
-        
-        print(storedUserAge)
-        
+                
         if (storedUserAge == "Lower Primary") {
             numberOfTopics = 5
         } else if (storedUserAge == "Upper Primary") {
@@ -104,10 +103,12 @@ class ProfileViewController: UIViewController, dataFromSettings {
             
         // Set Clip to Bounds
         perfomanceBG.clipsToBounds = true
+        statusBG.clipsToBounds = true
         uiBG.clipsToBounds = true
         
         // Set Corner Radius
         perfomanceBG.layer.cornerRadius = 15
+        statusBG.layer.cornerRadius = 15
         uiBG.layer.cornerRadius = 20
         
         // Label Text
