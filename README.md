@@ -1,5 +1,4 @@
-# Pocket Science (iOS)
-
+![Pocket-Science-iOS](https://socialify.git.ci/Newspace-Inc/Pocket-Science-iOS/image?language=1&owner=1&theme=Light)  
 Pocket Science hopes to help primary school students are struggling with remembering keywords for their science exams so therefore we decided to help them to study everything by consolidating the all keywords in one app sorted by chapters
 
 
