@@ -10,9 +10,30 @@ import SwiftUI
 struct ContentView: View {
 
     var body: some View {
-        VStack {
-            Text("")
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Facts", systemImage: "house.fill")
+                }
+            AwardsView()
+                .tabItem {
+                    Label("Awards", systemImage: "rosette")
+                }
+            FavouritesView()
+                .tabItem {
+                    Label("Favourites", systemImage: "star.fill")
+                }
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
         }
     }
 
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }

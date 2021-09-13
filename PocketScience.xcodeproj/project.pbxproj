@@ -13,6 +13,10 @@
 		599ECC0126EF3FCD000FF2E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 599ECC0026EF3FCD000FF2E8 /* Preview Assets.xcassets */; };
 		599ECC0326EF3FCD000FF2E8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0226EF3FCD000FF2E8 /* Persistence.swift */; };
 		599ECC0626EF3FCD000FF2E8 /* PocketScience.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0426EF3FCD000FF2E8 /* PocketScience.xcdatamodeld */; };
+		599ECC0E26EF41AC000FF2E8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0D26EF41AB000FF2E8 /* SettingsView.swift */; };
+		599ECC1026EF41B6000FF2E8 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0F26EF41B6000FF2E8 /* FavouritesView.swift */; };
+		599ECC1226EF41C1000FF2E8 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC1126EF41C1000FF2E8 /* AwardsView.swift */; };
+		599ECC1426EF41FA000FF2E8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC1326EF41FA000FF2E8 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		599ECC0226EF3FCD000FF2E8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		599ECC0526EF3FCD000FF2E8 /* PocketScience.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PocketScience.xcdatamodel; sourceTree = "<group>"; };
 		599ECC0726EF3FCD000FF2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		599ECC0D26EF41AB000FF2E8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		599ECC0F26EF41B6000FF2E8 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
+		599ECC1126EF41C1000FF2E8 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
+		599ECC1326EF41FA000FF2E8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,10 @@
 			children = (
 				599ECBF926EF3FCA000FF2E8 /* PocketScienceApp.swift */,
 				599ECBFB26EF3FCA000FF2E8 /* ContentView.swift */,
+				599ECC1326EF41FA000FF2E8 /* HomeView.swift */,
+				599ECC0D26EF41AB000FF2E8 /* SettingsView.swift */,
+				599ECC0F26EF41B6000FF2E8 /* FavouritesView.swift */,
+				599ECC1126EF41C1000FF2E8 /* AwardsView.swift */,
 				599ECBFD26EF3FCD000FF2E8 /* Assets.xcassets */,
 				599ECC0226EF3FCD000FF2E8 /* Persistence.swift */,
 				599ECC0726EF3FCD000FF2E8 /* Info.plist */,
@@ -144,10 +156,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				599ECC0E26EF41AC000FF2E8 /* SettingsView.swift in Sources */,
 				599ECC0326EF3FCD000FF2E8 /* Persistence.swift in Sources */,
 				599ECBFC26EF3FCA000FF2E8 /* ContentView.swift in Sources */,
 				599ECC0626EF3FCD000FF2E8 /* PocketScience.xcdatamodeld in Sources */,
+				599ECC1026EF41B6000FF2E8 /* FavouritesView.swift in Sources */,
+				599ECC1426EF41FA000FF2E8 /* HomeView.swift in Sources */,
 				599ECBFA26EF3FCA000FF2E8 /* PocketScienceApp.swift in Sources */,
+				599ECC1226EF41C1000FF2E8 /* AwardsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
