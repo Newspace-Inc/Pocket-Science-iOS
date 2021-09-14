@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5951E5FA26F0416F00EC60EB /* ThemeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951E5F926F0416F00EC60EB /* ThemeSelectorView.swift */; };
 		599ECBFA26EF3FCA000FF2E8 /* PocketScienceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECBF926EF3FCA000FF2E8 /* PocketScienceApp.swift */; };
 		599ECBFC26EF3FCA000FF2E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECBFB26EF3FCA000FF2E8 /* ContentView.swift */; };
 		599ECBFE26EF3FCD000FF2E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 599ECBFD26EF3FCD000FF2E8 /* Assets.xcassets */; };
@@ -17,9 +18,11 @@
 		599ECC1026EF41B6000FF2E8 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0F26EF41B6000FF2E8 /* FavouritesView.swift */; };
 		599ECC1226EF41C1000FF2E8 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC1126EF41C1000FF2E8 /* AwardsView.swift */; };
 		599ECC1426EF41FA000FF2E8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC1326EF41FA000FF2E8 /* HomeView.swift */; };
+		599ECC1926EF4999000FF2E8 /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = 599ECC1826EF4999000FF2E8 /* CoreXLSX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5951E5F926F0416F00EC60EB /* ThemeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectorView.swift; sourceTree = "<group>"; };
 		599ECBF626EF3FCA000FF2E8 /* PocketScience.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketScience.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		599ECBF926EF3FCA000FF2E8 /* PocketScienceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketScienceApp.swift; sourceTree = "<group>"; };
 		599ECBFB26EF3FCA000FF2E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -39,12 +42,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				599ECC1926EF4999000FF2E8 /* CoreXLSX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5951E5F326F0407B00EC60EB /* PostHome */ = {
+			isa = PBXGroup;
+			children = (
+				5951E5F526F0411100EC60EB /* Quiz */,
+				5951E5F426F0410B00EC60EB /* Flashcard */,
+				5951E5F926F0416F00EC60EB /* ThemeSelectorView.swift */,
+			);
+			path = PostHome;
+			sourceTree = "<group>";
+		};
+		5951E5F426F0410B00EC60EB /* Flashcard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flashcard;
+			sourceTree = "<group>";
+		};
+		5951E5F526F0411100EC60EB /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
 		599ECBED26EF3FCA000FF2E8 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +92,7 @@
 		599ECBF826EF3FCA000FF2E8 /* PocketScience */ = {
 			isa = PBXGroup;
 			children = (
+				5951E5F326F0407B00EC60EB /* PostHome */,
 				599ECBF926EF3FCA000FF2E8 /* PocketScienceApp.swift */,
 				599ECBFB26EF3FCA000FF2E8 /* ContentView.swift */,
 				599ECC1326EF41FA000FF2E8 /* HomeView.swift */,
@@ -103,6 +132,9 @@
 			dependencies = (
 			);
 			name = PocketScience;
+			packageProductDependencies = (
+				599ECC1826EF4999000FF2E8 /* CoreXLSX */,
+			);
 			productName = PocketScience;
 			productReference = 599ECBF626EF3FCA000FF2E8 /* PocketScience.app */;
 			productType = "com.apple.product-type.application";
@@ -130,6 +162,9 @@
 				Base,
 			);
 			mainGroup = 599ECBED26EF3FCA000FF2E8;
+			packageReferences = (
+				599ECC1726EF4999000FF2E8 /* XCRemoteSwiftPackageReference "CoreXLSX" */,
+			);
 			productRefGroup = 599ECBF726EF3FCA000FF2E8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -157,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				599ECC0E26EF41AC000FF2E8 /* SettingsView.swift in Sources */,
+				5951E5FA26F0416F00EC60EB /* ThemeSelectorView.swift in Sources */,
 				599ECC0326EF3FCD000FF2E8 /* Persistence.swift in Sources */,
 				599ECBFC26EF3FCA000FF2E8 /* ContentView.swift in Sources */,
 				599ECC0626EF3FCD000FF2E8 /* PocketScience.xcdatamodeld in Sources */,
@@ -352,6 +388,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		599ECC1726EF4999000FF2E8 /* XCRemoteSwiftPackageReference "CoreXLSX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CoreOffice/CoreXLSX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		599ECC1826EF4999000FF2E8 /* CoreXLSX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 599ECC1726EF4999000FF2E8 /* XCRemoteSwiftPackageReference "CoreXLSX" */;
+			productName = CoreXLSX;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		599ECC0426EF3FCD000FF2E8 /* PocketScience.xcdatamodeld */ = {
