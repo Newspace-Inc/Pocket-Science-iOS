@@ -7,34 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		590D773126F329540025E18D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591E646726F327B100584444 /* HomeView.swift */; };
+		590D773426F32AEA0025E18D /* PocketScienceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590D773226F32AEA0025E18D /* PocketScienceApp.swift */; };
+		590D773526F32AEA0025E18D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590D773326F32AEA0025E18D /* Persistence.swift */; };
 		5951E5FA26F0416F00EC60EB /* ThemeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951E5F926F0416F00EC60EB /* ThemeSelectorView.swift */; };
-		599ECBFA26EF3FCA000FF2E8 /* PocketScienceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECBF926EF3FCA000FF2E8 /* PocketScienceApp.swift */; };
+		5951E5FC26F04B2C00EC60EB /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951E5FB26F04B2B00EC60EB /* LessonView.swift */; };
+		597BC49B26F31F5A00C9C509 /* maindata.json in Resources */ = {isa = PBXBuildFile; fileRef = 597BC49926F31F5A00C9C509 /* maindata.json */; };
 		599ECBFC26EF3FCA000FF2E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECBFB26EF3FCA000FF2E8 /* ContentView.swift */; };
 		599ECBFE26EF3FCD000FF2E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 599ECBFD26EF3FCD000FF2E8 /* Assets.xcassets */; };
 		599ECC0126EF3FCD000FF2E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 599ECC0026EF3FCD000FF2E8 /* Preview Assets.xcassets */; };
-		599ECC0326EF3FCD000FF2E8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0226EF3FCD000FF2E8 /* Persistence.swift */; };
 		599ECC0626EF3FCD000FF2E8 /* PocketScience.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0426EF3FCD000FF2E8 /* PocketScience.xcdatamodeld */; };
 		599ECC0E26EF41AC000FF2E8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0D26EF41AB000FF2E8 /* SettingsView.swift */; };
 		599ECC1026EF41B6000FF2E8 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC0F26EF41B6000FF2E8 /* FavouritesView.swift */; };
 		599ECC1226EF41C1000FF2E8 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC1126EF41C1000FF2E8 /* AwardsView.swift */; };
-		599ECC1426EF41FA000FF2E8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ECC1326EF41FA000FF2E8 /* HomeView.swift */; };
 		599ECC1926EF4999000FF2E8 /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = 599ECC1826EF4999000FF2E8 /* CoreXLSX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		590D773226F32AEA0025E18D /* PocketScienceApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketScienceApp.swift; sourceTree = "<group>"; };
+		590D773326F32AEA0025E18D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		591E646726F327B100584444 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5951E5F926F0416F00EC60EB /* ThemeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectorView.swift; sourceTree = "<group>"; };
+		5951E5FB26F04B2B00EC60EB /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
+		597BC49926F31F5A00C9C509 /* maindata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maindata.json; sourceTree = "<group>"; };
 		599ECBF626EF3FCA000FF2E8 /* PocketScience.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketScience.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		599ECBF926EF3FCA000FF2E8 /* PocketScienceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketScienceApp.swift; sourceTree = "<group>"; };
 		599ECBFB26EF3FCA000FF2E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		599ECBFD26EF3FCD000FF2E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		599ECC0026EF3FCD000FF2E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		599ECC0226EF3FCD000FF2E8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		599ECC0526EF3FCD000FF2E8 /* PocketScience.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PocketScience.xcdatamodel; sourceTree = "<group>"; };
 		599ECC0726EF3FCD000FF2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		599ECC0D26EF41AB000FF2E8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		599ECC0F26EF41B6000FF2E8 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		599ECC1126EF41C1000FF2E8 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
-		599ECC1326EF41FA000FF2E8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,12 +53,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		591E646626F327A500584444 /* MainPages */ = {
+			isa = PBXGroup;
+			children = (
+				597BC49926F31F5A00C9C509 /* maindata.json */,
+				5951E5F326F0407B00EC60EB /* PostHome */,
+				591E646726F327B100584444 /* HomeView.swift */,
+				599ECC1126EF41C1000FF2E8 /* AwardsView.swift */,
+				599ECC0F26EF41B6000FF2E8 /* FavouritesView.swift */,
+				599ECC0D26EF41AB000FF2E8 /* SettingsView.swift */,
+			);
+			path = MainPages;
+			sourceTree = "<group>";
+		};
 		5951E5F326F0407B00EC60EB /* PostHome */ = {
 			isa = PBXGroup;
 			children = (
 				5951E5F526F0411100EC60EB /* Quiz */,
 				5951E5F426F0410B00EC60EB /* Flashcard */,
 				5951E5F926F0416F00EC60EB /* ThemeSelectorView.swift */,
+				5951E5FB26F04B2B00EC60EB /* LessonView.swift */,
 			);
 			path = PostHome;
 			sourceTree = "<group>";
@@ -92,15 +110,11 @@
 		599ECBF826EF3FCA000FF2E8 /* PocketScience */ = {
 			isa = PBXGroup;
 			children = (
-				5951E5F326F0407B00EC60EB /* PostHome */,
-				599ECBF926EF3FCA000FF2E8 /* PocketScienceApp.swift */,
+				591E646626F327A500584444 /* MainPages */,
 				599ECBFB26EF3FCA000FF2E8 /* ContentView.swift */,
-				599ECC1326EF41FA000FF2E8 /* HomeView.swift */,
-				599ECC0D26EF41AB000FF2E8 /* SettingsView.swift */,
-				599ECC0F26EF41B6000FF2E8 /* FavouritesView.swift */,
-				599ECC1126EF41C1000FF2E8 /* AwardsView.swift */,
+				590D773326F32AEA0025E18D /* Persistence.swift */,
+				590D773226F32AEA0025E18D /* PocketScienceApp.swift */,
 				599ECBFD26EF3FCD000FF2E8 /* Assets.xcassets */,
-				599ECC0226EF3FCD000FF2E8 /* Persistence.swift */,
 				599ECC0726EF3FCD000FF2E8 /* Info.plist */,
 				599ECC0426EF3FCD000FF2E8 /* PocketScience.xcdatamodeld */,
 				599ECBFF26EF3FCD000FF2E8 /* Preview Content */,
@@ -180,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				599ECC0126EF3FCD000FF2E8 /* Preview Assets.xcassets in Resources */,
+				597BC49B26F31F5A00C9C509 /* maindata.json in Resources */,
 				599ECBFE26EF3FCD000FF2E8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,15 +206,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				590D773426F32AEA0025E18D /* PocketScienceApp.swift in Sources */,
 				599ECC0E26EF41AC000FF2E8 /* SettingsView.swift in Sources */,
 				5951E5FA26F0416F00EC60EB /* ThemeSelectorView.swift in Sources */,
-				599ECC0326EF3FCD000FF2E8 /* Persistence.swift in Sources */,
+				5951E5FC26F04B2C00EC60EB /* LessonView.swift in Sources */,
 				599ECBFC26EF3FCA000FF2E8 /* ContentView.swift in Sources */,
+				590D773126F329540025E18D /* HomeView.swift in Sources */,
 				599ECC0626EF3FCD000FF2E8 /* PocketScience.xcdatamodeld in Sources */,
 				599ECC1026EF41B6000FF2E8 /* FavouritesView.swift in Sources */,
-				599ECC1426EF41FA000FF2E8 /* HomeView.swift in Sources */,
-				599ECBFA26EF3FCA000FF2E8 /* PocketScienceApp.swift in Sources */,
 				599ECC1226EF41C1000FF2E8 /* AwardsView.swift in Sources */,
+				590D773526F32AEA0025E18D /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

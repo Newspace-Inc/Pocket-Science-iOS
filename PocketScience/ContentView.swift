@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    
     var body: some View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("Facts", systemImage: "house.fill")
+                    Label("Home", systemImage: "house.fill")
                 }
             AwardsView()
                 .tabItem {
@@ -29,7 +29,7 @@ struct ContentView: View {
                 }
         }
     }
-
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
