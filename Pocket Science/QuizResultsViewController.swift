@@ -121,11 +121,11 @@ class QuizResultsViewController: UIViewController,UITableViewDataSource, UITable
         priSchLvl.text = "\(primaryLevel) \(selectedLesson)"
             // 'Personalised' Message
         if (correctQuestions.count == totalAmtOfQns) {
-            messageLabel.text = "\(posMessage.randomElement()) \(userName)"
+            messageLabel.text = "\(posMessage.randomElement()!) \(userName)"
         } else if (correctQuestions.count < totalAmtOfQns/2) {
-            messageLabel.text = "\(negMessage.randomElement()) \(userName)"
-        } else if (correctQuestions.count == totalAmtOfQns - 1) {
-            messageLabel.text = "\(pos2Message.randomElement()) \(userName)"
+            messageLabel.text = "\(negMessage.randomElement()!) \(userName)"
+        } else if (correctQuestions.count > totalAmtOfQns/2) {
+            messageLabel.text = "\(pos2Message.randomElement()!) \(userName)"
         } else {
             messageLabel.text = "Parameters Unknown"
         }

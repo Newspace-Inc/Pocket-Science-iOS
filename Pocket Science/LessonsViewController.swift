@@ -103,7 +103,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             guard let file = XLSXFile(filepath: filepath) else {
                 fatalError("XLSX file at \(filepath) is corrupted or does not exist")
-            }
+            }            
             
             for wbk in try file.parseWorkbooks() {
                 guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
@@ -115,7 +115,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 var endTopicSel = 0
                 var startTopicSel = 0
-                
+                                
                 // Get Cell Data
                 let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
                     .compactMap{ $0.stringValue(sharedStrings) }
@@ -160,7 +160,7 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         } catch {
-            fatalError("\(error.localizedDescription)")
+            fatalError("\(error)")
         }
     }
     

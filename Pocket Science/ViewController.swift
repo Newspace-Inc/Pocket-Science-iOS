@@ -242,6 +242,46 @@ class ViewController: UIViewController, dataFromSettings {
         checkAwards()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        newDate = date.toFormat("dd MMM yyyy',' HH:mm")
+        
+        // Get User Points
+        if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") as? Int{
+            userPoints = userPointsGrab
+        }
+        
+        if let userName = userDefaults.string(forKey: "Username") {
+            userNameLabel.text = "\(userName)"
+            storedUserName = "\(userName)"
+        } else {
+            userNameLabel.text = "Hello, User"
+            storedUserName = "User"
+        }
+        
+        if let userAge = userDefaults.string(forKey: "Userage") {
+            storedUserAge = "\(userAge)"
+        } else {
+            storedUserAge = "NIL"
+        }
+        
+        if let primaryLevel = userDefaults.string(forKey: "Recently Opened") {
+            recentlyOpenedTopic = primaryLevel
+        }
+        
+        if let rank = userDefaults.string(forKey: "User Rank") {
+            userRank = rank
+        }
+        
+        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<String> {
+            earnedAwards = userBadges
+        }
+        
+        if let lastOpenedDate = userDefaults.string(forKey: "Recently Opened Date") {
+            recentlyOpenedDate = lastOpenedDate
+        }
+        pointLabel.text = "\(userPoints) Points"
+    }
+    
     // Button Config
     @IBAction func goToRecentlyOpened(_ sender: Any) {
         let selectLessonVC = ChooseTopicViewController()

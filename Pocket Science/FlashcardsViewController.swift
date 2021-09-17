@@ -41,7 +41,7 @@ class FlashcardsViewController: UIViewController {
     
     let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     var r2lDirection = false  // Initialize to right to left swipe
-    
+
     var data:[String:[String]] = [:]
     
     // Functions
@@ -101,7 +101,7 @@ class FlashcardsViewController: UIViewController {
 
     func checkFavourited(needUpdate: Bool) {
         if needUpdate {
-            var amtOfFavouritedFlashcards = favouriteFlashcard.count
+            let amtOfFavouritedFlashcards = favouriteFlashcard.count
             
             if (amtOfFavouritedFlashcards != 0) {
                 if (amtOfFavouritedFlashcards == 1) {
@@ -141,7 +141,7 @@ class FlashcardsViewController: UIViewController {
             
             userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
         } else {
-            var amtOfFavouritedFlashcards = favouriteFlashcard.count
+            let amtOfFavouritedFlashcards = favouriteFlashcard.count
             
             if (amtOfFavouritedFlashcards != 0) {
                 if (amtOfFavouritedFlashcards == 1) {
@@ -207,7 +207,7 @@ class FlashcardsViewController: UIViewController {
         uneditedCurrentFlashcard = currentFlashcard
         currentFlashcard.removeSubrange(0..<4)
         
-        var flashcardKnowledge = currentFlashcard.joined(separator: "\n")
+        let flashcardKnowledge = currentFlashcard.joined(separator: "\n")
         textField.text = "\(flashcardKnowledge)"
         
     }
