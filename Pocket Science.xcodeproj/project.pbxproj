@@ -225,6 +225,8 @@
 				59E288F924C155C700210814 /* PBXTargetDependency */,
 			);
 			name = "Pocket Science";
+			packageProductDependencies = (
+			);
 			productName = "Pocket Science";
 			productReference = 5917C13124337F9500107213 /* Pocket Science.app */;
 			productType = "com.apple.product-type.application";
@@ -273,6 +275,8 @@
 				Base,
 			);
 			mainGroup = 5917C12824337F9500107213;
+			packageReferences = (
+			);
 			productRefGroup = 5917C13224337F9500107213 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

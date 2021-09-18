@@ -35,7 +35,6 @@ class CollectionViewCell: UICollectionViewCell {
         if let badgeData1 = data[badgeNameArr[rowIndex]] {
             badgeData = badgeData1
         }
-        
         let currentBadgeName = badgeNameArr[rowIndex]
         let earnedImageName = badgeData[2]
         let notEarnedImageName = badgeData[1]
@@ -43,7 +42,7 @@ class CollectionViewCell: UICollectionViewCell {
         badgeDescription.text = badgeData[0]
         badgeName.text = currentBadgeName
         
-        if (earnedAwards.count != 1) {
+        if (earnedAwards.count > 0) {
             for i in 0...earnedAwards.count - 1 {
                 if (earnedAwards[i] == currentBadgeName) {
                     badgeImageView.image = UIImage(named: earnedImageName + ".img")
@@ -75,6 +74,7 @@ class AwardsViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var collectionView: UICollectionView!
     
     func getData() {
+        
         // Collect Data
         let worksheetName = "Sheet1"
         
@@ -115,14 +115,16 @@ class AwardsViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
-        if (Int(userPoints) == tierRequirment[0]) {
+        if (Int(userPoints) <= tierRequirment[0]) {
             userTier = "Bronze"
-        } else if (Int(userPoints) == tierRequirment[1]) {
+        } else if (Int(userPoints) <= tierRequirment[1]) {
             userTier = "Silver"
-        } else if (Int(userPoints) == tierRequirment[2]) {
+        } else if (Int(userPoints) <= tierRequirment[2]) {
             userTier = "Gold"
-        } else if (Int(userPoints) == tierRequirment[3]) {
+        } else if (Int(userPoints) >= tierRequirment[3]) {
             userTier = "Diamond"
         }
         
@@ -157,14 +159,19 @@ class AwardsViewController: UIViewController, UICollectionViewDelegate, UICollec
         uiBG.layer.cornerRadius = 20
         
         getData()
+        collectionView.reloadData()
     }
-    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return data.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = CollectionViewCell()
+        var cell:UICollectionViewCell=UICollectionViewCell()
         
         if let badgeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? CollectionViewCell {
             badgeCell.config(with: indexPath.row)
