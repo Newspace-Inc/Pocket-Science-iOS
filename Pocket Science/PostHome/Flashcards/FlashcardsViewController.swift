@@ -283,10 +283,13 @@ class FlashcardsViewController: UIViewController {
         if (flashcardsIndex < 1) {
             flashcardsIndex = 1
         }
-        if (flashcardsIndex==1){
-            swipeLabel.text="< Swipe Right to see New Flashcards >"
-        }else{
-            swipeLabel.text="< Swipe Left or Right to see New Flashcards >"
+        
+        if (flashcardsIndex == 1){
+            swipeLabel.text="< Swipe/Tap Right to see New Flashcards >"
+        } else if (flashcardsIndex == data.count) {
+            swipeLabel.text="< Swipe/Tap Left to revisit Older Flashcards >"
+        } else {
+            swipeLabel.text="< Swipe/Tap Left or Right to see New Flashcards >"
         }
         
         if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex && !(flashcardsIndex == 1)) {
@@ -313,9 +316,11 @@ class FlashcardsViewController: UIViewController {
             checkFavourited(needUpdate: false)
         }
     }
+    
     @IBAction func simulateSwipeRight(_ sender: Any) {
         swipeRight()
     }
+    
     @IBAction func simulateSwipeLeft(_ sender: Any) {
         swipeLeft()
     }

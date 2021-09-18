@@ -12,10 +12,9 @@ import CoreXLSX
 class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // Variables
-    var recentlyOpenedLevel:String = ""
+    var lastOpenedData:[String] = []
     var userPoints:Int = 0
     var selectedSubtopic:String = ""
-    var primaryLevel:String = ""
     var userName = ""
     let lowerPriTopics = ["Cycles", "Systems", "Diversity", "Interactions", "Energy"]
     let upperPriTopics = ["Cycles", "Systems", "Interactions", "Energy"]
@@ -33,7 +32,7 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidAppear(_ animated: Bool) {
         if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
-            primaryLevel = recentlyOpened
+            lastOpenedData[1] = recentlyOpened
         }
     }
     
@@ -45,17 +44,17 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
         
         // Save data into user defaults
-        if let recentlyOpened = userDefaults.string(forKey: "Recently Opened") {
-            primaryLevel = recentlyOpened
+        if let grabLastOpened = userDefaults.object(forKey: "Recently Opened Data") as? Array<String> {
+            lastOpenedData = grabLastOpened
         }
-        
+
         // Set labels
-        mainUPLabel.text = "\(primaryLevel)"
-        secUPLabel.text =  "The \(primaryLevel) Syllabus"
+        mainUPLabel.text = "\(lastOpenedData[1])"
+        secUPLabel.text =  "The \(lastOpenedData[1]) Syllabus"
         
         // Grab from User Defaults
-        if primaryLevel != "" {
-            userDefaults.set(primaryLevel, forKey: "Recently Opened")
+        if lastOpenedData[1] != "" {
+            userDefaults.set(lastOpenedData[1], forKey: "Recently Opened")
         }
         
         // Config UI Background
@@ -66,7 +65,7 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     // Set data into Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if (primaryLevel == "Lower Primary") {
+        if (lastOpenedData[1] == "Lower Primary") {
             return lowerPriTopics.count
         } else {
             return upperPriTopics.count
@@ -77,7 +76,7 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         cell.layer.cornerRadius = 5
         
-        if (primaryLevel == "Lower Primary") {
+        if (lastOpenedData[1] == "Lower Primary") {
             cell.textLabel!.text = "\(lowerPriTopics[indexPath.row])"
         } else {
             cell.textLabel!.text = "\(upperPriTopics[indexPath.row])"
@@ -88,7 +87,7 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let destinationVC = LessonsViewController()
-        if (primaryLevel == "Lower Primary") {
+        if (lastOpenedData[1] == "Lower Primary") {
             destinationVC.selectedLesson = lowerPriTopics[indexPath.row]
             
             if (lowerPriTopics[indexPath.row] != "") {

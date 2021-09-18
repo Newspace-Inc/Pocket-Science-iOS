@@ -14,8 +14,7 @@ import SwiftDate
 class ViewController: UIViewController, dataFromSettings {
         
     // Variables
-    var recentlyOpenedTopic:String = LessonsViewController().recentlyOpenedLevel
-    var recentlyOpenedDate:String = ""
+    var lastOpenedData:[String] = []
     var userPoints:Int = 0
     var primaryLevel:String = LessonsViewController().primaryLevel
     var storedUserName:String = ""
@@ -63,19 +62,21 @@ class ViewController: UIViewController, dataFromSettings {
     }
     
     func checkRecentlyOpened() {
-        if (recentlyOpenedTopic == "Lower Primary" || primaryLevel == "Lower Primary") {
-            lvlLabel.text = "\(recentlyOpenedTopic)"
+        if (lastOpenedData == []) {
+            
+        } else if (lastOpenedData[1] == "Lower Primary") {
+            lvlLabel.text = "\(lastOpenedData[1])"
             topicLabel.text = "5 Chapters"
-            lastOpenedDateLabel.text = recentlyOpenedDate
+            lastOpenedDateLabel.text = lastOpenedData[0]
             lvlLabel.alpha = 1
             topicLabel.alpha = 1
             lastOpenedDateLabel.alpha = 1
             recentlyOpenedBtn.backgroundColor = UIColor(red: 117/255, green: 170/255, blue: 230/255, alpha: 1.0)
             recentlyOpenedBtn.setTitle("", for: .normal)
-        } else if (recentlyOpenedTopic == "Upper Primary" || primaryLevel == "Upper Primary") {
-            lvlLabel.text = "\(recentlyOpenedTopic)"
+        } else if (lastOpenedData[1] == "Upper Primary") {
+            lvlLabel.text = "\(lastOpenedData[1])"
             topicLabel.text = "4 Chapters"
-            lastOpenedDateLabel.text = recentlyOpenedDate
+            lastOpenedDateLabel.text = lastOpenedData[0]
             lvlLabel.alpha = 1
             topicLabel.alpha = 1
             lastOpenedDateLabel.alpha = 1
@@ -170,6 +171,10 @@ class ViewController: UIViewController, dataFromSettings {
         newDate = date.toFormat("dd MMM yyyy',' HH:mm")
         
         // Get User Points
+        if let grabLastOpened:[String] = userDefaults.object(forKey: "Recently Opened Data") as? Array<String> {
+            lastOpenedData = grabLastOpened
+        }
+        
         if let userPointsGrab:Int = userDefaults.integer(forKey: "User Points") as? Int{
             userPoints = userPointsGrab
         }
@@ -188,20 +193,12 @@ class ViewController: UIViewController, dataFromSettings {
             storedUserAge = "NIL"
         }
         
-        if let primaryLevel = userDefaults.string(forKey: "Recently Opened") {
-            recentlyOpenedTopic = primaryLevel
-        }
-        
         if let rank = userDefaults.string(forKey: "User Rank") {
             userRank = rank
         }
         
         if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<Int> {
             earnedAwards = userBadges
-        }
-        
-        if let lastOpenedDate = userDefaults.string(forKey: "Recently Opened Date") {
-            recentlyOpenedDate = lastOpenedDate
         }
                 
         // Set Clip to Bounds
@@ -264,10 +261,7 @@ class ViewController: UIViewController, dataFromSettings {
         } else {
             storedUserAge = "NIL"
         }
-        
-        if let primaryLevel = userDefaults.string(forKey: "Recently Opened") {
-            recentlyOpenedTopic = primaryLevel
-        }
+    
         
         if let rank = userDefaults.string(forKey: "User Rank") {
             userRank = rank
@@ -276,27 +270,13 @@ class ViewController: UIViewController, dataFromSettings {
         if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<Int> {
             earnedAwards = userBadges
         }
-        
-        if let lastOpenedDate = userDefaults.string(forKey: "Recently Opened Date") {
-            recentlyOpenedDate = lastOpenedDate
-        }
+
         pointLabel.text = "\(userPoints) Points"
     }
     
     // Button Config
     @IBAction func goToRecentlyOpened(_ sender: Any) {
-        let selectLessonVC = ChooseTopicViewController()
-        
-        recentlyOpenedTopic = primaryLevel
-        recentlyOpenedDate = newDate
-        selectLessonVC.primaryLevel = primaryLevel
         performSegue(withIdentifier: "lessons", sender: nil)
-        
-        if primaryLevel != "" {
-            userDefaults.set(primaryLevel, forKey: "Recently Opened")
-            userDefaults.set(recentlyOpenedDate, forKey: "Recently Opened Date")
-        }
-        
     }
     
     @IBAction func dismissWelcomeMessage(_ sender: Any) {
@@ -306,46 +286,24 @@ class ViewController: UIViewController, dataFromSettings {
     }
     
     @IBAction func goToLowerPrimary(_ sender: Any) {
-       let selectLessonVC = ChooseTopicViewController()
-        
-        primaryLevel = "Lower Primary"
-        recentlyOpenedDate = newDate
-        recentlyOpenedTopic = primaryLevel
-        selectLessonVC.primaryLevel = primaryLevel
+        lastOpenedData = [] // Clear Array
+        lastOpenedData.append(newDate)
+        lastOpenedData.append("Lower Primary")
         performSegue(withIdentifier: "lessons", sender: nil)
         
-        if primaryLevel != "" {
-            userDefaults.set(primaryLevel, forKey: "Recently Opened")
-            userDefaults.set(recentlyOpenedDate, forKey: "Recently Opened Date")
-        }
+        userDefaults.set(lastOpenedData, forKey: "Recently Opened Data")
 
         checkRecentlyOpened()
     }
     
     @IBAction func goToUpperPrimary(_ sender: Any) {
-        let selectLessonVC = ChooseTopicViewController()
-        
-        primaryLevel = "Upper Primary"
-        recentlyOpenedDate = newDate
-        recentlyOpenedTopic = primaryLevel
-        selectLessonVC.primaryLevel = primaryLevel
+        lastOpenedData = [] // Clear Array
+        lastOpenedData.append(newDate)
+        lastOpenedData.append("Upper Primary")
         performSegue(withIdentifier: "lessons", sender: nil)
         
-        print(recentlyOpenedDate)
-        if primaryLevel != "" {
-            userDefaults.set(primaryLevel, forKey: "Recently Opened")
-            userDefaults.set(recentlyOpenedDate, forKey: "Recently Opened Date")
-        }
+        userDefaults.set(lastOpenedData, forKey: "Recently Opened Data")
         
         checkRecentlyOpened()
-    }
-    
-    // Segue Config
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let selectLessonVC = segue.destination as! ChooseTopicViewController
-        
-        selectLessonVC.primaryLevel = primaryLevel
-        selectLessonVC.userPoints = userPoints
-        selectLessonVC.userName = storedUserName
     }
 }
