@@ -147,32 +147,88 @@
 		5917C13324337F9500107213 /* Pocket Science */ = {
 			isa = PBXGroup;
 			children = (
-				5917C13D24337F9A00107213 /* Assets.xcassets */,
-				5917C13A24337F9500107213 /* Main.storyboard */,
 				5917C14224337F9A00107213 /* Info.plist */,
 				59E4A04B25513A55008EA851 /* Pocket Science.entitlements */,
+				59549A5925383E9B00BD68A7 /* Pods-Pocket Science-acknowledgements.plist */,
+				876F595324C7220F007414AA /* AppDelegate.swift */,
+				876F594B24C7220F007414AA /* SceneDelegate.swift */,
+				59790E27254A4B85005723E3 /* Extensions.swift */,
+				593D4C7726F5F7820057F1A9 /* Data Files */,
+				5917C13D24337F9A00107213 /* Assets.xcassets */,
+				5917C13A24337F9500107213 /* Main.storyboard */,
+				876F594A24C7220F007414AA /* ViewController.swift */,
+				593D4C7826F5F7AD0057F1A9 /* PostHome */,
+				593D4C7C26F5F87D0057F1A9 /* Badges and Tiers */,
+				593D4C7D26F5F88E0057F1A9 /* Favourites */,
+				593D4C7E26F5F89C0057F1A9 /* Settings */,
+			);
+			path = "Pocket Science";
+			sourceTree = "<group>";
+		};
+		593D4C7726F5F7820057F1A9 /* Data Files */ = {
+			isa = PBXGroup;
+			children = (
 				599C8B3B257FE01A004D6F9D /* Main Data.xlsx */,
 				599C8B3F257FE021004D6F9D /* Topic Explaination.xlsx */,
 				59BFA7C824DE749300A6467E /* Questions and Answers.xlsx */,
 				59D4A2842554DB6D00C972AA /* Badges.xlsx */,
-				59549A5925383E9B00BD68A7 /* Pods-Pocket Science-acknowledgements.plist */,
-				876F595324C7220F007414AA /* AppDelegate.swift */,
-				876F594B24C7220F007414AA /* SceneDelegate.swift */,
-				876F594A24C7220F007414AA /* ViewController.swift */,
-				876F595624C72210007414AA /* AwardsViewController.swift */,
-				876F594E24C7220F007414AA /* TiersViewController.swift */,
-				876F594F24C7220F007414AA /* FavouritesViewController.swift */,
-				59DD90AA25316E930050AE10 /* FavouriteFlashcardsViewController.swift */,
-				876F595124C7220F007414AA /* LessonsViewController.swift */,
-				876F595024C7220F007414AA /* FlashcardsViewController.swift */,
+			);
+			path = "Data Files";
+			sourceTree = "<group>";
+		};
+		593D4C7826F5F7AD0057F1A9 /* PostHome */ = {
+			isa = PBXGroup;
+			children = (
 				876F594C24C7220F007414AA /* ChooseTopicViewController.swift */,
+				876F595124C7220F007414AA /* LessonsViewController.swift */,
+				593D4C7A26F5F80C0057F1A9 /* Quiz */,
+				593D4C7926F5F8060057F1A9 /* Flashcards */,
+			);
+			path = PostHome;
+			sourceTree = "<group>";
+		};
+		593D4C7926F5F8060057F1A9 /* Flashcards */ = {
+			isa = PBXGroup;
+			children = (
+				876F595024C7220F007414AA /* FlashcardsViewController.swift */,
+			);
+			path = Flashcards;
+			sourceTree = "<group>";
+		};
+		593D4C7A26F5F80C0057F1A9 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
 				876F595524C72210007414AA /* QuizViewController.swift */,
 				876F595224C7220F007414AA /* QuizResultsViewController.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		593D4C7C26F5F87D0057F1A9 /* Badges and Tiers */ = {
+			isa = PBXGroup;
+			children = (
+				876F595624C72210007414AA /* AwardsViewController.swift */,
+				876F594E24C7220F007414AA /* TiersViewController.swift */,
+			);
+			path = "Badges and Tiers";
+			sourceTree = "<group>";
+		};
+		593D4C7D26F5F88E0057F1A9 /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				876F594F24C7220F007414AA /* FavouritesViewController.swift */,
+				59DD90AA25316E930050AE10 /* FavouriteFlashcardsViewController.swift */,
+			);
+			path = Favourites;
+			sourceTree = "<group>";
+		};
+		593D4C7E26F5F89C0057F1A9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
 				876F594D24C7220F007414AA /* ProfileViewController.swift */,
 				876F595424C7220F007414AA /* SettingsViewController.swift */,
-				59790E27254A4B85005723E3 /* Extensions.swift */,
 			);
-			path = "Pocket Science";
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		59E288EF24C155C500210814 /* Pocket Science Widget */ = {

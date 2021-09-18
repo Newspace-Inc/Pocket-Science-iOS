@@ -28,7 +28,6 @@ class CollectionViewCell: UICollectionViewCell {
         
         if let awards = userDefaults.object(forKey: "Earned Awards") as? [Int] {
             earnedAwards = awards
-            print(earnedAwards)
         }
         
         var badgeData = [""]
@@ -45,7 +44,6 @@ class CollectionViewCell: UICollectionViewCell {
         
         if (earnedAwards.count > 0) {
             for i in 0...earnedAwards.count - 1 {
-                print(earnedAwards[i],rowIndex)
                 if (earnedAwards[i] == rowIndex) {
                     badgeImageView.image = UIImage(named: earnedImageName + ".img")
                 } else {
