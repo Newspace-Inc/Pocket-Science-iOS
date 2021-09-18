@@ -1102,6 +1102,24 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pza-Oe-xyj">
+                                <rect key="frame" x="0.0" y="257" width="39" height="503"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="‌"/>
+                                <connections>
+                                    <action selector="simulateSwipeRight:" destination="Ov3-dn-d1u" eventType="touchUpInside" id="db2-12-eVh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUu-el-YEu">
+                                <rect key="frame" x="375" y="257" width="39" height="503"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="‌"/>
+                                <connections>
+                                    <action selector="simulateSwipeLeft:" destination="Ov3-dn-d1u" eventType="touchUpInside" id="lny-8O-89f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f95-SD-wwI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1114,6 +1132,7 @@
                         <outlet property="flashcardBG" destination="HgU-Mv-I5L" id="Jcm-LR-by7"/>
                         <outlet property="label1" destination="kD5-iE-aIg" id="sy0-kS-dLD"/>
                         <outlet property="label2" destination="Rsa-fO-gPL" id="Zur-Z0-NBJ"/>
+                        <outlet property="swipeLabel" destination="WUB-y5-2ZR" id="qsJ-V1-vRY"/>
                         <outlet property="textField" destination="O6n-3f-875" id="2kx-T6-Xgh"/>
                         <outlet property="uiBG" destination="0cM-UY-kGs" id="qpg-t7-xXu"/>
                     </connections>

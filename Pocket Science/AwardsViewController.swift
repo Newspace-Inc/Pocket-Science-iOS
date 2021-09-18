@@ -20,14 +20,15 @@ class CollectionViewCell: UICollectionViewCell {
     
     func config(with rowIndex:Int) {
         var data:[String:[String]] = [:]
-        var earnedAwards = [""]
+        var earnedAwards:Array<Int> = []
         
         if let data1 = userDefaults.object(forKey: "Badge Data") as? [String:[String]] {
             data = data1
         }
         
-        if let awards = userDefaults.object(forKey: "Earned Awards") as? [String] {
+        if let awards = userDefaults.object(forKey: "Earned Awards") as? [Int] {
             earnedAwards = awards
+            print(earnedAwards)
         }
         
         var badgeData = [""]
@@ -44,7 +45,8 @@ class CollectionViewCell: UICollectionViewCell {
         
         if (earnedAwards.count > 0) {
             for i in 0...earnedAwards.count - 1 {
-                if (earnedAwards[i] == currentBadgeName) {
+                print(earnedAwards[i],rowIndex)
+                if (earnedAwards[i] == rowIndex) {
                     badgeImageView.image = UIImage(named: earnedImageName + ".img")
                 } else {
                     badgeImageView.image = UIImage(named: notEarnedImageName + ".img")

@@ -24,7 +24,7 @@ class ViewController: UIViewController, dataFromSettings {
     var userRank = ""
     var welcomeMessageShown:Bool = false
     var numOfTimesAppWasOpened = 0
-    var earnedAwards:Array<String> = []
+    var earnedAwards:Array<Int> = []
     let date = Date()
     var newDate = ""
     var dailyStreak = 0
@@ -133,20 +133,21 @@ class ViewController: UIViewController, dataFromSettings {
     }
     
     func checkAwards() {
-        earnedAwards = earnedAwards.remove("Regular Member")
-        if (numOfTimesAppWasOpened == 1) {
-            if (earnedAwards.contains("Normal Member Badge")) {} else {
-                earnedAwards.append("Normal Member Badge")
+        earnedAwards = earnedAwards.remove(10)//regular member
+        if (numOfTimesAppWasOpened <= 1) {
+            if (earnedAwards.contains(9)) {} else {
+                earnedAwards.append(9)//Normal member
             }
         }
         
-        if (numOfTimesAppWasOpened == 10) {
-            if (earnedAwards.contains("Regular Member Badge")) {} else {
-                earnedAwards.append("Regular Member Badge")
+        if (numOfTimesAppWasOpened >= 100) {
+            
+            if (earnedAwards.contains(11)) {} else {
+                earnedAwards.append(11)//Frequent member
             }
-        } else if (numOfTimesAppWasOpened == 100) {
-            if (earnedAwards.contains("Frequent Member Badge")) {} else {
-                earnedAwards.append("Frequent Member Badge")
+        } else if (numOfTimesAppWasOpened >= 30) {
+            if (earnedAwards.contains(10)) {} else {
+                earnedAwards.append(10)//Regular Member Badge
             }
         }
         
@@ -154,8 +155,8 @@ class ViewController: UIViewController, dataFromSettings {
             welcomeView.isHidden = false
         } else {
             welcomeView.isHidden = true
-            if (earnedAwards.contains("Beginner Badge")) {} else {
-                earnedAwards.append("Beginner Badge")
+            if (earnedAwards.contains(0)) {} else {
+                earnedAwards.append(0)//Beginner Badge
             }
         }
         
@@ -195,7 +196,7 @@ class ViewController: UIViewController, dataFromSettings {
             userRank = rank
         }
         
-        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<String> {
+        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<Int> {
             earnedAwards = userBadges
         }
         
@@ -272,7 +273,7 @@ class ViewController: UIViewController, dataFromSettings {
             userRank = rank
         }
         
-        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<String> {
+        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<Int> {
             earnedAwards = userBadges
         }
         

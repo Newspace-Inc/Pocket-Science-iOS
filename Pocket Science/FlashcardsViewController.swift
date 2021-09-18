@@ -19,6 +19,7 @@ class FlashcardsViewController: UIViewController {
     @IBOutlet weak var uiBG: UILabel!
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var swipeLabel: UILabel!
     
     // Variables
     var favouriteFlashcard:Array<String> = []
@@ -273,7 +274,7 @@ class FlashcardsViewController: UIViewController {
         checkFavourited(needUpdate: true)
     }
     
-    @objc func swipeRight(_ swipeGesture: UISwipeGestureRecognizer) {
+    @objc func swipeRight(_ swipeGesture: UISwipeGestureRecognizer?=nil) {
         
         if (!isFlashcardNil) {
             flashcardsIndex -= 1
@@ -282,8 +283,13 @@ class FlashcardsViewController: UIViewController {
         if (flashcardsIndex < 1) {
             flashcardsIndex = 1
         }
+        if (flashcardsIndex==1){
+            swipeLabel.text="< Swipe Right to see New Flashcards >"
+        }else{
+            swipeLabel.text="< Swipe Left or Right to see New Flashcards >"
+        }
         
-        if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex) {
+        if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex && !(flashcardsIndex == 1)) {
             let tF = true
             
             flashcardBG.flashcardAnimation(r2lDirection: tF)
@@ -293,7 +299,7 @@ class FlashcardsViewController: UIViewController {
         }
     }
     
-    @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer) {
+    @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer?=nil) {
         if (!isFlashcardNil) {
             flashcardsIndex += 1
         }
@@ -306,5 +312,11 @@ class FlashcardsViewController: UIViewController {
             configFlashcards()
             checkFavourited(needUpdate: false)
         }
+    }
+    @IBAction func simulateSwipeRight(_ sender: Any) {
+        swipeRight()
+    }
+    @IBAction func simulateSwipeLeft(_ sender: Any) {
+        swipeLeft()
     }
 }

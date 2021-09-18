@@ -29,7 +29,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         var dialogMessage = UIAlertController(title: "Delete All Favourites", message: "Are you sure you want to erase your favourited items? This action is NOT REVERSABLE.", preferredStyle: .alert)
 
         // Create OK button with action handler
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { [self] (action) -> Void in
+        let ok = UIAlertAction(title: "OK", style: .destructive, handler: { [self] (action) -> Void in
             favouriteFlashcards = []
             userDefaults.set(favouriteFlashcards, forKey: "Favourite Flashcard")
             self.tableView.reloadData()
