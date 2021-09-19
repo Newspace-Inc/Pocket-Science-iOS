@@ -268,6 +268,8 @@ class FlashcardsViewController: UIViewController {
         getData()
         configFlashcards()
         checkFavourited(needUpdate: false)
+        updateSwipeLabel()
+        
     }
     
     @IBAction func favouriteBtn(_ sender: Any) {
@@ -275,48 +277,62 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc func swipeRight(_ swipeGesture: UISwipeGestureRecognizer?=nil) {
-        
-        if (!isFlashcardNil) {
+        if (!isFlashcardNil && flashcardsIndex>1) {
             flashcardsIndex -= 1
-        }
         
-        if (flashcardsIndex < 1) {
-            flashcardsIndex = 1
-        }
         
-        if (flashcardsIndex == 1){
-            swipeLabel.text="< Swipe/Tap Right to see New Flashcards >"
-        } else if (flashcardsIndex == data.count) {
-            swipeLabel.text="< Swipe/Tap Left to revisit Older Flashcards >"
-        } else {
-            swipeLabel.text="< Swipe/Tap Left or Right to see New Flashcards >"
-        }
         
-        if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex && !(flashcardsIndex == 1)) {
-            let tF = true
-            
-            flashcardBG.flashcardAnimation(r2lDirection: tF)
-            
-            configFlashcards()
-            checkFavourited(needUpdate: false)
+            if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex) {
+                let tF = true
+                
+                flashcardBG.flashcardAnimation(r2lDirection: tF)
+                
+                configFlashcards()
+                checkFavourited(needUpdate: false)
+            }
         }
+        if (flashcardsIndex<=1){
+            if (flashcardsIndex>=data.count-1){
+                swipeLabel.text="This is the only flashcard"
+            }else{
+                swipeLabel.text="Swipe Right to see more"
+            }
+        }else if (flashcardsIndex>=data.count-1){
+            swipeLabel.text="Swipe Left to see more"
+        }else{
+            swipeLabel.text="Swipe Right/Left to see more"
+        }
+        updateSwipeLabel()
     }
     
     @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer?=nil) {
-        if (!isFlashcardNil) {
+        
+        if (!isFlashcardNil && flashcardsIndex<data.count-1) {
             flashcardsIndex += 1
+            if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex) {
+                let tF = false
+                
+                flashcardBG.flashcardAnimation(r2lDirection: tF)
+                
+                configFlashcards()
+                checkFavourited(needUpdate: false)
+            }
         }
-
-        if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex) {
-            let tF = false
-            
-            flashcardBG.flashcardAnimation(r2lDirection: tF)
-            
-            configFlashcards()
-            checkFavourited(needUpdate: false)
+        updateSwipeLabel()
+    }
+    func updateSwipeLabel(){
+        if (flashcardsIndex<=1){
+            if (flashcardsIndex>=data.count-1){
+                swipeLabel.text="This is the only flashcard"
+            }else{
+                swipeLabel.text="Swipe Right to see more"
+            }
+        }else if (flashcardsIndex>=data.count-1){
+            swipeLabel.text="Swipe Left to see more"
+        }else{
+            swipeLabel.text="Swipe Right/Left to see more"
         }
     }
-    
     @IBAction func simulateSwipeRight(_ sender: Any) {
         swipeRight()
     }
