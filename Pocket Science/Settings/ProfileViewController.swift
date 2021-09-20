@@ -46,6 +46,7 @@ class ProfileViewController: UIViewController, dataFromSettings {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // User Defaults
         if let userName = userDefaults.string(forKey: "Username") {
             userNameLabel.text = "\(userName)"
             storedUserName = "\(userName)"
@@ -53,6 +54,7 @@ class ProfileViewController: UIViewController, dataFromSettings {
             userNameLabel.text = "Hello, User"
             storedUserName = "User"
         }
+        
         if let userAge = userDefaults.string(forKey: "Userage") {
             storedUserAge = userAge
             primaryLevelLabel.text = "\(storedUserAge) Student"
@@ -118,7 +120,21 @@ class ProfileViewController: UIViewController, dataFromSettings {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        if let userName = userDefaults.string(forKey: "Username") {
+            userNameLabel.text = "\(userName)"
+            storedUserName = "\(userName)"
+        } else {
+            userNameLabel.text = "Hello, User"
+            storedUserName = "User"
+        }
         
+        if let userAge = userDefaults.string(forKey: "Userage") {
+            storedUserAge = userAge
+            primaryLevelLabel.text = "\(storedUserAge) Student"
+        } else {
+            storedUserAge = "NIL"
+            primaryLevelLabel.text = "Student"
+        }
     }
     
     @IBAction func settingsBtn(_ sender: Any) {

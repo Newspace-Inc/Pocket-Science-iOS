@@ -23,7 +23,7 @@ class ViewController: UIViewController, dataFromSettings {
     var userRank = ""
     var welcomeMessageShown:Bool = false
     var numOfTimesAppWasOpened = 0
-    var earnedAwards:Array<Int> = []
+    var earnedAwards:Array<String> = []
     let date = Date()
     var newDate = ""
     var dailyStreak = 0
@@ -133,37 +133,36 @@ class ViewController: UIViewController, dataFromSettings {
         }
     }
     
-    func checkAwards() {
-        earnedAwards = earnedAwards.remove(10)//regular member
-        if (numOfTimesAppWasOpened <= 1) {
-            if (earnedAwards.contains(9)) {} else {
-                earnedAwards.append(9)//Normal member
-            }
-        }
-        
-        if (numOfTimesAppWasOpened >= 100) {
-            
-            if (earnedAwards.contains(11)) {} else {
-                earnedAwards.append(11)//Frequent member
-            }
-        } else if (numOfTimesAppWasOpened >= 30) {
-            if (earnedAwards.contains(10)) {} else {
-                earnedAwards.append(10)//Regular Member Badge
-            }
-        }
-        
-        if (welcomeMessageShown == false) {
-            welcomeView.isHidden = false
-        } else {
-            welcomeView.isHidden = true
-            if (earnedAwards.contains(0)) {} else {
-                earnedAwards.append(0)//Beginner Badge
-            }
-        }
-        
-        earnedAwards = removeDuplicates(source: earnedAwards)
-        userDefaults.set(earnedAwards, forKey: "Earned Awards")
-    }
+//    func checkAwards() {
+//        if (numOfTimesAppWasOpened <= 1) {
+//            if (earnedAwards.contains("Normal Member")) {} else {
+//                earnedAwards.append("")//Normal member
+//            }
+//        }
+//
+//        if (numOfTimesAppWasOpened >= 100) {
+//
+//            if (earnedAwards.contains(11)) {} else {
+//                earnedAwards.append(11)//Frequent member
+//            }
+//        } else if (numOfTimesAppWasOpened >= 30) {
+//            if (earnedAwards.contains(10)) {} else {
+//                earnedAwards.append(10)//Regular Member Badge
+//            }
+//        }
+//
+//        if (welcomeMessageShown == false) {
+//            welcomeView.isHidden = false
+//        } else {
+//            welcomeView.isHidden = true
+//            if (earnedAwards.contains(0)) {} else {
+//                earnedAwards.append(0)//Beginner Badge
+//            }
+//        }
+//
+//        earnedAwards = removeDuplicates(source: earnedAwards)
+//        userDefaults.set(earnedAwards, forKey: "Earned Awards")
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,7 +196,7 @@ class ViewController: UIViewController, dataFromSettings {
             userRank = rank
         }
         
-        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<Int> {
+        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<String> {
             earnedAwards = userBadges
         }
                 
@@ -237,7 +236,7 @@ class ViewController: UIViewController, dataFromSettings {
         
         dailyStreakCheck()
         checkRecentlyOpened()
-        checkAwards()
+//        checkAwards() TO REPLACE WITH CheckBadges.swift
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -249,7 +248,7 @@ class ViewController: UIViewController, dataFromSettings {
         }
         
         if let userName = userDefaults.string(forKey: "Username") {
-            userNameLabel.text = "\(userName)"
+            userNameLabel.text = "Hello, \(userName)"
             storedUserName = "\(userName)"
         } else {
             userNameLabel.text = "Hello, User"
@@ -261,13 +260,12 @@ class ViewController: UIViewController, dataFromSettings {
         } else {
             storedUserAge = "NIL"
         }
-    
         
         if let rank = userDefaults.string(forKey: "User Rank") {
             userRank = rank
         }
         
-        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<Int> {
+        if let userBadges = userDefaults.object(forKey: "Earned Awards") as? Array<String> {
             earnedAwards = userBadges
         }
 

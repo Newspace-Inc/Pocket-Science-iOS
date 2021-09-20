@@ -235,7 +235,7 @@
 		1705A82A422703417117F267204A816A /* CoreXLSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CoreXLSX-dummy.m"; sourceTree = "<group>"; };
 		180F64C3C520A8AEC835F9F83869A9C0 /* SingleValueEncodingContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleValueEncodingContainer.swift; path = Sources/XMLCoder/Encoder/SingleValueEncodingContainer.swift; sourceTree = "<group>"; };
 		19D8E68A1ACE7A2E2EAFDE6D35B506DC /* XMLCoder-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XMLCoder-prefix.pch"; sourceTree = "<group>"; };
-		1AB292DEC0B08C071C47375988B3366E /* AcknowList */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AcknowList; path = AcknowList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AB292DEC0B08C071C47375988B3366E /* AcknowList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AcknowList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AFF5C7B7953061C74C6B30A6CF6CBB7 /* Archive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Archive.swift; path = Sources/ZIPFoundation/Archive.swift; sourceTree = "<group>"; };
 		1C7A9DA59B2FC2D0FC51180CDFD37FF9 /* CoreXLSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CoreXLSX.debug.xcconfig; sourceTree = "<group>"; };
 		1D4C6853A81AFD38F16E1495499EE601 /* DynamicNodeEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DynamicNodeEncoding.swift; path = Sources/XMLCoder/Encoder/DynamicNodeEncoding.swift; sourceTree = "<group>"; };
@@ -268,8 +268,8 @@
 		3F616D3E24543D97C200EBBCFDF225D0 /* XMLCoder */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = XMLCoder; path = XMLCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4108134FC43795D68BEF7F96987EC1E1 /* XMLCoder-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XMLCoder-dummy.m"; sourceTree = "<group>"; };
 		416EBF8E895AE464C89E6505144A9B3E /* AcknowParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AcknowParser.swift; path = Source/AcknowParser.swift; sourceTree = "<group>"; };
-		435F918F9E30573963991532EE152517 /* Classes */ = {isa = PBXFileReference; includeInIndex = 1; name = Classes; path = MotionToastView/Classes; sourceTree = "<group>"; };
-		43D0A208E67A5E85F40F561D17A8810F /* langs */ = {isa = PBXFileReference; includeInIndex = 1; name = langs; path = Sources/SwiftDate/Formatters/RelativeFormatter/langs; sourceTree = "<group>"; };
+		435F918F9E30573963991532EE152517 /* Classes */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Classes; path = MotionToastView/Classes; sourceTree = "<group>"; };
+		43D0A208E67A5E85F40F561D17A8810F /* langs */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = langs; path = Sources/SwiftDate/Formatters/RelativeFormatter/langs; sourceTree = "<group>"; };
 		45436569E69EAD5E5631CDFCD1A786B9 /* RelativeFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RelativeFormatter.swift; path = Sources/SwiftDate/Formatters/RelativeFormatter/RelativeFormatter.swift; sourceTree = "<group>"; };
 		46063EB27457C3018C19D1F4163C0B01 /* TimePeriodCollection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimePeriodCollection.swift; path = Sources/SwiftDate/TimePeriod/Groups/TimePeriodCollection.swift; sourceTree = "<group>"; };
 		46D6D490AB8B93D2C4E37B2AFC862315 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MotionToastView/Assets.xcassets; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 		53193406C3D2466FEA028807F0BF6A6C /* XMLChoiceDecodingContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XMLChoiceDecodingContainer.swift; path = Sources/XMLCoder/Decoder/XMLChoiceDecodingContainer.swift; sourceTree = "<group>"; };
 		568F9ADD06484D19A336EBF5675CC1BF /* DateInRegion+Create.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DateInRegion+Create.swift"; path = "Sources/SwiftDate/DateInRegion/DateInRegion+Create.swift"; sourceTree = "<group>"; };
 		5898879AB323AAB6A0AD9E63BC35D344 /* URLBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLBox.swift; path = Sources/XMLCoder/Auxiliaries/Box/URLBox.swift; sourceTree = "<group>"; };
-		58AE0544E0C381DDBD09356C357EC82B /* SwiftDate */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftDate; path = SwiftDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58AE0544E0C381DDBD09356C357EC82B /* SwiftDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5907F45AB3BCA00D51DBBCB3C1D5D699 /* ValueBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValueBox.swift; path = Sources/XMLCoder/Auxiliaries/Box/ValueBox.swift; sourceTree = "<group>"; };
 		597DBB9DC3672A5EA86A3716E6F5336E /* Worksheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Worksheet.swift; path = Sources/CoreXLSX/Worksheet/Worksheet.swift; sourceTree = "<group>"; };
 		5D44518B28FF54700F8E2D25F10C088B /* MTPale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MTPale.swift; path = Source/MotionToastStyles/MTPale.swift; sourceTree = "<group>"; };
@@ -299,7 +299,7 @@
 		689C1167775FD41F497E87B79F4E6D73 /* ISO8601DateFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ISO8601DateFormatter.swift; path = Sources/XMLCoder/Auxiliaries/ISO8601DateFormatter.swift; sourceTree = "<group>"; };
 		696009F865D638C8459CF75A27CE8A10 /* DateInRegion+Math.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DateInRegion+Math.swift"; path = "Sources/SwiftDate/DateInRegion/DateInRegion+Math.swift"; sourceTree = "<group>"; };
 		698A270693571AB6D273743955706132 /* SharedStrings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedStrings.swift; path = Sources/CoreXLSX/SharedStrings.swift; sourceTree = "<group>"; };
-		6B9304D53B64728FF8C8BE124EE08193 /* Assets */ = {isa = PBXFileReference; includeInIndex = 1; name = Assets; path = MotionToastView/Assets; sourceTree = "<group>"; };
+		6B9304D53B64728FF8C8BE124EE08193 /* Assets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Assets; path = MotionToastView/Assets; sourceTree = "<group>"; };
 		6CC7E1062DBA26696896B4F4C5AE62D7 /* Workbook.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Workbook.swift; path = Sources/CoreXLSX/Workbook.swift; sourceTree = "<group>"; };
 		71808A1E91DA42B3DB11568CCB2FEF7C /* CoreXLSX-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CoreXLSX-Info.plist"; sourceTree = "<group>"; };
 		71A2E80DD2B85CE27CB6808718A3E583 /* Zones.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zones.swift; path = Sources/SwiftDate/Supports/Zones.swift; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 		9BB1D79BEDBA65D737C484BFCEA3DAC8 /* Cell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cell.swift; path = Sources/CoreXLSX/Worksheet/Cell.swift; sourceTree = "<group>"; };
 		9CFE8BD99219E85C9C1825EDC066F8C2 /* Calendars.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Calendars.swift; path = Sources/SwiftDate/Supports/Calendars.swift; sourceTree = "<group>"; };
 		9D2F848A0F2AC0ABCC50947CD4AD05A3 /* Date+Create.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Create.swift"; path = "Sources/SwiftDate/Date/Date+Create.swift"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E1FE0E238658518215C86E78FEE7356 /* Pods-Pocket Science-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pocket Science-Info.plist"; sourceTree = "<group>"; };
 		9EAFBA6AC53D2FBD8E42A242BA63F89B /* SwiftDate-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftDate-prefix.pch"; sourceTree = "<group>"; };
 		9FFF0233EA383C959EADCFB5D11DAF78 /* DecimalBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DecimalBox.swift; path = Sources/XMLCoder/Auxiliaries/Box/DecimalBox.swift; sourceTree = "<group>"; };
@@ -479,7 +479,6 @@
 				99AD6788274E5825B8B3E62EE7E2A72C /* FileManager+ZIP.swift */,
 				2B6EBA6092359E673E0AA7BDF73F22FE /* Support Files */,
 			);
-			name = ZIPFoundation;
 			path = ZIPFoundation;
 			sourceTree = "<group>";
 		};
@@ -494,7 +493,6 @@
 				D0FD10CCE4C2C5F996909F0338651AF6 /* Resources */,
 				703C3986053BCA83FFC7C45134879090 /* Support Files */,
 			);
-			name = MotionToastView;
 			path = MotionToastView;
 			sourceTree = "<group>";
 		};
@@ -549,7 +547,6 @@
 				A0F177072C40C44113EA5F1F5C595B80 /* XMLUnkeyedEncodingContainer.swift */,
 				F5592B4AE88535CE40750EB916C5767D /* Support Files */,
 			);
-			name = XMLCoder;
 			path = XMLCoder;
 			sourceTree = "<group>";
 		};
@@ -648,12 +645,12 @@
 		845DF7754B1E79336ADE3D9623DAF49B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1AB292DEC0B08C071C47375988B3366E /* AcknowList */,
+				1AB292DEC0B08C071C47375988B3366E /* AcknowList.framework */,
 				F7697CE4600AFF04DD7B37AB9EDFFC00 /* CoreXLSX */,
 				C66FDF296BFF272D578C8D43CF733FA8 /* MotionToastView */,
 				DCFB0F0C91D0985BD14A432AC4787C38 /* MotionToastView-MotionToastView */,
 				350407AE139EE8EFC8BDE536CF1F0F19 /* Pods-Pocket Science */,
-				58AE0544E0C381DDBD09356C357EC82B /* SwiftDate */,
+				58AE0544E0C381DDBD09356C357EC82B /* SwiftDate.framework */,
 				3F616D3E24543D97C200EBBCFDF225D0 /* XMLCoder */,
 				48A4A6EDC08C8AC933D0DCD507E9D173 /* ZIPFoundation */,
 			);
@@ -677,7 +674,6 @@
 				F970B3470CF9041F4E277188144A3A6D /* XLSXFile.swift */,
 				CF3224F9323754C2A8C014F74A631F73 /* Support Files */,
 			);
-			name = CoreXLSX;
 			path = CoreXLSX;
 			sourceTree = "<group>";
 		};
@@ -723,7 +719,6 @@
 				CB5EEF0C9CBD63B02896576719CA2605 /* Resources */,
 				D4896B7F653EE3D974D2BE4B4610D865 /* Support Files */,
 			);
-			name = SwiftDate;
 			path = SwiftDate;
 			sourceTree = "<group>";
 		};
@@ -746,7 +741,6 @@
 				4DD084CA3A9AA4346B9A42917D78B6A4 /* Resources */,
 				7EB78A6179CDA88D5D3090AA890E627C /* Support Files */,
 			);
-			name = AcknowList;
 			path = AcknowList;
 			sourceTree = "<group>";
 		};
@@ -930,7 +924,7 @@
 			);
 			name = AcknowList;
 			productName = AcknowList;
-			productReference = 1AB292DEC0B08C071C47375988B3366E /* AcknowList */;
+			productReference = 1AB292DEC0B08C071C47375988B3366E /* AcknowList.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		5F890DDCE0E90395E044F0141F4B095A /* MotionToastView-MotionToastView */ = {
@@ -965,7 +959,7 @@
 			);
 			name = SwiftDate;
 			productName = SwiftDate;
-			productReference = 58AE0544E0C381DDBD09356C357EC82B /* SwiftDate */;
+			productReference = 58AE0544E0C381DDBD09356C357EC82B /* SwiftDate.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AA15C8469D67684160CC2A7098EB841C /* ZIPFoundation */ = {
@@ -1433,7 +1427,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SwiftDate/SwiftDate-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SwiftDate/SwiftDate-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1570,7 +1564,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AcknowList/AcknowList-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AcknowList/AcknowList-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1705,7 +1699,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AcknowList/AcknowList-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AcknowList/AcknowList-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1740,7 +1734,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SwiftDate/SwiftDate-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SwiftDate/SwiftDate-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
