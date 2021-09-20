@@ -5,7 +5,6 @@
 //  Created by Ethan Chew on 22/5/20.
 //  Copyright © 2020 Ethan Chew. All rights reserved.
 //
-
 import UIKit
 import CoreXLSX
 
@@ -42,7 +41,6 @@ class FlashcardsViewController: UIViewController {
     
     let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     var r2lDirection = false  // Initialize to right to left swipe
-
     var data:[String:[String]] = [:]
     
     // Functions
@@ -321,15 +319,15 @@ class FlashcardsViewController: UIViewController {
     }
     func updateSwipeLabel(){
         if (flashcardsIndex<=1){
-            if (flashcardsIndex>=data.count){
-                swipeLabel.text="This is the only flashcard"
-            }else{
-                swipeLabel.text="Swipe Right to see more"
+            if (flashcardsIndex>=data.count) {
+                swipeLabel.text = "This is the Only Flashcard"
+            } else {
+                swipeLabel.text = "Swipe Right to see New Flashcards"
             }
-        }else if (flashcardsIndex>=data.count){
-            swipeLabel.text="Swipe Left to see more"
+        }else if (flashcardsIndex>=data.count) {
+            swipeLabel.text = "Swipe Left to see New Flashcards"
         }else{
-            swipeLabel.text="Swipe Right/Left to see more"
+            swipeLabel.text = "Swipe Right/Left to see New Flashcards"
         }
     }
     @IBAction func simulateSwipeRight(_ sender: Any) {

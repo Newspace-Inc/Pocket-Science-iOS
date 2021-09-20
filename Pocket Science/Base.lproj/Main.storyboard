@@ -740,6 +740,7 @@
                                             <color key="titleColor" systemColor="systemRedColor"/>
                                         </state>
                                         <connections>
+                                            <action selector="dismissEarnedAward:" destination="NkZ-oF-f8M" eventType="touchUpInside" id="OAX-ZV-uRd"/>
                                             <action selector="dismissWelcomeMessage:" destination="NkZ-oF-f8M" eventType="touchUpInside" id="pNP-ep-yDn"/>
                                         </connections>
                                     </button>

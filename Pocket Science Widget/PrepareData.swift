@@ -20,10 +20,7 @@ func prepareData() -> (numOfTimesAppWasOpened: Int, earnedAwards: [String], earn
         earnedAwards = userBadges
     }
     
-    numOfTimesAppWasOpened=userDefaults.integer(forKey: "Number Of Times App Opened")
-    //if let numOfTimes:Int = userDefaults.integer(forKey: "Number Of Times App Opened") {
-    //    numOfTimesAppWasOpened = numOfTimes
-    //}
+    numOfTimesAppWasOpened = userDefaults.integer(forKey: "Number Of Times App Opened")
     
     if let recentlyOpenedDate = userDefaults.string(forKey: "Recently Opened Date") {
         lastOpenedDate = recentlyOpenedDate

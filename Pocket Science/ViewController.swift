@@ -28,6 +28,7 @@ class ViewController: UIViewController, dataFromSettings {
     var newDate = ""
     var dailyStreak = 0
     var earnedImage = ["Beginner Badge", "Bookworm Badge", "Brainy Badge", "Diligent Ant Badge", "Expert Badge", "Frequent Member Badge", "Industrious Bee Badge", "Maestro Badge", "Normal Member Badge", "Perfectionist Badge", "Regular Member Badge","Star Collector Badge","Streaker Bronze Badge","Streaker Gold Badge", "Streaker Silver Badge"]
+    var isShownEB = false
     
     let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     
@@ -133,37 +134,6 @@ class ViewController: UIViewController, dataFromSettings {
         }
     }
     
-//    func checkAwards() {
-//        if (numOfTimesAppWasOpened <= 1) {
-//            if (earnedAwards.contains("Normal Member")) {} else {
-//                earnedAwards.append("")//Normal member
-//            }
-//        }
-//
-//        if (numOfTimesAppWasOpened >= 100) {
-//
-//            if (earnedAwards.contains(11)) {} else {
-//                earnedAwards.append(11)//Frequent member
-//            }
-//        } else if (numOfTimesAppWasOpened >= 30) {
-//            if (earnedAwards.contains(10)) {} else {
-//                earnedAwards.append(10)//Regular Member Badge
-//            }
-//        }
-//
-//        if (welcomeMessageShown == false) {
-//            welcomeView.isHidden = false
-//        } else {
-//            welcomeView.isHidden = true
-//            if (earnedAwards.contains(0)) {} else {
-//                earnedAwards.append(0)//Beginner Badge
-//            }
-//        }
-//
-//        earnedAwards = removeDuplicates(source: earnedAwards)
-//        userDefaults.set(earnedAwards, forKey: "Earned Awards")
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -236,7 +206,30 @@ class ViewController: UIViewController, dataFromSettings {
         
         dailyStreakCheck()
         checkRecentlyOpened()
-//        checkAwards() TO REPLACE WITH CheckBadges.swift
+        
+        // Check for New Badges
+        let newBadges = checkBadges()
+        if (newBadges.didNewBadges) {
+            var badgeData:[String:[String]]
+            if let getData = userDefaults.object(forKey: "Badge Data") as? [String:[String]] {
+                badgeData = getData
+            } else {
+                print("Reloading Badge Data...")
+                badgeData = getBadges()
+            }
+            
+            if newBadges.newBadges.count > 1 {
+                let newBadge = newBadges.newBadges[0].replacingOccurrences(of: " Badge", with: "")
+                awardImgView.image = UIImage(named: badgeData[newBadge]![2] + ".img")
+                awardName.text = newBadge
+                awardDiscrip.text = badgeData[newBadge]![0]
+            } else {
+                let newBadge = newBadges.newBadges[0].replacingOccurrences(of: " Badge", with: "")
+                awardImgView.image = UIImage(named: badgeData[newBadge]![2] + ".img")
+                awardName.text = newBadge
+                awardDiscrip.text = badgeData[newBadge]![0]
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -283,6 +276,11 @@ class ViewController: UIViewController, dataFromSettings {
         welcomeView.isHidden = true
     }
     
+    @IBAction func dismissEarnedAward(_ sender: Any) {
+        isShownEB = true
+        welcomeView.isHidden = true
+    }
+    
     @IBAction func goToLowerPrimary(_ sender: Any) {
         lastOpenedData = [] // Clear Array
         lastOpenedData.append(newDate)
@@ -304,4 +302,44 @@ class ViewController: UIViewController, dataFromSettings {
         
         checkRecentlyOpened()
     }
+}
+
+func getBadges() -> [String:[String]] {
+    
+    // Collect Data
+    let worksheetName = "Sheet1"
+    var data:[String:[String]] = [:]
+    
+    do {
+        let filepath = Bundle.main.path(forResource: "Badges", ofType: "xlsx")!
+        
+        guard let file = XLSXFile(filepath: filepath) else {
+            fatalError("XLSX file at \(filepath) is corrupted or does not exist")
+        }
+        
+        for wbk in try file.parseWorkbooks() {
+            guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
+                    .first(where: { $0.name == worksheetName }).map({ $0.path })
+            else {
+                continue
+            }
+            
+            let sharedStrings = try file.parseSharedStrings()
+            let worksheet = try file.parseWorksheet(at: path)
+            let numOfBadges = 15
+            
+            for i in 1...numOfBadges {
+                var parseBadges = worksheet.cells(atRows: [UInt(i)])
+                    .compactMap { $0.stringValue(sharedStrings) }
+                let badgeName = parseBadges[0]
+                parseBadges.remove(at: 0)
+                
+                data[badgeName] = parseBadges
+            }
+            
+        }
+    } catch {
+        fatalError("\(error.localizedDescription)")
+    }
+    return data
 }
