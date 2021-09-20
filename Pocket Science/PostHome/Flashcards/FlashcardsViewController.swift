@@ -207,8 +207,15 @@ class FlashcardsViewController: UIViewController {
         
         uneditedCurrentFlashcard = currentFlashcard
         currentFlashcard.removeSubrange(0..<4)
-        
-        let flashcardKnowledge = Data(currentFlashcard.joined(separator: "\n").utf8)
+        let styles="""
+        <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&amp;display=swap" rel="stylesheet">
+        </head>
+        <body style="font-family: 'M PLUS Rounded 1c', sans-serif;">
+        """
+        let flashcardKnowledge = Data((styles + currentFlashcard.joined(separator: "<br>") + "</body>").utf8)
         if let attributedString = try? NSAttributedString(data: flashcardKnowledge, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
             textField.attributedText = attributedString
         }
