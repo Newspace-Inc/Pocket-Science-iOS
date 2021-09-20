@@ -82,9 +82,9 @@ class FlashcardsViewController: UIViewController {
                 
                 let findLessonSelectedEnd = overallTopics.lastIndex(of: selectedOverallTopic) // Gets the last row of selected Lesson
                 if findLessonSelectedEnd != nil {
-                    lessonsSelRowEnd = Int(findLessonSelectedEnd ?? 0) + 1
+                    lessonsSelRowEnd = Int(findLessonSelectedEnd ?? 0) + 2
                 }
-                    for _ in lessonsSelRowStart...lessonsSelRowEnd - 1 {
+                    for _ in lessonsSelRowStart...lessonsSelRowEnd {
                         if (lessonsSelRowStart + index <= lessonsSelRowEnd) {
                             var parsingFlashcards = worksheet.cells(atRows: [UInt(lessonsSelRowStart + index)])
                                 .compactMap { $0.stringValue(sharedStrings) }
@@ -314,12 +314,12 @@ class FlashcardsViewController: UIViewController {
     }
     func updateSwipeLabel(){
         if (flashcardsIndex<=1){
-            if (flashcardsIndex>=data.count-1){
+            if (flashcardsIndex>=data.count){
                 swipeLabel.text="This is the only flashcard"
             }else{
                 swipeLabel.text="Swipe Right to see more"
             }
-        }else if (flashcardsIndex>=data.count-1){
+        }else if (flashcardsIndex>=data.count){
             swipeLabel.text="Swipe Left to see more"
         }else{
             swipeLabel.text="Swipe Right/Left to see more"
