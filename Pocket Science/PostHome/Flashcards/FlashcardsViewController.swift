@@ -186,18 +186,18 @@ class FlashcardsViewController: UIViewController {
     func configFlashcards() {
         currentFlashcard.removeAll()
         checkFavourited(needUpdate: false)
-                
-        if (flashcardsIndex == 1) {
-            currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
-        } else {
-            if (data["Flashcard \(flashcardsIndex)"] == nil) {
-                currentFlashcard = data["Flashcard \(flashcardsIndex - 1)"]!
-                isFlashcardNil = true
-            } else {
-                currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
-                isFlashcardNil = false
-            }
-        }
+        currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
+//        if (flashcardsIndex == 1) {
+//            currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
+//        } else {
+//            if (data["Flashcard \(flashcardsIndex)"] == nil) {
+//                currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
+//                isFlashcardNil = true
+//            } else {
+//                currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
+//                isFlashcardNil = false
+//            }
+//        }
         
         conceptName = currentFlashcard[3]
         
@@ -208,8 +208,11 @@ class FlashcardsViewController: UIViewController {
         uneditedCurrentFlashcard = currentFlashcard
         currentFlashcard.removeSubrange(0..<4)
         
-        let flashcardKnowledge = currentFlashcard.joined(separator: "\n")
-        textField.text = "\(flashcardKnowledge)"
+        let flashcardKnowledge = Data(currentFlashcard.joined(separator: "\n").utf8)
+        if let attributedString = try? NSAttributedString(data: flashcardKnowledge, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            textField.attributedText = attributedString
+        }
+        
         
     }
     
@@ -290,17 +293,6 @@ class FlashcardsViewController: UIViewController {
                 configFlashcards()
                 checkFavourited(needUpdate: false)
             }
-        }
-        if (flashcardsIndex<=1){
-            if (flashcardsIndex>=data.count-1){
-                swipeLabel.text="This is the only flashcard"
-            }else{
-                swipeLabel.text="Swipe Right to see more"
-            }
-        }else if (flashcardsIndex>=data.count-1){
-            swipeLabel.text="Swipe Left to see more"
-        }else{
-            swipeLabel.text="Swipe Right/Left to see more"
         }
         updateSwipeLabel()
     }
