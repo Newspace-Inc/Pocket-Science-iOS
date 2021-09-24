@@ -48,15 +48,13 @@ class FlashcardsViewController: UIViewController {
         var nsDictionary: [String:NSDictionary]
         let path = Bundle.main.path(forResource: "Main Data", ofType: "plist")
         nsDictionary = NSDictionary(contentsOfFile: path!) as! [String : NSDictionary]
-        let prilevel:[String:[String:NSDictionary]]=nsDictionary[primaryLevel] as! [String : [String:NSDictionary]]
+        let prilevel:[String:[String:NSDictionary]] = nsDictionary[primaryLevel] as! [String : [String:NSDictionary]]
+        
         conceptNames = prilevel[selectedLesson]![selectedOverallTopic]?.allKeys as! [String]
-        for i in 0...conceptNames.count-1{
-            
-
+        
+        for i in 0...conceptNames.count - 1 {
             flashcards.append(((prilevel[selectedLesson]![selectedOverallTopic]![conceptNames[i]] as! NSDictionary).allKeys as! [String]).joined(separator: "<br>"))
         }
-        
-       
     }
 
     func checkFavourited(needUpdate: Bool) {

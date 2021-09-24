@@ -46,12 +46,6 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userSelectedTopic = [""]
     
     func getData() {
-        
-        
-        
-        
-        
-        
         // Collect Data
         var worksheetName = ""
         worksheetName = "\(primaryLevel) Data"
@@ -103,79 +97,8 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let path = Bundle.main.path(forResource: "Main Data", ofType: "plist")
         nsDictionary = NSDictionary(contentsOfFile: path!) as! [String : NSDictionary]
         userDefaults.set(selectedLesson,forKey: "selectedLesson")
-        let prilevel:[String:NSDictionary]=nsDictionary[primaryLevel] as! [String : NSDictionary]
-        userSelectedTopic=prilevel[selectedLesson]?.allKeys as! [String]
-        
-        
-        
-        // Collect Data
-        var worksheetName = ""
-        worksheetName = "\(primaryLevel) Data"
-        
-        do {
-            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
-            
-            guard let file = XLSXFile(filepath: filepath) else {
-                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
-            }            
-            
-            for wbk in try file.parseWorkbooks() {
-                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
-                        .first(where: { $0.name == worksheetName }).map({ $0.path })
-                else { continue }
-                
-                let sharedStrings = try file.parseSharedStrings()
-                let worksheet = try file.parseWorksheet(at: path)
-                
-                var endTopicSel = 0
-                var startTopicSel = 0
-                                
-                // Get Cell Data
-                let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
-                    .compactMap{ $0.stringValue(sharedStrings) }
-                
-                overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
-                    .compactMap { $0.stringValue(sharedStrings) }
-                
-                // Find Rows of Selected Topic
-                let findTopicSelectedStart = topic.firstIndex(of: selectedLesson)
-                if findTopicSelectedStart != nil {
-                    startTopicSel = Int(findTopicSelectedStart ?? 0) + 1
-                }
-                
-                let findTopicSelectedEnd = topic.lastIndex(of: selectedLesson)
-                if findTopicSelectedEnd != nil {
-                    endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
-                }
-                
-//                for i in startTopicSel...endTopicSel - 1 {
-//                    userSelectedTopic.append(overallTopics[i])
-//                }
-                
-//                userSelectedTopic = Array(Set(userSelectedTopic))
-//                userSelectedTopic = userSelectedTopic.remove("")
-                
-                userDefaults.set(startTopicSel, forKey: "TopicSelStart")
-                userDefaults.set(endTopicSel, forKey: "TopicSelEnd")
-                
-                var topicExplaination = worksheet.cells(atRows: [UInt(startTopicSel)])
-                    .compactMap { $0.stringValue(sharedStrings) }
-                
-                if (topicExplaination[2] == topicExplaination[3]) {
-                    topicExplaination.removeSubrange(0..<4)
-                    
-                    topicExplaination = topicExplaination.remove("Empty Cell")
-                    
-                    topicExplaination.removeLast()
-                    
-                    let explaination = topicExplaination.joined(separator: "\n")
-                    
-                    ExplainationTextField.text = "\(explaination)"
-                }
-            }
-        } catch {
-            fatalError("\(error)")
-        }
+        let prilevel:[String:NSDictionary] = nsDictionary[primaryLevel] as! [String : NSDictionary]
+        userSelectedTopic = prilevel[selectedLesson]?.allKeys as! [String]
     }
     
     func confirmQuiz() {
