@@ -6,7 +6,6 @@
 //  Copyright © 2020 Ethan Chew. All rights reserved.
 //
 import UIKit
-import CoreXLSX
 
 class FlashcardsViewController: UIViewController {
     
@@ -51,8 +50,6 @@ class FlashcardsViewController: UIViewController {
         let prilevel:[String:[String:NSDictionary]]=nsDictionary[primaryLevel] as! [String : [String:NSDictionary]]
         conceptNames = prilevel[selectedLesson]![selectedOverallTopic]?.allKeys as! [String]
         for i in 0...conceptNames.count-1{
-            
-
             flashcards.append(((prilevel[selectedLesson]![selectedOverallTopic]![conceptNames[i]] as! NSDictionary).allKeys as! [String]).joined(separator: "<br>"))
         }
         
