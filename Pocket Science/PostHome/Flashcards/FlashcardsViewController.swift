@@ -51,14 +51,9 @@ class FlashcardsViewController: UIViewController {
         let prilevel:[String:[String:NSDictionary]]=nsDictionary[primaryLevel] as! [String : [String:NSDictionary]]
         conceptNames = prilevel[selectedLesson]![selectedOverallTopic]?.allKeys as! [String]
         for i in 0...conceptNames.count-1{
-            let temp:NSDictionary = (prilevel[selectedLesson]![selectedOverallTopic]![conceptNames[i]] as! NSDictionary)
-            var tjoinedString:[String]=[]
-            for j in 0...temp.allKeys.count-1{
-                if temp.allKeys[j] as! String != "Empty Cell"{
-                    tjoinedString.append(temp.allKeys[j] as! String)
-                }
-            }
-            flashcards.append(tjoinedString.joined(separator: "<br>"))
+            
+
+            flashcards.append(((prilevel[selectedLesson]![selectedOverallTopic]![conceptNames[i]] as! NSDictionary).allKeys as! [String]).joined(separator: "<br>"))
         }
         
        
