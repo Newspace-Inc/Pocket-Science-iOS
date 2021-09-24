@@ -6,7 +6,6 @@
 //  Copyright © 2020 Ethan Chew. All rights reserved.
 //
 import UIKit
-import CoreXLSX
 
 class FlashcardsViewController: UIViewController {
     
