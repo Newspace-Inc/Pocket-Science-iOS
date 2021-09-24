@@ -251,30 +251,9 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func segmentedCtrl(_ sender: UISegmentedControl) {
-        
-        switch sender.selectedSegmentIndex {
-        case 0:
-            topicSelectionView.isHidden = false
-            subtopicTableView.isHidden = true
-            quizSelectionView.isHidden = true
-            
-            break
-        case 1:
-            topicSelectionView.isHidden = true
-            subtopicTableView.isHidden = false
-            quizSelectionView.isHidden = true
-            
-            break
-        case 2:
-            confirmQuiz()
-            topicSelectionView.isHidden = true
-            subtopicTableView.isHidden = true
-            quizSelectionView.isHidden = false
-            
-            break
-        default:
-            break
-        }
+        topicSelectionView.isHidden = sender.selectedSegmentIndex != 0
+        subtopicTableView.isHidden = sender.selectedSegmentIndex != 1
+        quizSelectionView.isHidden = sender.selectedSegmentIndex != 2
     }
     @IBAction func MCQBtn(_ sender: Any) {
         quizType = "Multiple Choice Questions"

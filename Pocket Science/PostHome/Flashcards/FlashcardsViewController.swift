@@ -57,82 +57,47 @@ class FlashcardsViewController: UIViewController {
     }
 
     func checkFavourited(needUpdate: Bool) {
-        if needUpdate {
-            let amtOfFavouritedFlashcards = favouriteFlashcard.count
-            
-            if (amtOfFavouritedFlashcards != 0) {
-                if (amtOfFavouritedFlashcards == 1) {
-                    if (conceptName == favouriteFlashcard[0]) {
-                        isFlashcardFavourited = true
-                    } else {
-                        isFlashcardFavourited = false
-                    }
-                } else {
-                    for i in 0...amtOfFavouritedFlashcards - 1 {
-                        if (conceptName == favouriteFlashcard[i]) {
-                            isFlashcardFavourited = true
-                        } else {
-                            isFlashcardFavourited = false
-                        }
-                    }
-                }
-            } else {isFlashcardFavourited = false}
+        let amtOfFavouritedFlashcards = favouriteFlashcard.count
         
+        if (amtOfFavouritedFlashcards != 0) {
+            
+            for i in 0...amtOfFavouritedFlashcards - 1 {
+                if (conceptName == favouriteFlashcard[i]) {
+                    isFlashcardFavourited = true
+                    break
+                } else {
+                    isFlashcardFavourited = false
+                }
+            }
+            
+        } else {isFlashcardFavourited = false}
+        var imagename = ""
+        if needUpdate {
             if (isFlashcardFavourited) {
                 print("\(conceptName) is now not Favourited")
                 favouriteFlashcard = favouriteFlashcard.remove(conceptName)
-                if let image = UIImage(named: "heart.empty") {
-                    favouriteButton.setImage(image, for: .normal)
-                } else {
-                    fatalError("Image does not exist or is corrupted.")
-                }
+                imagename = "heart.empty"
             } else {
                 print("\(conceptName) is now Favourited")
                 favouriteFlashcard.append(conceptName)
-                if let image = UIImage(named: "heart.fill") {
-                    favouriteButton.setImage(image, for: .normal)
-                } else {
-                    fatalError("Image does not exist or is corrupted.")
-                }
+                imagename = "heart.fill"
             }
             
             userDefaults.set(favouriteFlashcard, forKey: "Favourite Flashcard")
         } else {
-            let amtOfFavouritedFlashcards = favouriteFlashcard.count
-            
-            if (amtOfFavouritedFlashcards != 0) {
-                if (amtOfFavouritedFlashcards == 1) {
-                    if (conceptName == favouriteFlashcard[0]) {
-                        isFlashcardFavourited = true
-                    } else {
-                        isFlashcardFavourited = false
-                    }
-                } else {
-                    for i in 0...amtOfFavouritedFlashcards - 1 {
-                        if (conceptName == favouriteFlashcard[i]) {
-                            isFlashcardFavourited = true
-                        } else {
-                            isFlashcardFavourited = false
-                        }
-                    }
-                }
-            } else {isFlashcardFavourited = false}
         
             if (isFlashcardFavourited) {
                 print("\(conceptName) is Favourited")
-                if let image = UIImage(named: "heart.fill") {
-                    favouriteButton.setImage(image, for: .normal)
-                } else {
-                    fatalError("Image does not exist or is corrupted.")
-                }
+                imagename = "heart.fill"
             } else {
                 print("\(conceptName) is not Favourited")
-                if let image = UIImage(named: "heart.empty") {
-                    favouriteButton.setImage(image, for: .normal)
-                } else {
-                    fatalError("Image does not exist or is corrupted.")
-                }
+                imagename = "heart.empty"
             }
+        }
+        if let image = UIImage(named: imagename) {
+            favouriteButton.setImage(image, for: .normal)
+        } else {
+            fatalError("Image does not exist or is corrupted.")
         }
     }
     

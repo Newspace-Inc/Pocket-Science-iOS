@@ -64,26 +64,21 @@ class ViewController: UIViewController, dataFromSettings {
     
     func checkRecentlyOpened() {
         if (lastOpenedData == []) {
-            
+            return
         } else if (lastOpenedData[1] == "Lower Primary") {
-            lvlLabel.text = "\(lastOpenedData[1])"
             topicLabel.text = "5 Chapters"
-            lastOpenedDateLabel.text = lastOpenedData[0]
-            lvlLabel.alpha = 1
-            topicLabel.alpha = 1
-            lastOpenedDateLabel.alpha = 1
             recentlyOpenedBtn.backgroundColor = UIColor(red: 117/255, green: 170/255, blue: 230/255, alpha: 1.0)
-            recentlyOpenedBtn.setTitle("", for: .normal)
+            
         } else if (lastOpenedData[1] == "Upper Primary") {
-            lvlLabel.text = "\(lastOpenedData[1])"
             topicLabel.text = "4 Chapters"
-            lastOpenedDateLabel.text = lastOpenedData[0]
-            lvlLabel.alpha = 1
-            topicLabel.alpha = 1
-            lastOpenedDateLabel.alpha = 1
             recentlyOpenedBtn.backgroundColor = UIColor(red: 86/255, green: 146/255, blue: 229/255, alpha: 1.0)
-            recentlyOpenedBtn.setTitle("", for: .normal)
         }
+        lvlLabel.text = "\(lastOpenedData[1])"
+        lastOpenedDateLabel.text = lastOpenedData[0]
+        lvlLabel.alpha = 1
+        topicLabel.alpha = 1
+        lastOpenedDateLabel.alpha = 1
+        recentlyOpenedBtn.setTitle("", for: .normal)
     }
     
     func removeDuplicates<S : Sequence, T : Hashable>(source: S) -> [T] where S.Iterator.Element == T {

@@ -108,7 +108,5 @@ class ChooseTopicViewController: UIViewController, UITableViewDelegate, UITableV
         performSegue(withIdentifier: "lessons", sender: self)
     }
     
-    @IBAction func unwind( _ seg: UIStoryboardSegue) {
-        
-    }
+    
 }
