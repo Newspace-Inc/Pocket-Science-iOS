@@ -47,6 +47,11 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getData() {
         
+        
+        
+        
+        
+        
         // Collect Data
         var worksheetName = ""
         worksheetName = "\(primaryLevel) Data"
@@ -94,6 +99,15 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getMainData() {
         
+        var nsDictionary: [String:NSDictionary]
+        let path = Bundle.main.path(forResource: "Main Data", ofType: "plist")
+        nsDictionary = NSDictionary(contentsOfFile: path!) as! [String : NSDictionary]
+        userDefaults.set(selectedLesson,forKey: "selectedLesson")
+        let prilevel:[String:NSDictionary]=nsDictionary[primaryLevel] as! [String : NSDictionary]
+        userSelectedTopic=prilevel[selectedLesson]?.allKeys as! [String]
+        
+        
+        
         // Collect Data
         var worksheetName = ""
         worksheetName = "\(primaryLevel) Data"
@@ -134,12 +148,12 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     endTopicSel = Int(findTopicSelectedEnd ?? 0) + 1
                 }
                 
-                for i in startTopicSel...endTopicSel - 1 {
-                    userSelectedTopic.append(overallTopics[i])
-                }
+//                for i in startTopicSel...endTopicSel - 1 {
+//                    userSelectedTopic.append(overallTopics[i])
+//                }
                 
-                userSelectedTopic = Array(Set(userSelectedTopic))
-                userSelectedTopic = userSelectedTopic.remove("")
+//                userSelectedTopic = Array(Set(userSelectedTopic))
+//                userSelectedTopic = userSelectedTopic.remove("")
                 
                 userDefaults.set(startTopicSel, forKey: "TopicSelStart")
                 userDefaults.set(endTopicSel, forKey: "TopicSelEnd")

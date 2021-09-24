@@ -38,6 +38,9 @@
 		876F596B24C72210007414AA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595424C7220F007414AA /* SettingsViewController.swift */; };
 		876F596D24C72210007414AA /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595524C72210007414AA /* QuizViewController.swift */; };
 		876F596F24C72210007414AA /* AwardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F595624C72210007414AA /* AwardsViewController.swift */; };
+		87F2377F26FC402500D51C25 /* Main Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87F2377E26FC402500D51C25 /* Main Data.plist */; };
+		87F2378126FC408A00D51C25 /* temp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87F2378026FC408A00D51C25 /* temp.plist */; };
+		87F2378526FC4B8000D51C25 /* Main Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87F2378426FC4B8000D51C25 /* Main Data.plist */; };
 		BC9F6947F54C116608FDC07C /* Pods_Pocket_Science.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266B9D0439333E190FA508 /* Pods_Pocket_Science.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +106,9 @@
 		876F595424C7220F007414AA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		876F595524C72210007414AA /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		876F595624C72210007414AA /* AwardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsViewController.swift; sourceTree = "<group>"; };
+		87F2377E26FC402500D51C25 /* Main Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Main Data.plist"; sourceTree = "<group>"; };
+		87F2378026FC408A00D51C25 /* temp.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = temp.plist; sourceTree = "<group>"; };
+		87F2378426FC4B8000D51C25 /* Main Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Main Data.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +177,9 @@
 		593D4C7726F5F7820057F1A9 /* Data Files */ = {
 			isa = PBXGroup;
 			children = (
+				87F2377E26FC402500D51C25 /* Main Data.plist */,
+				87F2378426FC4B8000D51C25 /* Main Data.plist */,
+				87F2378026FC408A00D51C25 /* temp.plist */,
 				599C8B3B257FE01A004D6F9D /* Main Data.xlsx */,
 				599C8B3F257FE021004D6F9D /* Topic Explaination.xlsx */,
 				59BFA7C824DE749300A6467E /* Questions and Answers.xlsx */,
@@ -355,9 +364,12 @@
 				59BFA7C924DE749300A6467E /* Questions and Answers.xlsx in Resources */,
 				59549A5A25383E9C00BD68A7 /* Pods-Pocket Science-acknowledgements.plist in Resources */,
 				59D4A2852554DB6D00C972AA /* Badges.xlsx in Resources */,
+				87F2378126FC408A00D51C25 /* temp.plist in Resources */,
 				5917C13E24337F9A00107213 /* Assets.xcassets in Resources */,
+				87F2378526FC4B8000D51C25 /* Main Data.plist in Resources */,
 				599C8B40257FE022004D6F9D /* Topic Explaination.xlsx in Resources */,
 				5917C13C24337F9500107213 /* Main.storyboard in Resources */,
+				87F2377F26FC402500D51C25 /* Main Data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

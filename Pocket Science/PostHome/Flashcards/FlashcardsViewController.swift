@@ -23,79 +23,45 @@ class FlashcardsViewController: UIViewController {
     // Variables
     var favouriteFlashcard:Array<String> = []
     var currentFlashcard:Array<String> = []
-    var selectedOverallTopic = ""
-    var selectedConcept = ""
-    var primaryLevel = ""
-    var selectedLesson = ""
-    var topicSelRowStart = 0 // Starting Line Num of Selected Topic (eg Systems)
-    var topicSelRowEnd = 0 // Ending Line Num of Selected Topic (eg Systems)
-    var lessonsSelRowStart = 0 // Starting Line Num of Selected Lesson (eg How to make magnets)
-    var lessonsSelRowEnd = 0 // Ending Line Num of Selected Lesson (eg How to make magnets)
+    var selectedOverallTopic:String = ""
+    var selectedConcept:String = ""
+    var primaryLevel:String = ""
+    var selectedLesson:String = ""
+    var topicSelRowStart:Int = 0// Starting Line Num of Selected Topic (eg Systems)
+    var topicSelRowEnd:Int = 0// Ending Line Num of Selected Topic (eg Systems)
+    var lessonsSelRowStart:Int = 0// Starting Line Num of Selected Lesson (eg How to make magnets)
+    var lessonsSelRowEnd:Int = 0// Ending Line Num of Selected Lesson (eg How to make magnets)
     var flashcardsIndex = 1
     var isFlashcardFavourited:Bool = false
-    var conceptName = ""
+    var conceptName:String = ""
     var overallTopics:Array<String> = []
     var isFlashcardNil = false
-    
+    var conceptNames:[String] = []
+    var flashcards:[String] = []
     var uneditedCurrentFlashcard:Array<String> = []
     
     let userDefaults = UserDefaults(suiteName: "group.pocketscience")!
     var r2lDirection = false  // Initialize to right to left swipe
-    var data:[String:[String]] = [:]
-    
     // Functions
     func getData() {
         // Clear old Dictonary
-        data.removeAll()
-        
-        // Collect Data
-        var worksheetName = ""
-        worksheetName = "\(primaryLevel) Data"
-        
-        do {
-            let filepath = Bundle.main.path(forResource: "Main Data", ofType: "xlsx")!
-            
-            guard let file = XLSXFile(filepath: filepath) else {
-                fatalError("XLSX file at \(filepath) is corrupted or does not exist")
-            }
-            
-            for wbk in try file.parseWorkbooks() {
-                guard let path = try file.parseWorksheetPathsAndNames(workbook: wbk)
-                        .first(where: { $0.name == worksheetName }).map({ $0.path })
-                else { continue }
-                
-                let sharedStrings = try file.parseSharedStrings()
-                let worksheet = try file.parseWorksheet(at: path)
-                var index = 1
-                
-                // Get Cell Data
-                overallTopics = worksheet.cells(atColumns: [ColumnReference("C")!])
-                    .compactMap { $0.stringValue(sharedStrings) }
-                
-                // Find Rows of Selected Lesson
-                let findLessonSelectedStart = overallTopics.firstIndex(of: selectedOverallTopic) // Gets the first row of selected Lesson
-                if findLessonSelectedStart != nil {
-                    lessonsSelRowStart = Int(findLessonSelectedStart ?? 0) + 1
+        var nsDictionary: [String:NSDictionary]
+        let path = Bundle.main.path(forResource: "Main Data", ofType: "plist")
+        nsDictionary = NSDictionary(contentsOfFile: path!) as! [String : NSDictionary]
+        let prilevel:[String:[String:NSDictionary]]=nsDictionary[primaryLevel] as! [String : [String:NSDictionary]]
+        conceptNames = prilevel[selectedLesson]![selectedOverallTopic]?.allKeys as! [String]
+        for i in 0...conceptNames.count-1{
+            let temp:NSDictionary = (prilevel[selectedLesson]![selectedOverallTopic]![conceptNames[i]] as! NSDictionary)
+            var tjoinedString:[String]=[]
+            for j in 0...temp.allKeys.count-1{
+                if temp.allKeys[j] as! String != "Empty Cell"{
+                    tjoinedString.append(temp.allKeys[j] as! String)
                 }
-                
-                let findLessonSelectedEnd = overallTopics.lastIndex(of: selectedOverallTopic) // Gets the last row of selected Lesson
-                if findLessonSelectedEnd != nil {
-                    lessonsSelRowEnd = Int(findLessonSelectedEnd ?? 0) + 2
-                }
-                    for _ in lessonsSelRowStart...lessonsSelRowEnd {
-                        if (lessonsSelRowStart + index <= lessonsSelRowEnd) {
-                            var parsingFlashcards = worksheet.cells(atRows: [UInt(lessonsSelRowStart + index)])
-                                .compactMap { $0.stringValue(sharedStrings) }
-                            parsingFlashcards = parsingFlashcards.remove("Empty Cell")
-                            
-                            data["Flashcard \(index)"] = parsingFlashcards
-                            index += 1
-                        }
-                    }
             }
-        } catch {
-            fatalError("\(error.localizedDescription)")
+            flashcards.append(tjoinedString.joined(separator: "<br>"))
         }
+        
+       
     }
 
     func checkFavourited(needUpdate: Bool) {
@@ -184,27 +150,12 @@ class FlashcardsViewController: UIViewController {
     func configFlashcards() {
         currentFlashcard.removeAll()
         checkFavourited(needUpdate: false)
-        currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
-//        if (flashcardsIndex == 1) {
-//            currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
-//        } else {
-//            if (data["Flashcard \(flashcardsIndex)"] == nil) {
-//                currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
-//                isFlashcardNil = true
-//            } else {
-//                currentFlashcard = data["Flashcard \(flashcardsIndex)"]!
-//                isFlashcardNil = false
-//            }
-//        }
         
-        conceptName = currentFlashcard[3]
+        conceptName = conceptNames[flashcardsIndex-1]
         
         conceptNameLabel.numberOfLines = 0; // Dynamic number of lines
         conceptNameLabel.lineBreakMode = NSLineBreakMode.byWordWrapping;
         conceptNameLabel.text = conceptName
-        
-        uneditedCurrentFlashcard = currentFlashcard
-        currentFlashcard.removeSubrange(0..<4)
         let styles="""
         <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -213,7 +164,7 @@ class FlashcardsViewController: UIViewController {
         </head>
         <body style="font-family: 'M PLUS Rounded 1c', sans-serif;">
         """
-        let flashcardKnowledge = Data((styles + currentFlashcard.joined(separator: "<br>") + "</body>").utf8)
+        let flashcardKnowledge = Data((styles + flashcards[flashcardsIndex-1] + "</body>").utf8)
         if let attributedString = try? NSAttributedString(data: flashcardKnowledge, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
             textField.attributedText = attributedString
         }
@@ -235,14 +186,10 @@ class FlashcardsViewController: UIViewController {
             selectedLesson = openedLesson
         }
         
-        if let rowStart:Int = userDefaults.integer(forKey: "TopicSelStart") as? Int {
-            topicSelRowStart = rowStart
-        }
         
-        if let rowEnd:Int = userDefaults.integer(forKey: "TopicSelEnd") as? Int{
-            topicSelRowEnd = rowEnd
+        if let sl:String = userDefaults.string(forKey: "selectedLesson"){
+            selectedLesson = sl
         }
-        
         if let favFlashcard = userDefaults.object(forKey: "Favourite Flashcard") as? Array<String> {
             favouriteFlashcard = favFlashcard
         }
@@ -304,7 +251,7 @@ class FlashcardsViewController: UIViewController {
     
     @objc func swipeLeft(_ swipeGesture: UISwipeGestureRecognizer?=nil) {
         
-        if (!isFlashcardNil && flashcardsIndex<data.count-1) {
+        if (!isFlashcardNil && flashcardsIndex<conceptNames.count-1) {
             flashcardsIndex += 1
             if (lessonsSelRowEnd - lessonsSelRowStart != flashcardsIndex) {
                 let tF = false
@@ -319,12 +266,12 @@ class FlashcardsViewController: UIViewController {
     }
     func updateSwipeLabel(){
         if (flashcardsIndex<=1){
-            if (flashcardsIndex>=data.count) {
+            if (flashcardsIndex>=conceptNames.count) {
                 swipeLabel.text = "This is the Only Flashcard"
             } else {
                 swipeLabel.text = "Swipe Right to see New Flashcards"
             }
-        }else if (flashcardsIndex>=data.count) {
+        }else if (flashcardsIndex>=conceptNames.count) {
             swipeLabel.text = "Swipe Left to see New Flashcards"
         }else{
             swipeLabel.text = "Swipe Right/Left to see New Flashcards"
