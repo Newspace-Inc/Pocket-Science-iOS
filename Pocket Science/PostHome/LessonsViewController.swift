@@ -126,8 +126,6 @@ class LessonsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 var endTopicSel = 0
                 
                 // Get Cell Data
-                let lowerUpperPri = worksheet.cells(atColumns: [ColumnReference("A")!])
-                    .compactMap{ $0.stringValue(sharedStrings) }
                 let topic = worksheet.cells(atColumns: [ColumnReference("B")!])
                     .compactMap { $0.stringValue(sharedStrings) }
                                 
